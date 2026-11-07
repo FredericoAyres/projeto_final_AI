@@ -1,0 +1,179 @@
+# Registro único dos bancos de dados. Um item por pasta de data/raw/.
+# role:   train_val | real_control | test_generalization | test_ptbr
+# access: open | login | gated   (null = desconhecido)
+# status: pending (atualizar conforme baixarmos)
+
+datasets:
+  - name: asvspoof2019_la
+    role: train_val
+    language: en
+    contains: both
+    url: https://datashare.ed.ac.uk/handle/10283/3336
+    license: ODC-By
+    access: open
+    status: pending
+    local_path: data/raw/train_val_en/asvspoof2019_la/
+
+  # precisa juntar a pasta VCTK_BONAFIDE de cada subconjunto
+  - name: dfadd
+    role: train_val
+    language: en
+    contains: both
+    url: https://huggingface.co/datasets/isjwdu/DFADD
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/train_val_en/dfadd/
+
+  # baixar só alguns vocoders
+  - name: shiftyspeech
+    role: train_val
+    language: en
+    contains: both
+    url: https://huggingface.co/datasets/ash56/ShiftySpeech
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/train_val_en/shiftyspeech/
+
+  # baixar só uma parte
+  - name: codecfake_plus
+    role: train_val
+    language: en
+    contains: both
+    url: https://huggingface.co/datasets/CodecFake/CodecFake_Plus_Dataset
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/train_val_en/codecfake_plus/
+
+  # usar train-clean-100
+  - name: librispeech
+    role: real_control
+    language: en
+    contains: real
+    url: https://www.openslr.org/12
+    license: CC BY 4.0
+    access: open
+    status: pending
+    local_path: data/raw/real_en/librispeech/
+
+  # URL a confirmar (Edinburgh DataShare)
+  - name: vctk
+    role: real_control
+    language: en
+    contains: real
+    url: null
+    license: CC BY 4.0
+    access: open
+    status: pending
+    local_path: data/raw/real_en/vctk/
+
+  - name: in_the_wild
+    role: test_generalization
+    language: en
+    contains: both
+    url: https://huggingface.co/datasets/mueller91/In-The-Wild
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/test_generalization/in_the_wild/
+
+  # só avaliação
+  - name: llamapartialspoof
+    role: test_generalization
+    language: en
+    contains: both
+    url: https://github.com/hieuthi/LlamaPartialSpoof
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/test_generalization/llamapartialspoof/
+
+  # baixar só 1 das 4 partes
+  - name: asvspoof2021_df
+    role: test_generalization
+    language: en
+    contains: both
+    url: https://zenodo.org/records/4835108
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/test_generalization/asvspoof2021_df/
+
+  # só fake, precisa parear com real
+  - name: sonar
+    role: test_generalization
+    language: en
+    contains: fake
+    url: https://github.com/Jessegator/SONAR
+    license: null
+    access: open
+    status: pending
+    local_path: data/raw/test_generalization/sonar/
+
+  # opcional, exige e-mail institucional
+  - name: spoofceleb
+    role: test_generalization
+    language: en
+    contains: both
+    url: https://huggingface.co/datasets/jungjee/spoofceleb
+    license: CC BY 4.0
+    access: gated
+    status: pending
+    local_path: data/raw/test_generalization/spoofceleb/
+
+  # baixar só o split test
+  - name: brspeech_df
+    role: test_ptbr
+    language: pt
+    contains: both
+    url: https://huggingface.co/datasets/AKCIT-Deepfake/BRSpeech-DF
+    license: Apache-2.0
+    access: open
+    status: pending
+    local_path: data/raw/test_ptbr/brspeech_df/
+
+  # access desconhecido (link não verificado)
+  - name: parlaspoof_br
+    role: test_ptbr
+    language: pt
+    contains: both
+    url: https://huggingface.co/datasets/freds0/ParlaSpoof-BR
+    license: null
+    access: null
+    status: pending
+    local_path: data/raw/test_ptbr/parlaspoof_br/
+
+  # só fake, pasta fake/pt
+  - name: mlaad_pt
+    role: test_ptbr
+    language: pt
+    contains: fake
+    url: https://huggingface.co/datasets/mueller91/MLAAD
+    license: CC BY-NC 4.0
+    access: gated
+    status: pending
+    local_path: data/raw/test_ptbr/mlaad_pt/
+
+  # exige login no Kaggle
+  - name: fakebraccent
+    role: test_ptbr
+    language: pt
+    contains: both
+    url: https://www.kaggle.com/datasets/katarinaveljovic/fake-braccent-d
+    license: null
+    access: login
+    status: pending
+    local_path: data/raw/test_ptbr/fakebraccent/
+
+  # controle real em pt-BR
+  - name: coraa
+    role: test_ptbr
+    language: pt
+    contains: real
+    url: https://huggingface.co/datasets/gabrielrstan/CORAA-v1.1
+    license: CC BY-NC-ND 4.0
+    access: open
+    status: pending
+    local_path: data/raw/test_ptbr/coraa/

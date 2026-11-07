@@ -1,0 +1,19 @@
+# Dados: nada de data/ vai para o git, só as pastas (.gitkeep) e o README
+data/**
+!data/**/
+!data/**/.gitkeep
+!data/README.md
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+env/
+.env
+
+# Checkpoints de modelo
+*.pt
+*.pth
+*.ckpt
+
+# Logs do download
+logs/
