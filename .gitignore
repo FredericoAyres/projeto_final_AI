@@ -18,3 +18,7 @@ env/
 
 # Logs do download
 logs/
+
+# Saídas do notebook (checkpoints e tabelas de resultado)
+models/
+results/
