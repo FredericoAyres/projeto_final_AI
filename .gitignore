@@ -3,6 +3,7 @@ data/**
 !data/**/
 !data/**/.gitkeep
 !data/README.md
+!data/processed/manifest.parquet
 
 # Python / Jupyter
 __pycache__/
