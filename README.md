@@ -11,11 +11,19 @@ data/
     real_en/              librispeech, vctk
     test_generalization/  in_the_wild, llamapartialspoof, asvspoof2021_df, sonar, spoofceleb
     test_ptbr/            brspeech_df, parlaspoof_br, mlaad_pt, fakebraccent, coraa
-  processed/              manifests e splits (gerados depois)
-scripts/                  scripts de download e preparo
-notebooks/
+  processed/              manifest.parquet (versionado) e áudios extraídos
+scripts/                  scripts de download, manifest e auditoria
+src/                      código reutilizável dos notebooks (dataset, augmentation, modelo, treino, métricas)
+notebook.ipynb            SÓ a versão atual do experimento
+notebooks/versions/       versões anteriores arquivadas (vN_nome.ipynb, com as saídas)
+results/                  métricas por versão (baseline_results.csv, experiments.csv)
+models/                   checkpoints vN_*.pt (fora do git)
 docs/
   datasets.yaml           registro único dos bancos
+  HISTORICO_VERSOES.md    o que já foi tentado em cada versão: LEIA ANTES de propor uma nova
+  audit_report.md         auditoria dos dados
+  dataset_overview.md     visão geral do banco
+CLAUDE.md                 regras do projeto para o Claude Code
 ```
 
 Os dados não vão para o git. Veja [`data/README.md`](data/README.md).
@@ -86,7 +94,7 @@ _Testado (com tudo já extraído: "0 extraidos agora")._
 python scripts/check_data.py
 ```
 
-Deve terminar com `OK`. Se faltar algo, o script mostra o comando a rodar. _Testado: OK nos 756.350 áudios._ O manifest `data/processed/manifest.parquet` **já vem no repositório e não precisa ser gerado de novo**. Ele só precisa ser regenerado (`python scripts/build_manifest.py`) se as regras de divisão mudarem.
+Deve terminar com `OK`. Se faltar algo, o script mostra o comando a rodar. _Testado: OK nos 756.350 áudios._ O manifest `data/processed/manifest.parquet` **já vem no repositório e não precisa ser gerado de novo**. Ele só precisa ser regenerado (`python scripts/build_manifest.py`) se as regras de divisão mudarem. Desde a v2, ele tem a coluna `eval_subset` (`dev_shift` / `test_final`, ver `docs/audit_report.md`, seção 7).
 
 ### 8. Bancos baixados
 

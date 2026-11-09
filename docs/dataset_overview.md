@@ -1,6 +1,8 @@
 # Visão geral do banco de dados
 
-Gerado automaticamente pelo `notebook.ipynb` (seção 3) a partir de `data/processed/manifest.parquet`, `docs/datasets.yaml` e `docs/audit_report.md`. Não edite à mão: rode o notebook de novo.
+Gerado automaticamente pelo notebook v1 (`notebooks/versions/v1_baseline.ipynb`, seção 3) a partir de `data/processed/manifest.parquet`, `docs/datasets.yaml` e `docs/audit_report.md`. Não edite à mão: rode aquele notebook de novo.
+
+> **Atualização da v2 (escrita à mão):** o manifest ganhou a coluna `eval_subset` (`dev_shift` para 30% dos locutores do In-the-Wild, `test_final` para o resto dos testes). As tabelas abaixo não mudam com isso. Detalhes em `docs/audit_report.md`, seção 7.
 
 ## Funil
 
@@ -30,6 +32,7 @@ Mais da metade do banco (55%) está reservada como teste, de propósito: os banc
 | split          | uso neste projeto: `train`, `val` ou `test`; vazio nos excluídos (o notebook chama de `excluded`) |
 | duration_s     | duração em segundos (lida do cabeçalho do arquivo)                                                |
 | sample_rate    | taxa de amostragem original do arquivo, em Hz                                                     |
+| eval_subset    | (v2) `dev_shift` (30% dos locutores do In-the-Wild, usado para decidir entre versões) ou `test_final` (avaliado uma vez por versão); vazio fora do teste |
 
 ## Tabela por fonte
 

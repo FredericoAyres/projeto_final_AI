@@ -77,7 +77,28 @@ Foram auditadas 10 pastas: `asvspoof2019_la`, `dfadd`, `shiftyspeech`, `codecfak
 
 ## 3. Leitura de cabeçalhos (soundfile.info, 32 threads, todos os 756.350 áudios)
 
-O cache fica em `data/processed/audio_info.parquet`. **Nenhum arquivo corrompido ou ilegível (0 de 756.350).** Todos os arquivos com rótulo existem em disco, e não há áudio em disco sem rótulo (o CoRS e as 3 partes não baixadas do DF não contam, porque não estão em disco).
+O cache fica em `data/processed/audio_info.parquet`. **Nenhum cabeçalho ilegível (0 de 756.350).** Todos os arquivos com rótulo existem em disco, e não há áudio em disco sem rótulo (o CoRS e as 3 partes não baixadas do DF não contam, porque não estão em disco).
+
+> ⚠ **Ler o cabeçalho não é decodificar o áudio.** Esta seção só leu cabeçalhos. A decodificação completa está na seção 3.1: parte dos FLAC do ASVspoof 2021 DF não abre com o `soundfile`.
+
+### 3.1 Decodificação completa dos FLAC (atualizado em 2026-11-08)
+
+`scripts/check_flac_decoding.py` decodifica **todos os 525.027 FLAC do manifest**: primeiro com `soundfile` e, se ele falhar, com `miniaudio` (o plano B de `src/dataset.py`). As falhas ficam listadas em `data/processed/flac_decode_check.parquet`.
+
+| source_dataset | FLAC | falham no soundfile | lidos pelo miniaudio | % falha | ilegíveis nos dois |
+|:--|--:|--:|--:|--:|--:|
+| asvspoof2019_la | 122.299 | 0 | – | 0,00 | 0 |
+| **asvspoof2021_df** | **152.955** | **64.901** | **64.901** | **42,43** | **0** |
+| brspeech_df (extraídos) | 7.907 | 0 | – | 0,00 | 0 |
+| dfadd | 163.500 | 0 | – | 0,00 | 0 |
+| librispeech | 33.862 | 0 | – | 0,00 | 0 |
+| shiftyspeech | 44.504 | 0 | – | 0,00 | 0 |
+
+- **64.901 dos 152.955 FLAC do ASVspoof 2021 DF (42,4%) não abrem com o `soundfile`** (libsndfile 1.2.2). Erros: "unknown error in flac decoder" (40.505), "flac decoder lost sync" (14.103) e "Internal psf_fseek() failed" (10.293). O cabeçalho deles é lido normalmente; a falha só aparece ao decodificar as amostras.
+- **O `miniaudio` lê todos os 64.901.** Nenhum FLAC do manifest é ilegível nos dois leitores.
+- Em 300 FLAC do ASVspoof 2021 DF que os dois leem (sorteados com seed 42), as amostras do `soundfile` e do `miniaudio` são **iguais** (300 de 300).
+- Nenhum outro banco tem falha, então treino e validação nunca dependeram do `miniaudio`; só o teste ASVspoof 2021 DF depende.
+- Decisão: o `miniaudio` fica como leitor oficial de reserva em `src/dataset.py` (só é chamado quando o `soundfile` falha).
 
 | source_dataset    | .flac  | .wav   | ilegíveis | min_s | p5_s | mediana_s | média_s | p95_s | max_s  | total_h |
 |:------------------|-------:|-------:|---:|-----:|-----:|------:|------:|------:|-------:|-------:|
@@ -237,3 +258,21 @@ Em aberto:
 4. **Desbalanceamento**: o pool tem 72,8% de fakes (o ASVspoof 2019 tem ~9 fakes por real). Fica para o treino (pesos ou amostragem).
 5. **Val sem ASVspoof 2019**: consequência da decisão 4. Os ataques A01–A06 só aparecem em train.
 6. **Cobertura parcial**: o ASVspoof 2021 DF tem só a parte 1 de 4 (152.955 de 611.829) e o CodecFake+ só o CoSG (o CoRS não foi baixado).
+
+Resolvida em 2026-11-08:
+- **FLAC do ASVspoof 2021 DF que o soundfile não decodifica**: 64.901 de 152.955 (42,4%), todos lidos pelo `miniaudio` com as mesmas amostras (seção 3.1).
+
+## 7. Conjunto dev_shift (2026-11-08)
+
+Nova coluna no manifest, **`eval_subset`**, gerada por `assign_eval_subset()` em `scripts/build_manifest.py`. Nenhuma coluna antiga mudou (o manifest regerado foi comparado com o anterior: as 12 colunas antigas são idênticas, linha a linha).
+
+- **in_the_wild**: os 54 locutores foram sorteados (seed 42); **30% dos locutores (16) viram `dev_shift`** e 70% (38) viram `test_final`. Todo áudio de um locutor fica do mesmo lado.
+- Demais linhas com `split=test`: `test_final`. Train, val e excluded: nulo.
+- `split` e `role` não mudaram: o In-the-Wild continua `split=test`, `role=test_generalization`.
+
+| eval_subset | áudios | locutores | real | fake | % fake |
+|:--|--:|--:|--:|--:|--:|
+| dev_shift (in_the_wild) | 10.614 | 16 | 8.633 | 1.981 | 18,7 |
+| test_final (in_the_wild) | 21.165 | 38 | 11.330 | 9.835 | 46,5 |
+
+**Para que serve:** a validação é do mesmo "mundo" do treino (gravações limpas). O `dev_shift` é um conjunto com gravações de internet, como as do teste, que **pode ser olhado para decidir entre versões**. O `test_final` continua sendo avaliado **uma única vez por versão**. Os 16 locutores do dev_shift: Arnold Schwarzenegger, Barack Obama, Donald Trump, Dwight Eisenhower, Frank Sinatra, Gilbert Gottfried, Harry Truman, Jerry Seinfeld, John Cleese, Lyndon Johnson, Martin Luther King, Mitch Hedberg, Mr. Rogers, Nelson Mandela, Tucker Carlson e Winston Churchill. Obama e Trump (muitos reais) caíram no dev_shift, por isso ele tem só 18,7% de fakes.

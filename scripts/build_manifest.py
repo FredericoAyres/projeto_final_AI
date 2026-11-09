@@ -13,6 +13,8 @@ O que faz:
      cache em data/processed/audio_info.parquet; rodar de novo reaproveita o cache.
   4. Divide o pool train_val em train/val (80/20) por GRUPO DE LOCUTOR, global entre bancos,
      seed 42.
+  5. Coluna eval_subset: 30% dos locutores do In-the-Wild (seed 42) viram dev_shift (usado para
+     decidir entre versoes); o resto dos testes e test_final (avaliado uma vez por versao).
 
 Nada em data/raw/ e modificado. Detalhes e duvidas em docs/audit_report.md.
 """
@@ -34,8 +36,9 @@ INFO_CACHE = PROC / "audio_info.parquet"
 OUT = PROC / "manifest.parquet"
 SEED = 42
 VAL_FRAC = 0.20
+DEV_SHIFT_FRAC = 0.30   # fracao dos LOCUTORES do In-the-Wild que vira dev_shift (o resto e teste final)
 COLS = ["path", "label", "source_dataset", "generator", "fake_type", "speaker_id", "language",
-        "original_split", "role", "split", "duration_s", "sample_rate"]
+        "original_split", "role", "split", "duration_s", "sample_rate", "eval_subset"]
 
 
 def rows(records, **const):
@@ -259,6 +262,28 @@ def assign_split(df):
     return df
 
 
+def assign_eval_subset(df):
+    """Coluna eval_subset: separa um conjunto de desenvolvimento "fora do dominio" (dev_shift).
+
+    - in_the_wild: os locutores sao sorteados (seed 42); 30% deles vao para dev_shift e 70% para
+      test_final. Todo audio de um locutor fica do mesmo lado.
+    - demais linhas com split=test: test_final.
+    - train, val e excluded: nulo.
+    split e role NAO mudam (o in_the_wild continua split=test, role=test_generalization).
+    dev_shift pode ser olhado para decidir entre versoes; test_final e avaliado uma vez por versao.
+    """
+    df["eval_subset"] = None
+    df.loc[df["split"].eq("test"), "eval_subset"] = "test_final"
+    itw = df["source_dataset"].eq("in_the_wild")
+    spk = np.random.default_rng(SEED).permutation(sorted(df.loc[itw, "speaker_id"].unique()))
+    dev = set(spk[: int(round(DEV_SHIFT_FRAC * len(spk)))])
+    df.loc[itw & df["speaker_id"].isin(dev), "eval_subset"] = "dev_shift"
+    d = df[itw].groupby("eval_subset").agg(audios=("path", "size"), locutores=("speaker_id", "nunique"),
+                                           fake=("label", "sum"))
+    print("in_the_wild por eval_subset:\n", d)
+    return df
+
+
 def exclude_test_speakers(df):
     """Vazamento: locutores do LlamaPartialSpoof nao podem estar no pool train_val (de nenhum banco)."""
     lps = set(df.loc[df["source_dataset"].eq("llamapartialspoof"), "speaker_id"])
@@ -282,6 +307,7 @@ def main():
     inf = read_headers(df["path"].tolist())
     df = df.merge(inf[["path", "readable", "duration_s", "sample_rate"]], on="path", how="left")
     df = assign_split(df)
+    df = assign_eval_subset(df)
     df["label"] = df["label"].astype("int8")
     df["sample_rate"] = df["sample_rate"].astype("Int32")
     df[COLS].to_parquet(OUT, index=False)

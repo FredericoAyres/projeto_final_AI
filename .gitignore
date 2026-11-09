@@ -20,5 +20,9 @@ env/
 logs/
 
 # Saídas do notebook (checkpoints e tabelas de resultado)
+# Os checkpoints ficam fora do git. Dos resultados, só os CSV de resumo das versões entram;
+# históricos por época e notas por áudio (*.parquet) ficam só no disco.
 models/
-results/
+results/*
+!results/baseline_results.csv
+!results/experiments.csv
