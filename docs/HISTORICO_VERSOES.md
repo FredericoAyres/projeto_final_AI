@@ -42,6 +42,13 @@ AUC e EER são as métricas principais (não dependem de limiar). "val (média/f
 | v3 · repeat (3 seeds) | 2026-11-09 | (controle pareado da v3) | áudio < 4 s repetido até 4 s, como no v1r; seeds 42, 123 e 2026 | 2,1% / 13,3% (média das 3 seeds) | 0,282 (0,228 a 0,378) / 66,4% | não avaliado | não avaliado | não avaliado | não avaliado | referência da v3; o acaso entre seeds já é de 0,15 de AUC no dev_shift | `notebooks/versions/v3_padding.ipynb` |
 | v3 · zero (3 seeds) | 2026-11-09 | completar com zeros, em vez de repetir, melhora a generalização | áudio < 4 s: fala original + zeros à direita até 4 s; seeds 42, 123 e 2026 | 1,9% / 12,4% (média das 3 seeds) | 0,266 (0,146 a 0,377) / 67,8% | não avaliado | não avaliado | não avaliado | não avaliado | sem efeito demonstrado no dev_shift (Δ EER pareado −3,1 / +20,1 / −12,8 pontos); AUC abaixo de 0,5 nas seis execuções | `notebooks/versions/v3_padding.ipynb` |
 
+| v4 · S2 `concat_top3` (final) | 2026-11-10 | representações de um modelo de fala pré-treinado e congelado generalizam melhor para vozes de internet que a CNN | XLS-R 300M congelado (camadas 5, 6, 7, média no tempo) + regressão logística; corte de silêncio; até 8 s sem completar | 1,0% / 5,9% | 0,983 / 5,9% | 0,979 / 6,8% | 0,925 / 14,7% | 0,842 / 24,9% | 16,7% (lim. A) · 2,5% (lim. B) | resolveu a inversão das vozes de internet; o ganho sobre o S1 não está demonstrado; fraco em pt-BR | `notebooks/versions/v4_ssl.ipynb` |
+| v4 · S1 (só camada 24) | 2026-11-10 | (referência: "só transfer learning") | a última camada do XLS-R + regressão logística (C pela validação) | 2,6% / 8,6% | 0,984 / 5,8% | 0,986 / 5,4% | 0,936 / 14,0% | 0,775 / 30,7% | 35,6% · 11,6% | o modelo congelado sozinho já explica quase todo o ganho | `notebooks/versions/v4_ssl.ipynb` |
+| v4 · S3 (S2 + CNN) | 2026-11-10 | juntar a CNN da v3 ajuda | regressão de 2 entradas (S2 e S0) treinada na validação | 0,7% (no próprio treino) / — | 0,943 / 10,9% | 0,888 / 18,8% | 0,900 / 17,8% | 0,840 / 25,3% | 31,8% · 8,7% | não demonstrado pela regra, mas piorou o In-the-Wild (−0,09 de AUC): não usar | `notebooks/versions/v4_ssl.ipynb` |
+| v4 · S0 = `v3_zero_s123` | 2026-11-10 | (referência: a CNN da v3 com menor EER média por fonte na validação) | CNN da v3, janelas de 4 s | 2,1% / 11,2% | 0,146 / 79,4% | 0,114 / 82,2% | 0,556 / 46,3% | 0,735 / 29,3% | 65,3% · 41,3% | no teste, igual ao dev_shift: ordena o In-the-Wild ao contrário | `notebooks/versions/v4_ssl.ipynb` |
+
+Nas linhas da v4, "EER val" é na validação da v4 (19.999 clipes, subamostra estratificada); o teste usa até 5.000 clipes por classe e banco, avaliado uma vez; o falso alarme do CORAA vem com os dois limiares pré-registrados (A = EER da validação; B = EER do dev_shift). As outras cinco execuções da v3 não foram avaliadas no teste.
+
 Na v3, cada linha é a média das três seeds (entre parênteses, o mínimo e o máximo da AUC do dev_shift); o teste final da v3 ainda não foi avaliado (etapa separada). Na v2, dev_shift e teste são por janelas; "EER val global" é no recorte central. Recall e falso alarme (CORAA) dependem do limiar, que mudou muito entre os experimentos da v2 (0,60 / 0,10 / 0,76).
 
 ## e) Registro detalhado
@@ -258,9 +265,152 @@ Na v3, cada linha é a média das três seeds (entre parênteses, o mínimo e o 
 
   Total: 3,4 h de treino (3,6 h de processo). A execução do notebook (só leitura de notas, sem treino e sem teste) levou ~17 s, com pico de ~2,5 GB.
 
+### v4 - pré-registro (modelo auto-supervisionado congelado + cabeças leves)
+
+- **Escrito em:** 2026-11-09 21:52 (−03:00), branch `v4-ssl`, a partir do commit `cbfb649` (v3 fechada). **Antes de qualquer resultado da v4** (nem os testes QUICK tinham rodado; só o modelo tinha sido baixado e carregado). Nada abaixo pode ser mudado depois de ver resultados; se algo mudar, a mudança vai num bloco datado separado, com o motivo.
+- **Hipótese:** a CNN pequena sobre log-mel aprendeu o estilo de gravação do real do treino (fala lida e limpa: audiolivro, VCTK). Representações de um modelo de fala auto-supervisionado pré-treinado em muita fala variada (XLS-R 300M, congelado), com cabeças leves por cima, podem separar real de fake por pistas que generalizam melhor para vozes de internet (dev_shift). ⚠️ Fora da trilha: o modelo auto-supervisionado em si; usar um modelo pré-treinado congelado como extrator é transfer learning (Aula 10).
+- **Mudanças agrupadas nesta versão** (regra nova do CLAUDE.md: agrupar o que dá para fazer junto e medir cada parte com ablações baratas dentro da versão): front-end XLS-R 300M congelado no lugar de log-mel + CNN; remoção de silêncio nas bordas; recorte central de até 8 s sem completar (nem repetição nem zeros); escolha de camada; cabeças leves; diagnóstico de atalhos; métricas de acurácia.
+- **Critérios (fixados agora):**
+  - **(a) Escolha da camada e da cabeça final:** pela **EER média por fonte na validação** (só fontes com real e fake). O dev_shift é reportado para **todas** as camadas e cabeças, mas **não escolhe** camada, cabeça, C nem seed (são só 16 locutores). O C da regressão logística de cada camada também é escolhido pela EER média por fonte da validação. Nas cabeças com 3 seeds, a comparação usa a média das 3 seeds na validação.
+  - **(b) Comparação principal entre versões:** AUC e EER do dev_shift e acurácia balanceada do dev_shift (limiar da validação).
+  - **(c) O que conta como melhora real:** AUC do dev_shift **acima de 0,5 nas três seeds** da cabeça final; entre 0,5 e 0,6 é **melhora fraca**; acima de 0,6 é **melhora clara**; igual ou abaixo de 0,5, **não resolveu**. Sempre comparado com a régua do ruído da v3 (AUC do dev_shift de 0,146 a 0,378 nas seis execuções; amplitude de ~0,15 a 0,23 entre seeds). Se a cabeça final for uma regressão logística (solver determinístico, convexo), o resultado não depende de seed: vale o valor único, e a regra das três seeds é conferida também nas cabeças de soma ponderada.
+  - **(d) Limiar:** fixado na validação (ponto de EER da validação inteira), **nunca** no dev_shift nem no teste. Acurácias também reportadas com limiar 0,5 (logit 0) e ao lado da acurácia trivial ("sempre a classe majoritária").
+  - **(e) Se o AUC do dev_shift continuar abaixo de 0,5 mesmo com o modelo pré-treinado**, isso indica **problema de dados** (o que o treino chama de real e de fake), e não de modelo, e deve ser dito assim na conclusão.
+  - **(f) Atalhos:** se a regressão logística só com estatísticas baratas (duração, silêncio inicial e final, RMS, pico, largura de banda) passar bem do acaso (AUC da validação acima de ~0,6), há atalho nos dados, e isso entra na conclusão.
+  - **(g) Dados:** o dev_shift só avalia; o teste final não é avaliado nesta execução (`AVALIAR_TESTE_FINAL = False`). In-the-Wild test_final, LlamaPartialSpoof, BRSpeech-DF, CORAA, ASVspoof 2019 eval e 2021 DF **não** escolhem nada.
+
+### v3 · acurácias retroativas (Parte A da v4, 2026-11-09)
+
+Calculadas por `scripts/acuracias_v3.py` **só com as notas já salvas** da v3 (`results/v3_*_notas_val.parquet` e `results/v3_*_notas_dev_shift.parquet`; nada retreinado, nenhum teste lido), por janelas, como no fechamento. Arquivo: `results/v3_acuracias.csv`. AUC e EER conferem com o fechamento da v3.
+
+| execução | val: acurácia / balanceada (limiar val) | dev_shift: acurácia / balanceada (limiar val) | dev_shift: acurácia / balanceada (0,5) | dev_shift: acurácia trivial |
+|:--|:--|:--|:--|--:|
+| `v3_repeat_s42` | 0,988 / 0,988 | 0,216 / 0,434 | 0,207 / 0,439 | 0,813 |
+| `v3_zero_s42` | 0,978 / 0,978 | 0,212 / 0,400 | 0,196 / 0,479 | 0,813 |
+| `v3_repeat_s123` | 0,983 / 0,983 | 0,312 / 0,503 | 0,273 / 0,515 | 0,813 |
+| `v3_zero_s123` | 0,990 / 0,990 | 0,164 / 0,365 | 0,155 / 0,275 | 0,813 |
+| `v3_repeat_s2026` | 0,988 / 0,988 | 0,191 / 0,432 | 0,186 / 0,442 | 0,813 |
+| `v3_zero_s2026` | 0,989 / 0,989 | 0,343 / 0,444 | 0,222 / 0,471 | 0,813 |
+
+A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurácia (0,16 a 0,34) fica muito abaixo da trivial (0,81)** e a balanceada (0,37 a 0,50) não passa do acaso: o mesmo diagnóstico da AUC abaixo de 0,5, numa escala mais fácil de explicar. **Régua do ruído em acurácia balanceada (dev_shift, limiar da validação): 0,365 a 0,503.**
+
+### v4 · estado da execução (atualizado em 2026-11-09 22:40)
+
+*(Superado pelo fechamento da v4, mais abaixo; mantido como registro de como estava antes da execução.)*
+
+- **Resultados completos:** nenhum ainda. A execução oficial roda **fora desta sessão**, pelo vigia (`scripts/vigia_v4.ps1`, lançado às 22:38 oculto, PID 30428) → `scripts/rodar_v4.ps1` → `scripts/v4.py <etapa>`. Conferir: `Get-Content logs\v4_status.txt` e `Get-Content logs\v4_resumo.txt`. A tabela-resumo (d) só ganha a linha da v4 quando a versão fechar.
+- **Teste final:** não avaliado (`AVALIAR_TESTE_FINAL = False`; `scripts/v4.py` para com erro se a flag for True).
+- **Dependências (Parte C):** `pip install transformers safetensors` no env → `transformers 5.22.2`, `safetensors 0.8.0`, `tokenizers 0.23.3` (+ pydantic, typer, rich, regex como dependências). O `pip install --dry-run` confirmou antes que **torch, torchaudio e huggingface_hub não seriam tocados** (continuam 2.14.1+cu130 / 2.11.0+cu130 / 2.4.0). Funciona com Python 3.13.14. Acrescentados ao `requirements.txt`. `accelerate` **não** foi instalado (só serviria para carregar os pesos direto na GPU).
+- **Modelo:** `facebook/wav2vec2-xls-r-300m`, revisão `1a640f32ac3e39899438a2931f9924c02f080a54`, só `config.json`, `preprocessor_config.json`, `README.md` e `pytorch_model.bin` (1.269.737.156 bytes = 1,27 GB; o repositório não tem safetensors). Cache em `%USERPROFILE%\.cache\huggingface\hub`. Depois do download, tudo roda com `HF_HUB_OFFLINE=1` e `local_files_only=True`.
+- **Decisões tomadas sem supervisão (com o motivo):**
+  1. **fp16** (testado: sem NaN; valores até ~330, longe do limite do float16). Lote com NaN seria refeito em bf16 e registrado (`dtype` no meta do shard).
+  2. **Lotes da GPU com formato fixo ("baldes" de 2, 4, 6 e 8 s).** Medido: com formatos de lote variados, o processo principal chegou a **13,2 GB de memória reservada** (pico total 19,2 GB, sistema 41,9 GB) e a vazão caiu para 19 clipes/s; com 1 formato fixo, 4,5 GB; com 25 formatos, 10,5 GB estáveis; com os 4 baldes, **7,5 GB e 44 clipes/s**. Causa provável: cada formato novo faz a GPU carregar mais variantes de kernels na memória da CPU (carregamento "preguiçoso" do CUDA, que já é o padrão; no modo ansioso seriam 12,6 GB logo de início). O enchimento é mascarado (`attention_mask`) e média/desvio usam só quadros válidos: **lote no balde × clipe isolado, diferença relativa máxima 0,42% em fp16 (0,12% em fp32)** em 12 clipes reais. Execução, não método.
+  3. **cuDNN continua ligado.** Desligá-lo economizava ~1,2 GB, mas mudava os números (até 20% numa camada, com ruído aleatório na entrada); não vale trocar a implementação das convoluções por isso.
+  4. **Treino: 20 shards = 40.000 clipes (20.000 reais + 20.000 fakes).** Calculado com o plano: até ~20 shards, o teto por fonte vale para todas as fontes grandes (reais: ASVspoof 24%, DFADD 24%, LibriSpeech 24%, ShiftySpeech 24%, CodecFake+ 3,5%); depois disso, ShiftySpeech, ASVspoof e CodecFake+ se esgotam e todo real novo viria só do DFADD (VCTK) e do LibriSpeech (com 69 shards, 85% dos reais), ou seja, fala lida e limpa, o viés da hipótese. Não é limitação de orçamento.
+  5. **Validação:** 20.000 clipes (CodecFake+ e ShiftySpeech inteiros; DFADD e LibriSpeech na mesma fração por fonte e rótulo). **dev_shift inteiro** (10.614). **Ablação do corte** (opcional): os mesmos 10.000 clipes de treino (5 primeiros shards), 5.000 da validação e o dev_shift inteiro, **sem** corte de silêncio.
+  6. **Cabeças:** MLP de 256 neurônios, dropout 0,3, lote 256, paciência 5 (os da CNN); grade de C 0,001/0,01/0,1/1; concatenação das 3 **e** das 4 melhores camadas (a validação escolhe).
+  7. **Controle de sanidade acrescentado** à Parte F: a regressão da melhor camada com os rótulos do treino embaralhados (tem que dar AUC ~0,5).
+  8. Os `.ps1` são gravados em UTF-8 **com BOM** (o PowerShell 5.1 lê sem BOM como ANSI e estraga os acentos). O `Get-Counter` com nomes em inglês falha neste Windows (pt-BR); o vigia descobre os nomes pelo próprio Windows (`\Memória\Limite de confirmação`, `\Memória\Bytes confirmados`) e, se falhar, usa `Win32_OperatingSystem`.
+  9. O `rodar_v4.ps1` encerra **workers órfãos** do DataLoader (processo `spawn_main` cujo pai morreu): no teste de interrupção à força, um worker ficou vivo segurando 0,9 GB.
+  10. Um primeiro teste do vigia (que apagava os resultados QUICK e matava o processo num só script) foi **bloqueado pelo classificador de segurança** do Claude Code. Refeito sem apagar nada (sufixo de teste `V4_SUFIXO_EXTRA`, que só vale no QUICK) e com a interrupção em passos separados.
+- **Vazão medida** (`results/v4_vazao.json`; 500 clipes reais de treino, balanceados por fonte, 4 workers, corte de silêncio, baldes de 2 s): **44,1 clipes/s** (52,5 sem a partida dos workers; a GPU sozinha faria 55,9), pico de memória **11,45 GB** (principal 7,5 GB + 4 workers de ~0,9 GB), GPU 3,8 GB, 0 NaN.
+- **Tamanhos e estimativa (é estimativa):** 10.614 (dev_shift) + 20.000 (validação) + 40.000 (treino) + 25.614 (ablação sem corte) = **96.228 clipes ≈ 36 min de extração a 44 clipes/s** (orçamento: 4 h cumulativas, `results/v4_estado.json`); cabeças, atalhos e resumo: ~30 a 60 min. Total **~1,2 a 1,7 h**, mais até 60 min de espera por memória no início (a folga estava em 12 GB com esta sessão aberta; a regra pede 14 GB).
+- **Testes QUICK (2026-11-09; ~300 clipes: 100 de dev_shift, 99 de validação, 100 de treino, +150 sem corte; os números não valem como resultado e não devem ser interpretados):**
+  - Shapes `(n, 25, 1024)` float16, média e desvio; **nenhum NaN/infinito**; 0 erros de leitura; 0 cortes desfeitos.
+  - **Lote com padding × clipe isolado:** diferença relativa máxima por camada de 0,6% (fp16) e 0,05% (fp32) com padding simples; 0,42% / 0,12% no balde de 32 × 8 s.
+  - **Corte de silêncio:** em 6 áudios da validação, silêncio inicial de 0 a 0,79 s e final de 0,01 a 0,75 s (ex.: `p311_391.wav` de 2,56 s → 1,02 s); mediana no dev_shift QUICK: 0,26 s no início e 0,20 s no fim.
+  - **Retomada:** a extração foi interrompida à força depois do 1º shard de treino; a nova tentativa pulou os 5 shards prontos e continuou do `treino/00001`. Os shards refeitos são **idênticos bit a bit** aos de uma execução sem interrupção (média, desvio e meta). O orçamento **acumulou** entre as tentativas (2 tentativas).
+  - **Vigia:** trava de instância única (um 2º vigia saiu na hora), espera por memória (folga 12,3 < 14 GB; com esperas encurtadas no teste), falha detectada (código 10), nova tentativa e conclusão; `logs\v4_status_quick_t1.txt` e `logs\v4_FIM_quick_t1.txt` gravados.
+  - **Pipeline inteiro pelo `rodar_v4.ps1 -Quick`** com o código final (sufixo `_quick_t2`): as cinco etapas + conclusão, código 0; uma 2ª chamada pulou tudo. Controle com rótulos embaralhados: AUC 0,53 (val) e 0,55 (dev_shift).
+  - **Notebook em QUICK** (cópia no scratchpad, `V4_QUICK=1`): rodou inteiro sem erro, 1,5 MB, sem consultar o teste.
+  - Picos de memória (processo + workers): extração 11,5 a 13,2 GB; cabeças 1,1 a 2,1 GB.
+- **Pendente:** a execução completa (extração, cabeças, atalhos, resumo), a escrita das conclusões do notebook com os números reais e o arquivamento em `notebooks/versions/v4_ssl.ipynb`; o teste final da v4 (etapa separada).
+
+### v4 - teste final: pré-registro
+
+- **Escrito em:** 2026-11-10 07:25 (−03:00), branch `v4-ssl`, commit `cbfb649` com as mudanças não commitadas da v4. **Antes de qualquer resultado de teste:** nenhum áudio de teste foi extraído nem avaliado pela v4, e nenhuma nota de teste da v3 existe (o teste da v3 nunca foi avaliado). A execução da v4 (validação + dev_shift) já terminou em 2026-11-10 00:11 (`logs/v4_resumo.txt`); tudo o que está abaixo foi decidido com esses números e o manifest, e **nada pode ser mudado depois de ver o teste**. Se algo mudar por erro de execução, a mudança vai num bloco datado separado, com o motivo.
+- **Regra central:** o teste final é avaliado **uma vez**. Nenhum sistema, camada, C, limiar ou coeficiente é reescolhido depois. **Todos** os sistemas, bancos e limiares abaixo são reportados. Se um processo cair no meio, rodar de novo repete exatamente as mesmas contas (todas determinísticas), sem nenhuma escolha nova.
+- **Sistemas** (todos avaliados nos **mesmos** clipes de cada banco):
+  - **S0 · CNN da v3:** o checkpoint da v3 com **menor EER média por fonte na validação**: `v3_zero_s123` (11,25%; os outros: 12,3% `zero_s2026`, 12,6% `repeat_s2026`, 13,2% `repeat_s123`, 13,7% `zero_s42`, 14,1% `repeat_s42`). Registro, sem mudar a regra: é também o de **pior AUC no dev_shift** das seis execuções (0,146). Avaliação como na v3: áudio inteiro (sem corte de silêncio), áudio < 4 s completado com zeros (a política com que foi treinado), janelas de 4 s com passo de 2 s, **média dos logits** (`src/experimento.py: calcular_notas`).
+  - **S1 · "só transfer learning":** XLS-R 300M congelado, **somente a última camada (saída 24)**, média no tempo, padronizada com a média e o desvio do treino da v4, regressão logística (scikit-learn, lbfgs) treinada nos mesmos 40.000 clipes de treino da v4. C escolhido na grade 0,001 / 0,01 / 0,1 / 1 pela **EER média por fonte na validação** (o mesmo critério da v4). Sem escolha de camada. (A etapa `camadas` da v4 já tinha feito essa mesma conta para a saída 24: C = 1, val EER média por fonte 8,57%, dev_shift AUC 0,984; a grade é refeita e tem de dar o mesmo C.)
+  - **S2 · v4 final:** a cabeça **`concat_top3`** (saídas 5, 6 e 7 concatenadas, C = 0,1), já escolhida pela validação na v4. **Não é reescolhida.** Os coeficientes não tinham sido gravados; a regressão é **reajustada com os mesmos dados e o mesmo C** (lbfgs é determinístico) e conferida contra as notas gravadas da validação e do dev_shift (`results/v4_notas_concat_top3_*.parquet`); a diferença máxima é reportada.
+  - **S3 · v4 + CNN:** regressão logística (lbfgs, C = 1) de **duas entradas**, o logit do S2 e o logit do S0, cada um padronizado com a média e o desvio **da validação**, treinada **só nos 19.999 clipes da validação da v4**. Os coeficientes são reportados. Atenção: o limiar (A) do S3 é o ponto de EER na própria validação em que ele foi treinado.
+- **Clipes de validação e dev_shift:** os da v4 (19.999 da validação, subamostra estratificada; dev_shift inteiro, 10.614). O S0 é recalculado nesses mesmos clipes (as notas antigas da v3 servem só para conferir).
+- **Bancos e amostra** (`src/experimento.py: amostra_teste`: `split == "test"` e `eval_subset == "test_final"`, até 5.000 clipes por classe e banco, seed 42, a mesma regra das versões anteriores; se a classe tem menos, entram todos). Total: **51.320 clipes**.
+
+  | banco | tipo | real | fake | no banco (test_final) |
+  |:--|:--|--:|--:|--:|
+  | in_the_wild | principal (só test_final, locutores fora do dev_shift) | 5.000 | 5.000 | 11.330 / 9.835 |
+  | llamapartialspoof | principal | 5.000 | 5.000 | 10.573 / 130.043 |
+  | brspeech_df | principal (pt-BR) | 1.320 | 5.000 | 1.320 / 6.587 |
+  | coraa | só real (pt-BR): vale o falso alarme = 1 − acurácia | 5.000 | 0 | 12.350 / 0 |
+  | asvspoof2019_la (eval) | secundário (pode compartilhar locutores com o treino via VCTK) | 5.000 | 5.000 | 7.355 / 63.882 |
+  | asvspoof2021_df | secundário (idem) | 5.000 | 5.000 | 5.535 / 147.420 |
+
+  Um clipe que não puder ser lido na extração sai de **todos** os sistemas naquele banco (o número é reportado).
+- **Pré-processamento do teste (S1 a S3):** o mesmo da v4 (mono 16 kHz, corte de silêncio de 35 dB, no máximo 8 s, recorte central, sem completar, fp16, 25 saídas, média e desvio no tempo), extraído em shards com retomada, num cache separado (`data/processed/v4_cache_teste/`).
+- **Limiares** (ambos declarados agora, cada sistema com os seus; **nenhum** é ajustado no teste): **(A)** ponto de EER da validação; **(B)** ponto de EER do dev_shift.
+- **Métricas por sistema, banco e limiar:** acurácia, acurácia balanceada (média do recall de real e de fake), acurácia trivial (sempre a classe majoritária), AUC, EER, recall de fake, falso alarme de real. No CORAA: só falso alarme (= 1 − acurácia); AUC, EER e acurácia balanceada não existem.
+- **Bootstrap:** 1.000 reamostragens por banco, com reposição **dentro de cada classe** (mantém o nº de reais e de fakes), seed 42, intervalo de 2,5% a 97,5%, para AUC e acurácia balanceada (nos dois limiares) e para o falso alarme do CORAA. **O intervalo mede só a amostra de teste; não mede a variação do treino** (seed, amostra de treino), que a v3 mostrou ser grande.
+- **Resumo:** média simples da **acurácia** dos três bancos principais com duas classes (in_the_wild, llamapartialspoof, brspeech_df), por sistema e limiar (a média da acurácia balanceada vai ao lado); **separado**, o falso alarme do CORAA. Os secundários não entram na média.
+- **Leitura pré-definida:** "transfer learning sozinho" = **S1**; "contribuição das nossas escolhas" = **S2 − S1**; "contribuição da CNN" = **S3 − S2**. Cada diferença é medida em **AUC** e em **acurácia balanceada (limiar A)**, separadamente, com bootstrap **pareado** (as mesmas reamostragens para os dois sistemas). É **relevante** só se tiver **o mesmo sinal nos três bancos principais** E, **em cada um deles**, o intervalo de 95% da diferença pareada **não incluir zero** (a diferença é maior que a incerteza da amostra). Caso contrário: **"não demonstrada"**. A acurácia balanceada no limiar B e os secundários são só reportados.
+- **Contaminação:** qualquer mudança futura baseada nestes resultados **contamina** estes bancos como teste. A partir daqui, In-the-Wild test_final, LlamaPartialSpoof, BRSpeech-DF, CORAA, ASVspoof 2019 eval e 2021 DF deixam de ser "nunca vistos" para qualquer versão que for ajustada olhando estes números (o In-the-Wild, aliás, já tinha sido consultado inteiro na v1).
+
+### v4 · fechamento (2026-11-10)
+
+- **Data:** execução de validação + dev_shift em 2026-11-09 23:38 a 2026-11-10 00:11 (vigia `scripts/vigia_v4.ps1`, 1 tentativa); teste final em 2026-11-10 07:31 a 07:52 (vigia `scripts/vigia_v4_teste.ps1`, 1 tentativa), avaliado **uma vez**, pelo pré-registro acima, **sem nenhuma mudança**. Branch `v4-ssl`, commit `cbfb649` com mudanças não commitadas.
+- **Hipótese e mudanças:** as do pré-registro da v4 (XLS-R 300M congelado + cabeças leves; corte de silêncio; até 8 s sem completar; escolha de camada; atalhos; acurácias).
+- **Validação e dev_shift** (`results/v4_camadas.csv`, `v4_cabecas.csv`, `v4_resumo.json`, `v4_atalhos.json`, `v4_ablacao_corte.json`; treino de 40.000 clipes, validação de 19.999, dev_shift inteiro, 10.614):
+  - **Camadas:** as do meio são as melhores (5 a 9: EER média por fonte de 6,0% a 6,6%; a melhor, a 7, com 6,0%; a 0, 22%; a 24, 8,6%). No dev_shift, todas a partir da 5 passam de 0,97 de AUC.
+  - **Cabeça final pela validação:** `concat_top3` (camadas 5, 6, 7; C = 0,1; EER média por fonte 5,92%; candidatas de 5,92% a 6,73%). dev_shift: **AUC 0,983**, EER 5,9%, acurácia balanceada 0,897 (limiar da validação), acurácia 0,843 (trivial 0,813). Pelo critério (c): **melhora clara** (régua da v3: AUC 0,146 a 0,378; acurácia balanceada 0,365 a 0,503).
+  - **Somas ponderadas** (3 seeds): maiores pesos nas camadas 5, 6 e 7; AUC do dev_shift de 0,982 a 0,986 (o acaso entre seeds é ~0,005, contra 0,15 a 0,23 na CNN da v3).
+  - **Atalhos (f):** só com estatísticas baratas, AUC 0,668 na validação (**indício de atalho nos dados**, acima de 0,6), mas 0,523 no dev_shift. A camada 7 reconhece o banco de origem dos reais com acurácia balanceada 0,80 (estatísticas: 0,57; acaso 0,25). Controle com rótulos embaralhados: AUC 0,474 (val) e 0,486 (dev_shift).
+  - **Ablação do corte de silêncio:** sem efeito (EER média por fonte 7,6% × 7,9%; AUC do dev_shift 0,992 × 0,990).
+- **Teste final** (`results/v4_teste_final.csv`, `v4_teste_diferencas.csv`, `v4_teste_final_resumo.json`, `v4_teste_final.png`; 51.320 clipes, 0 erros de leitura; cada célula: AUC · EER · acurácia · acurácia balanceada no limiar A / no limiar B):
+
+  | banco | S0 CNN v3 | S1 só camada 24 | S2 v4 final | S3 v4 + CNN | trivial |
+  |:--|:--|:--|:--|:--|--:|
+  | in_the_wild | 0,114 · 82,2% · 0,336/0,181 · 0,336/0,181 | 0,986 · 5,4% · 0,829/0,946 · 0,829/0,946 | 0,979 · 6,8% · 0,836/0,931 · 0,835/0,931 | 0,888 · 18,8% · 0,641/0,810 · 0,641/0,810 | 0,500 |
+  | llamapartialspoof | 0,556 · 46,3% · 0,545/0,523 · 0,545/0,523 | 0,936 · 14,0% · 0,851/0,734 · 0,851/0,734 | 0,925 · 14,7% · 0,855/0,738 · 0,855/0,738 | 0,900 · 17,8% · 0,826/0,726 · 0,826/0,726 | 0,500 |
+  | brspeech_df (pt-BR) | 0,735 · 29,3% · 0,671/0,447 · 0,704/0,609 | 0,775 · 30,7% · 0,849/0,762 · 0,671/0,716 | 0,842 · 24,9% · 0,863/0,839 · 0,679/0,771 | 0,840 · 25,3% · 0,867/0,766 · 0,718/0,754 | 0,791 |
+  | coraa (só real): falso alarme | 65,3% / 41,3% | 35,6% / 11,6% | 16,7% / 2,5% | 31,8% / 8,7% | — |
+  | asvspoof2019_la (secundário) | 0,967 · 8,0% · 0,900/0,795 · 0,901/0,795 | 0,997 · 2,3% · 0,974/0,902 · 0,974/0,902 | 0,999 · 1,4% · 0,981/0,901 · 0,981/0,901 | 1,000 · 0,3% · 0,988/0,889 · 0,988/0,889 | 0,500 |
+  | asvspoof2021_df (secundário) | 0,688 · 36,0% · 0,665/0,608 · 0,665/0,608 | 0,996 · 2,8% · 0,956/0,964 · 0,956/0,964 | 0,997 · 2,6% · 0,942/0,964 · 0,942/0,964 | 0,909 · 17,9% · 0,829/0,830 · 0,829/0,830 | 0,500 |
+  | **média dos 3 principais (acurácia)** | 0,517 / 0,384 | 0,843 / 0,814 | **0,851 / 0,836** | 0,778 / 0,767 | 0,597 |
+
+  Intervalos bootstrap (95%, só a amostra de teste) estreitos: de ±0,001 a ±0,016 na AUC e ±0,005 a ±0,015 na acurácia balanceada (os maiores no BRSpeech-DF, com 1.320 reais). Limiares (logit; A / B): S0 −2,15 / 2,84; S1 −0,01 / 6,30; S2 −0,04 / 8,22; S3 0,74 / 5,40. Coeficientes do S3 (entradas padronizadas pela validação): intercepto 4,75; S2 5,36; S0 4,19.
+- **Leitura pré-definida:**
+  - **Transfer learning sozinho (S1):** In-the-Wild 0,986, LlamaPartialSpoof 0,936, BRSpeech-DF 0,775 de AUC (S0: 0,114 / 0,556 / 0,735).
+  - **Nossas escolhas (S2 − S1): não demonstrada.** AUC −0,008 / −0,011 / +0,066 (sinais trocados); acurácia balanceada (A) +0,006 / +0,004 / +0,008, com intervalos que incluem zero. Só reportado: CORAA 35,6% → 16,7% de falso alarme (A).
+  - **CNN (S3 − S2): não demonstrada pela regra** (BRSpeech-DF: AUC −0,002, intervalo inclui zero; acurácia balanceada A troca de sinal: −0,195 / −0,029 / +0,039). Em nenhum banco principal a AUC subiu; no In-the-Wild caiu 0,091 e no ASVspoof 2021 DF, 0,088.
+- **Conferências:** o reajuste do S1 e do S2 reproduziu as notas gravadas da v4 com diferença 0; o S1 escolheu o mesmo C (1) da etapa de camadas. O S0 recalculado difere das notas gravadas da v3 em até 0,017 de logit na validação e 0,0005 no dev_shift (lotes diferentes na GPU); AUC do dev_shift igual (0,146).
+- **Conta descritiva depois do teste (não mudou nada):** no LlamaPartialSpoof, os fakes **completos** escapam mais que os parciais (recall do S2 no limiar A: 0,70 × 0,77; AUC 0,873 × 0,944).
+- **Conclusão em uma frase:** o XLS-R congelado com uma regressão logística resolveu a inversão das vozes de internet (AUC do In-the-Wild de 0,11 para 0,98, no dev_shift e no teste), as nossas escolhas por cima não mostraram ganho demonstrável, a CNN só atrapalhou, e o ponto fraco que sobra é o pt-BR e a escolha do limiar.
+- **Limitações:** amostra de até 5.000 por classe e banco (BRSpeech-DF: 1.320 reais); bootstrap mede só a amostra de teste, não o treino; dev_shift pequeno (16 locutores), e é ele que define o limiar B; uma única amostra de treino e uma única regressão por sistema; ASVspoof pode compartilhar locutores com o treino (VCTK); os seis bancos de teste agora estão **consumidos**.
+- **Arquivos:** notebook `notebooks/versions/v4_ssl.ipynb` (e o `notebook.ipynb` da raiz, igual, 1,7 MB); resultados no git: `results/v4_teste_final.csv`, `v4_teste_diferencas.csv`, `v4_teste_final_resumo.json`, `v4_teste_final.png`, `v4_teste_escolha_s0.json`, `v4_teste_final_concluido.json` (e os da v4 já listados no `.gitignore`); fora do git: `results/v4_teste_notas.parquet` (notas por clipe dos 4 sistemas), `results/v4_teste_notas_s0_*.parquet`, os marcadores de etapa, o cache `data/processed/v4_cache_teste/` (~5 GB) e os logs `logs/v4_teste_*`.
+- **Tempos** (RTX 4060 8 GB, 4 workers):
+
+  | etapa | tempo | pico de memória (processo + workers) |
+  |:--|--:|--:|
+  | v4: extração (96.227 clipes) | 24,9 min | 14,2 GB |
+  | v4: camadas / somas / atalhos / resumo | 2,9 / 4,2 / 0,2 / 0,1 min | 2,8 / 5,9 / 1,6 / 1,1 GB |
+  | teste: extração (51.320 clipes; ~63 clipes/s com a carga do modelo; shards de 52 a 86 clipes/s) | 13,5 min | 15,0 GB (sistema 37,4 GB) |
+  | teste: CNN (S0) em validação, dev_shift e teste | 3,4 min | 12,1 GB |
+  | teste: avaliação (S1, S2, S3, métricas, 1.000 bootstraps por banco) | 3,4 min | 2,2 GB |
+
+  Teste final inteiro: 20,9 min (07:31:44 a 07:52:37). Execução do notebook (só leitura): ~1 min.
+
 ## f) Ideias ainda não testadas
 
+**Da v4 (para a v5)** (atenção: os seis bancos de teste estão consumidos; qualquer decisão nova tem de sair da validação e do dev_shift, ou de um banco novo):
+- **Reais em pt-BR no treino** (e fakes pt-BR de geradores que não estão nos testes): o pior resultado da v4 é o pt-BR (BRSpeech-DF AUC 0,842; CORAA com 16,7% de falso alarme no limiar A).
+- **Limiar por domínio:** o ponto de EER da validação (estúdio) e o do dev_shift (internet) diferem muito (S2: logit −0,04 × 8,2). Testar uma validação com mais áudio "de verdade", ou calibrar o limiar num conjunto de desenvolvimento do domínio de uso.
+- **Várias amostras de treino / seeds** para o S1 e o S2, para medir quanto do resultado é sorte do sorteio de treino (a v4 tem uma só).
+- **Diferença S2 × S1 no pt-BR** (+0,066 de AUC no BRSpeech-DF): ver se ela aparece também num banco pt-BR novo, antes de chamar de efeito.
+- *(Testado na v4: juntar a CNN da v3 por uma regressão na validação piorou o In-the-Wild; não repetir sem um conjunto de ajuste fora do domínio de estúdio.)*
+
 **Da v3 (para a v4):**
+- *(Feito na v4: XLS-R congelado + regressão logística, corte de silêncio e áudio sem padding. O modelo congelado explicou quase todo o ganho; o corte, nenhum.)*
 - **Modelo pré-treinado congelado (XLS-R 300M) com cabeça linear.** ⚠️ Fora da trilha: a trilha faz transfer learning (Aula 10) com um modelo de imagem; aqui seria um modelo de fala auto-supervisionado, usado só como extrator de características.
 - **Remoção de silêncio nas bordas** do áudio antes do recorte. ⚠️ Fora da trilha: corte por limiar de energia.
 - **Real espontâneo e variado, com fakes re-sintetizados do mesmo áudio** (o fake e o real de cada par têm o mesmo conteúdo, locutor e gravação de origem).
@@ -306,6 +456,23 @@ Logs em `logs\v3_<condição>_s<seed>.log`, resumo em `logs\v3_resumo.txt`, erro
 
 O env não tem `jupyterlab` instalado; o notebook é aberto no VS Code (extensão Jupyter) com o kernel do `env`.
 
+**v4 (modelo congelado + cabeças; retomável, com vigia):** na raiz, no PowerShell:
+
+```powershell
+Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -File scripts\vigia_v4.ps1"   # noite inteira, sozinho
+Get-Content logs\v4_status.txt          # STATUS, tentativa, etapa, hora, horas de extração
+Get-Content logs\v4_resumo.txt          # resultados principais, atualizados a cada etapa
+powershell -ExecutionPolicy Bypass -File scripts\rodar_v4.ps1           # ou: uma rodada sem o vigia
+powershell -ExecutionPolicy Bypass -File scripts\rodar_v4.ps1 -Quick    # teste rápido (arquivos _quick)
+python scripts/v4.py medir --n 500      # vazão (com o env ativo)
+python scripts/v4.py camadas            # uma etapa só: extrair | camadas | somas | atalhos | resumo | status | concluir
+python scripts/acuracias_v3.py          # Parte A: acurácias retroativas da v3
+```
+
+**Teste final da v4 (avaliado uma vez; já feito em 2026-11-10):** o mesmo padrão, com `scripts\vigia_v4_teste.ps1` → `scripts\rodar_v4_teste.ps1` → `scripts/v4_teste.py <extrair|cnn|avaliar|status|concluir>`. Status em `logs\v4_teste_status.txt`, resumo em `logs\v4_teste_resumo.txt`, marcador final `results\v4_teste_final_concluido.json`. Com o marcador presente, rodar de novo não faz nada. `--quick` (com `V4_SUFIXO_EXTRA=_t2`) usa bancos de mentira tirados da validação.
+
+Cada etapa grava um marcador `results/v4_<etapa>_concluido.json`; rodar de novo pula o que terminou e continua o resto (shards, camadas e seeds prontos). O orçamento de extração é cumulativo (`results/v4_estado.json`). O cache fica em `data/processed/v4_cache/` (~10 GB, fora do git). Para refazer do zero, é preciso apagar à mão o cache e os `results/v4_*` (os scripts nunca apagam nada de outra configuração: param com erro).
+
 **Rodada completa de uma versão (v2 em diante), pelo terminal:** um experimento por processo, e depois o notebook, que só lê o que foi treinado. Feche antes o Claude Code e, se der, o VS Code e o OneDrive (juntos eles reservam ~6 GB de memória; ver h).
 
 ```powershell
@@ -350,3 +517,16 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
 - **Marcador de conclusão** (`results/<exp>_concluido.json`), gravado por último: só com ele a execução conta. Registra configuração (`config_id`), hash do manifest, commit, arquivos com mudança não commitada e o sha256 de cada arquivo de código, `NUM_WORKERS`, tempos, pico de memória e o resumo de validação/dev_shift.
 - **O script de treino calcula as notas da validação e do dev_shift** (nunca do teste); o notebook só lê.
 - `NUM_WORKERS` continua 4 (sobrescrevível com `--num-workers`); fica fora do `config_id`, porque não muda o método.
+
+### 2026-11-09 · memória e execução sem supervisão (v4)
+
+- **Processo principal da extração:** ~7,5 GB de memória reservada com o modelo em fp16 na GPU (os kernels de GPU ficam na memória da CPU; já é o carregamento "preguiçoso" do CUDA). Cada worker de leitura: ~0,9 GB. Pico medido com 4 workers: 11,5 a 13,2 GB; com formatos de lote variados (antes dos baldes), 19,2 GB. Cabeças: 1,1 a 2,1 GB (sem workers).
+- **Lotes da GPU com formato fixo** (baldes de 2, 4, 6 e 8 s, `BALDE_S = 2`): ver "v4 · estado da execução", decisão 2. Não muda o método (resultado de cada clipe igual dentro da tolerância do fp16).
+- **Vigia** (`scripts/vigia_v4.ps1`): instância única (PID em `logs\v4_vigia.pid`), impede a suspensão do Windows, espera folga de memória ≥ 14 GB (até 60 min), tentativas 1 e 2 com 4 workers e da 3ª em diante com 2, espera de 10 min entre tentativas, até 8. O número de workers não entra na configuração do método (a leitura é determinística: sem sorteio na extração).
+- **Workers órfãos:** depois de uma queda à força, um worker pode ficar vivo (medido no teste: 0,9 GB); o `rodar_v4.ps1` encerra workers cujo processo principal já morreu.
+
+### 2026-11-10 · teste final da v4 (execução)
+
+- **Scripts novos, no mesmo padrão da v4** (os da v4 não foram alterados): `src/teste_v4.py` (amostra, plano, escolha do S0, métricas, bootstrap, gráfico), `scripts/v4_teste.py` (etapas `extrair`, `cnn`, `avaliar`, `status`, `concluir`), `scripts/rodar_v4_teste.ps1` e `scripts/vigia_v4_teste.ps1` (cópia do `vigia_v4.ps1` com os nomes trocados: status em `logs/v4_teste_status.txt`, resumo em `logs/v4_teste_resumo.txt`, marcador final `results/v4_teste_final_concluido.json`). Cache em `data/processed/v4_cache_teste/` (fora do git).
+- **Teste QUICK antes** (2026-11-10 07:27): bancos **de mentira tirados da validação** (dfadd, shiftyspeech, codecfake_plus e librispeech só real; 140 clipes fora da validação QUICK), cache QUICK da v4 (`_quick_t2`); **nenhum áudio de teste foi lido**. As três etapas e a conclusão rodaram sem erro; o reajuste do S1 e do S2 reproduziu as notas gravadas da v4 com diferença máxima 0; o vigia QUICK saiu com CONCLUIDO. Os números do QUICK não valem e não foram interpretados.
+- **Folga de memória do vigia: 11 GB em vez de 14** (`-FolgaGB 11`). Motivo: na execução da v4, com esta sessão aberta, a folga ficou em ~12,1 GB e o vigia esperou os 60 min inteiros à toa; depois rodou com 4 workers sem queda (pico 14,2 GB do processo + workers; o sistema chegou a 36,5 GB porque o arquivo de paginação cresce). As outras regras (tentativas com 4 e depois 2 workers, instância única, sem suspensão) são as mesmas. Não muda o método.

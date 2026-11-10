@@ -16,3 +16,7 @@ matplotlib==3.11.2
 scikit-learn==1.9.1
 miniaudio==1.72
 ipykernel==7.4.0
+# v4: modelo auto-supervisionado congelado (facebook/wav2vec2-xls-r-300m), testado com Python 3.13 e torch 2.14.1+cu130
+transformers==5.22.2
+safetensors==0.8.0
+tokenizers==0.23.3

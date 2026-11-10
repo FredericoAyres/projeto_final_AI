@@ -1,0 +1,449 @@
+sistema,descrição,conjunto,banco,tipo,limiar,limiar (como),limiar (logit),métrica,valor,"IC 2,5%","IC 97,5%",n real,n fake,excluídos (erro de leitura)
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.9787489374468723,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.9787295072309778,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,AUC,0.9963950197308024,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,EER,0.021270492769022147,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.9787781350482315,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.021319120586275817,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.91999599979999,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.9415053058589735,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.9963950197308024,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,EER,0.021270492769022147,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.887674169346195,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",validação,validação (todas),validação,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.004663557628247834,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.9742987149357468,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.9742659294184965,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,AUC,0.9943097599099708,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,EER,0.025734070581503454,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.9743479814219365,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.025816122584943372,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.7882894144707235,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.8475904714232432,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.9943097599099708,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,EER,0.025734070581503454,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.699178277956413,,,6004,13995,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",validação,validação (todas),validação,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.003997335109926716,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.9895494774738737,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.9895373490437125,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,AUC,0.9983052146490883,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,EER,0.010462650956287567,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.9895677027509825,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.010493004663557627,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.8591929596479824,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.8989171325344851,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.9983052146490883,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,EER,0.010462650956287567,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.7994998213647732,,,6004,13995,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",validação,validação (todas),validação,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.0016655562958027982,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,acurácia,0.9933496674833742,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.993346272188673,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,AUC,0.9993025014406259,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,EER,0.006653727811326922,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,recall fake,0.9933547695605573,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.006662225183211193,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.9380469023451172,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.955353784627088,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.6997849892494624,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.9993025014406259,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,EER,0.006653727811326922,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.9120400142908182,,,6004,13995,0
+S3,v4 + CNN (regressão de 2 entradas na validação),validação,validação (todas),validação,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.0013324450366422385,,,6004,13995,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.16525343885434332,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.3756099369353466,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.81335971358583,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,AUC,0.14554121913302048,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,EER,0.7937344422190352,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.7112569409389198,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.9600370670682266,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.20614283022423216,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.2062655577809648,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.81335971358583,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.14554121913302048,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,EER,0.7937344422190352,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.20646138313982837,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.7939302675778988,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.8120407009609949,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.8793985056577975,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.81335971358583,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,AUC,0.9844844217681784,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,EER,0.05798439162545749,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.9868753154972236,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.22807830418162864,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.9420576596947428,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.9420156083745426,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.81335971358583,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.9844844217681784,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,EER,0.05798439162545749,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.9419485108531045,,,8633,1981,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.05791729410401946,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.8434143583945732,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.8965456792616852,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.81335971358583,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,AUC,0.983269123392956,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,EER,0.058778773653776664,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.9813225643614336,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.18823120583806324,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.9413981533823252,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.9412212263462234,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.81335971358583,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.983269123392956,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,EER,0.058778773653776664,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.9409389197375063,,,8633,1981,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.058496467045059654,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,acurácia,0.6848501978518937,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.8017936000717578,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.81335971358583,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,AUC,0.9431284331930591,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,EER,0.10901809399418416,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,recall fake,0.9883897021706209,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.3848025020271053,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.8909930280761259,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.8909819060058158,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.81335971358583,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.9431284331930591,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,EER,0.10901809399418416,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.8909641595153963,,,8633,1981,0
+S3,v4 + CNN (regressão de 2 entradas na validação),dev_shift,in_the_wild (dev_shift),decisão entre versões,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.10900034750376462,,,8633,1981,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.3364,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.33640000000000003,0.32929749999999997,0.3433025,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,AUC,0.11373492,0.10718987899999999,0.12012243499999999,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,EER,0.8218,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.633,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.9602,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.181,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.181,0.1739,0.1880025,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.11373492,0.10718987899999999,0.12012243499999999,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,EER,0.8218,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.2102,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.8482,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.8292,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.8291999999999999,0.8234,0.8362,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,AUC,0.9864377599999998,0.984639303,0.9881306950000001,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,EER,0.05410000000000001,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.9916,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.3332,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.946,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.946,0.9413,0.9503999999999999,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.9864377599999998,0.984639303,0.9881306950000001,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,EER,0.05410000000000001,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.9458,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,in_the_wild,principal,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.0538,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.8355,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.8354999999999999,0.8287975,0.8422,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,AUC,0.97862836,0.976126635,0.980997212,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,EER,0.06840000000000002,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.9894,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.3184,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.9306,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.9306,0.9254975,0.9356,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.97862836,0.976126635,0.980997212,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,EER,0.06840000000000002,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.9198,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,in_the_wild,principal,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.0586,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,acurácia,0.6406,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.6406000000000001,0.6342975,0.6470025,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,AUC,0.8878525599999999,0.881115393,0.894215031,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,EER,0.1885,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,recall fake,0.995,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.7138,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.8098,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.8098,0.802,0.8173025,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.8878525599999999,0.881115393,0.894215031,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,EER,0.1885,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.8056,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,in_the_wild,principal,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.186,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.545,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.5449999999999999,0.5359,0.5539,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,AUC,0.55608764,0.545390917,0.567895764,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,EER,0.4627,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.7624,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.6724,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.5229,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.5229,0.5134000000000001,0.5327999999999999,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.55608764,0.545390917,0.567895764,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,EER,0.4627,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.397,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.3512,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.8511,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.8511,0.8442975,0.8575999999999999,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,AUC,0.93562028,0.93092363,0.940297968,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,EER,0.13980000000000004,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.734,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.0318,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.7337,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.7337,0.7261,0.74,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.93562028,0.93092363,0.940297968,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,EER,0.13980000000000004,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.4684,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.001,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.855,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.855,0.8485975,0.8621,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,AUC,0.9250172,0.9197339040000001,0.9301794680000001,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,EER,0.14690000000000003,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.7504,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.0404,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.7385,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.7384999999999999,0.7315975,0.745905,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.9250172,0.9197339040000001,0.9301794680000001,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,EER,0.14690000000000003,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.4786,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.0016,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,acurácia,0.8264,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.8264,0.8189974999999999,0.8344,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,AUC,0.90005976,0.893836285,0.906231542,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,EER,0.17800000000000002,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,recall fake,0.8,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.1472,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.7263,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.7263,0.7194975,0.7332,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.90005976,0.893836285,0.906231542,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,EER,0.17800000000000002,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.4566,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,llamapartialspoof,principal,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.004,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.6710443037974684,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.7042818181818182,0.690721287878788,0.7174942424242425,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,AUC,0.7347633333333332,0.7192009659090909,0.7506725189393939,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,EER,0.2926121212121212,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.6472,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.23863636363636365,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.44699367088607594,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.6089606060606061,0.5983404545454545,0.6201076515151516,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.7347633333333332,0.7192009659090909,0.7506725189393939,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,EER,0.2926121212121212,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.3308,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.11287878787878788,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.8488924050632911,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.6714333333333333,0.6580646969696969,0.6834518181818182,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,AUC,0.7754178787878787,0.7589731969696969,0.7911812196969696,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,EER,0.3068090909090909,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.9762,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.6333333333333333,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.7617088607594936,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.7155818181818181,0.7005936363636363,0.7288618939393939,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.7754178787878787,0.7589731969696969,0.7911812196969696,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,EER,0.3068090909090909,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.7948,,,1320,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,brspeech_df,principal,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.36363636363636365,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.8629746835443038,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.6794969696969697,0.6668703787878788,0.6931408333333333,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,AUC,0.8415633333333334,0.8273359242424243,0.8543166931818181,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,EER,0.24854242424242426,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.9946,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.6356060606060606,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.839240506329114,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.7712727272727273,0.7572215909090909,0.7850525757575758,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.8415633333333334,0.8273359242424243,0.8543166931818181,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,EER,0.24854242424242426,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.888,,,1320,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,brspeech_df,principal,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.34545454545454546,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,acurácia,0.8672468354430379,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.7184393939393939,0.7049242424242425,0.7321625757575758,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,AUC,0.8397792424242425,0.8267617007575758,0.8526083901515152,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,EER,0.25253636363636367,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,recall fake,0.974,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.5371212121212121,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.7662974683544304,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.7541666666666667,0.7413018181818182,0.7674059090909091,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.7911392405063291,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.8397792424242425,0.8267617007575758,0.8526083901515152,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,EER,0.25253636363636367,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.775,,,1320,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,brspeech_df,principal,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.26666666666666666,,,1320,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.3474,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,1.0,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,AUC,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,EER,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,recall fake,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.6526,0.638795,0.666,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.5874,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,1.0,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,AUC,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,EER,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,recall fake,,,,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,coraa,só real,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.4126,0.399,0.427,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.6442,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,1.0,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,AUC,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,EER,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,recall fake,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.3558,0.342,0.3688,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.8838,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,1.0,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,AUC,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,EER,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,recall fake,,,,5000,0,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,coraa,só real,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.1162,0.10659500000000001,0.1252,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.8328,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,1.0,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,AUC,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,EER,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,recall fake,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.1672,0.1568,0.178,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.975,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,1.0,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,AUC,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,EER,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,recall fake,,,,5000,0,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,coraa,só real,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.025,0.0208,0.0292,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,acurácia,0.682,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,1.0,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,AUC,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,EER,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,recall fake,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.318,0.3056,0.3316,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.9134,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,1.0,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,AUC,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,EER,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,recall fake,,,,5000,0,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,coraa,só real,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.0866,0.0788,0.0942,5000,0,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.9005,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.9005000000000001,0.8952975,0.9058999999999999,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,AUC,0.96666112,0.962846906,0.970141464,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,EER,0.0805,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.803,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.002,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.7953,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.7953,0.7884975,0.8023,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.96666112,0.962846906,0.970141464,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,EER,0.0805,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.5906,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.0,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.9741,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.9741,0.9711974999999999,0.9771,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,AUC,0.9968253800000001,0.9960728335000001,0.997535652,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,EER,0.0233,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.9538,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.0056,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.9018,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.9017999999999999,0.8962,0.9075025,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.9968253800000001,0.9960728335000001,0.997535652,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,EER,0.0233,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.8036,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.0,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.9813,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.9813000000000001,0.9788,0.9839025,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,AUC,0.99897608,0.99858803,0.999311896,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,EER,0.013899999999999973,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.9638,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.0012,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.901,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.901,0.896,0.9063025,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.99897608,0.99858803,0.999311896,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,EER,0.013899999999999973,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.802,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.0,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,acurácia,0.9875,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.9875,0.9854,0.9897,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,AUC,0.99991972,0.9998516330000001,0.999967485,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,EER,0.003299999999999979,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,recall fake,0.975,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.0,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.8887,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.8887,0.8833975,0.8946050000000001,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.99991972,0.9998516330000001,0.999967485,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,EER,0.003299999999999979,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.7774,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2019_la,secundário,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.0,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,acurácia,0.6646,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,acurácia balanceada,0.6646000000000001,0.6558,0.6739050000000001,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,AUC,0.6884785,0.6785681405,0.699122856,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,EER,0.3599,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,recall fake,0.7206,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-2.1496682167053223,falso alarme real,0.3914,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,acurácia,0.6078,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,acurácia balanceada,0.6078,0.598695,0.61702,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,acurácia trivial,0.5,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,AUC,0.6884785,0.6785681405,0.699122856,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,EER,0.3599,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,recall fake,0.553,,,5000,5000,0
+S0,"CNN da v3 (log-mel, janelas)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,2.843320846557617,falso alarme real,0.3374,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,acurácia,0.9565,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,acurácia balanceada,0.9564999999999999,0.9527,0.9603999999999999,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,AUC,0.99596548,0.9949976879999999,0.9968354290000001,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,EER,0.02759999999999998,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,recall fake,0.9884,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.011182785034179688,falso alarme real,0.0754,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,acurácia,0.9639,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,acurácia balanceada,0.9639,0.9601999999999999,0.9674,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,acurácia trivial,0.5,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,AUC,0.99596548,0.9949976879999999,0.9968354290000001,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,EER,0.02759999999999998,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,recall fake,0.932,,,5000,5000,0
+S1,"XLS-R congelado, só a camada 24 + regressão logística",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,6.300252437591553,falso alarme real,0.0042,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,acurácia,0.9421,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,acurácia balanceada,0.9420999999999999,0.9380999999999999,0.9468025000000001,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,AUC,0.99659012,0.9958730669999999,0.9973308169999999,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,EER,0.025599999999999977,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,recall fake,0.9926,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,A,ponto de EER da validação,-0.03953683376312256,falso alarme real,0.1084,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,acurácia,0.9644,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,acurácia balanceada,0.9643999999999999,0.9610974999999999,0.968,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,acurácia trivial,0.5,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,AUC,0.99659012,0.9958730669999999,0.9973308169999999,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,EER,0.025599999999999977,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,recall fake,0.9348,,,5000,5000,0
+S2,"v4 final (concat_top3: camadas 5, 6, 7)",teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,8.21838092803955,falso alarme real,0.006,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,acurácia,0.8287,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,acurácia balanceada,0.8287,0.822395,0.8355025,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,AUC,0.9086470400000001,0.9031176160000001,0.914551455,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,EER,0.17869999999999997,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,recall fake,0.9838,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,A,ponto de EER da validação,0.7379247506853446,falso alarme real,0.3264,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,acurácia,0.8305,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,acurácia balanceada,0.8305,0.8234,0.8377025,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,acurácia trivial,0.5,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,AUC,0.9086470400000001,0.9031176160000001,0.914551455,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,EER,0.17869999999999997,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,recall fake,0.8696,,,5000,5000,0
+S3,v4 + CNN (regressão de 2 entradas na validação),teste,asvspoof2021_df,secundário,B,ponto de EER do dev_shift,5.39667799302418,falso alarme real,0.2086,,,5000,5000,0

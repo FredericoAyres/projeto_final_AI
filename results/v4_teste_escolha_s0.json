@@ -1,0 +1,50 @@
+[
+  {
+    "experimento": "v3_zero_s123",
+    "val EER média por fonte": 0.11246252071177992,
+    "dev_shift AUC (janelas)": 0.14554116066023493,
+    "condição": "zero",
+    "seed": 123,
+    "checkpoint": "models\\v3_zero_s123_cnn.pt"
+  },
+  {
+    "experimento": "v3_zero_s2026",
+    "val EER média por fonte": 0.12265303502982093,
+    "dev_shift AUC (janelas)": 0.3773302647595105,
+    "condição": "zero",
+    "seed": 2026,
+    "checkpoint": "models\\v3_zero_s2026_cnn.pt"
+  },
+  {
+    "experimento": "v3_repeat_s2026",
+    "val EER média por fonte": 0.12649211507087288,
+    "dev_shift AUC (janelas)": 0.22837832804437241,
+    "condição": "repeat",
+    "seed": 2026,
+    "checkpoint": "models\\v3_repeat_s2026_cnn.pt"
+  },
+  {
+    "experimento": "v3_repeat_s123",
+    "val EER média por fonte": 0.13244123410293235,
+    "dev_shift AUC (janelas)": 0.3775061508984958,
+    "condição": "repeat",
+    "seed": 123,
+    "checkpoint": "models\\v3_repeat_s123_cnn.pt"
+  },
+  {
+    "experimento": "v3_zero_s42",
+    "val EER média por fonte": 0.13730490217647068,
+    "dev_shift AUC (janelas)": 0.27403805981917995,
+    "condição": "zero",
+    "seed": 42,
+    "checkpoint": "models\\v3_zero_s42_cnn.pt"
+  },
+  {
+    "experimento": "v3_repeat_s42",
+    "val EER média por fonte": 0.14137782869337134,
+    "dev_shift AUC (janelas)": 0.24134507755333262,
+    "condição": "repeat",
+    "seed": 42,
+    "checkpoint": "models\\v3_repeat_s42_cnn.pt"
+  }
+]

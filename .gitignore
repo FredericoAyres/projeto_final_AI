@@ -26,3 +26,21 @@ models/
 results/*
 !results/baseline_results.csv
 !results/experiments.csv
+# v4: só os resumos pequenos (o cache de características fica em data/processed/v4_cache, fora do git)
+!results/v3_acuracias.csv
+!results/v4_camadas.csv
+!results/v4_camadas.png
+!results/v4_cabecas.csv
+!results/v4_somas.csv
+!results/v4_resumo.json
+!results/v4_atalhos.json
+!results/v4_ablacao_corte.json
+!results/v4_vazao.json
+!results/v4_concluido.json
+# teste final da v4: só os resumos (as notas por clipe, *.parquet, ficam fora)
+!results/v4_teste_final.csv
+!results/v4_teste_diferencas.csv
+!results/v4_teste_final_resumo.json
+!results/v4_teste_final.png
+!results/v4_teste_escolha_s0.json
+!results/v4_teste_final_concluido.json

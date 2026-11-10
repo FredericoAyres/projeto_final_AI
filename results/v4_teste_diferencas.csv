@@ -1,0 +1,31 @@
+leitura,métrica,banco,tipo,diferença,"IC 2,5%","IC 97,5%",IC exclui zero
+contribuição das nossas escolhas (S2 − S1),AUC,in_the_wild,principal,-0.007809399999999855,-0.010197182999999962,-0.005592352000000098,True
+contribuição das nossas escolhas (S2 − S1),AUC,llamapartialspoof,principal,-0.010603079999999987,-0.0145908519999999,-0.006587200999999998,True
+contribuição das nossas escolhas (S2 − S1),AUC,brspeech_df,principal,0.06614545454545473,0.05767667045454543,0.07526907196969707,True
+contribuição das nossas escolhas (S2 − S1),AUC,asvspoof2019_la,secundário,0.00215069999999995,0.0015021169999999417,0.002814878500000098,True
+contribuição das nossas escolhas (S2 − S1),AUC,asvspoof2021_df,secundário,0.0006246400000000651,-0.00016023500000006955,0.0014141430000000203,False
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar A",in_the_wild,principal,0.006299999999999972,-0.0011025000000000956,0.013599999999999945,False
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar A",llamapartialspoof,principal,0.0039000000000000146,-0.0022049999999999748,0.009500000000000064,False
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar A",brspeech_df,principal,0.008063636363636384,-0.0010795454545455268,0.017798787878787827,False
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar A",asvspoof2019_la,secundário,0.007200000000000095,0.0041999999999999815,0.010299999999999976,True
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar A",asvspoof2021_df,secundário,-0.014399999999999968,-0.019199999999999887,-0.009499999999999953,True
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar B",in_the_wild,principal,-0.01539999999999997,-0.021010000000000008,-0.010000000000000009,True
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar B",llamapartialspoof,principal,0.0047999999999999154,-0.0005025000000000506,0.00990000000000002,False
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar B",brspeech_df,principal,0.055690909090909235,0.045598409090909064,0.06609553030303039,True
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar B",asvspoof2019_la,secundário,-0.0007999999999999119,-0.006299999999999972,0.0045000000000000595,False
+contribuição das nossas escolhas (S2 − S1),"acurácia balanceada, limiar B",asvspoof2021_df,secundário,0.0004999999999999449,-0.0033999999999999586,0.004802500000000024,False
+contribuição da CNN (S3 − S2),AUC,in_the_wild,principal,-0.09077580000000007,-0.096433948,-0.08555622600000007,True
+contribuição da CNN (S3 − S2),AUC,llamapartialspoof,principal,-0.024957439999999997,-0.027284367000000063,-0.022706921000000053,True
+contribuição da CNN (S3 − S2),AUC,brspeech_df,principal,-0.0017840909090909296,-0.007144571969697019,0.0035657840909090427,False
+contribuição da CNN (S3 − S2),AUC,asvspoof2019_la,secundário,0.0009436399999999123,0.0006135490000001187,0.0013192010000000725,True
+contribuição da CNN (S3 − S2),AUC,asvspoof2021_df,secundário,-0.08794307999999995,-0.093345493,-0.0823388320000002,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar A",in_the_wild,principal,-0.19489999999999985,-0.20220249999999992,-0.18779749999999998,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar A",llamapartialspoof,principal,-0.02859999999999996,-0.0343,-0.02290000000000014,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar A",brspeech_df,principal,0.03894242424242422,0.029672045454545475,0.04821212121212126,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar A",asvspoof2019_la,secundário,0.006199999999999983,0.0037975000000000283,0.008600000000000052,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar A",asvspoof2021_df,secundário,-0.11339999999999995,-0.11980250000000002,-0.10679750000000002,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar B",in_the_wild,principal,-0.12080000000000002,-0.12749999999999995,-0.11399999999999999,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar B",llamapartialspoof,principal,-0.012199999999999989,-0.01639999999999997,-0.00789750000000002,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar B",brspeech_df,principal,-0.01710606060606068,-0.02658310606060603,-0.008012803030302995,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar B",asvspoof2019_la,secundário,-0.012299999999999978,-0.016802500000000033,-0.00770000000000004,True
+contribuição da CNN (S3 − S2),"acurácia balanceada, limiar B",asvspoof2021_df,secundário,-0.1338999999999999,-0.1409025,-0.1271,True

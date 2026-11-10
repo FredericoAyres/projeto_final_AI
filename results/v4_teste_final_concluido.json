@@ -1,0 +1,135 @@
+{
+  "versao": "v4",
+  "etapa": "teste final",
+  "quick": false,
+  "concluido_em": "2026-11-10T07:52:31",
+  "etapas": {
+    "extracao": {
+      "concluido_em": "2026-11-10T07:45:22",
+      "minutos": 13.51,
+      "pico_memoria_gb": 15.0
+    },
+    "cnn": {
+      "concluido_em": "2026-11-10T07:48:51",
+      "minutos": 3.34,
+      "pico_memoria_gb": 12.14
+    },
+    "avaliar": {
+      "concluido_em": "2026-11-10T07:52:19",
+      "minutos": 3.34,
+      "pico_memoria_gb": 2.18
+    }
+  },
+  "regra_leitura": {
+    "contribuição das nossas escolhas (S2 − S1) | AUC": "não demonstrada",
+    "contribuição das nossas escolhas (S2 − S1) | acurácia balanceada, limiar A": "não demonstrada",
+    "contribuição da CNN (S3 − S2) | AUC": "não demonstrada",
+    "contribuição da CNN (S3 − S2) | acurácia balanceada, limiar A": "não demonstrada"
+  },
+  "resumo": [
+    {
+      "sistema": "S0",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.5174814345991562,
+      "média acurácia balanceada (3 principais)": 0.5285606060606061,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.4681952977777777,
+      "coraa falso alarme": 0.6526,
+      "coraa falso alarme IC": [
+        0.638795,
+        0.666
+      ]
+    },
+    {
+      "sistema": "S0",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.383631223628692,
+      "média acurácia balanceada (3 principais)": 0.437620202020202,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.4681952977777777,
+      "coraa falso alarme": 0.4126,
+      "coraa falso alarme IC": [
+        0.399,
+        0.427
+      ]
+    },
+    {
+      "sistema": "S1",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.843064135021097,
+      "média acurácia balanceada (3 principais)": 0.7839111111111111,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8991586395959595,
+      "coraa falso alarme": 0.3558,
+      "coraa falso alarme IC": [
+        0.342,
+        0.3688
+      ]
+    },
+    {
+      "sistema": "S1",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8138029535864978,
+      "média acurácia balanceada (3 principais)": 0.7984272727272727,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8991586395959595,
+      "coraa falso alarme": 0.1162,
+      "coraa falso alarme IC": [
+        0.10659500000000001,
+        0.1252
+      ]
+    },
+    {
+      "sistema": "S2",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8511582278481012,
+      "média acurácia balanceada (3 principais)": 0.7899989898989898,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.1672,
+      "coraa falso alarme IC": [
+        0.1568,
+        0.178
+      ]
+    },
+    {
+      "sistema": "S2",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8361135021097047,
+      "média acurácia balanceada (3 principais)": 0.8134575757575758,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.025,
+      "coraa falso alarme IC": [
+        0.0208,
+        0.0292
+      ]
+    },
+    {
+      "sistema": "S3",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.7780822784810127,
+      "média acurácia balanceada (3 principais)": 0.728479797979798,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8758971874747474,
+      "coraa falso alarme": 0.318,
+      "coraa falso alarme IC": [
+        0.3056,
+        0.3316
+      ]
+    },
+    {
+      "sistema": "S3",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.76746582278481,
+      "média acurácia balanceada (3 principais)": 0.7634222222222222,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8758971874747474,
+      "coraa falso alarme": 0.0866,
+      "coraa falso alarme IC": [
+        0.0788,
+        0.0942
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "n": 500,
+  "num_workers": 4,
+  "segundos_total": 11.3,
+  "segundos_ate_1o_lote": 1.8,
+  "clipes_por_s": 44.12,
+  "clipes_por_s_sem_partida": 52.5,
+  "segundos_gpu": 9.0,
+  "clipes_por_s_so_gpu": 55.56,
+  "carga_modelo_s": 7.4,
+  "pico_gpu_gb": 3.76,
+  "clipes_com_nan": 0,
+  "duracao_media_manifest_s": 5.67,
+  "medido_em": "2026-11-09T22:32:56",
+  "pico_memoria_gb_processo_e_workers": 11.45,
+  "pico_memoria_gb_sistema": 34.69,
+  "memoria_por_processo_no_meio": [
+    {
+      "papel": "principal",
+      "pid": 37140,
+      "commit_gb": 7.5
+    },
+    {
+      "papel": "worker",
+      "pid": 2504,
+      "commit_gb": 0.91
+    },
+    {
+      "papel": "worker",
+      "pid": 32664,
+      "commit_gb": 0.91
+    },
+    {
+      "papel": "worker",
+      "pid": 19996,
+      "commit_gb": 0.96
+    },
+    {
+      "papel": "worker",
+      "pid": 29132,
+      "commit_gb": 0.9
+    }
+  ],
+  "fontes": {
+    "asvspoof2019_la": 113,
+    "codecfake_plus": 113,
+    "shiftyspeech": 112,
+    "dfadd": 112,
+    "librispeech": 50
+  },
+  "lotes_gpu": 13,
+  "linhas_vazias": 106,
+  "refeitos_bf16": 0,
+  "balde_s": 2
+}

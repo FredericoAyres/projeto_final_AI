@@ -1,0 +1,289 @@
+{
+  "colunas": [
+    "dur_original_s",
+    "silencio_inicio_s",
+    "silencio_fim_s",
+    "rms_db",
+    "pico_db",
+    "banda_hz"
+  ],
+  "a_rotulo_por_estatisticas": {
+    "val EER média por fonte": 0.49528635468470084,
+    "val EER global": 0.4037589564560866,
+    "val AUC": 0.6675162967453638,
+    "val acurácia balanceada": 0.5962410435439134,
+    "val EER codecfake_plus": 0.5228334198235599,
+    "val EER dfadd": 0.4617291878779064,
+    "val EER shiftyspeech": 0.5012964563526361,
+    "limiar (logit)": 0.05777756233309538,
+    "limiar (prob.)": 0.514440373679266,
+    "dev AUC": 0.5226188814588819,
+    "dev EER": 0.47701931818042276,
+    "dev acurácia": 0.6086301111739212,
+    "dev acurácia balanceada": 0.5207840054477925,
+    "dev acurácia (0,5)": 0.5878085547390239,
+    "dev acurácia balanceada (0,5)": 0.5249040856280149,
+    "dev acurácia trivial": 0.81335971358583,
+    "dev recall fake": 0.3806158505805149,
+    "dev falso alarme real": 0.3390478396849299,
+    "n val": 19999,
+    "n dev": 10614,
+    "dev AUC < 2 s": 0.5925298533134334,
+    "dev EER < 2 s": 0.41624626019836886,
+    "dev n < 2 s": 2420,
+    "dev AUC 2 a < 4 s": 0.6057769823273074,
+    "dev EER 2 a < 4 s": 0.4239451781869597,
+    "dev n 2 a < 4 s": 4531,
+    "dev AUC ≥ 4 s": 0.45874811469258886,
+    "dev EER ≥ 4 s": 0.517866042061198,
+    "dev n ≥ 4 s": 3663,
+    "coeficientes": {
+      "dur_original_s": -0.4328,
+      "silencio_inicio_s": -0.3905,
+      "silencio_fim_s": 0.3098,
+      "rms_db": 0.2467,
+      "pico_db": 0.1019,
+      "banda_hz": -0.0885
+    }
+  },
+  "a_por_estatistica": [
+    {
+      "estatística": "dur_original_s",
+      "val AUC": 0.5683789109035087,
+      "val EER média por fonte": 0.5956248233557246,
+      "dev AUC": 0.41326448123850973,
+      "dev acurácia balanceada": 0.4432450571638723
+    },
+    {
+      "estatística": "silencio_inicio_s",
+      "val AUC": 0.38651139207183305,
+      "val EER média por fonte": 0.6100362175358768,
+      "dev AUC": 0.5102093775963744,
+      "dev acurácia balanceada": 0.39166858116312075
+    },
+    {
+      "estatística": "silencio_fim_s",
+      "val AUC": 0.5675247108096806,
+      "val EER média por fonte": 0.4072005362759912,
+      "dev AUC": 0.5462383784607775,
+      "dev acurácia balanceada": 0.6110961875568393
+    },
+    {
+      "estatística": "rms_db",
+      "val AUC": 0.611288591933114,
+      "val EER média por fonte": 0.46028053736059077,
+      "dev AUC": 0.6018272862435229,
+      "dev acurácia balanceada": 0.5617784567897517
+    },
+    {
+      "estatística": "pico_db",
+      "val AUC": 0.5790358470082706,
+      "val EER média por fonte": 0.4443124003159656,
+      "dev AUC": 0.6478911234393833,
+      "dev acurácia balanceada": 0.5707561928673376
+    },
+    {
+      "estatística": "banda_hz",
+      "val AUC": 0.5801835456129163,
+      "val EER média por fonte": 0.4822716787057912,
+      "dev AUC": 0.5964928724890397,
+      "dev acurácia balanceada": 0.5606843432626165
+    }
+  ],
+  "b_fonte_por_estatisticas": {
+    "acurácia": 0.7804796802131913,
+    "acurácia balanceada": 0.5708086063787909,
+    "acaso (1/nº de fontes da validação)": 0.25,
+    "acurácia trivial (fonte majoritária)": 0.47151898734177217,
+    "n treino": 20000,
+    "n val": 6004,
+    "fontes treino": [
+      "asvspoof2019_la",
+      "codecfake_plus",
+      "dfadd",
+      "librispeech",
+      "shiftyspeech"
+    ],
+    "fontes val": [
+      "codecfake_plus",
+      "dfadd",
+      "librispeech",
+      "shiftyspeech"
+    ]
+  },
+  "b_fonte_por_camada": {
+    "acurácia": 0.9192205196535643,
+    "acurácia balanceada": 0.7985268294483944,
+    "acaso (1/nº de fontes da validação)": 0.25,
+    "acurácia trivial (fonte majoritária)": 0.47151898734177217,
+    "n treino": 20000,
+    "n val": 6004,
+    "fontes treino": [
+      "asvspoof2019_la",
+      "codecfake_plus",
+      "dfadd",
+      "librispeech",
+      "shiftyspeech"
+    ],
+    "fontes val": [
+      "codecfake_plus",
+      "dfadd",
+      "librispeech",
+      "shiftyspeech"
+    ],
+    "camada": 7
+  },
+  "b_confusao_estatisticas": {
+    "asvspoof2019_la": {
+      "codecfake_plus": 4,
+      "dfadd": 39,
+      "librispeech": 0,
+      "shiftyspeech": 72
+    },
+    "dfadd": {
+      "codecfake_plus": 130,
+      "dfadd": 2471,
+      "librispeech": 68,
+      "shiftyspeech": 270
+    },
+    "librispeech": {
+      "codecfake_plus": 1,
+      "dfadd": 36,
+      "librispeech": 1554,
+      "shiftyspeech": 154
+    },
+    "shiftyspeech": {
+      "codecfake_plus": 29,
+      "dfadd": 285,
+      "librispeech": 230,
+      "shiftyspeech": 661
+    }
+  },
+  "b_confusao_camada": {
+    "asvspoof2019_la": {
+      "codecfake_plus": 0,
+      "dfadd": 42,
+      "librispeech": 4,
+      "shiftyspeech": 3
+    },
+    "codecfake_plus": {
+      "codecfake_plus": 78,
+      "dfadd": 0,
+      "librispeech": 59,
+      "shiftyspeech": 94
+    },
+    "dfadd": {
+      "codecfake_plus": 21,
+      "dfadd": 2787,
+      "librispeech": 0,
+      "shiftyspeech": 0
+    },
+    "librispeech": {
+      "codecfake_plus": 42,
+      "dfadd": 1,
+      "librispeech": 1726,
+      "shiftyspeech": 132
+    },
+    "shiftyspeech": {
+      "codecfake_plus": 23,
+      "dfadd": 1,
+      "librispeech": 63,
+      "shiftyspeech": 928
+    }
+  },
+  "c_nota_por_fonte": {
+    "camada": 7,
+    "limiar_logit": 0.22984731197357178,
+    "linhas": [
+      {
+        "conjunto": "validação",
+        "fonte": "codecfake_plus",
+        "classe": "real",
+        "n": 164,
+        "prob. média de fake": 0.14440429210662842,
+        "prob. mediana de fake": 0.0006415375974029303,
+        "% acima do limiar": 0.1402439024390244
+      },
+      {
+        "conjunto": "validação",
+        "fonte": "codecfake_plus",
+        "classe": "fake",
+        "n": 188,
+        "prob. média de fake": 0.7594617605209351,
+        "prob. mediana de fake": 0.9741487503051758,
+        "% acima do limiar": 0.7446808510638298
+      },
+      {
+        "conjunto": "validação",
+        "fonte": "dfadd",
+        "classe": "real",
+        "n": 2831,
+        "prob. média de fake": 0.004674896132200956,
+        "prob. mediana de fake": 0.0005399743095040321,
+        "% acima do limiar": 0.0
+      },
+      {
+        "conjunto": "validação",
+        "fonte": "dfadd",
+        "classe": "fake",
+        "n": 10336,
+        "prob. média de fake": 0.9863547682762146,
+        "prob. mediana de fake": 0.9993488788604736,
+        "% acima do limiar": 0.9964202786377709
+      },
+      {
+        "conjunto": "validação",
+        "fonte": "librispeech",
+        "classe": "real",
+        "n": 1852,
+        "prob. média de fake": 0.005873605143278837,
+        "prob. mediana de fake": 0.00031014863634482026,
+        "% acima do limiar": 0.0026997840172786176
+      },
+      {
+        "conjunto": "validação",
+        "fonte": "shiftyspeech",
+        "classe": "real",
+        "n": 1157,
+        "prob. média de fake": 0.06578117609024048,
+        "prob. mediana de fake": 0.003854496171697974,
+        "% acima do limiar": 0.03975799481417459
+      },
+      {
+        "conjunto": "validação",
+        "fonte": "shiftyspeech",
+        "classe": "fake",
+        "n": 3471,
+        "prob. média de fake": 0.9561905860900879,
+        "prob. mediana de fake": 0.9982309937477112,
+        "% acima do limiar": 0.9749351771823682
+      },
+      {
+        "conjunto": "dev_shift",
+        "fonte": "in_the_wild",
+        "classe": "real",
+        "n": 8633,
+        "prob. média de fake": 0.1348351687192917,
+        "prob. mediana de fake": 0.0034170227590948343,
+        "% acima do limiar": 0.11085370091509325
+      },
+      {
+        "conjunto": "dev_shift",
+        "fonte": "in_the_wild",
+        "classe": "fake",
+        "n": 1981,
+        "prob. média de fake": 0.9792683720588684,
+        "prob. mediana de fake": 0.9999904632568359,
+        "% acima do limiar": 0.9808177688036346
+      }
+    ]
+  },
+  "d_controle_rotulos_embaralhados": {
+    "camada": 7,
+    "C": 0.01,
+    "val AUC": 0.4744623448604824,
+    "val EER média por fonte": 0.5067257593055369,
+    "dev AUC": 0.4857804710602689,
+    "dev EER": 0.5052274962660741
+  }
+}

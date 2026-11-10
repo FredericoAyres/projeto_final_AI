@@ -1,0 +1,120 @@
+{
+  "versao": "v4",
+  "quick": false,
+  "concluido_em": "2026-11-10T00:11:05",
+  "etapas": {
+    "extracao": "2026-11-10T00:03:24",
+    "camadas": "2026-11-10T00:06:22",
+    "somas": "2026-11-10T00:10:36",
+    "atalhos": "2026-11-10T00:10:51",
+    "resumo": "2026-11-10T00:10:59"
+  },
+  "resumo": {
+    "cabeça_final_pela_validação": "concat_top3",
+    "candidatas": [
+      {
+        "cabeça": "concat_top3",
+        "val EER média por fonte": 0.05916545996785233
+      },
+      {
+        "cabeça": "concat_top4",
+        "val EER média por fonte": 0.05976388337885045
+      },
+      {
+        "cabeça": "rl_camada_7",
+        "val EER média por fonte": 0.05993884750379036
+      },
+      {
+        "cabeça": "soma_mlp",
+        "val EER média por fonte": 0.06375872400297868
+      },
+      {
+        "cabeça": "soma_linear",
+        "val EER média por fonte": 0.06729389171080084
+      }
+    ],
+    "dev_cabeça_final": {
+      "dev AUC": 0.983269123392956,
+      "dev EER": 0.058778773653776664,
+      "dev acurácia balanceada": 0.8965456792616852
+    },
+    "dev_AUC_por_seed_cabeça_final": [
+      0.983269123392956
+    ],
+    "veredito_pré_registro_c": "melhora clara (AUC do dev_shift > 0,6)",
+    "regra_3_seeds_somas": {
+      "soma_linear": {
+        "aucs": [
+          0.9828,
+          0.9822,
+          0.9816
+        ],
+        "todas_acima_0_5": true
+      },
+      "soma_mlp": {
+        "aucs": [
+          0.9821,
+          0.9863,
+          0.983
+        ],
+        "todas_acima_0_5": true
+      }
+    },
+    "régua_v3": {
+      "dev AUC min": 0.14554116066023493,
+      "dev AUC max": 0.3775061508984958,
+      "dev EER min": 0.5769767032143016,
+      "dev EER max": 0.7937344422190352,
+      "dev acurácia balanceada min": 0.3645702750203149,
+      "dev acurácia balanceada max": 0.502970125142871
+    },
+    "melhor_camada": 7,
+    "atalho_val_AUC": 0.6675162967453638,
+    "atalho_dev_AUC": 0.5226188814588819,
+    "atalho_há_indício": true,
+    "n_treino": 40000,
+    "extracao": {
+      "horas_extracao_acumuladas": 0.413,
+      "parou_por": "plano completo",
+      "plano_completo": true,
+      "conjuntos": {
+        "dev_shift": {
+          "shards_prontos": 6,
+          "shards_planejados": 6,
+          "clipes_prontos": 10614,
+          "clipes_planejados": 10614
+        },
+        "val": {
+          "shards_prontos": 10,
+          "shards_planejados": 10,
+          "clipes_prontos": 19999,
+          "clipes_planejados": 19999
+        },
+        "treino": {
+          "shards_prontos": 20,
+          "shards_planejados": 20,
+          "clipes_prontos": 40000,
+          "clipes_planejados": 40000
+        },
+        "treino_semcorte": {
+          "shards_prontos": 5,
+          "shards_planejados": 5,
+          "clipes_prontos": 10000,
+          "clipes_planejados": 10000
+        },
+        "val_semcorte": {
+          "shards_prontos": 3,
+          "shards_planejados": 3,
+          "clipes_prontos": 5000,
+          "clipes_planejados": 5000
+        },
+        "dev_shift_semcorte": {
+          "shards_prontos": 6,
+          "shards_planejados": 6,
+          "clipes_prontos": 10614,
+          "clipes_planejados": 10614
+        }
+      }
+    }
+  }
+}

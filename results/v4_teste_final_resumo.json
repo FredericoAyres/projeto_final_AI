@@ -1,0 +1,246 @@
+{
+  "sistemas": {
+    "S0": "CNN da v3 (log-mel, janelas)",
+    "S1": "XLS-R congelado, só a camada 24 + regressão logística",
+    "S2": "v4 final (concat_top3: camadas 5, 6, 7)",
+    "S3": "v4 + CNN (regressão de 2 entradas na validação)"
+  },
+  "limiares_logit": {
+    "S0": {
+      "A": -2.1496682167053223,
+      "B": 2.843320846557617
+    },
+    "S1": {
+      "A": -0.011182785034179688,
+      "B": 6.300252437591553
+    },
+    "S2": {
+      "A": -0.03953683376312256,
+      "B": 8.21838092803955
+    },
+    "S3": {
+      "A": 0.7379247506853446,
+      "B": 5.39667799302418
+    }
+  },
+  "checagem": {
+    "S1": {
+      "C": 1.0,
+      "C_na_v4": 1.0,
+      "grade": [
+        {
+          "C": 0.001,
+          "val EER média por fonte": 0.11995924450693746,
+          "iterações": 64,
+          "convergiu": true,
+          "segundos": 1.5
+        },
+        {
+          "C": 0.01,
+          "val EER média por fonte": 0.10199987679985976,
+          "iterações": 115,
+          "convergiu": true,
+          "segundos": 2.3
+        },
+        {
+          "C": 0.1,
+          "val EER média por fonte": 0.08831925760289054,
+          "iterações": 197,
+          "convergiu": true,
+          "segundos": 3.7
+        },
+        {
+          "C": 1.0,
+          "val EER média por fonte": 0.08565768836323324,
+          "iterações": 319,
+          "convergiu": true,
+          "segundos": 6.1
+        }
+      ],
+      "dif_max_val_vs_v4": 0.0,
+      "dif_max_dev_vs_v4": 0.0,
+      "segundos": 25.2
+    },
+    "S2": {
+      "camadas": [
+        5,
+        6,
+        7
+      ],
+      "C": 0.1,
+      "iterações": 56,
+      "dif_max_val_vs_v4": 0.0,
+      "dif_max_dev_vs_v4": 0.0,
+      "segundos": 20.5
+    },
+    "S3": {
+      "intercepto": 4.746191721920012,
+      "coef_S2_padronizado": 5.3610592957870695,
+      "coef_S0_padronizado": 4.192809419373434,
+      "padronização (média, desvio) na validação": {
+        "S2": [
+          5.174682140350342,
+          13.263885498046875
+        ],
+        "S0": [
+          4.8562790688140876,
+          16.084143311602983
+        ]
+      },
+      "coef_S2_logit_original": 0.40418467850740214,
+      "coef_S0_logit_original": 0.2606796854606967,
+      "C": 1.0,
+      "n_val": 19999
+    }
+  },
+  "regra_leitura": {
+    "contribuição das nossas escolhas (S2 − S1) | AUC": "não demonstrada",
+    "contribuição das nossas escolhas (S2 − S1) | acurácia balanceada, limiar A": "não demonstrada",
+    "contribuição da CNN (S3 − S2) | AUC": "não demonstrada",
+    "contribuição da CNN (S3 − S2) | acurácia balanceada, limiar A": "não demonstrada"
+  },
+  "resumo": [
+    {
+      "sistema": "S0",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.5174814345991562,
+      "média acurácia balanceada (3 principais)": 0.5285606060606061,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.4681952977777777,
+      "coraa falso alarme": 0.6526,
+      "coraa falso alarme IC": [
+        0.638795,
+        0.666
+      ]
+    },
+    {
+      "sistema": "S0",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.383631223628692,
+      "média acurácia balanceada (3 principais)": 0.437620202020202,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.4681952977777777,
+      "coraa falso alarme": 0.4126,
+      "coraa falso alarme IC": [
+        0.399,
+        0.427
+      ]
+    },
+    {
+      "sistema": "S1",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.843064135021097,
+      "média acurácia balanceada (3 principais)": 0.7839111111111111,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8991586395959595,
+      "coraa falso alarme": 0.3558,
+      "coraa falso alarme IC": [
+        0.342,
+        0.3688
+      ]
+    },
+    {
+      "sistema": "S1",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8138029535864978,
+      "média acurácia balanceada (3 principais)": 0.7984272727272727,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8991586395959595,
+      "coraa falso alarme": 0.1162,
+      "coraa falso alarme IC": [
+        0.10659500000000001,
+        0.1252
+      ]
+    },
+    {
+      "sistema": "S2",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8511582278481012,
+      "média acurácia balanceada (3 principais)": 0.7899989898989898,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.1672,
+      "coraa falso alarme IC": [
+        0.1568,
+        0.178
+      ]
+    },
+    {
+      "sistema": "S2",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8361135021097047,
+      "média acurácia balanceada (3 principais)": 0.8134575757575758,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.025,
+      "coraa falso alarme IC": [
+        0.0208,
+        0.0292
+      ]
+    },
+    {
+      "sistema": "S3",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.7780822784810127,
+      "média acurácia balanceada (3 principais)": 0.728479797979798,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8758971874747474,
+      "coraa falso alarme": 0.318,
+      "coraa falso alarme IC": [
+        0.3056,
+        0.3316
+      ]
+    },
+    {
+      "sistema": "S3",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.76746582278481,
+      "média acurácia balanceada (3 principais)": 0.7634222222222222,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8758971874747474,
+      "coraa falso alarme": 0.0866,
+      "coraa falso alarme IC": [
+        0.0788,
+        0.0942
+      ]
+    }
+  ],
+  "excluidos_erro_leitura": {
+    "val": 0,
+    "dev_shift": 0,
+    "in_the_wild": 0,
+    "llamapartialspoof": 0,
+    "brspeech_df": 0,
+    "coraa": 0,
+    "asvspoof2019_la": 0,
+    "asvspoof2021_df": 0
+  },
+  "n_boot": 1000,
+  "bancos": [
+    [
+      "in_the_wild",
+      "principal"
+    ],
+    [
+      "llamapartialspoof",
+      "principal"
+    ],
+    [
+      "brspeech_df",
+      "principal"
+    ],
+    [
+      "coraa",
+      "só real"
+    ],
+    [
+      "asvspoof2019_la",
+      "secundário"
+    ],
+    [
+      "asvspoof2021_df",
+      "secundário"
+    ]
+  ],
+  "s0": "v3_zero_s123"
+}
