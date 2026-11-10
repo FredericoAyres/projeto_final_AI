@@ -1,0 +1,31 @@
+leitura,métrica,banco,tipo,diferença,"IC 2,5%","IC 97,5%",IC exclui zero
+"WavLM − XLS-R, cabeça final (W2 − X2)",AUC,in_the_wild,principal,-0.02853952000000004,-0.031936825999999974,-0.024611749999999898,True
+"WavLM − XLS-R, cabeça final (W2 − X2)",AUC,llamapartialspoof,principal,-0.009957919999999842,-0.013534178999999919,-0.006213756000000095,True
+"WavLM − XLS-R, cabeça final (W2 − X2)",AUC,brspeech_df,principal,-0.0747562121212122,-0.08390130681818182,-0.06615202651515142,True
+"WavLM − XLS-R, cabeça final (W2 − X2)",AUC,asvspoof2019_la,secundário,-0.002701399999999854,-0.003551362999999952,-0.001864349999999984,True
+"WavLM − XLS-R, cabeça final (W2 − X2)",AUC,asvspoof2021_df,secundário,-0.00606531999999993,-0.007439107000000136,-0.0047781649999998985,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar A",in_the_wild,principal,0.0050000000000000044,-0.0016024999999999351,0.012299999999999978,False
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar A",llamapartialspoof,principal,0.0017999999999999128,-0.003699999999999928,0.007302500000000076,False
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar A",brspeech_df,principal,-0.037169696969696964,-0.04774242424242427,-0.026938863636363608,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar A",asvspoof2019_la,secundário,-0.011300000000000088,-0.014802500000000036,-0.008197499999999988,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar A",asvspoof2021_df,secundário,-0.037799999999999945,-0.04320250000000001,-0.03239749999999999,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar B",in_the_wild,principal,-0.0817,-0.08879999999999999,-0.07458000000000002,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar B",llamapartialspoof,principal,-0.027100000000000013,-0.03240249999999998,-0.02159499999999996,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar B",brspeech_df,principal,-0.08564545454545458,-0.09576340909090914,-0.0751016666666667,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar B",asvspoof2019_la,secundário,-0.08150000000000002,-0.08840000000000003,-0.07500000000000007,True
+"WavLM − XLS-R, cabeça final (W2 − X2)","acurácia balanceada, limiar B",asvspoof2021_df,secundário,-0.026799999999999935,-0.03170000000000006,-0.022499999999999964,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)",AUC,in_the_wild,principal,-0.042389760000000165,-0.04703145400000011,-0.037947013,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)",AUC,llamapartialspoof,principal,-0.034294439999999926,-0.039896393999999884,-0.02853212799999993,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)",AUC,brspeech_df,principal,-0.21936477272727273,-0.23187507007575764,-0.20714268939393948,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)",AUC,asvspoof2019_la,secundário,-0.011034220000000095,-0.012925751500000051,-0.009287330000000038,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)",AUC,asvspoof2021_df,secundário,-0.00978367999999985,-0.011430346999999999,-0.008199084999999879,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar A",in_the_wild,principal,-0.0038999999999999035,-0.011799999999999922,0.003902500000000012,False
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar A",llamapartialspoof,principal,-0.024899999999999922,-0.032199999999999895,-0.017594999999999958,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar A",brspeech_df,principal,-0.15378484848484852,-0.16692515151515153,-0.1400035606060606,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar A",asvspoof2019_la,secundário,-0.032400000000000095,-0.03759999999999997,-0.027597499999999962,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar A",asvspoof2021_df,secundário,-0.05719999999999992,-0.0634025,-0.0514,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar B",in_the_wild,principal,-0.054099999999999926,-0.059900000000000064,-0.04749749999999999,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar B",llamapartialspoof,principal,0.05699999999999994,0.049799999999999955,0.06430750000000002,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar B",brspeech_df,principal,-0.15445151515151523,-0.1688472727272727,-0.1402375757575758,True
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar B",asvspoof2019_la,secundário,0.005600000000000049,-0.0005025000000000506,0.010902500000000018,False
+"WavLM − XLS-R, só camada 24 (W1 − X1)","acurácia balanceada, limiar B",asvspoof2021_df,secundário,-0.02299999999999991,-0.027900000000000036,-0.018297499999999987,True

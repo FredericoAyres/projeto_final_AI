@@ -179,10 +179,15 @@ NOME_CURTO = {"in_the_wild": "In-the-Wild", "llamapartialspoof": "LlamaPartial",
 CORES = {"S0": "#2a78d6", "S1": "#eb6834", "S2": "#1baf7a", "S3": "#eda100"}
 
 
-def grafico(tab, bancos):
+def grafico(tab, bancos, sistemas=None, descricao=None, cores=None, titulo=None):
     """Acurácia balanceada por banco e sistema (limiares A e B) e falso alarme do banco só real, com o
-    intervalo bootstrap. `tab` = results/v4_teste_final.csv; devolve a figura."""
+    intervalo bootstrap. `tab` = results/v4_teste_final.csv; devolve a figura. Sem os argumentos opcionais,
+    usa os sistemas da v4 (S0 a S3); a v5 passa os seus."""
     import matplotlib.pyplot as plt
+    SISTEMAS = sistemas or globals()["SISTEMAS"]
+    DESCRICAO = descricao or globals()["DESCRICAO"]
+    CORES = cores or globals()["CORES"]
+    meio = (len(SISTEMAS) - 1) / 2
     tipo = dict(bancos)
     duas = [b for b, t in bancos if t != "só real"]
     so_real = [b for b, t in bancos if t == "só real"]
@@ -193,7 +198,7 @@ def grafico(tab, bancos):
         for i, s in enumerate(SISTEMAS):
             g = tab[(tab.sistema == s) & (tab.limiar == L) & (tab["métrica"] == "acurácia balanceada")
                     & tab.banco.isin(duas)].set_index("banco").loc[duas]
-            ax.bar(x + (i - 1.5) * w, g.valor, w * 0.92, color=CORES[s], label=f"{s}: {DESCRICAO[s]}",
+            ax.bar(x + (i - meio) * w, g.valor, w * 0.92, color=CORES[s], label=f"{s}: {DESCRICAO[s]}",
                    yerr=[g.valor - g["IC 2,5%"], g["IC 97,5%"] - g.valor], error_kw={"lw": 1, "capsize": 2})
         ax.axhline(0.5, color="#52514e", ls="--", lw=1)
         ax.set_xticks(x, [f"{NOME_CURTO.get(b, b)}\n({tipo[b]})" for b in duas], fontsize=8)
@@ -204,7 +209,7 @@ def grafico(tab, bancos):
         for i, s in enumerate(SISTEMAS):
             g = tab[(tab.sistema == s) & (tab.banco == so_real[0]) & (tab["métrica"] == "falso alarme real")
                     ].set_index("limiar").loc[["A", "B"]]
-            axes[2].bar(np.arange(2) + (i - 1.5) * w, 100 * g.valor, w * 0.92, color=CORES[s],
+            axes[2].bar(np.arange(2) + (i - meio) * w, 100 * g.valor, w * 0.92, color=CORES[s],
                         yerr=[100 * (g.valor - g["IC 2,5%"]), 100 * (g["IC 97,5%"] - g.valor)],
                         error_kw={"lw": 1, "capsize": 2})
         axes[2].set_xticks(np.arange(2), ["limiar A", "limiar B"], fontsize=8)
@@ -213,6 +218,6 @@ def grafico(tab, bancos):
         axes[2].set_title(f"{so_real[0]}: falso alarme\n(só reais; menor é melhor)", fontsize=10)
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="lower center", ncol=2, fontsize=8, frameon=False)
-    fig.suptitle("Teste final da v4 (barras de erro: intervalo bootstrap de 95%, só da amostra de teste)", fontsize=10)
+    fig.suptitle(titulo or "Teste final da v4 (barras de erro: intervalo bootstrap de 95%, só da amostra de teste)", fontsize=10)
     fig.tight_layout(rect=(0, 0.12, 1, 0.97))
     return fig

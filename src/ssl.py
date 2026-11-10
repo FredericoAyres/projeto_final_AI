@@ -1,4 +1,5 @@
-"""Modelo de fala auto-supervisionado CONGELADO (v4): XLS-R 300M como extrator de características.
+"""Modelo de fala auto-supervisionado CONGELADO como extrator de características (v4: XLS-R 300M;
+v5: XLS-R 300M e WavLM Large, `microsoft/wavlm-large`, ~94 mil horas de inglês).
 
 ⚠️ Fora da trilha: o modelo auto-supervisionado (wav2vec 2.0 / XLS-R, pré-treinado sem rótulos em
 ~436 mil horas de fala em 128 línguas) e o pacote `transformers`. Usar um modelo pré-treinado e congelado
@@ -16,12 +17,18 @@ DTYPES = {"float16": torch.float16, "bfloat16": torch.bfloat16, "float32": torch
 
 
 def carregar_ssl(nome=NOME_PADRAO, device="cuda", dtype="float16"):
-    """Carrega o modelo congelado (eval, sem gradiente) no `dtype` pedido. Lê só do cache local."""
-    from transformers import Wav2Vec2Model
+    """Carrega o modelo congelado (eval, sem gradiente) no `dtype` pedido. Lê só do cache local.
+
+    `AutoModel` escolhe a classe pelo `config.json` do modelo: `Wav2Vec2Model` para o XLS-R (a mesma da v4)
+    e `WavLMModel` para o WavLM Large (v5). Os dois têm 24 camadas de 1024 números a cada 20 ms.
+    """
+    from transformers import AutoModel
     from transformers.utils import logging as hf_logging
 
     hf_logging.set_verbosity_error()      # avisos de pesos do pré-treino que não usamos (quantizador)
-    m = Wav2Vec2Model.from_pretrained(nome, local_files_only=True, torch_dtype=DTYPES[dtype])
+    m = AutoModel.from_pretrained(nome, local_files_only=True, torch_dtype=DTYPES[dtype])
+    n = m.config.num_hidden_layers + 1
+    assert (n, m.config.hidden_size) == (N_SAIDAS, DIM), f"{nome}: {n} saídas de {m.config.hidden_size} (esperado 25 x 1024)"
     m.eval()
     for p in m.parameters():
         p.requires_grad_(False)

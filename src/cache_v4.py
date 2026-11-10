@@ -164,7 +164,17 @@ def gravar_shard(cache_dir, conjunto, shard, media, desvio, meta, info):
                                         encoding="utf-8")
     if final.exists():          # pasta final sem marcador (não deveria acontecer): substitui
         shutil.rmtree(final)
-    os.replace(tmp, final)
+    # No Windows, o antivírus ou o indexador às vezes seguram a pasta recém-gravada por um instante e a
+    # renomeação falha com "Acesso negado" (visto no QUICK do teste da v5). Tenta de novo algumas vezes
+    # antes de desistir. Execução, não método: o conteúdo do shard é o mesmo.
+    for tentativa in range(10):
+        try:
+            os.replace(tmp, final)
+            return
+        except PermissionError:
+            if tentativa == 9:
+                raise
+            time.sleep(1 + tentativa)
 
 
 # ---------------------------------------------------------------- orçamento cumulativo

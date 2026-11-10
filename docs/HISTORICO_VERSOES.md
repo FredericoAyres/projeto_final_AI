@@ -46,8 +46,11 @@ AUC e EER são as métricas principais (não dependem de limiar). "val (média/f
 | v4 · S1 (só camada 24) | 2026-11-10 | (referência: "só transfer learning") | a última camada do XLS-R + regressão logística (C pela validação) | 2,6% / 8,6% | 0,984 / 5,8% | 0,986 / 5,4% | 0,936 / 14,0% | 0,775 / 30,7% | 35,6% · 11,6% | o modelo congelado sozinho já explica quase todo o ganho | `notebooks/versions/v4_ssl.ipynb` |
 | v4 · S3 (S2 + CNN) | 2026-11-10 | juntar a CNN da v3 ajuda | regressão de 2 entradas (S2 e S0) treinada na validação | 0,7% (no próprio treino) / — | 0,943 / 10,9% | 0,888 / 18,8% | 0,900 / 17,8% | 0,840 / 25,3% | 31,8% · 8,7% | não demonstrado pela regra, mas piorou o In-the-Wild (−0,09 de AUC): não usar | `notebooks/versions/v4_ssl.ipynb` |
 | v4 · S0 = `v3_zero_s123` | 2026-11-10 | (referência: a CNN da v3 com menor EER média por fonte na validação) | CNN da v3, janelas de 4 s | 2,1% / 11,2% | 0,146 / 79,4% | 0,114 / 82,2% | 0,556 / 46,3% | 0,735 / 29,3% | 65,3% · 41,3% | no teste, igual ao dev_shift: ordena o In-the-Wild ao contrário | `notebooks/versions/v4_ssl.ipynb` |
+| v5 · X2 = XLS-R refeito (escolhido) | 2026-11-10 | (referência pareada da v5: o S2 da v4 refeito noutra placa) | o mesmo `concat_top3` da v4 (camadas 5, 6, 7; C = 0,1) | 1,1% / 5,9% | 0,983 / 6,0% | 0,978 / 6,8% | 0,924 / 14,8% | 0,842 / 25,0% | 16,9% (lim. A) · 2,5% (lim. B) | reproduziu a v4 (AUC do teste a até 0,0008 do S2); segue como o modelo do projeto | `notebooks/versions/v5_wavlm.ipynb` |
+| v5 · W2 = WavLM Large | 2026-11-10 | um modelo pré-treinado também a "limpar" fala com ruído (WavLM, Microsoft, ~94 mil h de inglês) generaliza melhor para vozes de internet que o XLS-R (Meta) | só o modelo congelado; o resto igual à v4 (cabeça final pela validação: `concat_top3`, camadas 4, 6, 8; C = 0,1) | 1,1% / 6,8% | 0,970 / 7,5% | 0,950 / 11,4% | 0,914 / 14,5% | 0,768 / 32,3% | 34,5% · 8,5% | pior que o XLS-R em AUC nos 5 bancos com duas classes (demonstrado no teste); na decisão (dev_shift), empate pela regra; muito pior em pt-BR | `notebooks/versions/v5_wavlm.ipynb` |
+| v5 · W1 = WavLM, só camada 24 | 2026-11-10 | (referência: "só transfer learning" com o WavLM) | a última camada do WavLM + regressão logística (C = 1, pela validação) | 6,5% / 15,1% | 0,956 / 10,0% | 0,946 / 10,3% | 0,899 / 17,9% | 0,557 / 45,3% | 87,3% · 73,6% | a última camada do WavLM quase não serve para pt-BR (BRSpeech-DF perto do acaso) | `notebooks/versions/v5_wavlm.ipynb` |
 
-Nas linhas da v4, "EER val" é na validação da v4 (19.999 clipes, subamostra estratificada); o teste usa até 5.000 clipes por classe e banco, avaliado uma vez; o falso alarme do CORAA vem com os dois limiares pré-registrados (A = EER da validação; B = EER do dev_shift). As outras cinco execuções da v3 não foram avaliadas no teste.
+Na v5, os clipes de validação, dev_shift e teste são exatamente os da v4 (mesma seed), e os dois modelos rodaram na mesma máquina (RTX 4050 6 GB); a escolha entre eles foi feita na validação + dev_shift, antes do teste. Nas linhas da v4, "EER val" é na validação da v4 (19.999 clipes, subamostra estratificada); o teste usa até 5.000 clipes por classe e banco, avaliado uma vez; o falso alarme do CORAA vem com os dois limiares pré-registrados (A = EER da validação; B = EER do dev_shift). As outras cinco execuções da v3 não foram avaliadas no teste.
 
 Na v3, cada linha é a média das três seeds (entre parênteses, o mínimo e o máximo da AUC do dev_shift); o teste final da v3 ainda não foi avaliado (etapa separada). Na v2, dev_shift e teste são por janelas; "EER val global" é no recorte central. Recall e falso alarme (CORAA) dependem do limiar, que mudou muito entre os experimentos da v2 (0,60 / 0,10 / 0,76).
 
@@ -400,7 +403,98 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
 
   Teste final inteiro: 20,9 min (07:31:44 a 07:52:37). Execução do notebook (só leitura): ~1 min.
 
+### v5 - pré-registro (WavLM Large × XLS-R, o mesmo pipeline da v4)
+
+- **Escrito em:** 2026-11-10, branch `v5-wavlm`, a partir do commit `3887f87` (v4 fechada). **Antes de qualquer resultado da v5:** só o modelo foi baixado (`microsoft/wavlm-large`, revisão `c1423ed94bb01d80a3f5ce5bc39f6026a0f4828c`, `pytorch_model.bin` de 1.261.990.257 bytes) e o seu `config.json` conferido. Nada abaixo pode ser mudado depois de ver resultados; se algo mudar, vai num bloco datado separado, com o motivo.
+- **Motivo:** o grupo quer comparar o modelo da Meta (XLS-R, v4) com um segundo modelo pronto e seguir melhorando o melhor dos dois. O Gemini Embedding 2 (Google) foi considerado e descartado por ora: só existe por API paga, o plano gratuito usa os dados enviados para melhorar os produtos do Google (problema com as licenças dos bancos) e ele é feito para captar significado, não detalhe acústico.
+- **Hipótese:** o **WavLM Large** (Microsoft; ~94 mil horas de fala em inglês; pré-treinado também a "limpar" fala com ruído e sobreposição) dá representações que separam real de IA **pelo menos tão bem** quanto o XLS-R 300M, e melhor nas vozes de internet (dev_shift). ⚠️ Fora da trilha: o modelo auto-supervisionado, como na v4.
+- **Uma única mudança:** o modelo congelado. Os dois têm 25 saídas de 1024 números a cada 20 ms, e a mesma normalização da entrada (`do_normalize: true`, `attention_mask`). Tudo o mais igual à v4: mesmos clipes (plano com seed 42: 40.000 de treino, 19.999 da validação, dev_shift inteiro com 10.614), corte de silêncio de 35 dB, até 8 s sem completar, fp16, média e desvio no tempo, regressão logística por camada (C pela validação), concatenação das 3 e 4 melhores camadas, somas ponderadas (linear e MLP) com 3 seeds, atalhos e resumo.
+- **O XLS-R é refeito nesta máquina** (prefixo `v5_xlsr`), no mesmo código e no mesmo hardware que o WavLM (`v5_wavlm`). Motivos: as notas por clipe da v4 não estão no git (sem elas não há comparação pareada) e a v4 rodou noutra placa (RTX 4060 8 GB; aqui, RTX 4050 6 GB). **Conferência de reprodução:** a EER média por fonte da validação de cada camada do `v5_xlsr` tem de ficar a no máximo 0,5 ponto da do `results/v4_camadas.csv`, e a cabeça final pela validação tem de ser a mesma (`concat_top3`, camadas 5, 6, 7). Se não bater, isso é registrado e investigado **antes** de comparar os modelos.
+- **Fora desta versão:** a ablação do corte de silêncio (sem efeito na v4; `SEMCORTE = None`, o que não muda o sorteio dos outros clipes).
+- **Critérios (fixados agora):**
+  - **(a) Dentro de cada modelo:** camada, C e cabeça final escolhidos pela **EER média por fonte na validação**, exatamente como na v4. O dev_shift não escolhe nada dentro do modelo.
+  - **(b) Entre os modelos:** compara-se a **cabeça final** de cada um (e, só reportada, a "só última camada", o S1 da v4). O **WavLM é melhor** se, ao mesmo tempo: (1) tiver EER média por fonte menor na validação e (2) tiver AUC maior no dev_shift, com o intervalo de 95% da diferença pareada **não incluindo zero**. O **WavLM é pior** na situação inversa. Fora disso: **empate**, e o grupo segue com o **XLS-R** (já testado no teste final da v4).
+  - **(c) Bootstrap pareado do dev_shift:** 1.000 reamostragens **por locutor** (sorteia os 16 locutores com reposição, com todos os clipes de cada um; seed 42), as mesmas para os dois modelos. É por locutor porque clipes do mesmo locutor não são independentes, e reamostrar clipes daria um intervalo estreito demais.
+  - **(d) Também reportados (não decidem):** EER e acurácia balanceada do dev_shift (limiar da validação e 0,5), acurácia trivial, AUC por faixa de duração, EER por fonte e por gerador na validação, curva de camadas dos dois modelos e os atalhos (b) (quão bem a melhor camada reconhece o banco de origem dos reais).
+  - **(e) Análise do "porquê"** (pedida pelo grupo para a apresentação): em quais camadas, fontes, geradores e durações cada modelo ganha. É descritiva: não muda a decisão de (b).
+- **Teste final:** **não** é avaliado nesta execução (`AVALIAR_TESTE_FINAL = False`). Depois da decisão escrita aqui, é avaliado **uma vez**, numa etapa separada com pré-registro próprio, com **os dois modelos**, sem reescolher nada. Lembrete: os seis bancos de teste já foram consultados na v4, então o teste da v5 serve para reportar, não para escolher.
+- **Execução:** `scripts\rodar_v4.ps1 -Modelo xlsr` e `-Modelo wavlm`, fora desta sessão, um modelo de cada vez. Se a placa de 6 GB não comportar o lote da v4, o tamanho do lote da GPU pode ser reduzido: é mudança de execução (registrada em h), não de método.
+
+### v5 · resultado na validação + dev_shift (decisão, 2026-11-10)
+
+- **Execução:** `rodar_v4.ps1 -Modelo xlsr` (2026-11-10 11:57 a 13:50; extração 1,70 h, 10 a 23 clipes/s, pico 14,2 GB) e `-Modelo wavlm` (13:50 a 15:35; ~12 a 15 clipes/s), código 0 nos dois, 1 tentativa, 0 erros de leitura, 0 NaN. Comparação: `python scripts/comparar_v5.py` (`src/comparacao.py`) → `results/v5_comparacao.json` e `results/v5_comparacao_{camadas,fontes,geradores,duracao,locutores}.csv`. **Teste final não lido.**
+- **Conferência de reprodução (XLS-R refeito × v4): passou.** Maior diferença de EER média por fonte por camada: 0,37 ponto (camada 11; a maioria abaixo de 0,1). Cabeça final igual (`concat_top3`, camadas 5, 6, 7; 5,92% × 5,92%; dev_shift AUC 0,983 × 0,983). Em 4 camadas (4, 12, 21, 24) a grade escolheu outro C (valores de C quase empatados na v4; a pequena diferença de fp16 entre as placas inverteu a ordem).
+- **Cabeça final de cada modelo (pela validação):** XLS-R `concat_top3` (camadas 5, 6, 7; C = 0,1); WavLM `concat_top3` (camadas **4, 6, 8**; C = 0,1). No WavLM, a melhor camada sozinha é a 4.
+
+  | sistema | val EER média por fonte | dev AUC | dev EER | dev acc. bal. (limiar val / 0,5) | dev acurácia (trivial 0,813) |
+  |:--|--:|--:|--:|:--|--:|
+  | XLS-R, cabeça final | **5,92%** | **0,983** | **6,0%** | 0,895 / 0,895 | 0,841 |
+  | WavLM, cabeça final | 6,77% | 0,970 | 7,5% | 0,883 / 0,892 | 0,823 |
+  | XLS-R, só camada 24 (S1) | 8,62% | 0,984 | 6,3% | 0,869 / 0,870 | 0,795 |
+  | WavLM, só camada 24 | 15,10% | 0,956 | 10,0% | 0,882 / 0,891 | 0,826 |
+
+- **Bootstrap pareado por locutor no dev_shift** (16 locutores, 1.000 reamostragens, seed 42; WavLM − XLS-R): cabeça final, AUC **−0,013** (IC95 −0,061 a **+0,001**), EER +1,5 ponto (IC95 −1,0 a +9,4). Só camada 24: AUC −0,028 (IC95 −0,100 a +0,011).
+- **Decisão pela regra (pré-registro b): EMPATE → segue o XLS-R.** O WavLM ficou **pior na validação** (6,77% × 5,92%) e **pior no dev_shift** (AUC 0,970 × 0,983), mas o intervalo da diferença no dev_shift encosta no zero (+0,001), então a piora não está demonstrada pela regra. Em nenhum critério principal o WavLM ficou à frente.
+- **Por que (descritivo, pré-registro e; não muda a decisão):**
+  - **Camadas:** no WavLM, as melhores camadas são **mais baixas** (3 e 4; EER 9,3% e 7,9%), e a qualidade cai rápido depois da 8 (camada 24: 15,1%, contra 8,6% no XLS-R). No XLS-R, as camadas 5 a 9 ficam todas perto de 6%. Nas camadas 0 a 4, o WavLM vai melhor no dev_shift que o XLS-R (por exemplo, camada 3: AUC 0,906 × 0,793). Leitura (hipótese, não testada): o pré-treino do WavLM a "limpar" ruído e outra voz faz as camadas de cima descartarem justamente detalhes acústicos que denunciam a voz sintética; os artefatos ficam só nas camadas de baixo.
+  - **Fontes da validação:** empate no DFADD (EER 0,0% × 0,1%) e no ShiftySpeech (2,9% × 2,9%); o WavLM é pior no **CodecFake+** (fakes de codec neural; EER 17,4% × 14,8%). Por gerador: resultados mistos e com poucos clipes no CodecFake+ (5 a 32 fakes por gerador).
+  - **Duração (dev_shift):** o XLS-R é melhor nas três faixas; a maior diferença é nos áudios curtos (< 2 s: AUC 0,931 × 0,915).
+  - **Locutores (dev_shift):** boa parte da diferença vem de **Winston Churchill** (gravações antigas; AUC 0,980 no XLS-R × 0,707 no WavLM) e de Donald Trump (0,973 × 0,910). O WavLM é um pouco melhor em Barack Obama, Lyndon Johnson e Mr. Rogers. Gravação antiga, de novo, é o ponto fraco (como na CNN da v1 a v3).
+  - **Atalhos (b):** a melhor camada do WavLM reconhece o banco de origem dos reais um pouco melhor (acurácia balanceada 0,82 × 0,80; estatísticas 0,57; acaso 0,25): ele guarda tanta informação de canal e gravação quanto o XLS-R.
+  - **Limiar:** como na v4, o limiar da validação (estúdio) dá muito falso alarme em alguns locutores do dev_shift (por exemplo, Eisenhower ~98% nos dois modelos). O problema do limiar por domínio continua (ideia da seção f).
+- **Hipótese da v5 (WavLM melhor em voz de internet): não confirmada.**
+- *(O teste final, o notebook e o arquivamento foram feitos depois: ver "v5 · fechamento", mais abaixo.)*
+
+### v5 - teste final: pré-registro
+
+- **Escrito em:** 2026-11-10 (−03:00), branch `v5-wavlm`, **antes de qualquer resultado de teste da v5**: nenhum áudio de teste foi extraído pela v5. A decisão da v5 (empate pela regra → segue o XLS-R) já está escrita acima, com a validação e o dev_shift, e **o teste não a muda**. Nada abaixo pode ser mudado depois de ver o teste; erro de execução vai num bloco datado separado.
+- **Regra central:** avaliado **uma vez**, só para reportar. Nenhuma camada, C, cabeça ou limiar é reescolhido. **Todos** os sistemas, bancos e limiares abaixo são reportados.
+- **Sistemas** (todos nos **mesmos** clipes; cada um reajustado de forma determinística, lbfgs, com os dados de treino da v5 e as escolhas já feitas na validação; as notas da validação e do dev_shift são conferidas contra as gravadas e a diferença máxima é reportada):
+  - **X2 · XLS-R, cabeça final:** `concat_top3` (camadas 5, 6, 7; C = 0,1) do `v5_xlsr`.
+  - **W2 · WavLM, cabeça final:** `concat_top3` (camadas 4, 6, 8; C = 0,1) do `v5_wavlm`.
+  - **X1 · XLS-R, só a camada 24** (C = 0,1, o escolhido pela validação no `v5_xlsr`) e **W1 · WavLM, só a camada 24** (C = 1, idem no `v5_wavlm`): só reportados.
+- **Amostra:** a mesma regra e a mesma seed da v4 (`src/teste_v4.py: amostra_teste_idx`; até 5.000 por classe e banco, seed 42), ou seja, os **mesmos 51.320 clipes** do teste da v4 (In-the-Wild só `test_final`, LlamaPartialSpoof, BRSpeech-DF, CORAA só real; ASVspoof 2019 eval e 2021 DF como secundários). Conferência: os tamanhos por banco têm de bater com os de `results/v4_teste_final.csv`. O X2 é o mesmo sistema do S2 da v4 refeito noutra placa: a diferença de AUC por banco é reportada (conferência de reprodução, não decide nada).
+- **Pré-processamento:** o mesmo da v5 (corte de silêncio de 35 dB, até 8 s, fp16), um cache de teste por modelo (`data/processed/v5_xlsr_cache_teste/`, `v5_wavlm_cache_teste/`, fora do git).
+- **Limiares** (cada sistema com os seus): **(A)** ponto de EER da validação; **(B)** ponto de EER do dev_shift.
+- **Métricas por sistema, banco e limiar:** as da v4 (acurácia, acurácia balanceada, acurácia trivial, AUC, EER, recall de fake, falso alarme de real; no CORAA, só o falso alarme). **Bootstrap:** 1.000 reamostragens por banco, com reposição dentro de cada classe, seed 42, as mesmas para todos os sistemas (pareado).
+- **Leitura pré-definida (só reportada, não muda a decisão):** "WavLM − XLS-R" = **W2 − X2**, em AUC e em acurácia balanceada (limiar A). É **relevante** só se tiver o mesmo sinal nos três bancos principais (In-the-Wild, LlamaPartialSpoof, BRSpeech-DF) e, em cada um, o intervalo de 95% da diferença pareada não incluir zero; senão, **"não demonstrada"**. W1 − X1 e o limiar B só reportados.
+- **Resumo:** média simples da acurácia (e da acurácia balanceada) dos três principais, por sistema e limiar; o falso alarme do CORAA à parte.
+- **Contaminação:** estes bancos já tinham sido consultados na v4; os números do teste da v5 servem para reportar a comparação, não para escolher nada nas versões seguintes.
+
+### v5 · fechamento (2026-11-10)
+
+- **Data:** validação + dev_shift em 2026-11-10 11:57 a 15:35 (`rodar_v4.ps1 -Modelo xlsr` e `-Modelo wavlm`); comparação e decisão às ~15:45 (`scripts/comparar_v5.py`); teste final em 2026-11-10 16:06 a 17:52 (`scripts/v5_teste.py`), avaliado **uma vez**, pelo pré-registro acima, **sem nenhuma mudança**. Extração do teste: XLS-R 40,1 min, WavLM 62,2 min (pico 15,2 GB); avaliação 3,4 min; 0 erros de leitura nos 51.320 clipes.
+- **Hipótese e mudança:** as do pré-registro da v5 (só o modelo congelado: WavLM Large no lugar do XLS-R 300M).
+- **Decisão (validação + dev_shift; ver "v5 · resultado"):** empate pela regra → **segue o XLS-R**. O WavLM ficou pior na validação (EER média por fonte 6,77% × 5,92%) e no dev_shift (AUC 0,970 × 0,983, IC95 por locutor −0,061 a +0,001).
+- **Teste final** (`results/v5_teste_final.csv`, `v5_teste_diferencas.csv`, `v5_teste_final_resumo.json`, `v5_teste_final.png`; cada célula: AUC · EER · acurácia balanceada no limiar A / no limiar B):
+
+  | banco | X1 XLS-R, camada 24 | X2 XLS-R, final | W1 WavLM, camada 24 | W2 WavLM, final | trivial |
+  |:--|:--|:--|:--|:--|--:|
+  | in_the_wild | 0,988 · 5,2% · 0,829/0,949 | 0,978 · 6,8% · 0,834/0,930 | 0,946 · 10,3% · 0,826/0,895 | 0,950 · 11,4% · 0,839/0,848 | 0,500 |
+  | llamapartialspoof | 0,934 · 14,0% · 0,855/0,736 | 0,924 · 14,8% · 0,854/0,735 | 0,899 · 17,9% · 0,830/0,792 | 0,914 · 14,5% · 0,856/0,708 | 0,500 |
+  | brspeech_df (pt-BR) | 0,776 · 30,8% · 0,678/0,712 | 0,842 · 25,0% · 0,680/0,769 | 0,557 · 45,3% · 0,524/0,557 | 0,768 · 32,3% · 0,643/0,683 | 0,791 |
+  | coraa (só real): falso alarme A / B | 36,1% / 11,5% | 16,9% / 2,5% | 87,3% / 73,6% | 34,5% / 8,5% | — |
+  | asvspoof2019_la (secundário) | 0,997 · 2,0% · 0,977/0,906 | 0,999 · 1,4% · 0,981/0,898 | 0,986 · 5,6% · 0,944/0,911 | 0,996 · 2,4% · 0,970/0,817 | 0,500 |
+  | asvspoof2021_df (secundário) | 0,996 · 2,6% · 0,952/0,968 | 0,997 · 2,6% · 0,942/0,964 | 0,986 · 5,7% · 0,895/0,945 | 0,990 · 4,8% · 0,904/0,937 | 0,500 |
+  | **média dos 3 principais (acurácia, A / B)** | 0,846 / 0,813 | **0,850 / 0,833** | 0,813 / 0,806 | 0,846 / 0,758 | 0,597 |
+
+- **Leitura pré-definida (W2 − X2):** em **AUC, "relevante: WavLM pior"**: −0,029 no In-the-Wild, −0,010 no LlamaPartialSpoof e −0,075 no BRSpeech-DF, com os intervalos de 95% sem o zero nos três (e também pior nos dois secundários). Em **acurácia balanceada (limiar A), "não demonstrada"**: +0,005 e +0,002 (intervalos com o zero) no In-the-Wild e no LlamaPartialSpoof, −0,037 no BRSpeech-DF. W1 − X1: AUC pior nos cinco bancos (BRSpeech-DF −0,219).
+- **Conferência de reprodução no teste:** X2 × S2 da v4, diferença de AUC de −0,0008 a +0,0008 por banco. O reajuste dos quatro sistemas reproduziu as notas gravadas da validação e do dev_shift com diferença 0.
+- **Por que o XLS-R ganhou (descritivo):**
+  1. **Língua do pré-treino.** O XLS-R viu 128 línguas (inclusive português); o WavLM Large, só inglês. A maior diferença do teste é no pt-BR: BRSpeech-DF AUC 0,842 × 0,768 e falso alarme no CORAA 16,9% × 34,5% (limiar A). Só com a última camada, o WavLM fica perto do acaso no BRSpeech-DF (0,557) e acusa 87% dos reais do CORAA.
+  2. **Onde ficam as pistas.** No WavLM, as melhores camadas são as de baixo (3 e 4), e as de cima pioram muito (camada 24: EER média por fonte 15,1% × 8,6%). Hipótese (não testada): o pré-treino a "limpar" ruído e fala sobreposta faz as camadas de cima descartarem justamente os detalhes acústicos que denunciam a voz sintética.
+  3. **Gravações antigas e áudios curtos**, os pontos fracos do projeto, também pioram com o WavLM (dev_shift: Churchill AUC 0,707 × 0,980; < 2 s 0,915 × 0,931).
+  4. **No inglês, a diferença é pequena** (acurácia balanceada no limiar A igual dentro do intervalo no In-the-Wild e no LlamaPartialSpoof); o que separa os dois é a ordenação (AUC) e, sobretudo, o pt-BR.
+- **Conclusão em uma frase:** o WavLM Large não superou o XLS-R: empate pela regra no dev_shift e pior em AUC em todos os bancos do teste (de forma demonstrada), principalmente em português, então o projeto segue com o XLS-R `concat_top3`.
+- **Limitações:** uma única amostra de treino e uma regressão por sistema; dev_shift com 16 locutores (por isso a decisão deu empate); bootstrap do teste mede só a amostra de teste; os seis bancos de teste estavam consumidos desde a v4 (o teste da v5 só reporta); a explicação das camadas é hipótese; só dois modelos comparados (o Gemini Embedding 2, do Google, ficou de fora por ser API paga).
+- **Arquivos:** notebook `notebooks/versions/v5_wavlm.ipynb` (e o `notebook.ipynb` da raiz, igual); no git: `results/v5_{xlsr,wavlm}_{camadas,cabecas,somas,resumo,atalhos,concluido}.*`, `results/v5_comparacao*`, `results/v5_teste_{final,diferencas}.csv`, `v5_teste_final_resumo.json`, `v5_teste_final.png`, `v5_teste_final_concluido.json`; fora do git: notas por clipe (`results/v5_*notas*.parquet`, `v5_teste_notas.parquet`), os caches `data/processed/v5_{xlsr,wavlm}_cache{,_teste}/` e os logs.
+
 ## f) Ideias ainda não testadas
+
+**Da v5 (para a v6):**
+- **Modelos pré-treinados multilíngues** (o XLS-R ganhou sobretudo em pt-BR; o WavLM, só inglês, perdeu ali): se o projeto testar outro modelo, preferir um multilíngue (por exemplo, o XLS-R 1B ou o MMS, também da Meta).
+- **Juntar as camadas de baixo do WavLM com as do meio do XLS-R** (no dev_shift, as camadas 0 a 4 do WavLM foram melhores que as do XLS-R): só com escolha pela validação + dev_shift e confirmação num banco novo.
+- As ideias da v4 continuam valendo (reais em pt-BR no treino, limiar por domínio, várias amostras de treino).
 
 **Da v4 (para a v5)** (atenção: os seis bancos de teste estão consumidos; qualquer decisão nova tem de sair da validação e do dev_shift, ou de um banco novo):
 - **Reais em pt-BR no treino** (e fakes pt-BR de geradores que não estão nos testes): o pior resultado da v4 é o pt-BR (BRSpeech-DF AUC 0,842; CORAA com 16,7% de falso alarme no limiar A).
@@ -473,6 +567,17 @@ python scripts/acuracias_v3.py          # Parte A: acurácias retroativas da v3
 
 Cada etapa grava um marcador `results/v4_<etapa>_concluido.json`; rodar de novo pula o que terminou e continua o resto (shards, camadas e seeds prontos). O orçamento de extração é cumulativo (`results/v4_estado.json`). O cache fica em `data/processed/v4_cache/` (~10 GB, fora do git). Para refazer do zero, é preciso apagar à mão o cache e os `results/v4_*` (os scripts nunca apagam nada de outra configuração: param com erro).
 
+**v5 (WavLM Large × XLS-R; o mesmo pipeline da v4, um modelo por vez):** na raiz, no PowerShell, com o Claude Code e o VS Code fechados:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\rodar_v4.ps1 -Modelo xlsr     # XLS-R refeito (prefixo v5_xlsr)
+powershell -ExecutionPolicy Bypass -File scripts\rodar_v4.ps1 -Modelo wavlm    # WavLM Large (prefixo v5_wavlm)
+powershell -ExecutionPolicy Bypass -File scripts\rodar_v4.ps1 -Quick -Modelo wavlm   # teste rápido (arquivos _quick)
+Get-Content logs\v5_wavlm_resumo.txt    # resumo de cada modelo, atualizado a cada etapa
+```
+
+Sem `-Modelo`, o `rodar_v4.ps1` e o `scripts/v4.py` usam o prefixo `v4` (como a v4 foi rodada). Cache em `data/processed/v5_<modelo>_cache/` (fora do git). O `vigia_v4.ps1` não foi adaptado para a v5.
+
 **Rodada completa de uma versão (v2 em diante), pelo terminal:** um experimento por processo, e depois o notebook, que só lê o que foi treinado. Feche antes o Claude Code e, se der, o VS Code e o OneDrive (juntos eles reservam ~6 GB de memória; ver h).
 
 ```powershell
@@ -530,3 +635,25 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
 - **Scripts novos, no mesmo padrão da v4** (os da v4 não foram alterados): `src/teste_v4.py` (amostra, plano, escolha do S0, métricas, bootstrap, gráfico), `scripts/v4_teste.py` (etapas `extrair`, `cnn`, `avaliar`, `status`, `concluir`), `scripts/rodar_v4_teste.ps1` e `scripts/vigia_v4_teste.ps1` (cópia do `vigia_v4.ps1` com os nomes trocados: status em `logs/v4_teste_status.txt`, resumo em `logs/v4_teste_resumo.txt`, marcador final `results/v4_teste_final_concluido.json`). Cache em `data/processed/v4_cache_teste/` (fora do git).
 - **Teste QUICK antes** (2026-11-10 07:27): bancos **de mentira tirados da validação** (dfadd, shiftyspeech, codecfake_plus e librispeech só real; 140 clipes fora da validação QUICK), cache QUICK da v4 (`_quick_t2`); **nenhum áudio de teste foi lido**. As três etapas e a conclusão rodaram sem erro; o reajuste do S1 e do S2 reproduziu as notas gravadas da v4 com diferença máxima 0; o vigia QUICK saiu com CONCLUIDO. Os números do QUICK não valem e não foram interpretados.
 - **Folga de memória do vigia: 11 GB em vez de 14** (`-FolgaGB 11`). Motivo: na execução da v4, com esta sessão aberta, a folga ficou em ~12,1 GB e o vigia esperou os 60 min inteiros à toa; depois rodou com 4 workers sem queda (pico 14,2 GB do processo + workers; o sistema chegou a 36,5 GB porque o arquivo de paginação cresce). As outras regras (tentativas com 4 e depois 2 workers, instância única, sem suspensão) são as mesmas. Não muda o método.
+
+### 2026-11-10 · v5 (execução, antes dos resultados)
+
+- **Código da v4 reaproveitado, sem cópia:** o `scripts/v4.py` e o `scripts/rodar_v4.ps1` passaram a usar o prefixo da configuração (`PREFIXO`; `-Modelo xlsr|wavlm` no `.ps1`, que define `V5_MODELO`). Sem prefixo, tudo continua com `v4` (os arquivos da v4 não mudam de nome). O `src/ssl.py` carrega o modelo com `AutoModel` (escolhe `Wav2Vec2Model` para o XLS-R, a mesma classe da v4, e `WavLMModel` para o WavLM) e confere que há 25 saídas de 1024.
+- **Máquina:** RTX 4050 Laptop 6 GB, 31,6 GB de RAM, limite de memória reservada (commit) 35,4 GB.
+- **Vazão do WavLM** (`scripts/v4.py medir --n 500`, 4 workers, baldes de 2 s; `results/v5_wavlm_vazao.json`): **18,5 clipes/s** (22,6 sem a partida dos workers; GPU sozinha 23,9), **pico de GPU 3,76 GB** (cabe nos 6 GB sem mudar o lote), pico de memória 11,4 GB (principal 7,4 GB + 4 workers de ~0,9 GB), 0 NaN. Estimativa (é estimativa): 70.613 clipes / ~20 clipes/s ≈ **1 h de extração por modelo**, mais ~15 min de cabeças.
+- **fp16 nos dois modelos (como na v4):** em 16 clipes da validação, o erro relativo do fp16 contra o fp32 foi parecido nos dois (mediana 0,04% no WavLM e 0,06% no XLS-R; nas camadas 5 a 9, abaixo de 0,1% nos dois; o máximo, 3,3% e 2,3%, nas últimas camadas). O bf16 erra ~10 vezes mais nos dois (mediana 0,6 a 0,7%) e não foi usado.
+- **Padding do lote:** lote no balde (32 × 8 s) × clipe isolado, em 12 clipes: WavLM 0,08% em fp32 (3,3% em fp16, o mesmo erro do fp16 acima); XLS-R 0,50% / 0,57%. O `attention_mask` funciona no WavLM. Aviso inofensivo do PyTorch no WavLM: "mismatched key_padding_mask and attn_mask is deprecated".
+- **Plano de clipes:** idêntico entre os dois modelos (conferido no QUICK) e, no plano completo, com os mesmos tamanhos da v4 (dev_shift 10.614, validação 19.999, treino 40.000; seed 42, mesmo manifest). A identidade clipe a clipe com a v4 é conferida pela reprodução dos números do XLS-R (pré-registro da v5).
+- **QUICK (2026-11-10 11:47 a 11:52, ~300 clipes; os números não valem e não foram interpretados):** `rodar_v4.ps1 -Quick -Modelo wavlm` e `-Modelo xlsr` rodaram as cinco etapas e a conclusão, código 0, com arquivos separados por prefixo (`results/v5_wavlm_*_quick*`, `results/v5_xlsr_*_quick*`).
+
+### 2026-11-10 · teste final da v5 (execução, antes dos resultados)
+
+- **Script novo** `scripts/v5_teste.py` (etapas `extrair --modelo xlsr|wavlm`, `avaliar`, `status`, `concluir`), que reaproveita `src/teste_v4.py` (amostra, plano, métricas, bootstrap) e `src/extracao_v4.py`. O `src/teste_v4.py: grafico` passou a aceitar outros sistemas (sem argumentos, desenha os da v4 como antes). Cache de teste por modelo (`data/processed/v5_<modelo>_cache_teste/`); resultados em `results/v5_teste_*`; a extração impede a suspensão do Windows.
+- **Um clipe com erro de leitura em qualquer dos dois modelos sai dos dois** (comparação pareada).
+- **QUICK (2026-11-10 15:52 a 15:56; bancos de mentira da validação, 140 clipes; nenhum áudio de teste lido; os números não valem e não foram interpretados):** as etapas e a conclusão rodaram. O reajuste reproduziu as notas gravadas da v5 com diferença 0. No QUICK, a cabeça final às vezes é uma camada só (`rl_camada_N`): o script trata esse caso como o "só camada 24" (soma ponderada como cabeça final para o teste e não está prevista: o script para).
+- **Erro visto no QUICK e corrigido:** na extração do WavLM, a renomeação da pasta do shard (`shard_00000.tmp` → `shard_00000`) falhou com "Acesso negado" (o Windows segurava a pasta; antivírus ou indexador). A nova tentativa descartou o shard incompleto e refez sem erro. Para a execução longa, `src/cache_v4.py: gravar_shard` passou a tentar a renomeação até 10 vezes, com espera de 1 a 10 s. Execução, não método: o conteúdo do shard é o mesmo.
+
+### 2026-11-10 · notebook da v5 (execução)
+
+- O env não tinha `nbconvert`; para executar o `notebook.ipynb` sem abrir o VS Code, foi instalado só o `nbclient` (0.11.0; `pip install nbclient`, que não mexe em torch nem em transformers). Ele não entra no `requirements.txt`, porque o projeto não depende dele: o notebook também roda no VS Code com o kernel do `env`.
+- O notebook da v5 só lê do disco (executado em ~10 s, 0 erros, 0,33 MB) e foi copiado com as saídas para `notebooks/versions/v5_wavlm.ipynb`. As figuras da seção 4 (histograma das notas) e o plano da seção 3 dependem de arquivos fora do git; sem eles, as células mostram "Pendente".

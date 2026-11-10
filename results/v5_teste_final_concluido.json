@@ -1,0 +1,103 @@
+{
+  "versao": "v5",
+  "etapa": "teste final",
+  "quick": false,
+  "concluido_em": "2026-11-10T17:52:30",
+  "etapas": {
+    "extracao_xlsr": {
+      "concluido_em": "2026-11-10T16:46:42",
+      "minutos": 40.14,
+      "pico_memoria_gb": 14.96
+    },
+    "extracao_wavlm": {
+      "concluido_em": "2026-11-10T17:48:58",
+      "minutos": 62.23,
+      "pico_memoria_gb": 15.18
+    },
+    "avaliar": {
+      "concluido_em": "2026-11-10T17:52:25",
+      "minutos": 3.42,
+      "pico_memoria_gb": 1.87
+    }
+  },
+  "regra_leitura": {
+    "WavLM − XLS-R, cabeça final (W2 − X2) | AUC": "relevante: WavLM pior",
+    "WavLM − XLS-R, cabeça final (W2 − X2) | acurácia balanceada, limiar A": "não demonstrada",
+    "WavLM − XLS-R, só camada 24 (W1 − X1) | AUC": "relevante: WavLM pior",
+    "WavLM − XLS-R, só camada 24 (W1 − X1) | acurácia balanceada, limiar A": "não demonstrada"
+  },
+  "resumo": [
+    {
+      "sistema": "X1",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8457632911392405,
+      "média acurácia balanceada (3 principais)": 0.7875383838383838,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8993023573737374,
+      "coraa falso alarme": 0.3612
+    },
+    {
+      "sistema": "X1",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8125797468354431,
+      "média acurácia balanceada (3 principais)": 0.7985656565656566,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8993023573737374,
+      "coraa falso alarme": 0.1146
+    },
+    {
+      "sistema": "X2",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8503970464135021,
+      "média acurácia balanceada (3 principais)": 0.7893848484848484,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9149100464646464,
+      "coraa falso alarme": 0.1686
+    },
+    {
+      "sistema": "X2",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8328924050632911,
+      "média acurácia balanceada (3 principais)": 0.8111363636363637,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9149100464646464,
+      "coraa falso alarme": 0.0246
+    },
+    {
+      "sistema": "W1",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8126928270042194,
+      "média acurácia balanceada (3 principais)": 0.7266767676767678,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8006193664646465,
+      "coraa falso alarme": 0.8728
+    },
+    {
+      "sistema": "W1",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8058987341772151,
+      "média acurácia balanceada (3 principais)": 0.7480484848484849,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8006193664646465,
+      "coraa falso alarme": 0.7356
+    },
+    {
+      "sistema": "W2",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8464400843881856,
+      "média acurácia balanceada (3 principais)": 0.7792616161616163,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.877158829090909,
+      "coraa falso alarme": 0.3446
+    },
+    {
+      "sistema": "W2",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.7580708860759494,
+      "média acurácia balanceada (3 principais)": 0.7463212121212122,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.877158829090909,
+      "coraa falso alarme": 0.0852
+    }
+  ]
+}

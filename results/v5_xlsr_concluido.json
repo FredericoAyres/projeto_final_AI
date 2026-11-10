@@ -1,0 +1,102 @@
+{
+  "versao": "v5_xlsr",
+  "quick": false,
+  "concluido_em": "2026-11-10T13:50:26",
+  "etapas": {
+    "extracao": "2026-11-10T13:39:41",
+    "camadas": "2026-11-10T13:43:59",
+    "somas": "2026-11-10T13:49:44",
+    "atalhos": "2026-11-10T13:50:04",
+    "resumo": "2026-11-10T13:50:16"
+  },
+  "resumo": {
+    "cabeça_final_pela_validação": "concat_top3",
+    "candidatas": [
+      {
+        "cabeça": "concat_top3",
+        "val EER média por fonte": 0.05921347686980181
+      },
+      {
+        "cabeça": "concat_top4",
+        "val EER média por fonte": 0.05957181577105251
+      },
+      {
+        "cabeça": "rl_camada_7",
+        "val EER média por fonte": 0.0601789320135378
+      },
+      {
+        "cabeça": "soma_mlp",
+        "val EER média por fonte": 0.0661767707963425
+      },
+      {
+        "cabeça": "soma_linear",
+        "val EER média por fonte": 0.06734442444961992
+      }
+    ],
+    "dev_cabeça_final": {
+      "dev AUC": 0.9826025921102788,
+      "dev EER": 0.06040472640203562,
+      "dev acurácia balanceada": 0.8953501446879844
+    },
+    "dev_AUC_por_seed_cabeça_final": [
+      0.9826025921102788
+    ],
+    "veredito_pré_registro_c": "melhora clara (AUC do dev_shift > 0,6)",
+    "regra_3_seeds_somas": {
+      "soma_linear": {
+        "aucs": [
+          0.9819,
+          0.9822,
+          0.9816
+        ],
+        "todas_acima_0_5": true
+      },
+      "soma_mlp": {
+        "aucs": [
+          0.9839,
+          0.9828,
+          0.9882
+        ],
+        "todas_acima_0_5": true
+      }
+    },
+    "régua_v3": {
+      "dev AUC min": 0.14554116066023493,
+      "dev AUC max": 0.3775061508984958,
+      "dev EER min": 0.5769767032143016,
+      "dev EER max": 0.7937344422190352,
+      "dev acurácia balanceada min": 0.3645702750203149,
+      "dev acurácia balanceada max": 0.502970125142871
+    },
+    "melhor_camada": 7,
+    "atalho_val_AUC": 0.6675162967453638,
+    "atalho_dev_AUC": 0.5226188814588819,
+    "atalho_há_indício": true,
+    "n_treino": 40000,
+    "extracao": {
+      "horas_extracao_acumuladas": 1.697,
+      "parou_por": "plano completo",
+      "plano_completo": true,
+      "conjuntos": {
+        "dev_shift": {
+          "shards_prontos": 6,
+          "shards_planejados": 6,
+          "clipes_prontos": 10614,
+          "clipes_planejados": 10614
+        },
+        "val": {
+          "shards_prontos": 10,
+          "shards_planejados": 10,
+          "clipes_prontos": 19999,
+          "clipes_planejados": 19999
+        },
+        "treino": {
+          "shards_prontos": 20,
+          "shards_planejados": 20,
+          "clipes_prontos": 40000,
+          "clipes_planejados": 40000
+        }
+      }
+    }
+  }
+}

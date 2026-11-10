@@ -1,0 +1,220 @@
+{
+  "sistemas": {
+    "X1": "XLS-R (Meta), só a camada 24",
+    "X2": "XLS-R (Meta), cabeça final",
+    "W1": "WavLM (Microsoft), só a camada 24",
+    "W2": "WavLM (Microsoft), cabeça final"
+  },
+  "limiares_logit": {
+    "X1": {
+      "A": -0.03051602840423584,
+      "B": 4.639614582061768
+    },
+    "X2": {
+      "A": 0.010383844375610352,
+      "B": 8.407949447631836
+    },
+    "W1": {
+      "A": -0.7088075876235962,
+      "B": 2.56640625
+    },
+    "W2": {
+      "A": -0.937922477722168,
+      "B": 8.524435043334961
+    }
+  },
+  "checagem": {
+    "X1": {
+      "modelo": "xlsr",
+      "camadas": [
+        24
+      ],
+      "C": 0.1,
+      "iterações": 207,
+      "dif_max_val_vs_gravado": 0.0,
+      "dif_max_dev_vs_gravado": 0.0,
+      "segundos": 17.1
+    },
+    "X2": {
+      "modelo": "xlsr",
+      "camadas": [
+        5,
+        6,
+        7
+      ],
+      "C": 0.1,
+      "iterações": 57,
+      "dif_max_val_vs_gravado": 0.0,
+      "dif_max_dev_vs_gravado": 0.0,
+      "segundos": 17.7
+    },
+    "W1": {
+      "modelo": "wavlm",
+      "camadas": [
+        24
+      ],
+      "C": 1.0,
+      "iterações": 235,
+      "dif_max_val_vs_gravado": 0.0,
+      "dif_max_dev_vs_gravado": 0.0,
+      "segundos": 15.4
+    },
+    "W2": {
+      "modelo": "wavlm",
+      "camadas": [
+        4,
+        6,
+        8
+      ],
+      "C": 0.1,
+      "iterações": 49,
+      "dif_max_val_vs_gravado": 0.0,
+      "dif_max_dev_vs_gravado": 0.0,
+      "segundos": 15.6
+    }
+  },
+  "regra_leitura": {
+    "WavLM − XLS-R, cabeça final (W2 − X2) | AUC": "relevante: WavLM pior",
+    "WavLM − XLS-R, cabeça final (W2 − X2) | acurácia balanceada, limiar A": "não demonstrada",
+    "WavLM − XLS-R, só camada 24 (W1 − X1) | AUC": "relevante: WavLM pior",
+    "WavLM − XLS-R, só camada 24 (W1 − X1) | acurácia balanceada, limiar A": "não demonstrada"
+  },
+  "resumo": [
+    {
+      "sistema": "X1",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8457632911392405,
+      "média acurácia balanceada (3 principais)": 0.7875383838383838,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8993023573737374,
+      "coraa falso alarme": 0.3612
+    },
+    {
+      "sistema": "X1",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8125797468354431,
+      "média acurácia balanceada (3 principais)": 0.7985656565656566,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8993023573737374,
+      "coraa falso alarme": 0.1146
+    },
+    {
+      "sistema": "X2",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8503970464135021,
+      "média acurácia balanceada (3 principais)": 0.7893848484848484,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9149100464646464,
+      "coraa falso alarme": 0.1686
+    },
+    {
+      "sistema": "X2",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8328924050632911,
+      "média acurácia balanceada (3 principais)": 0.8111363636363637,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9149100464646464,
+      "coraa falso alarme": 0.0246
+    },
+    {
+      "sistema": "W1",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8126928270042194,
+      "média acurácia balanceada (3 principais)": 0.7266767676767678,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8006193664646465,
+      "coraa falso alarme": 0.8728
+    },
+    {
+      "sistema": "W1",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.8058987341772151,
+      "média acurácia balanceada (3 principais)": 0.7480484848484849,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8006193664646465,
+      "coraa falso alarme": 0.7356
+    },
+    {
+      "sistema": "W2",
+      "limiar": "A",
+      "média acurácia (3 principais)": 0.8464400843881856,
+      "média acurácia balanceada (3 principais)": 0.7792616161616163,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.877158829090909,
+      "coraa falso alarme": 0.3446
+    },
+    {
+      "sistema": "W2",
+      "limiar": "B",
+      "média acurácia (3 principais)": 0.7580708860759494,
+      "média acurácia balanceada (3 principais)": 0.7463212121212122,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.877158829090909,
+      "coraa falso alarme": 0.0852
+    }
+  ],
+  "reproducao_v4": {
+    "in_the_wild": {
+      "AUC v4 S2": 0.97862836,
+      "AUC v5 X2": 0.97815904,
+      "dif": -0.0004693199999999953
+    },
+    "llamapartialspoof": {
+      "AUC v4 S2": 0.9250172,
+      "AUC v5 X2": 0.9242571599999999,
+      "dif": -0.0007600400000000729
+    },
+    "brspeech_df": {
+      "AUC v4 S2": 0.8415633333333334,
+      "AUC v5 X2": 0.8423139393939394,
+      "dif": 0.0007506060606059517
+    },
+    "asvspoof2019_la": {
+      "AUC v4 S2": 0.99897608,
+      "AUC v5 X2": 0.99897276,
+      "dif": -3.3200000000288554e-06
+    },
+    "asvspoof2021_df": {
+      "AUC v4 S2": 0.99659012,
+      "AUC v5 X2": 0.9965392399999999,
+      "dif": -5.088000000008641e-05
+    }
+  },
+  "excluidos_erro_leitura": {
+    "val": 0,
+    "dev_shift": 0,
+    "in_the_wild": 0,
+    "llamapartialspoof": 0,
+    "brspeech_df": 0,
+    "coraa": 0,
+    "asvspoof2019_la": 0,
+    "asvspoof2021_df": 0
+  },
+  "n_boot": 1000,
+  "bancos": [
+    [
+      "in_the_wild",
+      "principal"
+    ],
+    [
+      "llamapartialspoof",
+      "principal"
+    ],
+    [
+      "brspeech_df",
+      "principal"
+    ],
+    [
+      "coraa",
+      "só real"
+    ],
+    [
+      "asvspoof2019_la",
+      "secundário"
+    ],
+    [
+      "asvspoof2021_df",
+      "secundário"
+    ]
+  ]
+}

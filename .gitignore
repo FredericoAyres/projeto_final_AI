@@ -44,3 +44,27 @@ results/*
 !results/v4_teste_final.png
 !results/v4_teste_escolha_s0.json
 !results/v4_teste_final_concluido.json
+# v5 (XLS-R x WavLM): só os resumos pequenos de cada modelo e a comparação (notas por clipe e cache ficam fora)
+!results/v5_xlsr_camadas.csv
+!results/v5_xlsr_camadas.png
+!results/v5_xlsr_cabecas.csv
+!results/v5_xlsr_somas.csv
+!results/v5_xlsr_resumo.json
+!results/v5_xlsr_atalhos.json
+!results/v5_xlsr_concluido.json
+!results/v5_wavlm_camadas.csv
+!results/v5_wavlm_camadas.png
+!results/v5_wavlm_cabecas.csv
+!results/v5_wavlm_somas.csv
+!results/v5_wavlm_resumo.json
+!results/v5_wavlm_atalhos.json
+!results/v5_wavlm_vazao.json
+!results/v5_wavlm_concluido.json
+!results/v5_comparacao.json
+!results/v5_comparacao_*.csv
+# teste final da v5: só os resumos (as notas por clipe, *.parquet, ficam fora)
+!results/v5_teste_final.csv
+!results/v5_teste_diferencas.csv
+!results/v5_teste_final_resumo.json
+!results/v5_teste_final.png
+!results/v5_teste_final_concluido.json

@@ -17,7 +17,10 @@
 #   desfaz a conclusão).
 # - Encerra workers do DataLoader órfãos (pai já morto) no início e depois de cada etapa.
 # - Impede a suspensão do Windows enquanto roda e restaura no fim. Nunca avalia o teste final.
-param([switch]$Quick)
+# - v5 (-Modelo xlsr ou -Modelo wavlm): mesmos passos, arquivos com prefixo v5_<modelo> (results\v5_wavlm_*,
+#   logs\v5_wavlm_*, cache data\processed\v5_cache_wavlm); o modelo vai para o notebook pela variável V5_MODELO.
+#   Na v5 o notebook NÃO é executado aqui (ele compara os dois modelos; roda depois que os dois terminarem).
+param([switch]$Quick, [ValidateSet("", "xlsr", "wavlm")][string]$Modelo = "")
 
 $ErrorActionPreference = "Continue"
 $Raiz = Split-Path -Parent $PSScriptRoot
@@ -35,6 +38,8 @@ $env:TRANSFORMERS_OFFLINE = "1"
 $env:HF_HUB_DISABLE_SYMLINKS_WARNING = "1"
 $env:PYTHONIOENCODING = "utf-8"
 $NumWorkers = 4
+$P = "v4"
+if ($Modelo) { $P = "v5_$Modelo"; $env:V5_MODELO = $Modelo }
 if ($env:V4_NUM_WORKERS) { $NumWorkers = [int]$env:V4_NUM_WORKERS }
 
 $Suf = ""
@@ -42,9 +47,9 @@ $QArgs = @()
 if ($Quick) { $Suf = "_quick" + $env:V4_SUFIXO_EXTRA; $QArgs = @("--quick") }   # extra: só testes
 $Logs = Join-Path $Raiz "logs"
 New-Item -ItemType Directory -Force $Logs | Out-Null
-$LogRodar = Join-Path $Logs "v4_rodar$Suf.log"
-$ArqEtapa = Join-Path $Logs "v4_etapa$Suf.txt"
-$ArqErros = Join-Path $Logs "v4_erros$Suf.txt"
+$LogRodar = Join-Path $Logs "$($P)_rodar$Suf.log"
+$ArqEtapa = Join-Path $Logs "$($P)_etapa$Suf.txt"
+$ArqErros = Join-Path $Logs "$($P)_erros$Suf.txt"
 
 function Log($msg) {
     $linha = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | $msg"
@@ -58,7 +63,7 @@ function Etapa-Atual($nome) {
     Move-Item -Force $tmp $ArqEtapa
 }
 
-function Marcador($etapa) { Join-Path $Raiz "results\v4_$($etapa)_concluido$Suf.json" }
+function Marcador($etapa) { Join-Path $Raiz "results\$($P)_$($etapa)_concluido$Suf.json" }
 
 function Limpar-Orfaos {
     # Workers do DataLoader cujo processo principal já morreu (ex.: queda ou interrupção à força) podem
@@ -96,7 +101,7 @@ $Etapas = @(
 )
 $Codigo = 0
 try {
-    Log "rodar_v4 começou (PID $PID, NUM_WORKERS = $NumWorkers, Quick = $Quick)"
+    Log "rodar_v4 começou (PID $PID, prefixo $P, NUM_WORKERS = $NumWorkers, Quick = $Quick)"
     Limpar-Orfaos
     Atualizar-Resumo
     foreach ($e in $Etapas) {
@@ -105,7 +110,7 @@ try {
             continue
         }
         Etapa-Atual $e.Nome
-        $log = Join-Path $Logs "v4_$($e.Nome)$Suf.log"
+        $log = Join-Path $Logs "$($P)_$($e.Nome)$Suf.log"
         Log "[$($e.Nome)] começando | log: $log"
         $t0 = Get-Date
         & $Py scripts\v4.py $e.Cmd @QArgs --num-workers $NumWorkers --log $log
@@ -126,12 +131,12 @@ try {
     if ($Codigo -eq 0) {
         Etapa-Atual "concluir"
         & $Py scripts\v4.py concluir @QArgs
-        if ($LASTEXITCODE -ne 0 -or -not (Test-Path (Join-Path $Raiz "results\v4_concluido$Suf.json"))) {
+        if ($LASTEXITCODE -ne 0 -or -not (Test-Path (Join-Path $Raiz "results\$($P)_concluido$Suf.json"))) {
             Log "concluir: falhou (código $LASTEXITCODE)"
             $Codigo = 11
         } else {
-            Log "v4 concluída: results\v4_concluido$Suf.json gravado"
-            if (-not $Quick) {
+            Log "$P concluída: results\$($P)_concluido$Suf.json gravado"
+            if (-not $Quick -and -not $Modelo) {
                 # o notebook só LÊ do disco; executá-lo aqui deixa as saídas prontas (não altera resultado nenhum).
                 # Se falhar, o notebook fica como estava e a v4 continua concluída.
                 Etapa-Atual "notebook"

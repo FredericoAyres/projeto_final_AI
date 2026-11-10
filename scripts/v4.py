@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""v4: modelo auto-supervisionado congelado (XLS-R 300M) + cabeças leves. Uma etapa por processo.
+"""v4/v5: modelo auto-supervisionado congelado (v4: XLS-R 300M; v5: XLS-R 300M e WavLM Large) + cabeças leves.
+Uma etapa por processo. Os arquivos levam o prefixo da configuração (`PREFIXO`; sem ele, "v4").
 
 Os hiperparâmetros NÃO são copiados aqui: o script executa a célula com a tag "config" do notebook.ipynb.
 Uso (na raiz do repositório, com o env ativo; scripts\\rodar_v4.ps1 roda tudo na ordem):
@@ -50,6 +51,12 @@ def ler_json(p, padrao=None):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else padrao
 
 
+def prefixo(ns):
+    """Prefixo dos arquivos de resultado: "v4" (padrão, a v4 como foi rodada) ou o PREFIXO da configuração
+    (v5: "v5_xlsr" ou "v5_wavlm"). Mudança de execução, não de método."""
+    return ns.get("PREFIXO", "v4")
+
+
 def manifest_e_sha():
     from src.arquivos import sha256_arquivo
     from src.experimento import ler_manifest
@@ -63,7 +70,7 @@ def gravar_marcador(ns, etapa, t0, extra):
     from src.arquivos import identificar_codigo, salvar_json, sha256_texto
     codigo = identificar_codigo(ROOT, extras=["scripts/v4.py", "scripts/rodar_v4.ps1", "scripts/vigia_v4.ps1"])
     codigo["celula_config_sha256"] = sha256_texto(ns["_SRC_CONFIG"])
-    info = {"etapa": etapa, "versao": "v4", "quick": ns["QUICK"], "status": "concluido",
+    info = {"etapa": etapa, "versao": prefixo(ns), "quick": ns["QUICK"], "status": "concluido",
             "concluido_em": datetime.now().isoformat(timespec="seconds"),
             "minutos_neste_processo": round((time.time() - t0) / 60, 2),
             "pico_memoria_gb_processo_e_workers": round(AMOSTRADOR.pico_proc / 1024, 2),
@@ -226,7 +233,7 @@ def etapa_camadas(a, ns, t0):
     C = carregar_conjuntos(ns)
     tr, va, dv = C["treino"], C["val"], C["dev_shift"]
     print(f"treino {len(tr)} ({tr.meta.label.mean():.1%} fake, {len(tr.shards)} shards) | val {len(va)} | dev {len(dv)}", flush=True)
-    parc = ns["RESULTS_DIR"] / f"v4_parcial{ns['SUFIXO']}"
+    parc = ns["RESULTS_DIR"] / f"{prefixo(ns)}_parcial{ns['SUFIXO']}"
     parc.mkdir(parents=True, exist_ok=True)
     arq_pad = parc / "padronizacao.npz"
     if arq_pad.exists() and int(np.load(arq_pad)["n"]) == len(tr):
@@ -379,7 +386,7 @@ def etapa_somas(a, ns, t0):
     exigir(ns, "camadas")
     C = carregar_conjuntos(ns)
     tr, va, dv = C["treino"], C["val"], C["dev_shift"]
-    z = np.load(ns["RESULTS_DIR"] / f"v4_parcial{ns['SUFIXO']}" / "padronizacao.npz")
+    z = np.load(ns["RESULTS_DIR"] / f"{prefixo(ns)}_parcial{ns['SUFIXO']}" / "padronizacao.npz")
     mu, sd = z["mu"], z["sd"]
     assert int(z["n"]) == len(tr)
     device = torch.device("cuda")
@@ -410,7 +417,7 @@ def etapa_somas(a, ns, t0):
                  **avaliar(zv, mv, zd, md), "pesos_camadas": [float(p) for p in pesos],
                  "segundos": round(time.time() - t, 1)}
             salvar_torch({"model_state": {k: v.cpu() for k, v in model.state_dict().items()}, "oculta": oculta,
-                          "hp": hp, "seed": seed}, ns["MODELS_DIR"] / f"v4_{exp}{ns['SUFIXO']}.pt")
+                          "hp": hp, "seed": seed}, ns["MODELS_DIR"] / f"{prefixo(ns)}_{exp}{ns['SUFIXO']}.pt")
             salvar_csv(hist, ns["arq_result"](f"{exp}_historico", "csv"))
             salvar_parquet(mv[cols_meta].assign(z=zv), arq_n["val"])
             salvar_parquet(md[cols_meta].assign(z=zd), arq_n["dev_shift"])
@@ -509,7 +516,7 @@ def etapa_atalhos(a, ns, t0):
 
     # (d) controle de sanidade: a mesma regressão da melhor camada com os rótulos do TREINO embaralhados.
     # Tem que dar AUC ~0,5 na validação e no dev_shift; se não der, há vazamento no código.
-    z = np.load(ns["RESULTS_DIR"] / f"v4_parcial{ns['SUFIXO']}" / "padronizacao.npz")
+    z = np.load(ns["RESULTS_DIR"] / f"{prefixo(ns)}_parcial{ns['SUFIXO']}" / "padronizacao.npz")
     c_cam = float(ler_json(ns["marcador"]("camadas"))["melhor_camada_C"])
     Xtr = (tr.camada(cam)[tr.ok] - z["mu"][cam]) / z["sd"][cam]
     y_emb = np.random.default_rng(ns["SEED"]).permutation(mt.label.values)
@@ -642,7 +649,7 @@ def etapa_status(a, ns, t0):
     """Reescreve logs/v4_resumo.txt com o que já está no disco (não carrega modelo nem cache)."""
     from src.arquivos import gravar_atomico
     suf = ns["SUFIXO"]
-    L = [f"Resumo v4{' (QUICK)' if ns['QUICK'] else ''} (atualizado em {datetime.now():%Y-%m-%d %H:%M:%S})",
+    L = [f"Resumo {prefixo(ns)}{' (QUICK)' if ns['QUICK'] else ''} (atualizado em {datetime.now():%Y-%m-%d %H:%M:%S})",
          "Teste final NÃO avaliado (AVALIAR_TESTE_FINAL = False). Escolhas só pela validação; dev_shift só reportado.", ""]
     est = ler_json(ns["ARQ_ESTADO"], {})
     L.append(f"extração: {est.get('horas_extracao', 0):.2f} h gastas de {ns['HP']['ORCAMENTO_H']} h | último shard: "
@@ -692,7 +699,7 @@ def etapa_status(a, ns, t0):
               f"veredito (pré-registro c): {rs['veredito_pré_registro_c']}"]
     L += ["", f"concluído: {'SIM' if ns['ARQ_CONCLUIDO'].exists() else 'não'} ({ns['ARQ_CONCLUIDO']})"]
     txt = "\n".join(L) + "\n"
-    gravar_atomico(ns["LOGS_DIR"] / f"v4_resumo{suf}.txt", lambda t: Path(t).write_text(txt, encoding="utf-8-sig"))
+    gravar_atomico(ns["LOGS_DIR"] / f"{prefixo(ns)}_resumo{suf}.txt", lambda t: Path(t).write_text(txt, encoding="utf-8-sig"))
     print(txt, flush=True)
     return 0
 
@@ -704,10 +711,10 @@ def etapa_concluir(a, ns, t0):
         print(f"ainda faltam: {faltam}\nSTATUS=INCOMPLETO", flush=True)
         return 3
     if not ns["ARQ_CONCLUIDO"].exists():
-        salvar_json({"versao": "v4", "quick": ns["QUICK"], "concluido_em": datetime.now().isoformat(timespec="seconds"),
+        salvar_json({"versao": prefixo(ns), "quick": ns["QUICK"], "concluido_em": datetime.now().isoformat(timespec="seconds"),
                      "etapas": {e: ler_json(ns["marcador"](e))["concluido_em"] for e in ns["ETAPAS"]},
                      "resumo": ler_json(ns["arq_result"]("resumo", "json"))}, ns["ARQ_CONCLUIDO"])
-    print(f"v4 CONCLUÍDA ({ns['ARQ_CONCLUIDO']})\nSTATUS=CONCLUIDO", flush=True)
+    print(f"{prefixo(ns)} CONCLUÍDA ({ns['ARQ_CONCLUIDO']})\nSTATUS=CONCLUIDO", flush=True)
     return 0
 
 
@@ -746,7 +753,7 @@ def main():
         with contextlib.redirect_stdout(io.StringIO()) if leve else contextlib.nullcontext():
             ns = executar_config(src_cfg, a.quick, a.notebook)
         ns["_SRC_CONFIG"] = src_cfg
-        assert ns["AVALIAR_TESTE_FINAL"] is False, "a v4 não avalia o teste final"
+        assert ns["AVALIAR_TESTE_FINAL"] is False, "este script não avalia o teste final"
         return ETAPAS_FN[a.etapa](a, ns, t0)
     except BaseException:
         traceback.print_exc()

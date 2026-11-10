@@ -1,0 +1,90 @@
+{
+  "cabeça_final_pela_validação": "concat_top3",
+  "candidatas": [
+    {
+      "cabeça": "concat_top3",
+      "val EER média por fonte": 0.06769718397879523
+    },
+    {
+      "cabeça": "concat_top4",
+      "val EER média por fonte": 0.07089124514002265
+    },
+    {
+      "cabeça": "rl_camada_4",
+      "val EER média por fonte": 0.0789521544288644
+    },
+    {
+      "cabeça": "soma_linear",
+      "val EER média por fonte": 0.07959212107526213
+    },
+    {
+      "cabeça": "soma_mlp",
+      "val EER média por fonte": 0.08832379836554725
+    }
+  ],
+  "dev_cabeça_final": {
+    "dev AUC": 0.9700083727181654,
+    "dev EER": 0.0751376756354369,
+    "dev acurácia balanceada": 0.8834728308833139
+  },
+  "dev_AUC_por_seed_cabeça_final": [
+    0.9700083727181654
+  ],
+  "veredito_pré_registro_c": "melhora clara (AUC do dev_shift > 0,6)",
+  "regra_3_seeds_somas": {
+    "soma_linear": {
+      "aucs": [
+        0.976,
+        0.9719,
+        0.967
+      ],
+      "todas_acima_0_5": true
+    },
+    "soma_mlp": {
+      "aucs": [
+        0.9623,
+        0.9656,
+        0.9557
+      ],
+      "todas_acima_0_5": true
+    }
+  },
+  "régua_v3": {
+    "dev AUC min": 0.14554116066023493,
+    "dev AUC max": 0.3775061508984958,
+    "dev EER min": 0.5769767032143016,
+    "dev EER max": 0.7937344422190352,
+    "dev acurácia balanceada min": 0.3645702750203149,
+    "dev acurácia balanceada max": 0.502970125142871
+  },
+  "melhor_camada": 4,
+  "atalho_val_AUC": 0.6675162967453638,
+  "atalho_dev_AUC": 0.5226188814588819,
+  "atalho_há_indício": true,
+  "n_treino": 40000,
+  "extracao": {
+    "horas_extracao_acumuladas": 1.538,
+    "parou_por": "plano completo",
+    "plano_completo": true,
+    "conjuntos": {
+      "dev_shift": {
+        "shards_prontos": 6,
+        "shards_planejados": 6,
+        "clipes_prontos": 10614,
+        "clipes_planejados": 10614
+      },
+      "val": {
+        "shards_prontos": 10,
+        "shards_planejados": 10,
+        "clipes_prontos": 19999,
+        "clipes_planejados": 19999
+      },
+      "treino": {
+        "shards_prontos": 20,
+        "shards_planejados": 20,
+        "clipes_prontos": 40000,
+        "clipes_planejados": 40000
+      }
+    }
+  }
+}

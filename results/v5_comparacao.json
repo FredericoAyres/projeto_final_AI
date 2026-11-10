@@ -1,0 +1,136 @@
+{
+  "gerado_em": "2026-11-10T15:46:34",
+  "a": "xlsr",
+  "b": "wavlm",
+  "sistemas": {
+    "final": {
+      "cabeças": {
+        "xlsr": "concat_top3",
+        "wavlm": "concat_top3"
+      },
+      "xlsr": {
+        "val EER média por fonte": 0.05921347686980181,
+        "val EER por fonte": {
+          "codecfake_plus": 0.14802802283341981,
+          "dfadd": 0.00037011448874852174,
+          "shiftyspeech": 0.029242293287237084
+        },
+        "dev AUC": 0.9826025921102788,
+        "dev EER": 0.06040472640203562,
+        "limiar_val_logit": 0.010383844375610352,
+        "dev acurácia": 0.8411531938948559,
+        "dev acurácia balanceada": 0.8953501446879844,
+        "dev acurácia (0,5)": 0.8410589787073677,
+        "dev acurácia balanceada (0,5)": 0.8952922273938803
+      },
+      "wavlm": {
+        "val EER média por fonte": 0.06769718397879523,
+        "val EER por fonte": {
+          "codecfake_plus": 0.17391022314478463,
+          "dfadd": 0.0005152383277577975,
+          "shiftyspeech": 0.028666090463843268
+        },
+        "dev AUC": 0.9700083727181654,
+        "dev EER": 0.0751376756354369,
+        "limiar_val_logit": -0.937922477722168,
+        "dev acurácia": 0.8227812323346524,
+        "dev acurácia balanceada": 0.8834728308833139,
+        "dev acurácia (0,5)": 0.8378556623327681,
+        "dev acurácia balanceada (0,5)": 0.892350636970366
+      },
+      "dev acurácia trivial": 0.81335971358583,
+      "bootstrap_dev_por_locutor": {
+        "n_reamostragens": 1000,
+        "puladas_sem_duas_classes": 0,
+        "n_locutores": 16,
+        "dif AUC (b - a)": -0.01259421939211336,
+        "dif AUC média bootstrap": -0.017392052448888074,
+        "dif AUC IC95": [
+          -0.06136490893973974,
+          0.0013849707215739348
+        ],
+        "dif AUC IC95 inclui zero": true,
+        "dif EER (b - a)": 0.01473294923340128,
+        "dif EER média bootstrap": 0.019163843843235228,
+        "dif EER IC95": [
+          -0.009549593968242304,
+          0.09353103359072715
+        ],
+        "dif EER IC95 inclui zero": true
+      }
+    },
+    "ultima_camada": {
+      "cabeças": {
+        "xlsr": "rl_camada_24",
+        "wavlm": "rl_camada_24"
+      },
+      "xlsr": {
+        "val EER média por fonte": 0.08615235801518299,
+        "val EER por fonte": {
+          "codecfake_plus": 0.1731318111053451,
+          "dfadd": 0.005953324017703153,
+          "shiftyspeech": 0.07937193892250072
+        },
+        "dev AUC": 0.9837619320297138,
+        "dev EER": 0.06305673035502977,
+        "limiar_val_logit": -0.03051602840423584,
+        "dev acurácia": 0.79479932165065,
+        "dev acurácia balanceada": 0.8689941213215575,
+        "dev acurácia (0,5)": 0.7962125494629735,
+        "dev acurácia balanceada (0,5)": 0.8698628807331178
+      },
+      "wavlm": {
+        "val EER média por fonte": 0.15098159666676056,
+        "val EER por fonte": {
+          "codecfake_plus": 0.24163207057602493,
+          "dfadd": 0.019437179234109765,
+          "shiftyspeech": 0.19187554019014696
+        },
+        "dev AUC": 0.9562756881910642,
+        "dev EER": 0.09958915266677124,
+        "limiar_val_logit": -0.7088075876235962,
+        "dev acurácia": 0.8261729790842284,
+        "dev acurácia balanceada": 0.8818627242599436,
+        "dev acurácia (0,5)": 0.8485961937064255,
+        "dev acurácia balanceada (0,5)": 0.8905905476520166
+      },
+      "dev acurácia trivial": 0.81335971358583,
+      "bootstrap_dev_por_locutor": {
+        "n_reamostragens": 1000,
+        "puladas_sem_duas_classes": 0,
+        "n_locutores": 16,
+        "dif AUC (b - a)": -0.027486243838649616,
+        "dif AUC média bootstrap": -0.031116884762830112,
+        "dif AUC IC95": [
+          -0.10006662763686665,
+          0.0111110154519273
+        ],
+        "dif AUC IC95 inclui zero": true,
+        "dif EER (b - a)": 0.03653242231174146,
+        "dif EER média bootstrap": 0.042798764179169196,
+        "dif EER IC95": [
+          -0.02867185323146177,
+          0.1280159049470152
+        ],
+        "dif EER IC95 inclui zero": true
+      }
+    }
+  },
+  "decisao": {
+    "val_wavlm_menor_eer": false,
+    "dev_wavlm_melhor_demonstrado": false,
+    "dev_wavlm_pior_demonstrado": false,
+    "texto": "EMPATE pela regra (validação e dev_shift não concordam ou o intervalo inclui zero): segue o xlsr"
+  },
+  "atalhos_b_fonte_dos_reais": {
+    "xlsr": {
+      "camada": 7,
+      "acurácia balanceada": 0.7983107533896217
+    },
+    "wavlm": {
+      "camada": 4,
+      "acurácia balanceada": 0.8205287717748819
+    },
+    "estatisticas": 0.5708086063787909
+  }
+}
