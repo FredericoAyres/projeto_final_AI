@@ -1,0 +1,114 @@
+{
+  "experimento": "v3_zero_s2026",
+  "versao": "v3",
+  "condicao": "zero",
+  "seed": 2026,
+  "quick": false,
+  "status": "concluido",
+  "concluido_em": "2026-11-09T20:28:16",
+  "melhor_epoca": 11,
+  "epocas": 16,
+  "minutos_treino": 45.23,
+  "minutos_neste_processo": 46.61,
+  "pico_memoria_gb_processo_e_workers": 13.11,
+  "pico_memoria_gb_sistema": 34.54,
+  "val_eer_media_por_fonte": 0.12265303502982093,
+  "val_eer_global_central": 0.016065308954279302,
+  "val_eer_por_fonte": {
+    "codecfake_plus": 0.2785417747794499,
+    "dfadd": 0.005867920917906817,
+    "shiftyspeech": 0.08354940939210602
+  },
+  "limiar_janelas_logit": 3.1012089252471924,
+  "limiar_janelas_prob": 0.9569425845051776,
+  "dev_shift_janelas": {
+    "n real": 8633.0,
+    "n fake": 1981.0,
+    "AUC": 0.3773302647595105,
+    "EER": 0.5769767032143016,
+    "recall fake": 0.6047450782433115,
+    "falso alarme": 0.7169002664195528
+  },
+  "dev_shift_central": {
+    "n real": 8633.0,
+    "n fake": 1981.0,
+    "AUC": 0.3880330649568912,
+    "EER": 0.5761823211859824,
+    "recall fake": 0.5906108026249369,
+    "falso alarme": 0.7045059654812927
+  },
+  "treino_retomado_nas_epocas": [],
+  "config_id": "ce52fb10fef09083",
+  "metodo": {
+    "experimento": "v3_zero_s2026",
+    "versao": "v3",
+    "quick": false,
+    "cfg": {
+      "descricao": "áudio < 4 s: fala original + zeros à direita até 4 s; sem augmentation",
+      "aug": {},
+      "short_audio_mode": "zero",
+      "seed": 2026
+    },
+    "hp": {
+      "SEED": 42,
+      "SAMPLE_RATE": 16000,
+      "CROP_S": 4.0,
+      "N_MELS": 64,
+      "N_FFT": 512,
+      "WIN_LENGTH": 400,
+      "HOP_LENGTH": 160,
+      "BATCH_SIZE": 64,
+      "LR": 0.001,
+      "DROPOUT": 0.3,
+      "MAX_EPOCHS": 30,
+      "PATIENCE": 5,
+      "PER_CLASS_PER_EPOCH": 25000,
+      "VAL_MAX": null,
+      "TEST_MAX_PER_CLASS": 5000,
+      "DEV_SHIFT_MAX_PER_CLASS": null,
+      "JANELA_S": 4.0,
+      "PASSO_S": 2.0,
+      "AUDIOS_POR_LOTE_JANELAS": 16,
+      "RECORTE_DETERMINISTICO": true,
+      "AUG_BASE": {}
+    },
+    "manifest_sha256": "f2309eb356b49ff315a4dfc3816993202ff5a2c8a62f552ab22194b670b8a9b2"
+  },
+  "num_workers": 4,
+  "codigo": {
+    "commit": "bba9b9cba6f76736e8065784477f1c6ec61db156",
+    "branch": "v3-padding",
+    "mudancas_nao_commitadas": [
+      "M docs/HISTORICO_VERSOES.md",
+      " M notebook.ipynb",
+      " M scripts/treinar_experimento.py",
+      " M src/analysis.py",
+      " M src/dataset.py",
+      " M src/experimento.py",
+      " M src/sampling.py",
+      " M src/train.py",
+      "?? scripts/rodar_v3.ps1",
+      "?? src/arquivos.py"
+    ],
+    "sha256": {
+      "src/analysis.py": "6d2dd801563dcd02253240743b4ed0f3851ca947239db987615c1b61a1e32e5d",
+      "src/arquivos.py": "f469a971b334ddef3d2ee20a237231ce67f66fbabce6a6227c81685bbb1dbf1b",
+      "src/augment.py": "6c2970a285495a1fab5a8701c52750d9be410517c1de0ec010e707f15bbf45e9",
+      "src/dataset.py": "3a789169c60ed9ceea4fe3356e707e5e6fa010e387edd70a1fb634fdf220ac2d",
+      "src/experimento.py": "732e0ce65cf11a7776380548975d5af54fc9151c59b5da933538b84175aecec6",
+      "src/memoria.py": "fe4afdfac029bffda343ff3e9d8373d5b8023da239c4ee6d243e2f3ae105e477",
+      "src/metrics.py": "7d9edb60d2d04dac2ccabc8d2febf9276ba4bdca9823c98dbcc3a3c296923e9e",
+      "src/model.py": "21d6a365fe18943f957fe275ec212c2ab6991deb1eedb67ae4c734402ff2aee6",
+      "src/sampling.py": "0cfe772167a4a227f14fc7e518a2b4797002bf307d1a9b32e42b3f36ee0ffbd5",
+      "src/train.py": "762a98ec2f2a2e95d8c80ab26bfb727156f9d1253b07c9ccf2bb100140f82307",
+      "scripts/treinar_experimento.py": "50c75aca5fce6954eec6ff3e2fbc4df653935704fe0dc530e2ea2dea166e0de0"
+    },
+    "celula_config_sha256": "2055e25f987d0df1dc3ae5e34fc9a69bd0d670fe58adfd62ca0ea7a6efff5b3f"
+  },
+  "arquivos": {
+    "checkpoint": "models\\v3_zero_s2026_cnn.pt",
+    "historico": "results\\v3_zero_s2026_historico.csv",
+    "notas_val": "results\\v3_zero_s2026_notas_val.parquet",
+    "notas_dev_shift": "results\\v3_zero_s2026_notas_dev_shift.parquet"
+  }
+}

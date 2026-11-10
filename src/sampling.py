@@ -77,6 +77,17 @@ class SorteadorPorEpoca:
         idx = np.concatenate([self.tirar(k, c) for k, c in cotas.items() if c > 0])
         return self.rng.permutation(idx)            # embaralha a época (Aula 6)
 
+    def estado(self):
+        """Tudo o que é preciso para continuar o sorteio de onde parou (retomar um treino interrompido)."""
+        return {"rng": self.rng.bit_generator.state, "filas": {k: v.copy() for k, v in self.filas.items()},
+                "pos": dict(self.pos)}
+
+    def restaurar(self, estado):
+        assert set(estado["filas"]) == set(self.filas), "os grupos do treino mudaram desde o estado salvo"
+        self.rng.bit_generator.state = estado["rng"]
+        self.filas = {k: np.asarray(v) for k, v in estado["filas"].items()}
+        self.pos = dict(estado["pos"])
+
 
 class IndicesDaEpoca(Sampler):
     """Entrega ao DataLoader os índices sorteados para a época atual."""
