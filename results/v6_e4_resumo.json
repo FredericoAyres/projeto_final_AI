@@ -1,0 +1,219 @@
+{
+  "frontend": "xlsr",
+  "modelos": [
+    "xlsr"
+  ],
+  "camada_basica": {
+    "xlsr": [
+      11
+    ]
+  },
+  "spec_rl_basica": {
+    "tipo": "rl",
+    "frontend": "xlsr",
+    "camadas": {
+      "xlsr": [
+        11
+      ]
+    },
+    "pesos": "clipe",
+    "C": {
+      "xlsr": 1.0
+    }
+  },
+  "specs_nn": {
+    "MLP": {
+      "tipo": "mlp",
+      "frontend": "xlsr",
+      "camadas": {
+        "xlsr": [
+          11
+        ]
+      }
+    },
+    "CNN": {
+      "tipo": "cnn",
+      "frontend": "xlsr",
+      "camadas": {
+        "xlsr": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      }
+    }
+  },
+  "infos_nn": {
+    "MLP s42": {
+      "parametros": 262657,
+      "segundos": 2.325519323348999,
+      "melhor_época": {
+        "xlsr": 4
+      },
+      "épocas": {
+        "xlsr": 9
+      }
+    },
+    "MLP s123": {
+      "parametros": 262657,
+      "segundos": 1.5448529720306396,
+      "melhor_época": {
+        "xlsr": 2
+      },
+      "épocas": {
+        "xlsr": 7
+      }
+    },
+    "MLP s2026": {
+      "parametros": 262657,
+      "segundos": 1.7186520099639893,
+      "melhor_época": {
+        "xlsr": 3
+      },
+      "épocas": {
+        "xlsr": 8
+      }
+    },
+    "CNN s42": {
+      "parametros": 405825,
+      "segundos": 15.870514631271362,
+      "melhor_época": {
+        "xlsr": 11
+      },
+      "épocas": {
+        "xlsr": 16
+      }
+    },
+    "CNN s123": {
+      "parametros": 405825,
+      "segundos": 10.114349603652954,
+      "melhor_época": {
+        "xlsr": 5
+      },
+      "épocas": {
+        "xlsr": 10
+      }
+    },
+    "CNN s2026": {
+      "parametros": 405825,
+      "segundos": 13.92653512954712,
+      "melhor_época": {
+        "xlsr": 9
+      },
+      "épocas": {
+        "xlsr": 14
+      }
+    }
+  },
+  "comparacoes": [
+    {
+      "atual": "RL",
+      "desafiante": "MLP",
+      "relevante em todas as seeds": false,
+      "por seed": [
+        {
+          "dif AUC pior (desafiante - atual)": 0.007881421899325392,
+          "IC95": [
+            -0.007589013781398535,
+            0.023418379947543144
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": 0.008058506064116955,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        },
+        {
+          "dif AUC pior (desafiante - atual)": 0.0018162947586922717,
+          "IC95": [
+            -0.012850066646933556,
+            0.016685662791132927
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": 0.0021569649688899517,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        },
+        {
+          "dif AUC pior (desafiante - atual)": -0.0014919564089258541,
+          "IC95": [
+            -0.01726512797176838,
+            0.014126570895314217
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": -0.0012020092690363526,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        }
+      ]
+    },
+    {
+      "atual": "RL",
+      "desafiante": "CNN",
+      "relevante em todas as seeds": false,
+      "por seed": [
+        {
+          "dif AUC pior (desafiante - atual)": 0.002497405293201971,
+          "IC95": [
+            -0.012151738628745079,
+            0.01805220916867256
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": 0.002831843448802829,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        },
+        {
+          "dif AUC pior (desafiante - atual)": 0.0043137000518941315,
+          "IC95": [
+            -0.01168178953230381,
+            0.02089136838912964
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": 0.004636215977370739,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        },
+        {
+          "dif AUC pior (desafiante - atual)": 0.0066489361702127825,
+          "IC95": [
+            -0.009305422194302082,
+            0.023941384628415108
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": 0.007009340915828943,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        }
+      ]
+    }
+  ],
+  "vencedor": "RL"
+}

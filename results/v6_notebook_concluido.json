@@ -1,0 +1,11 @@
+{
+  "etapa": "notebook",
+  "quick": false,
+  "concluido_em": "2026-11-10T23:29:18",
+  "arquivo": "notebook.ipynb",
+  "mb": 1.04,
+  "erros": 0,
+  "minutos_neste_processo": 0.05,
+  "pico_memoria_gb_processo_e_workers": null,
+  "conclusao_escrita": true
+}

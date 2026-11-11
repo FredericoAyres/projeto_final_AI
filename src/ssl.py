@@ -16,8 +16,11 @@ N_SAIDAS, DIM = 25, 1024
 DTYPES = {"float16": torch.float16, "bfloat16": torch.bfloat16, "float32": torch.float32}
 
 
-def carregar_ssl(nome=NOME_PADRAO, device="cuda", dtype="float16"):
+def carregar_ssl(nome=NOME_PADRAO, device="cuda", dtype="float16", revisao=None):
     """Carrega o modelo congelado (eval, sem gradiente) no `dtype` pedido. Lê só do cache local.
+
+    `revisao` (v6): o commit do repositório no Hugging Face (o WavLM foi baixado por revisão fixa, sem o
+    ponteiro "main" no cache; sem `revisao`, o comportamento é o de antes).
 
     `AutoModel` escolhe a classe pelo `config.json` do modelo: `Wav2Vec2Model` para o XLS-R (a mesma da v4)
     e `WavLMModel` para o WavLM Large (v5). Os dois têm 24 camadas de 1024 números a cada 20 ms.
@@ -26,7 +29,8 @@ def carregar_ssl(nome=NOME_PADRAO, device="cuda", dtype="float16"):
     from transformers.utils import logging as hf_logging
 
     hf_logging.set_verbosity_error()      # avisos de pesos do pré-treino que não usamos (quantizador)
-    m = AutoModel.from_pretrained(nome, local_files_only=True, torch_dtype=DTYPES[dtype])
+    kw = {"revision": revisao} if revisao else {}
+    m = AutoModel.from_pretrained(nome, local_files_only=True, torch_dtype=DTYPES[dtype], **kw)
     n = m.config.num_hidden_layers + 1
     assert (n, m.config.hidden_size) == (N_SAIDAS, DIM), f"{nome}: {n} saídas de {m.config.hidden_size} (esperado 25 x 1024)"
     m.eval()

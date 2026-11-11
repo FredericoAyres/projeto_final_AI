@@ -1,0 +1,162 @@
+{
+  "vencedor": "xlsr",
+  "modelos": [
+    "xlsr"
+  ],
+  "candidatos": [
+    "xlsr",
+    "wavlm",
+    "fusao_media"
+  ],
+  "comparacoes": [
+    {
+      "atual": "xlsr",
+      "desafiante": "wavlm",
+      "relevante em todas as seeds": false,
+      "por seed": [
+        {
+          "dif AUC pior (desafiante - atual)": -0.01660612350804347,
+          "IC95": [
+            -0.04807823523879051,
+            0.001130984746851027
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": -0.018699612468481064,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        }
+      ]
+    },
+    {
+      "atual": "xlsr",
+      "desafiante": "fusao_media",
+      "relevante em todas as seeds": false,
+      "por seed": [
+        {
+          "dif AUC pior (desafiante - atual)": -0.002075765438505406,
+          "IC95": [
+            -0.012163802981376648,
+            0.007570704910904169
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": -0.0021727406419813633,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        }
+      ]
+    }
+  ],
+  "metricas": {
+    "xlsr": {
+      "limiar A (logit)": -0.014229416847229004,
+      "AUC dfadd": 0.9999985646529522,
+      "EER dfadd": 0.0006918543644939331,
+      "acc bal dfadd": 0.9989357585139319,
+      "recall fake dfadd": 0.9978715170278638,
+      "falso alarme dfadd": 0.0,
+      "AUC shiftyspeech": 0.993331585302296,
+      "EER shiftyspeech": 0.04278305963699221,
+      "acc bal shiftyspeech": 0.9577931431864016,
+      "recall fake shiftyspeech": 0.9683088447133391,
+      "falso alarme shiftyspeech": 0.052722558340535866,
+      "AUC codecfake_plus": 0.9071743642968344,
+      "EER codecfake_plus": 0.14497924234561493,
+      "acc bal codecfake_plus": 0.7714711987545407,
+      "recall fake codecfake_plus": 0.6648936170212766,
+      "falso alarme codecfake_plus": 0.12195121951219512,
+      "AUC dev_shift": 0.976895999075662,
+      "EER dev_shift": 0.06716093517397087,
+      "acc bal dev_shift": 0.8919159502824616,
+      "recall fake dev_shift": 0.9757698132256436,
+      "falso alarme dev_shift": 0.1919379126607205,
+      "AUC pior fonte": 0.9071743642968344,
+      "fonte pior": "codecfake_plus",
+      "AUC média (G)": 0.9693501283319361,
+      "acc bal média (G)": 0.905029012684334,
+      "EER média (G)": 0.063903772880268,
+      "val EER média por fonte (3)": 0.06281805211570037,
+      "val EER global": 0.013962110290174561,
+      "dev AUC": 0.976895999075662,
+      "dev EER": 0.06716093517397087,
+      "limiar B (logit)": 14.822795867919922,
+      "dev acurácia": 0.8393631053325796,
+      "dev acc bal": 0.8919159502824616,
+      "dev acurácia trivial": 0.81335971358583
+    },
+    "wavlm": {
+      "limiar A (logit)": -1.3529983758926392,
+      "AUC dfadd": 0.9999863642030461,
+      "EER dfadd": 0.0016570739917302227,
+      "acc bal dfadd": 0.9985364244602821,
+      "recall fake dfadd": 0.9988390092879257,
+      "falso alarme dfadd": 0.0017661603673613563,
+      "AUC shiftyspeech": 0.9931293913988407,
+      "EER shiftyspeech": 0.0370210314030539,
+      "acc bal shiftyspeech": 0.9634111207144915,
+      "recall fake shiftyspeech": 0.9639873235378853,
+      "falso alarme shiftyspeech": 0.037165082108902334,
+      "AUC codecfake_plus": 0.8905682407887909,
+      "EER codecfake_plus": 0.17352101712506487,
+      "acc bal codecfake_plus": 0.7775038920601972,
+      "recall fake codecfake_plus": 0.7074468085106383,
+      "falso alarme codecfake_plus": 0.1524390243902439,
+      "AUC dev_shift": 0.9613377357103768,
+      "EER dev_shift": 0.08369358903794316,
+      "acc bal dev_shift": 0.8756088844252063,
+      "recall fake dev_shift": 0.9848561332660273,
+      "falso alarme dev_shift": 0.2336383644156145,
+      "AUC pior fonte": 0.8905682407887909,
+      "fonte pior": "codecfake_plus",
+      "AUC média (G)": 0.9612554330252637,
+      "acc bal média (G)": 0.9037650804150443,
+      "EER média (G)": 0.07397317788944804,
+      "val EER média por fonte (3)": 0.07073304083994966,
+      "val EER global": 0.01368837352447421,
+      "dev AUC": 0.9613377357103768,
+      "dev EER": 0.08369358903794316,
+      "limiar B (logit)": 16.184852600097656,
+      "dev acurácia": 0.8071415112116073,
+      "dev acc bal": 0.8756088844252063,
+      "dev acurácia trivial": 0.81335971358583
+    },
+    "fusao_media": {
+      "limiar A (logit)": -0.3871846506559865,
+      "AUC dfadd": 1.0,
+      "EER dfadd": 0.0,
+      "acc bal dfadd": 0.9998065015479876,
+      "recall fake dfadd": 0.9996130030959752,
+      "falso alarme dfadd": 0.0,
+      "AUC shiftyspeech": 0.997763167691207,
+      "EER shiftyspeech": 0.02621722846441949,
+      "acc bal shiftyspeech": 0.9760875828291559,
+      "recall fake shiftyspeech": 0.9806972054163066,
+      "falso alarme shiftyspeech": 0.028522039757994815,
+      "AUC codecfake_plus": 0.905098598858329,
+      "EER codecfake_plus": 0.1700830306175402,
+      "acc bal codecfake_plus": 0.7878178515827712,
+      "recall fake codecfake_plus": 0.6914893617021277,
+      "falso alarme codecfake_plus": 0.11585365853658537,
+      "AUC dev_shift": 0.976172222935915,
+      "EER dev_shift": 0.0631146476491338,
+      "acc bal dev_shift": 0.8916105176870528,
+      "recall fake dev_shift": 0.9838465421504291,
+      "falso alarme dev_shift": 0.2006255067763234,
+      "AUC pior fonte": 0.905098598858329,
+      "fonte pior": "codecfake_plus",
+      "AUC média (G)": 0.9697584973713628,
+      "acc bal média (G)": 0.9138306134117419,
+      "EER média (G)": 0.06485372668277337,
+      "val EER média por fonte (3)": 0.06543341969398657,
+      "val EER global": 0.009189068666619544,
+      "dev AUC": 0.976172222935915,
+      "dev EER": 0.0631146476491338,
+      "limiar B (logit)": 0.3146895017341065,
+      "dev acurácia": 0.8338044092707745,
+      "dev acc bal": 0.8916105176870528,
+      "dev acurácia trivial": 0.81335971358583
+    }
+  },
+  "razao": "xlsr ficou: wavlm × xlsr: dif -0.0166, IC95 [-0.0481, +0.0011] -> não relevante; fusao_media × xlsr: dif -0.0021, IC95 [-0.0122, +0.0076] -> não relevante"
+}

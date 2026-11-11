@@ -1,0 +1,21 @@
+{
+  "gerado_em": "2026-11-10T23:24:44",
+  "figuras": {
+    "funil": "results\\v6_funil.png",
+    "camadas": "results\\v6_camadas_meta_microsoft.png",
+    "erros_2x2": "results\\v6_erros_2x2.png",
+    "limiares_val": "results\\v6_limiares_por_fonte_val.png"
+  },
+  "projecao": {
+    "xlsr": {
+      "n": 6000,
+      "por_fonte": {
+        "codecfake_plus": 352,
+        "librispeech": 1412,
+        "shiftyspeech": 1412,
+        "dev_shift (In-the-Wild)": 1412,
+        "dfadd": 1412
+      }
+    }
+  }
+}

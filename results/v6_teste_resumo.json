@@ -1,0 +1,1495 @@
+{
+  "finalistas": {
+    "F0": "v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",
+    "F1": "front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",
+    "F2": "sistema final da E5 (RL, xlsr), limiar A"
+  },
+  "limiares_logit": {
+    "F0": {
+      "A": -0.03953683376312256,
+      "B": 8.21838092803955,
+      "E5 (A)": -0.03953683376312256
+    },
+    "F1": {
+      "A": -0.39549756050109863,
+      "B": 9.199010848999023,
+      "E5 (A)": -0.39549756050109863
+    },
+    "F2": {
+      "A": -0.5355920791625977,
+      "B": 9.326278686523438,
+      "E5 (A)": -0.5355920791625977
+    }
+  },
+  "limiar_principal": {
+    "F0": "A",
+    "F1": "A",
+    "F2": "A"
+  },
+  "checagem_notas": {
+    "F0": {
+      "val": 0.0,
+      "dev_shift": 0.0,
+      "segundos": 10.8
+    },
+    "F1": {
+      "val": 0.0,
+      "dev_shift": 0.0,
+      "segundos": 5.2
+    },
+    "F2": {
+      "val": 0.0,
+      "dev_shift": 0.0,
+      "segundos": 2.2
+    }
+  },
+  "regra_leitura": {
+    "F1 − F0 | AUC": "não demonstrada",
+    "F1 − F0 | acurácia balanceada": "não demonstrada",
+    "F2 − F0 | AUC": "não demonstrada",
+    "F2 − F0 | acurácia balanceada": "não demonstrada"
+  },
+  "resumo_finalistas": {
+    "F0": {
+      "média acurácia (3 principais)": 0.8511582278481012,
+      "média acurácia balanceada (3 principais)": 0.7899989898989898,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.1672,
+      "limiar": "A"
+    },
+    "F1": {
+      "média acurácia (3 principais)": 0.8279274261603375,
+      "média acurácia balanceada (3 principais)": 0.7485111111111111,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8843243187878788,
+      "coraa falso alarme": 0.4118,
+      "limiar": "A"
+    },
+    "F2": {
+      "média acurácia (3 principais)": 0.8294637130801688,
+      "média acurácia balanceada (3 principais)": 0.7487505050505051,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8844937844444445,
+      "coraa falso alarme": 0.4036,
+      "limiar": "A"
+    }
+  },
+  "resumo_todos_limiares": {
+    "F0 | limiar A": {
+      "média acurácia (3 principais)": 0.8511582278481012,
+      "média acurácia balanceada (3 principais)": 0.7899989898989898,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.1672
+    },
+    "F0 | limiar B": {
+      "média acurácia (3 principais)": 0.8361135021097047,
+      "média acurácia balanceada (3 principais)": 0.8134575757575758,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.025
+    },
+    "F0 | limiar E5 (A)": {
+      "média acurácia (3 principais)": 0.8511582278481012,
+      "média acurácia balanceada (3 principais)": 0.7899989898989898,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.9150696311111112,
+      "coraa falso alarme": 0.1672
+    },
+    "F1 | limiar A": {
+      "média acurácia (3 principais)": 0.8279274261603375,
+      "média acurácia balanceada (3 principais)": 0.7485111111111111,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8843243187878788,
+      "coraa falso alarme": 0.4118
+    },
+    "F1 | limiar B": {
+      "média acurácia (3 principais)": 0.8336514767932489,
+      "média acurácia balanceada (3 principais)": 0.7886525252525253,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8843243187878788,
+      "coraa falso alarme": 0.1744
+    },
+    "F1 | limiar E5 (A)": {
+      "média acurácia (3 principais)": 0.8279274261603375,
+      "média acurácia balanceada (3 principais)": 0.7485111111111111,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8843243187878788,
+      "coraa falso alarme": 0.4118
+    },
+    "F2 | limiar A": {
+      "média acurácia (3 principais)": 0.8294637130801688,
+      "média acurácia balanceada (3 principais)": 0.7487505050505051,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8844937844444445,
+      "coraa falso alarme": 0.4036
+    },
+    "F2 | limiar B": {
+      "média acurácia (3 principais)": 0.8383080168776371,
+      "média acurácia balanceada (3 principais)": 0.788880808080808,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8844937844444445,
+      "coraa falso alarme": 0.1728
+    },
+    "F2 | limiar E5 (A)": {
+      "média acurácia (3 principais)": 0.8294637130801688,
+      "média acurácia balanceada (3 principais)": 0.7487505050505051,
+      "média acurácia trivial (3 principais)": 0.5970464135021097,
+      "média AUC (3 principais)": 0.8844937844444445,
+      "coraa falso alarme": 0.4036
+    }
+  },
+  "excluidos_erro_leitura": {
+    "in_the_wild": 0,
+    "llamapartialspoof": 0,
+    "brspeech_df": 0,
+    "coraa": 0,
+    "asvspoof2019_la": 0,
+    "asvspoof2021_df": 0
+  },
+  "wavlm_no_teste": "não extraído (nenhum finalista usa); números do colega",
+  "colega_v5_teste": [
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8339,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8339,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.97815904,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.3214,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.9295,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9295,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.97815904,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0582,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8255,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8255,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.94553748,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.3358,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.8945,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8945000000000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.94553748,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.1594,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8389,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8389,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.9496195199999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.2964,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.8478,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8478,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.9496195199999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "in_the_wild",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0554,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.854,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8540000000000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.9242571599999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.0396,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.735,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.735,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.9242571599999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0016,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8303,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8303,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.8994416800000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.1122,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.7925,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.7925,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.8994416800000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0178,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8558,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8558,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.9142992400000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.0316,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.7079,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.7079,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.9142992400000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "llamapartialspoof",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0006,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8632911392405064,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.6802545454545454,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.8423139393939394,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.634090909090909,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.8341772151898734,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.768909090909091,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.8423139393939394,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.3431818181818182,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.7822784810126582,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.524230303030303,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.5568789393939394,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.918939393939394,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.7306962025316456,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.5571454545454545,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.5568789393939394,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.740909090909091,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8446202531645569,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.6430848484848485,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.7675577272727272,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.703030303030303,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.7185126582278482,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.6832636363636364,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.7675577272727272,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "brspeech_df",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.37727272727272726,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8314,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.1686,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.9754,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0246,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.1272,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.8728,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.2644,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.7356,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.6554,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.3446,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.9148,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": NaN,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "coraa",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0852,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.9813,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9813000000000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.99897276,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.0012,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.8983,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8983,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.99897276,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.9442,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9441999999999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.986151,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.0552,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.9112,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9112,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.986151,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0062,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.97,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.97,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.9962713600000002,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.0036,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.8168,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8168,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.9962713600000002,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2019_la",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.942,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.942,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.9965392399999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.1088,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.9638,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9638,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.9965392399999999,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "X2",
+      "descrição": "XLS-R (Meta), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0056,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.8947,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.8947,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.9862456800000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.1942,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.945,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9450000000000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.9862456800000001,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W1",
+      "descrição": "WavLM (Microsoft), só a camada 24",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0394,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "acurácia",
+      "valor": 0.9042,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "acurácia balanceada",
+      "valor": 0.9042,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "AUC",
+      "valor": 0.99047392,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "A",
+      "métrica": "falso alarme real",
+      "valor": 0.1784,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "acurácia",
+      "valor": 0.937,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "acurácia balanceada",
+      "valor": 0.937,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "AUC",
+      "valor": 0.99047392,
+      "origem": "do colega (v5), sem notas por clipe"
+    },
+    {
+      "sistema": "W2",
+      "descrição": "WavLM (Microsoft), cabeça final",
+      "banco": "asvspoof2021_df",
+      "limiar": "B",
+      "métrica": "falso alarme real",
+      "valor": 0.0082,
+      "origem": "do colega (v5), sem notas por clipe"
+    }
+  ],
+  "n_boot": 1000,
+  "bancos": [
+    [
+      "in_the_wild",
+      "principal"
+    ],
+    [
+      "llamapartialspoof",
+      "principal"
+    ],
+    [
+      "brspeech_df",
+      "principal"
+    ],
+    [
+      "coraa",
+      "só real"
+    ],
+    [
+      "asvspoof2019_la",
+      "secundário"
+    ],
+    [
+      "asvspoof2021_df",
+      "secundário"
+    ]
+  ],
+  "clipes": {
+    "treino": {
+      "clipes": 40000,
+      "mesmos_idx_e_caminhos": true,
+      "excluidos_erro_leitura": 0
+    },
+    "val": {
+      "clipes": 19999,
+      "mesmos_idx_e_caminhos": true,
+      "excluidos_erro_leitura": 0
+    },
+    "dev_shift": {
+      "clipes": 10614,
+      "mesmos_idx_e_caminhos": true,
+      "excluidos_erro_leitura": 0
+    }
+  },
+  "aviso": "os bancos de teste já tinham sido vistos na v4 e na v5; o bootstrap mede só a amostra de teste"
+}

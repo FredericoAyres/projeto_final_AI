@@ -1,0 +1,301 @@
+{
+  "correlacao": [
+    {
+      "conjunto": "validação",
+      "classe": "real",
+      "n": 6004,
+      "Pearson": 0.5701237034776199,
+      "Spearman": 0.5288415752976869
+    },
+    {
+      "conjunto": "validação",
+      "classe": "fake",
+      "n": 13995,
+      "Pearson": 0.7157152977954357,
+      "Spearman": 0.6741988610840981
+    },
+    {
+      "conjunto": "dev_shift",
+      "classe": "real",
+      "n": 8633,
+      "Pearson": 0.7721719163523691,
+      "Spearman": 0.7244810500196932
+    },
+    {
+      "conjunto": "dev_shift",
+      "classe": "fake",
+      "n": 1981,
+      "Pearson": 0.6079301613672281,
+      "Spearman": 0.5088679606171743
+    }
+  ],
+  "erros_2x2": {
+    "limiar A (logit)": {
+      "xlsr": -0.014229416847229004,
+      "wavlm": -1.3529983758926392
+    },
+    "validação": {
+      "os dois acertam": 19543,
+      "só a Meta acerta": 177,
+      "só a Microsoft acerta": 182,
+      "os dois erram": 97,
+      "os dois acertam (%)": 97.72,
+      "só a Meta acerta (%)": 0.89,
+      "só a Microsoft acerta (%)": 0.91,
+      "os dois erram (%)": 0.49,
+      "n": 19999
+    },
+    "validação (reais)": {
+      "os dois acertam": 5871,
+      "só a Meta acerta": 49,
+      "só a Microsoft acerta": 51,
+      "os dois erram": 33,
+      "os dois acertam (%)": 97.78,
+      "só a Meta acerta (%)": 0.82,
+      "só a Microsoft acerta (%)": 0.85,
+      "os dois erram (%)": 0.55,
+      "n": 6004
+    },
+    "validação (fakes)": {
+      "os dois acertam": 13672,
+      "só a Meta acerta": 128,
+      "só a Microsoft acerta": 131,
+      "os dois erram": 64,
+      "os dois acertam (%)": 97.69,
+      "só a Meta acerta (%)": 0.91,
+      "só a Microsoft acerta (%)": 0.94,
+      "os dois erram (%)": 0.46,
+      "n": 13995
+    },
+    "dev_shift": {
+      "os dois acertam": 8229,
+      "só a Meta acerta": 680,
+      "só a Microsoft acerta": 338,
+      "os dois erram": 1367,
+      "os dois acertam (%)": 77.53,
+      "só a Meta acerta (%)": 6.41,
+      "só a Microsoft acerta (%)": 3.18,
+      "os dois erram (%)": 12.88,
+      "n": 10614
+    },
+    "dev_shift (reais)": {
+      "os dois acertam": 6298,
+      "só a Meta acerta": 678,
+      "só a Microsoft acerta": 318,
+      "os dois erram": 1339,
+      "os dois acertam (%)": 72.95,
+      "só a Meta acerta (%)": 7.85,
+      "só a Microsoft acerta (%)": 3.68,
+      "os dois erram (%)": 15.51,
+      "n": 8633
+    },
+    "dev_shift (fakes)": {
+      "os dois acertam": 1931,
+      "só a Meta acerta": 2,
+      "só a Microsoft acerta": 20,
+      "os dois erram": 28,
+      "os dois acertam (%)": 97.48,
+      "só a Meta acerta (%)": 0.1,
+      "só a Microsoft acerta (%)": 1.01,
+      "os dois erram (%)": 1.41,
+      "n": 1981
+    }
+  },
+  "stacking_coeficientes": [
+    {
+      "dobra (fonte fora)": "codecfake_plus",
+      "intercepto": 4.960347721069977,
+      "peso modelo 1": 5.519608777847848,
+      "peso modelo 2": 5.008146687268282
+    },
+    {
+      "dobra (fonte fora)": "dfadd",
+      "intercepto": 3.6430678679819297,
+      "peso modelo 1": 3.8154477692836446,
+      "peso modelo 2": 3.3697096955218093
+    },
+    {
+      "dobra (fonte fora)": "librispeech",
+      "intercepto": 4.2298428162574595,
+      "peso modelo 1": 4.266104965163618,
+      "peso modelo 2": 3.944662735737605
+    },
+    {
+      "dobra (fonte fora)": "shiftyspeech",
+      "intercepto": 3.9621771802261923,
+      "peso modelo 1": 4.182115460058043,
+      "peso modelo 2": 3.580074949081148
+    },
+    {
+      "dobra (fonte fora)": "validação inteira (usada no dev_shift e no teste)",
+      "intercepto": 4.218611528111181,
+      "peso modelo 1": 4.430957689908483,
+      "peso modelo 2": 3.9788749222818494
+    }
+  ],
+  "colados_C": 1.0,
+  "colados_camadas": {
+    "xlsr": [
+      5,
+      7,
+      8,
+      11
+    ],
+    "wavlm": [
+      4,
+      6,
+      7
+    ]
+  },
+  "comparacoes": [
+    {
+      "atual": "fusao_media",
+      "desafiante": "fusao_stacking",
+      "relevante em todas as seeds": false,
+      "por seed": [
+        {
+          "dif AUC pior (desafiante - atual)": 0.00038920601971981217,
+          "IC95": [
+            -0.0004857867897953838,
+            0.00126820954028517
+          ],
+          "IC95 exclui zero": false,
+          "média bootstrap": 0.00036808039294555783,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        }
+      ]
+    },
+    {
+      "atual": "fusao_media",
+      "desafiante": "fusao_colados",
+      "relevante em todas as seeds": false,
+      "por seed": [
+        {
+          "dif AUC pior (desafiante - atual)": -0.030649974052932016,
+          "IC95": [
+            -0.04613513499498367,
+            -0.01696646586060524
+          ],
+          "IC95 exclui zero": true,
+          "média bootstrap": -0.030633751302957535,
+          "reamostragens válidas": 2000,
+          "reamostragens descartadas": 0,
+          "relevante": false
+        }
+      ]
+    }
+  ],
+  "vencedor_fusao": "fusao_media",
+  "metricas": {
+    "fusao_media": {
+      "limiar A (logit)": -0.3871846506559865,
+      "AUC dfadd": 1.0,
+      "EER dfadd": 0.0,
+      "acc bal dfadd": 0.9998065015479876,
+      "recall fake dfadd": 0.9996130030959752,
+      "falso alarme dfadd": 0.0,
+      "AUC shiftyspeech": 0.997763167691207,
+      "EER shiftyspeech": 0.02621722846441949,
+      "acc bal shiftyspeech": 0.9760875828291559,
+      "recall fake shiftyspeech": 0.9806972054163066,
+      "falso alarme shiftyspeech": 0.028522039757994815,
+      "AUC codecfake_plus": 0.905098598858329,
+      "EER codecfake_plus": 0.1700830306175402,
+      "acc bal codecfake_plus": 0.7878178515827712,
+      "recall fake codecfake_plus": 0.6914893617021277,
+      "falso alarme codecfake_plus": 0.11585365853658537,
+      "AUC dev_shift": 0.976172222935915,
+      "EER dev_shift": 0.0631146476491338,
+      "acc bal dev_shift": 0.8916105176870528,
+      "recall fake dev_shift": 0.9838465421504291,
+      "falso alarme dev_shift": 0.2006255067763234,
+      "AUC pior fonte": 0.905098598858329,
+      "fonte pior": "codecfake_plus",
+      "AUC média (G)": 0.9697584973713628,
+      "acc bal média (G)": 0.9138306134117419,
+      "EER média (G)": 0.06485372668277337,
+      "val EER média por fonte (3)": 0.06543341969398657,
+      "val EER global": 0.009189068666619544,
+      "dev AUC": 0.976172222935915,
+      "dev EER": 0.0631146476491338,
+      "limiar B (logit)": 0.3146895017341065,
+      "dev acurácia": 0.8338044092707745,
+      "dev acc bal": 0.8916105176870528,
+      "dev acurácia trivial": 0.81335971358583
+    },
+    "fusao_stacking": {
+      "limiar A (logit)": 0.9616935000898792,
+      "AUC dfadd": 1.0,
+      "EER dfadd": 0.0,
+      "acc bal dfadd": 0.9997097523219814,
+      "recall fake dfadd": 0.9994195046439629,
+      "falso alarme dfadd": 0.0,
+      "AUC shiftyspeech": 0.9977686458511529,
+      "EER shiftyspeech": 0.026073177758570994,
+      "acc bal shiftyspeech": 0.975511380005762,
+      "recall fake shiftyspeech": 0.9804091040046097,
+      "falso alarme shiftyspeech": 0.029386343993085567,
+      "AUC codecfake_plus": 0.9054878048780488,
+      "EER codecfake_plus": 0.17274260508562533,
+      "acc bal codecfake_plus": 0.7851582771146861,
+      "recall fake codecfake_plus": 0.6861702127659575,
+      "falso alarme codecfake_plus": 0.11585365853658537,
+      "AUC dev_shift": 0.9765650431093535,
+      "EER dev_shift": 0.0634828800162414,
+      "acc bal dev_shift": 0.8917263522752609,
+      "recall fake dev_shift": 0.9838465421504291,
+      "falso alarme dev_shift": 0.20039383759990734,
+      "AUC pior fonte": 0.9054878048780488,
+      "fonte pior": "codecfake_plus",
+      "AUC média (G)": 0.9699553734596387,
+      "acc bal média (G)": 0.9130264404294226,
+      "EER média (G)": 0.06557466571510943,
+      "val EER média por fonte (3)": 0.0662719276147321,
+      "val EER global": 0.009498532477693198,
+      "dev AUC": 0.9765650431093535,
+      "dev EER": 0.0634828800162414,
+      "limiar B (logit)": 6.795257364447075,
+      "dev acurácia": 0.8339928396457509,
+      "dev acc bal": 0.8917263522752609,
+      "dev acurácia trivial": 0.81335971358583
+    },
+    "fusao_colados": {
+      "limiar A (logit)": -0.1895139217376709,
+      "AUC dfadd": 0.9999996582507029,
+      "EER dfadd": 0.00032173987574541133,
+      "acc bal dfadd": 0.9993711300309598,
+      "recall fake dfadd": 0.9987422600619195,
+      "falso alarme dfadd": 0.0,
+      "AUC shiftyspeech": 0.9976882165028573,
+      "EER shiftyspeech": 0.023480265053298775,
+      "acc bal shiftyspeech": 0.9768078363583982,
+      "recall fake shiftyspeech": 0.9804091040046097,
+      "falso alarme shiftyspeech": 0.02679343128781331,
+      "AUC codecfake_plus": 0.874448624805397,
+      "EER codecfake_plus": 0.17391022314478463,
+      "acc bal codecfake_plus": 0.7911909704203425,
+      "recall fake codecfake_plus": 0.7287234042553191,
+      "falso alarme codecfake_plus": 0.14634146341463414,
+      "AUC dev_shift": 0.9918819308158188,
+      "EER dev_shift": 0.02977621353980621,
+      "acc bal dev_shift": 0.9308369858846111,
+      "recall fake dev_shift": 0.9828369510348309,
+      "falso alarme dev_shift": 0.1211629792656087,
+      "AUC pior fonte": 0.874448624805397,
+      "fonte pior": "codecfake_plus",
+      "AUC média (G)": 0.966004607593694,
+      "acc bal média (G)": 0.9245517306735779,
+      "EER média (G)": 0.056872110403408754,
+      "val EER média por fonte (3)": 0.06590407602460961,
+      "val EER global": 0.00946280543231984,
+      "dev AUC": 0.9918819308158188,
+      "dev EER": 0.02977621353980621,
+      "limiar B (logit)": 2.5097646713256836,
+      "dev acurácia": 0.8982475975127191,
+      "dev acc bal": 0.9308369858846111,
+      "dev acurácia trivial": 0.81335971358583
+    }
+  }
+}

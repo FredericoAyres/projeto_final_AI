@@ -1,0 +1,141 @@
+{
+  "cabeca": "RL",
+  "frontend": "xlsr",
+  "spec_final": {
+    "tipo": "rl",
+    "frontend": "xlsr",
+    "camadas": {
+      "xlsr": [
+        11
+      ]
+    },
+    "pesos": "fonte",
+    "C": {
+      "xlsr": 1.0
+    }
+  },
+  "regra_limiar": "A",
+  "limiares": {
+    "A": -0.5355920791625977,
+    "C": -0.49654340744018555,
+    "D": -2.554166436195372
+  },
+  "loso_media": {
+    "A": 0.9155547725538874,
+    "C": 0.9154722293212417,
+    "D": 0.9171227559855103
+  },
+  "dev_acc_bal_por_regra": {
+    "A": 0.8874642416988964,
+    "C": 0.887675182272829,
+    "D": 0.8690300820846811
+  },
+  "metricas_final": {
+    "limiar A (logit)": -0.5355920791625977,
+    "AUC dfadd": 0.9996735952463492,
+    "EER dfadd": 0.005825082593970127,
+    "acc bal dfadd": 0.9941749174060299,
+    "recall fake dfadd": 0.9940015479876161,
+    "falso alarme dfadd": 0.00565171317555634,
+    "AUC shiftyspeech": 0.9820836778971436,
+    "EER shiftyspeech": 0.06813598386632094,
+    "acc bal shiftyspeech": 0.9315759147219822,
+    "recall fake shiftyspeech": 0.9366176894266782,
+    "falso alarme shiftyspeech": 0.07346585998271392,
+    "AUC codecfake_plus": 0.9099636741048261,
+    "EER codecfake_plus": 0.14497924234561493,
+    "acc bal codecfake_plus": 0.8234950700570836,
+    "recall fake codecfake_plus": 0.7872340425531915,
+    "falso alarme codecfake_plus": 0.1402439024390244,
+    "AUC dev_shift": 0.9718860508082896,
+    "EER dev_shift": 0.061120462533767295,
+    "acc bal dev_shift": 0.8874642416988964,
+    "recall fake dev_shift": 0.9717314487632509,
+    "falso alarme dev_shift": 0.19680296536545813,
+    "AUC pior fonte": 0.9099636741048261,
+    "fonte pior": "codecfake_plus",
+    "AUC média (G)": 0.9659017495141521,
+    "acc bal média (G)": 0.909177535970998,
+    "EER média (G)": 0.07001519283491833,
+    "val EER média por fonte (3)": 0.07298010293530201,
+    "val EER global": 0.02307972486604739,
+    "dev AUC": 0.9718860508082896,
+    "dev EER": 0.061120462533767295,
+    "limiar B (logit)": 9.326278686523438,
+    "dev acurácia": 0.8346523459581685,
+    "dev acc bal": 0.8874642416988964,
+    "dev acurácia trivial": 0.81335971358583
+  },
+  "final_menos_base_bootstrap": {
+    "dif AUC pior (desafiante - atual)": 0.0062272963155163286,
+    "IC95": [
+      0.0013593852054327726,
+      0.011103195138275623
+    ],
+    "IC95 exclui zero": true,
+    "média bootstrap": 0.006084271240979433,
+    "reamostragens válidas": 2000,
+    "reamostragens descartadas": 0,
+    "relevante": true
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "modificação": "zona de camadas: {'xlsr': [11]}",
+      "AUC pior antes": 0.9037363777893098,
+      "AUC pior depois": 0.9037363777893098,
+      "ganho": 0.0,
+      "fonte pior depois": "codecfake_plus",
+      "dev AUC antes": 0.9719474472331351,
+      "dev AUC depois": 0.9719474472331351,
+      "queda dev": 0.0,
+      "acc bal média antes": 0.9093994286293803,
+      "acc bal média depois": 0.9093994286293803,
+      "mantida": false,
+      "zona": "{\"xlsr\": [11]}"
+    },
+    {
+      "passo": 2,
+      "modificação": "grade ampla de C: {'xlsr': 10.0}",
+      "AUC pior antes": 0.9037363777893098,
+      "AUC pior depois": 0.9046769590036325,
+      "ganho": 0.0009405812143227221,
+      "fonte pior depois": "codecfake_plus",
+      "dev AUC antes": 0.9719474472331351,
+      "dev AUC depois": 0.9707936622283289,
+      "queda dev": 0.0011537850048062293,
+      "acc bal média antes": 0.9093994286293803,
+      "acc bal média depois": 0.9115044058183179,
+      "mantida": false,
+      "C": "{\"xlsr\": 10.0}"
+    },
+    {
+      "passo": 3,
+      "modificação": "pesos iguais por fonte (sample_weight)",
+      "AUC pior antes": 0.9037363777893098,
+      "AUC pior depois": 0.9099636741048261,
+      "ganho": 0.0062272963155163286,
+      "fonte pior depois": "codecfake_plus",
+      "dev AUC antes": 0.9719474472331351,
+      "dev AUC depois": 0.9718860508082896,
+      "queda dev": 6.139642484548347e-05,
+      "acc bal média antes": 0.9093994286293803,
+      "acc bal média depois": 0.909177535970998,
+      "mantida": true
+    },
+    {
+      "passo": 4,
+      "modificação": "regra de limiar: A",
+      "mantida": false,
+      "AUC pior antes": 0.9099636741048261,
+      "AUC pior depois": 0.9099636741048261,
+      "ganho": 0.0,
+      "acc bal LOSO A": 0.9155547725538874,
+      "acc bal LOSO C": 0.9154722293212417,
+      "acc bal LOSO D": 0.9171227559855103,
+      "dev acc bal A": 0.8874642416988964,
+      "dev acc bal C": 0.887675182272829,
+      "dev acc bal D": 0.8690300820846811
+    }
+  ]
+}

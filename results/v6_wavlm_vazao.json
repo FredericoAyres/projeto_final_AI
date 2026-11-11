@@ -1,0 +1,16 @@
+{
+  "n": 500,
+  "num_workers": 4,
+  "segundos_total": 14.1,
+  "clipes_por_s": 35.38,
+  "clipes_por_s_sem_partida": 40.82,
+  "carga_modelo_s": 7.9,
+  "pico_gpu_gb": 3.76,
+  "clipes_com_nan": 0,
+  "refeitos_bf16": 0,
+  "medido_em": "2026-11-10T22:25:21",
+  "pico_memoria_gb_processo_e_workers": 11.6,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "estimativa_extracao_min (treino+val+dev, 70.613 clipes)": 33.3,
+  "estimativa_teste_min (51.320 clipes)": 24.2
+}

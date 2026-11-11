@@ -49,6 +49,9 @@ AUC e EER são as métricas principais (não dependem de limiar). "val (média/f
 | v5 · X2 = XLS-R refeito (escolhido) | 2026-11-10 | (referência pareada da v5: o S2 da v4 refeito noutra placa) | o mesmo `concat_top3` da v4 (camadas 5, 6, 7; C = 0,1) | 1,1% / 5,9% | 0,983 / 6,0% | 0,978 / 6,8% | 0,924 / 14,8% | 0,842 / 25,0% | 16,9% (lim. A) · 2,5% (lim. B) | reproduziu a v4 (AUC do teste a até 0,0008 do S2); segue como o modelo do projeto | `notebooks/versions/v5_wavlm.ipynb` |
 | v5 · W2 = WavLM Large | 2026-11-10 | um modelo pré-treinado também a "limpar" fala com ruído (WavLM, Microsoft, ~94 mil h de inglês) generaliza melhor para vozes de internet que o XLS-R (Meta) | só o modelo congelado; o resto igual à v4 (cabeça final pela validação: `concat_top3`, camadas 4, 6, 8; C = 0,1) | 1,1% / 6,8% | 0,970 / 7,5% | 0,950 / 11,4% | 0,914 / 14,5% | 0,768 / 32,3% | 34,5% · 8,5% | pior que o XLS-R em AUC nos 5 bancos com duas classes (demonstrado no teste); na decisão (dev_shift), empate pela regra; muito pior em pt-BR | `notebooks/versions/v5_wavlm.ipynb` |
 | v5 · W1 = WavLM, só camada 24 | 2026-11-10 | (referência: "só transfer learning" com o WavLM) | a última camada do WavLM + regressão logística (C = 1, pela validação) | 6,5% / 15,1% | 0,956 / 10,0% | 0,946 / 10,3% | 0,899 / 17,9% | 0,557 / 45,3% | 87,3% · 73,6% | a última camada do WavLM quase não serve para pt-BR (BRSpeech-DF perto do acaso) | `notebooks/versions/v5_wavlm.ipynb` |
+| v6 · F2 = sistema final do funil | 2026-11-10 | escolher front-end, cabeça e ajuste pela AUC da **pior** fonte (val + dev_shift) acha um sistema melhor que a v4 | funil E1–E5: front-end só Meta (WavLM e fusão empataram), cabeça RL (MLP e CNN empataram), camada 11 sozinha, C = 1, pesos iguais por fonte, limiar A | 2,3% / 7,3% (pior fonte 0,910) | 0,972 / 6,1% | 0,972 / 8,3% | 0,937 / 13,6% | 0,744 / 32,7% | 40,4% (lim. A) · 17,3% (lim. B) | pior que a v4 no teste (média da acurácia nos 3 principais 0,829 × 0,851), sobretudo em pt-BR: a pior fonte foi sempre o CodecFake+ (352 clipes) e ela não protege o português | `notebooks/versions/v6_funil.ipynb` |
+| v6 · F1 = só Meta + RL básica | 2026-11-10 | (referência: o front-end vencedor com a cabeça mais simples) | XLS-R, camada 11 sozinha, C = 1 | 2,2% / 7,6% (pior fonte 0,904) | 0,972 / 6,1% | 0,972 / 8,2% | 0,940 / 13,2% | 0,741 / 33,3% | 41,2% · 17,4% | igual ao F2 no teste (o ajuste fino da E5 não fez diferença fora da validação) | `notebooks/versions/v6_funil.ipynb` |
+| v6 · F0 = v4 refeita | 2026-11-10 | (referência: a v4 recalculada nesta rodada) | XLS-R `concat_top3` (5, 6, 7), C = 0,1 | 1,0% / 5,9% (pior fonte 0,903) | 0,983 / 5,9% | 0,979 / 6,8% | 0,925 / 14,7% | 0,842 / 24,9% | 16,7% · 2,5% | reproduziu a v4 exatamente (validação, dev_shift e teste); continua o modelo do projeto | `notebooks/versions/v6_funil.ipynb` |
 
 Na v5, os clipes de validação, dev_shift e teste são exatamente os da v4 (mesma seed), e os dois modelos rodaram na mesma máquina (RTX 4050 6 GB); a escolha entre eles foi feita na validação + dev_shift, antes do teste. Nas linhas da v4, "EER val" é na validação da v4 (19.999 clipes, subamostra estratificada); o teste usa até 5.000 clipes por classe e banco, avaliado uma vez; o falso alarme do CORAA vem com os dois limiares pré-registrados (A = EER da validação; B = EER do dev_shift). As outras cinco execuções da v3 não foram avaliadas no teste.
 
@@ -489,9 +492,122 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
 - **Limitações:** uma única amostra de treino e uma regressão por sistema; dev_shift com 16 locutores (por isso a decisão deu empate); bootstrap do teste mede só a amostra de teste; os seis bancos de teste estavam consumidos desde a v4 (o teste da v5 só reporta); a explicação das camadas é hipótese; só dois modelos comparados (o Gemini Embedding 2, do Google, ficou de fora por ser API paga).
 - **Arquivos:** notebook `notebooks/versions/v5_wavlm.ipynb` (e o `notebook.ipynb` da raiz, igual); no git: `results/v5_{xlsr,wavlm}_{camadas,cabecas,somas,resumo,atalhos,concluido}.*`, `results/v5_comparacao*`, `results/v5_teste_{final,diferencas}.csv`, `v5_teste_final_resumo.json`, `v5_teste_final.png`, `v5_teste_final_concluido.json`; fora do git: notas por clipe (`results/v5_*notas*.parquet`, `v5_teste_notas.parquet`), os caches `data/processed/v5_{xlsr,wavlm}_cache{,_teste}/` e os logs.
 
+### v6 - pré-registro (funil: front-end, fusão, cabeça, maximização)
+
+- **Escrito em:** 2026-11-10 22:15 (−03:00), branch `v6-fusao`, a partir do commit `9d62c03` (v5 fechada), **antes de qualquer resultado da v6** (nem os testes QUICK rodaram). Só foi feito: o download dos pesos `microsoft/wavlm-large` (revisão `c1423ed94bb01d80a3f5ce5bc39f6026a0f4828c`, `pytorch_model.bin` de 1.261.990.257 bytes, o mesmo do colega) e a conferência do estado (manifest `f2309eb356b4…`; `data/processed/v4_cache` com 40.000 / 19.999 / 10.614 clipes de treino / validação / dev_shift, iguais clipe a clipe ao `plano.parquet`). Nada abaixo muda depois de ver resultados; se algo mudar por erro de execução, vai num bloco datado separado, com o motivo. As justificativas de cada candidato ("por que X e não Y") estão em `docs/DECISOES_V6.md`, escritas também antes dos resultados.
+- **O que já sabemos (a rodada NÃO é cega):** os números de validação e dev_shift por camada dos dois modelos (v4 e v5) e os do teste (v4 e v5). Pela EER da validação, o CodecFake+ é a fonte mais difícil nos dois modelos (14,8% e 17,4% na cabeça final); é provável que ele seja a "pior fonte" abaixo. **Os seis bancos de teste já foram consultados duas vezes (v4 e v5):** nada desta rodada é escolhido olhando para eles.
+- **Pergunta da v6:** com o mesmo pipeline e os mesmos clipes, (1) qual front-end usar: só Meta (XLS-R 300M), só Microsoft (WavLM Large) ou a fusão dos dois; (2) qual cabeça por cima: regressão logística (RL), MLP ou CNN; (3) quanto se ganha "apertando" a cabeça vencedora. ⚠️ Fora da trilha: os modelos auto-supervisionados (como na v4/v5), o bootstrap, o stacking e a CNN que anda ao longo das camadas.
+
+**Conjuntos e métricas (valem para todas as etapas):**
+- **Clipes:** os do plano do `v4_cache` (seed 42): treino 40.000 (20.000 reais + 20.000 fakes), validação 19.999, dev_shift 10.614; o WavLM é extraído **nos mesmos clipes** (o plano é copiado do `v4_cache`, sem os conjuntos `*_semcorte`) e a identidade (mesmo `idx_manifest` e mesmo caminho, na mesma ordem) é conferida e registrada. O XLS-R é lido do `v4_cache` (não é reextraído).
+- **"Fontes de decisão" (G):** as três fontes da validação com as duas classes (`dfadd`, `shiftyspeech`, `codecfake_plus`) e o `dev_shift`. O LibriSpeech da validação só tem reais: fica fora das AUCs, mas entra nas regras de limiar (E5).
+- **Métrica primária:** **AUC da pior fonte** = menor AUC entre as quatro fontes de G.
+- **Secundárias:** média do AUC nas quatro fontes; acurácia balanceada de cada fonte e a média (limiar A); EER de cada fonte e a média nas quatro; e, para continuidade com a v4/v5, a EER média por fonte só da validação (três fontes).
+- **Limiares:** (A) ponto de EER da validação inteira; (B) ponto de EER do dev_shift; (E5) o escolhido na etapa 5 entre A, C e D (definidos lá). Nenhum limiar é ajustado no teste.
+- **Bootstrap pareado** (2.000 reamostragens, seed 42, os mesmos sorteios para todos os sistemas): estratificado por fonte de G; dentro de cada fonte, sorteia **locutores** com reposição (`speaker_id`: DFADD 22, ShiftySpeech 12, dev_shift 16) e, onde não há locutor (CodecFake+), **clipes**. Em cada reamostragem: AUC de cada fonte, a pior delas, para cada sistema; diferença = desafiante − atual. Reamostragem sem as duas classes numa fonte é descartada (o número é reportado).
+- **Diferença relevante:** IC95 da diferença de AUC da pior fonte **exclui o zero** E a diferença (na amostra inteira) é **≥ 0,005** a favor do desafiante. Senão, **empate**, e fica a opção mais simples.
+- **Regra do desafiante (sequencial):** começa na opção mais simples; cada opção mais complexa, na ordem, só toma o lugar se tiver diferença relevante sobre a que está no lugar. Ordens: E3 só Meta → só Microsoft → fusão; dentro da fusão (E2), média das notas → stacking → vetores colados; E4 RL → MLP → CNN.
+- **Igualdade:** toda comparação usa os mesmos clipes, a mesma cabeça (quando é o front-end que se compara), os mesmos splits e as mesmas seeds.
+
+**E1 · Meta × Microsoft (mesmo pipeline, mesma máquina, notas por clipe):**
+- Vazão do WavLM medida com 500 clipes antes; orçamento de 3 h (cumulativo) para a extração de treino, validação e dev_shift; sem a ablação sem corte.
+- Nos dois modelos: RL por camada (saídas 0 a 24, média no tempo, padronizada com média e desvio do treino; lbfgs, `max_iter` 1.000, `tol` 1e-4), C em {1e-3, 1e-2, 1e-1, 1}, **C de cada camada escolhido pela AUC da pior fonte**. As camadas são ordenadas pela AUC da pior fonte; `concat_top3` e `concat_top4` = as 3 e as 4 melhores, com C escolhido do mesmo jeito. **Melhor cabeça de cada modelo** = a de maior AUC da pior fonte entre as 25 camadas, `concat_top3` e `concat_top4` (desempate: maior AUC média).
+- **Reprodução do XLS-R:** a mesma grade, escolhendo C pela regra da v4 (EER média por fonte da validação), tem de dar EER média por fonte por camada a no máximo **0,5 ponto** da `results/v4_camadas.csv`. Se não der, isso é registrado e investigado antes de comparar; o XLS-R comparado é o recalculado aqui.
+- Entregas: AUC por fonte e pior fonte por camada e por cabeça, nos dois modelos (tabela e gráfico); bootstrap pareado da melhor cabeça do WavLM − melhor cabeça do XLS-R; a referência v4 (XLS-R, camadas 5, 6, 7, C = 0,1) calculada nas mesmas métricas.
+
+**E2 · Fusão (sobre a melhor cabeça de cada modelo):**
+- Antes: correlação (Pearson e Spearman) dos logits dos dois modelos, por classe, na validação e no dev_shift; tabela 2×2 de erros (os dois acertam, só a Meta acerta, só a Microsoft acerta, os dois erram), cada modelo no seu limiar A, na validação e no dev_shift.
+- **(a) Média das notas:** logit de cada modelo padronizado com a média e o desvio **da validação**; média simples dos dois.
+- **(b) Vetores colados:** as camadas das melhores cabeças dos dois modelos, lado a lado; cada dimensão padronizada com o treino e cada bloco (modelo) dividido pela raiz do seu nº de dimensões (cada modelo pesa o mesmo na entrada); RL com C em {1e-3, 1e-2, 1e-1, 1}, escolhido pela AUC da pior fonte.
+- **(c) Stacking:** RL de duas entradas (os dois logits padronizados pela validação; C = 1) com **cross-fitting agrupado por fonte dentro da validação**: em cada uma das 4 fontes da validação (DFADD, ShiftySpeech, CodecFake+, LibriSpeech), a RL é treinada nas outras três e dá a nota dessa fonte (sempre fora da amostra). No dev_shift, a nota vem da RL treinada na validação inteira. Coeficientes reportados (validação inteira e por dobra).
+- Vencedor da fusão: regra do desafiante (a → c → b).
+
+**E3 · Front-end:** candidatos = melhor cabeça só Meta, melhor cabeça só Microsoft, vencedor da E2; regra do desafiante (Meta → Microsoft → fusão). O vencedor e as razões são registrados.
+
+**E4 · Três cabeças básicas sobre o vencedor (uma de cada vez):**
+- **RL básica:** a melhor camada única (AUC da pior fonte, com C = 1), padronizada, C = 1.
+- **MLP básico:** a mesma entrada; 1 camada escondida de 256, ReLU, dropout 0,3; AdamW (lr 1e-3, weight decay 1e-3), lote 256, até 30 épocas, early stopping pela EER média por fonte **da validação** (3 fontes; paciência 5); seeds 42, 123 e 2026.
+- **CNN básica sobre as 25 camadas** (⚠️ fora da trilha: a convolução anda ao longo das camadas do modelo, não no tempo): entrada 25 posições × 2.048 números (média e desvio de cada saída, padronizados com o treino); Conv1d(2048→64, k=3) + BatchNorm + ReLU, Conv1d(64→64, k=3) + ReLU, média global ao longo das posições, Linear(64→1); mesmo otimizador, lote, early stopping e seeds do MLP. Atenção (registrada antes): a CNN recebe também o desvio, que a RL e o MLP não recebem.
+- Se o vencedor da E3 for a média das notas: cada cabeça é treinada nos dois modelos e as notas são juntadas pela média (padronizadas pela validação); stacking: idem, juntadas pelo stacking com cross-fitting; vetores colados: a entrada é a concatenação das melhores camadas dos dois (na CNN, os canais dos dois modelos lado a lado).
+- Decisão: regra do desafiante RL → MLP → CNN; um MLP ou uma CNN só toma o lugar se a diferença for relevante **em cada uma das 3 seeds** (contra a mesma RL). Reportados: tempo, nº de parâmetros, métricas por fonte de cada seed e a referência v4.
+
+**E5 · Maximizar a cabeça vencedora (uma modificação de cada vez, cumulativas, nesta ordem):**
+- **Regra de manter:** a modificação fica se a AUC da pior fonte subir **≥ 0,003** sobre o estado atual **E** a AUC do dev_shift não cair mais que **0,01**. O efeito de cada passo (antes e depois) é reportado, inclusive o dos descartados.
+- **Se for a RL:** (1) zona de camadas: a melhor entre as camadas únicas e os trios de vizinhas (l−1, l, l+1), com C = 1, pela AUC da pior fonte; (2) grade ampla de C: 8 valores de 1e-4 a 10 em escala log (`logspace(-4, 1, 8)`), pela AUC da pior fonte; (3) pesos iguais por fonte de treino (`sample_weight` = 1 / nº de clipes da fonte, reescalado para reais e fakes somarem o mesmo peso) no lugar de peso igual por clipe; (4) regra de limiar, ver abaixo.
+- **Se for o MLP ou a CNN:** (1) weight decay 1e-2; (2) dropout 0,5; (3) até 60 épocas com paciência 10; (4) ensemble das 3 seeds (média dos logits); (5) regra de limiar. A regra de manter usa a média das 3 seeds (no ensemble, o próprio ensemble).
+- **Se for fusão:** os passos da RL são feitos em cada modelo (cada um pela sua AUC da pior fonte) e a regra de manter é medida no sistema fundido.
+- **Regra de limiar:** (A) EER global da validação; (C) mediana dos limiares de EER de cada fonte da validação com as duas classes; (D) em cada fonte da validação com reais, o limiar que deixa 5% de falso alarme nos reais (percentil 95 das notas dos reais); a mediana entre as fontes. Escolha por **validação cruzada deixando uma fonte de fora**: para cada fonte da validação com as duas classes (DFADD, ShiftySpeech, CodecFake+), o limiar é calculado com as outras fontes da validação e aplicado nela; vence a regra de maior acurácia balanceada média; se a diferença para a A for menor que 0,005, fica a A (a mais simples). O dev_shift só confirma (reportado, não escolhe). O limiar final é calculado na validação inteira pela regra escolhida.
+
+**E6 · Teste (uma vez, só para mostrar os finalistas; roda num script separado, depois de E1 a E5 e dos finalistas gravados em `results/v6_finalistas.json`):**
+- **Finalistas:** **F0** = v4 (XLS-R `concat_top3`, camadas 5, 6, 7, C = 0,1, limiar A), referência; **F1** = o front-end vencedor da E3 com a RL básica da E4; **F2** = o sistema final da E5, com o limiar escolhido.
+- **Amostra:** os mesmos 51.320 clipes da v4 e da v5 (`src/teste_v4.py: amostra_teste_idx`, até 5.000 por classe e banco, seed 42). Se o vencedor envolver o WavLM (sozinho ou em fusão), extrai-se o teste do WavLM (orçamento de 2 h); senão, **não** se extrai e os números do WavLM no teste são os do colega (`results/v5_teste_*`), rotulados "do colega, sem notas por clipe".
+- **Métricas por banco:** acurácia, acurácia balanceada, acurácia trivial, AUC, EER, recall de fake, falso alarme; média da acurácia dos três principais com duas classes (In-the-Wild, LlamaPartialSpoof, BRSpeech-DF); falso alarme do CORAA; ASVspoof 2019 e 2021 como secundários. Limiares A, B e o da E5. Bootstrap 1.000 por banco, dentro de cada classe, seed 42, pareado (**mede só a amostra de teste**, não o treino).
+- **Leitura pré-definida (só reportada):** F1 − F0 e F2 − F0 em AUC e acurácia balanceada; "relevante" só com o mesmo sinal nos três principais e o IC95 sem o zero em cada um (a regra da v4). Nada é reescolhido depois do teste.
+- **Contaminação:** os bancos já foram vistos duas vezes (v4 e v5); o teste da v6 é um terceiro olhar, que só serve para mostrar os finalistas.
+
+**Execução:** `scripts/vigia_v6.ps1` → `scripts/rodar_v6.ps1` → `scripts/v6.py <etapa>` (E1 a E5 e finalistas; `AVALIAR_TESTE_FINAL = False`) e `scripts/v6_teste.py <etapa>` (E6); um processo pesado por vez, `NUM_WORKERS` 4 e depois 2, threads = 1, orçamento total da noite de 7 h.
+
+**Detalhes fixados ao escrever o código (2026-11-10 22:35, ainda antes de qualquer resultado do funil; só a vazão do WavLM tinha sido medida):**
+- Todas as etapas usam os **mesmos clipes**: treino, validação e dev_shift são sempre abertos nos dois modelos e um clipe com erro de leitura em qualquer um sai de todos, mesmo quando a etapa só usa um modelo.
+- `sample_weight` por fonte (E5, passo 3): além de reais e fakes somarem o mesmo, os pesos são reescalados para **média 1** (assim o C continua na mesma escala do peso por clipe).
+- Nos vetores colados, a E5 ajusta a zona de camadas de cada modelo pela RL dele sozinho, mas o C é **um só** (o da RL única dos vetores colados), escolhido pela pior fonte do sistema colado.
+- Se a vencedora da E4 for MLP ou CNN e o ensemble não for mantido na E5, o F2 usa a **seed 42** (a primeira da lista).
+- A extração do WavLM (treino, validação, dev_shift) foi lançada **diretamente** (`scripts/v6.py medir` e `extrair`, num processo oculto) antes do vigia, para ganhar tempo; o vigia só foi lançado depois que ela terminou (com o marcador gravado, ele pula a extração). Vazão medida (500 clipes, 4 workers): **35,4 clipes/s** (`results/v6_wavlm_vazao.json`), pico de GPU 3,76 GB, 0 NaN.
+
+### v6 · fechamento (2026-11-10)
+
+- **Data e execução:** extração do WavLM às 22:24 a 22:48 (`scripts/v6.py medir` e `extrair`, direto); funil e teste às 23:07 a 23:26 pelo vigia (`scripts/vigia_v6.ps1`, 1 tentativa, nenhuma falha). Branch `v6-fusao`, commit `9d62c03` com mudanças não commitadas. Tudo pelo pré-registro acima, **sem nenhuma mudança** de regra; o teste foi avaliado **uma vez**, depois dos finalistas gravados (`results/v6_finalistas.json`, 23:23:25).
+- **Conferências:** os dois modelos têm os mesmos 40.000 / 19.999 / 10.614 clipes (mesmo `idx_manifest` e caminho, na mesma ordem; 0 erros de leitura). Reprodução do XLS-R × v4: **0,0 ponto** de diferença de EER média por fonte em todas as camadas; notas da cabeça da v4 iguais às gravadas (diferença 0). No teste, F0 reproduziu a v4 (In-the-Wild 0,979, CORAA 16,7% / 2,5%) e as notas dos três finalistas, recalculadas, bateram com as gravadas antes do teste (diferença 0).
+- **Funil** (`results/v6_funil.csv`; AUC da pior fonte, val + dev_shift; a pior fonte foi o **CodecFake+** em todas as cabeças comparadas):
+
+  | etapa | candidatos (AUC da pior fonte) | vencedor pela regra | por quê |
+  |:--|:--|:--|:--|
+  | E1 | Meta `concat_top4` (5, 7, 8, 11; C = 1) 0,907 · Microsoft `concat_top3` (4, 6, 7; C = 1) 0,891 · v4 0,903 | empate | Microsoft − Meta −0,017 (IC95 −0,048 a +0,001) |
+  | E2 | média das notas 0,905 · stacking 0,905 · vetores colados 0,874 | média das notas | stacking +0,0004 (IC95 −0,0005 a +0,0013); colados pior |
+  | E3 | só Meta 0,907 · só Microsoft 0,891 · fusão (média) 0,905 | **só Meta** | nenhum desafiante relevante (fusão −0,002, IC95 −0,012 a +0,008) |
+  | E4 | RL 0,904 · MLP 0,912 / 0,906 / 0,902 · CNN 0,906 / 0,908 / 0,910 | **RL** | nenhuma seed com diferença relevante (todos os IC95 com o zero) |
+  | E5 | zona (+0,000) · C ampla (+0,001) · pesos por fonte (+0,006) · limiar A/C/D | pesos por fonte; limiar **A** | só os pesos passaram a régua (+0,003); D não ganhou 0,005 na validação cruzada (0,917 × 0,916) |
+
+  Antes de comparar as fusões: os dois modelos acertam juntos 97,7% da validação e erram juntos 0,5%; no dev_shift, só a Meta acerta 6,4% e só a Microsoft 3,2%; correlação dos logits de 0,51 a 0,77 por classe. Stacking: pesos 4,4 (Meta) e 4,0 (Microsoft). Os vetores colados tiveram dev_shift 0,996, mas CodecFake+ 0,874.
+- **Teste (E6; `results/v6_teste_final.csv`, `v6_teste_diferencas.csv`, `v6_teste_resumo.json`; cada célula: AUC · acurácia · acurácia balanceada, no limiar principal, que foi A nos três):**
+
+  | banco | F0 (v4) | F1 (só Meta + RL básica) | F2 (sistema final) | trivial |
+  |:--|:--|:--|:--|--:|
+  | in_the_wild | 0,979 · 0,836 · 0,835 | 0,972 · 0,807 · 0,807 | 0,972 · 0,812 · 0,812 | 0,500 |
+  | llamapartialspoof | 0,925 · 0,855 · 0,855 | 0,940 · 0,863 · 0,863 | 0,937 · 0,863 · 0,863 | 0,500 |
+  | brspeech_df (pt-BR) | 0,842 · 0,863 · 0,679 | 0,741 · 0,814 · 0,576 | 0,744 · 0,813 · 0,571 | 0,791 |
+  | coraa (só real): falso alarme A / B | 16,7% / 2,5% | 41,2% / 17,4% | 40,4% / 17,3% | — |
+  | asvspoof2019_la (secundário) | 0,999 · 0,981 · 0,981 | 0,997 · 0,975 · 0,975 | 0,997 · 0,975 · 0,975 | 0,500 |
+  | asvspoof2021_df (secundário) | 0,997 · 0,942 · 0,942 | 0,996 · 0,954 · 0,954 | 0,996 · 0,950 · 0,950 | 0,500 |
+  | **média dos 3 principais (acurácia)** | **0,851** | 0,828 | 0,829 | 0,597 |
+
+  Leitura pré-definida: F1 − F0 e F2 − F0 **"não demonstradas"** pela regra (sinais trocados): piores no In-the-Wild (AUC −0,007) e no BRSpeech-DF (−0,100 / −0,097), melhores no LlamaPartialSpoof (+0,015 / +0,012), todos com IC95 sem o zero. O WavLM não foi extraído no teste (nenhum finalista o usa); os números dele no teste são os da v5 (do colega, sem notas por clipe).
+- **Conclusão em uma frase:** nada superou o XLS-R com regressão logística pelas regras (nem o WavLM, nem a fusão, nem MLP ou CNN), e o sistema escolhido pela AUC da pior fonte ficou pior que a v4 no teste, sobretudo em pt-BR, porque a pior fonte foi sempre o CodecFake+ (352 clipes), que não representa o português; a v4 continua sendo o modelo do projeto.
+- **Por que (descritivo):** escolher "a melhor camada única pela pior fonte, com C = 1" levou à camada 11 (dev_shift 0,972), em vez das camadas do meio (camada 7: 0,988), e tirou a regularização da v4 (C = 0,1). Ajudou no CodecFake+ (parecido com o treino) e atrapalhou o português (diferente do treino): o tema overfitting × regularização. A régua da E5 sem bootstrap aceitou +0,006 numa fonte de 352 clipes, e no teste o F2 ficou igual ao F1.
+- **Limitações:** uma amostra de treino; dev_shift com 16 locutores; CodecFake+ pequeno e sem locutor; os bancos de teste estavam consumidos (terceiro olhar); o bootstrap do teste mede só a amostra de teste; a CNN recebeu média e desvio e a RL/MLP só a média; a projeção da CNN da v3 (opcional) não foi feita.
+- **Arquivos:** notebook `notebooks/versions/v6_funil.ipynb` (igual ao `notebook.ipynb`); decisões `docs/DECISOES_V6.md`; no git: `results/v6_*.csv`, `.json`, `.png` e `results/v6_conclusao.md`; fora do git: notas por clipe (`results/v6_notas_*.parquet`, `v6_teste_notas.parquet`), `results/v6_parcial/`, o cache `data/processed/v6_wavlm_cache/` (6,8 GB), os checkpoints `models/v6_*.pt` e os logs.
+- **Tempos** (RTX 4060 8 GB, 4 workers; pico = processo + workers):
+
+  | etapa | tempo | pico |
+  |:--|--:|--:|
+  | vazão do WavLM (500 clipes) | 0,4 min | 11,6 GB |
+  | extração do WavLM (70.613 clipes) | 23,3 min | 14,2 GB (sistema 33,6 GB) |
+  | E1 (25 camadas × 4 C × 2 modelos + concatenações + bootstrap) | 7,8 min | 2,7 GB |
+  | E2 / E3 / E4 / E5 / finalistas | 0,4 / 0,1 / 3,0 / 3,8 / 0,1 min | 7,2 / 1,8 / 9,3 / 2,3 / 1,2 GB |
+  | E6 (teste: 3 finalistas, 1.000 bootstraps por banco) | 1,1 min | 2,6 GB |
+  | relatório (funil, gráficos, PCA e t-SNE) / notebook | 1,0 / 0,1 min | 1,4 GB / — |
+
 ## f) Ideias ainda não testadas
 
+**Da v6 (para a v7):**
+- **Um conjunto de decisão em português** (reais e fakes pt-BR fora dos testes): a v6 mostrou que a validação atual (inglês, estúdio) não protege o pt-BR; sem isso, qualquer escolha fina pode piorar o português sem ninguém ver.
+- **Uma fonte de codec maior** (por exemplo, o CoRS do CodecFake+, que não foi baixado): a pior fonte foi sempre o CodecFake+ de 352 clipes; decisões em milésimos de AUC nele são frágeis.
+- **Pior fonte com régua de ruído:** usar a pior fonte só quando a diferença passar no bootstrap também na E5, ou usar a média das duas piores.
+- **CNN sobre as camadas só com a média** (ablação do desvio), para separar o efeito da arquitetura do efeito da entrada.
+- Seguem valendo: limiar por domínio, várias amostras de treino, reais pt-BR no treino.
+
 **Da v5 (para a v6):**
+- *(Testado na v6: juntar o WavLM com o XLS-R, por média das notas, stacking e vetores colados, não superou o XLS-R sozinho.)*
 - **Modelos pré-treinados multilíngues** (o XLS-R ganhou sobretudo em pt-BR; o WavLM, só inglês, perdeu ali): se o projeto testar outro modelo, preferir um multilíngue (por exemplo, o XLS-R 1B ou o MMS, também da Meta).
 - **Juntar as camadas de baixo do WavLM com as do meio do XLS-R** (no dev_shift, as camadas 0 a 4 do WavLM foram melhores que as do XLS-R): só com escolha pela validação + dev_shift e confirmação num banco novo.
 - As ideias da v4 continuam valendo (reais em pt-BR no treino, limiar por domínio, várias amostras de treino).
@@ -578,6 +694,21 @@ Get-Content logs\v5_wavlm_resumo.txt    # resumo de cada modelo, atualizado a ca
 
 Sem `-Modelo`, o `rodar_v4.ps1` e o `scripts/v4.py` usam o prefixo `v4` (como a v4 foi rodada). Cache em `data/processed/v5_<modelo>_cache/` (fora do git). O `vigia_v4.ps1` não foi adaptado para a v5.
 
+**v6 (funil; retomável, com vigia):** na raiz, no PowerShell:
+
+```powershell
+Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -File scriptsigia_v6.ps1"   # noite inteira, sozinho
+Get-Content logs6_status.txt          # STATUS, tentativa, etapa, folga de memória
+Get-Content logs6_resumo.txt          # funil e teste, atualizados a cada etapa (também logs6_PROGRESSO.md)
+powershell -ExecutionPolicy Bypass -File scriptsodar_v6.ps1           # ou: uma rodada sem o vigia
+powershell -ExecutionPolicy Bypass -File scriptsodar_v6.ps1 -Quick    # teste rápido (arquivos _quick; V6_SUFIXO_EXTRA separa testes)
+python scripts/v6.py e1                 # uma etapa só: medir | extrair | e1 | e2 | e3 | e4 | e5 | finalistas | relatorio | status | concluir
+python scripts/v6_teste.py avaliar      # E6 (só depois dos finalistas): extrair | avaliar
+python scripts/v6_notebook.py           # monta e executa o notebook (só lê do disco) e copia para notebooks/versions/v6_funil.ipynb
+```
+
+O XLS-R é lido do `data/processed/v4_cache/` (não é reextraído); o WavLM fica em `data/processed/v6_wavlm_cache/` (6,8 GB, fora do git), extraído nos mesmos clipes. Cada etapa grava `results/v6_<etapa>_concluido.json`; com o marcador, rodar de novo pula a etapa (o relatório e o notebook são refeitos quando há marcador mais novo). A conclusão escrita do notebook fica em `results/v6_conclusao.md` (sem ele, a seção 8 diz "pendente").
+
 **Rodada completa de uma versão (v2 em diante), pelo terminal:** um experimento por processo, e depois o notebook, que só lê o que foi treinado. Feche antes o Claude Code e, se der, o VS Code e o OneDrive (juntos eles reservam ~6 GB de memória; ver h).
 
 ```powershell
@@ -657,3 +788,13 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
 
 - O env não tinha `nbconvert`; para executar o `notebook.ipynb` sem abrir o VS Code, foi instalado só o `nbclient` (0.11.0; `pip install nbclient`, que não mexe em torch nem em transformers). Ele não entra no `requirements.txt`, porque o projeto não depende dele: o notebook também roda no VS Code com o kernel do `env`.
 - O notebook da v5 só lê do disco (executado em ~10 s, 0 erros, 0,33 MB) e foi copiado com as saídas para `notebooks/versions/v5_wavlm.ipynb`. As figuras da seção 4 (histograma das notas) e o plano da seção 3 dependem de arquivos fora do git; sem eles, as células mostram "Pendente".
+
+### 2026-11-10 · v6 (execução)
+
+- **Código novo, no padrão da v4** (os scripts da v4 e da v5 não foram alterados): `src/v6_metricas.py` (pior fonte, bootstrap pareado por locutor com pesos de reamostragem fixos, regra do desafiante, regras de limiar A/C/D e validação cruzada por fonte), `src/v6_cabecas.py` (dados dos dois caches com os mesmos clipes, RL, MLP, CNN ao longo das camadas, fusões), `src/v6_relatorio.py` (funil, gráficos, PCA/t-SNE, status), `scripts/v6.py`, `scripts/v6_teste.py`, `scripts/v6_notebook.py`, `scripts/rodar_v6.ps1` e `scripts/vigia_v6.ps1` (cópia do `vigia_v4.ps1`: folga mínima de 11 GB, espera de até 10 min, 4 e depois 2 workers, até 8 tentativas, teto de 7 h, `logs/v6_BLOQUEIO.txt` se não concluir).
+- **`src/ssl.py: carregar_ssl`** ganhou o parâmetro opcional `revisao`: o WavLM foi baixado por revisão fixa (`c1423ed…`) e o cache do Hugging Face ficou sem o ponteiro `refs/main`, então o modo offline não achava o modelo. Sem `revisao`, o comportamento é o de antes.
+- **Por que não o `rodar_v4.ps1 -Modelo wavlm`:** ele grava em `results/v5_wavlm_*` e sobrescreveria arquivos do colega que estão no git. A extração usa as mesmas funções (`src/extracao_v4.py`, `src/ssl.py`), com o plano copiado do `v4_cache`.
+- **Memória:** com esta sessão aberta, a extração deixou a folga em ~1 GB (sistema 33,6 GB de 34,3 GB); por isso os testes QUICK só rodaram depois que ela terminou. As etapas do funil ficaram entre 1,2 e 9,3 GB.
+- **QUICK (2026-11-10 22:23 a 23:07; ~300 clipes; os números não valem e não foram interpretados):** `rodar_v6.ps1 -Quick` de ponta a ponta (sufixo `_quick_t1`; um erro de código achado e corrigido, a segunda chamada retomou sem refazer a extração); o vigia QUICK do zero (`_quick_t2`, código 0 em 2,5 min); e um teste de interrupção (`_quick_t3`): a extração foi morta à força depois do 1º shard da validação, o `rodar_v6` registrou a falha e pulou as etapas dependentes, o vigia esperou 2 min e a 2ª tentativa pulou os 3 shards prontos e terminou tudo; os shards da execução interrompida são **idênticos bit a bit** aos da execução sem interrupção.
+- **nbclient** (já instalado na v5) executa o notebook; ele só lê do disco (0 erros, 1,0 MB).
+

@@ -1,0 +1,187 @@
+{
+  "gravado_em": "2026-11-10T23:23:25",
+  "aviso": "gravado ANTES da E6; nada aqui pode mudar depois de ver o teste",
+  "regra_limiar_e5": "A",
+  "finalistas": {
+    "F0": {
+      "descrição": "v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",
+      "spec": {
+        "tipo": "rl",
+        "frontend": "xlsr",
+        "camadas": {
+          "xlsr": [
+            5,
+            6,
+            7
+          ]
+        },
+        "C": {
+          "xlsr": 0.1
+        },
+        "pesos": "clipe"
+      },
+      "limiar_principal": "A",
+      "limiares_logit": {
+        "A": -0.03953683376312256,
+        "B": 8.21838092803955,
+        "E5 (A)": -0.03953683376312256
+      },
+      "metricas_val_dev": {
+        "limiar A (logit)": -0.03953683376312256,
+        "AUC dfadd": 0.9999996240757733,
+        "EER dfadd": 0.00037011448874852174,
+        "acc bal dfadd": 0.9991776315789473,
+        "recall fake dfadd": 0.9983552631578947,
+        "falso alarme dfadd": 0.0,
+        "AUC shiftyspeech": 0.9969172899941159,
+        "EER shiftyspeech": 0.02909824258138865,
+        "acc bal shiftyspeech": 0.9719101123595506,
+        "recall fake shiftyspeech": 0.9801210025929127,
+        "falso alarme shiftyspeech": 0.036300777873811585,
+        "AUC codecfake_plus": 0.9031201349247535,
+        "EER codecfake_plus": 0.14802802283341981,
+        "acc bal codecfake_plus": 0.7824987026466009,
+        "recall fake codecfake_plus": 0.6808510638297872,
+        "falso alarme codecfake_plus": 0.11585365853658537,
+        "AUC dev_shift": 0.983269123392956,
+        "EER dev_shift": 0.058778773653776664,
+        "acc bal dev_shift": 0.8965456792616852,
+        "recall fake dev_shift": 0.9813225643614336,
+        "falso alarme dev_shift": 0.18823120583806324,
+        "AUC pior fonte": 0.9031201349247535,
+        "fonte pior": "codecfake_plus",
+        "AUC média (G)": 0.9708265430968996,
+        "acc bal média (G)": 0.9125330314616961,
+        "EER média (G)": 0.05906878838933341,
+        "val EER média por fonte (3)": 0.05916545996785233,
+        "val EER global": 0.010462650956287567,
+        "dev AUC": 0.983269123392956,
+        "dev EER": 0.058778773653776664,
+        "limiar B (logit)": 8.21838092803955,
+        "dev acurácia": 0.8434143583945732,
+        "dev acc bal": 0.8965456792616852,
+        "dev acurácia trivial": 0.81335971358583
+      }
+    },
+    "F1": {
+      "descrição": "front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",
+      "spec": {
+        "tipo": "rl",
+        "frontend": "xlsr",
+        "camadas": {
+          "xlsr": [
+            11
+          ]
+        },
+        "pesos": "clipe",
+        "C": {
+          "xlsr": 1.0
+        }
+      },
+      "limiar_principal": "A",
+      "limiares_logit": {
+        "A": -0.39549756050109863,
+        "B": 9.199010848999023,
+        "E5 (A)": -0.39549756050109863
+      },
+      "metricas_val_dev": {
+        "limiar A (logit)": -0.39549756050109863,
+        "AUC dfadd": 0.9997906785555323,
+        "EER dfadd": 0.004392999251979151,
+        "acc bal dfadd": 0.9953313628524529,
+        "recall fake dfadd": 0.9941950464396285,
+        "falso alarme dfadd": 0.0035323207347227126,
+        "AUC shiftyspeech": 0.9831875271262295,
+        "EER shiftyspeech": 0.06583117257274561,
+        "acc bal shiftyspeech": 0.9340247767214059,
+        "recall fake shiftyspeech": 0.9397868049553443,
+        "falso alarme shiftyspeech": 0.07173725151253241,
+        "AUC codecfake_plus": 0.9037363777893098,
+        "EER codecfake_plus": 0.15866632070576026,
+        "acc bal codecfake_plus": 0.8204462895692787,
+        "recall fake codecfake_plus": 0.7872340425531915,
+        "falso alarme codecfake_plus": 0.14634146341463414,
+        "AUC dev_shift": 0.9719474472331351,
+        "EER dev_shift": 0.061120462533767295,
+        "acc bal dev_shift": 0.8877952853743833,
+        "recall fake dev_shift": 0.9727410398788491,
+        "falso alarme dev_shift": 0.19715046913008225,
+        "AUC pior fonte": 0.9037363777893098,
+        "fonte pior": "codecfake_plus",
+        "AUC média (G)": 0.9646655076760516,
+        "acc bal média (G)": 0.9093994286293803,
+        "EER média (G)": 0.07250273876606309,
+        "val EER média por fonte (3)": 0.076296830843495,
+        "val EER global": 0.02211560638745302,
+        "dev AUC": 0.9719474472331351,
+        "dev EER": 0.061120462533767295,
+        "limiar B (logit)": 9.199010848999023,
+        "dev acurácia": 0.8345581307706802,
+        "dev acc bal": 0.8877952853743833,
+        "dev acurácia trivial": 0.81335971358583
+      }
+    },
+    "F2": {
+      "descrição": "sistema final da E5 (RL, xlsr), limiar A",
+      "spec": {
+        "tipo": "rl",
+        "frontend": "xlsr",
+        "camadas": {
+          "xlsr": [
+            11
+          ]
+        },
+        "pesos": "fonte",
+        "C": {
+          "xlsr": 1.0
+        }
+      },
+      "limiar_principal": "A",
+      "limiares_logit": {
+        "A": -0.5355920791625977,
+        "B": 9.326278686523438,
+        "E5 (A)": -0.5355920791625977
+      },
+      "metricas_val_dev": {
+        "limiar A (logit)": -0.5355920791625977,
+        "AUC dfadd": 0.9996735952463492,
+        "EER dfadd": 0.005825082593970127,
+        "acc bal dfadd": 0.9941749174060299,
+        "recall fake dfadd": 0.9940015479876161,
+        "falso alarme dfadd": 0.00565171317555634,
+        "AUC shiftyspeech": 0.9820836778971436,
+        "EER shiftyspeech": 0.06813598386632094,
+        "acc bal shiftyspeech": 0.9315759147219822,
+        "recall fake shiftyspeech": 0.9366176894266782,
+        "falso alarme shiftyspeech": 0.07346585998271392,
+        "AUC codecfake_plus": 0.9099636741048261,
+        "EER codecfake_plus": 0.14497924234561493,
+        "acc bal codecfake_plus": 0.8234950700570836,
+        "recall fake codecfake_plus": 0.7872340425531915,
+        "falso alarme codecfake_plus": 0.1402439024390244,
+        "AUC dev_shift": 0.9718860508082896,
+        "EER dev_shift": 0.061120462533767295,
+        "acc bal dev_shift": 0.8874642416988964,
+        "recall fake dev_shift": 0.9717314487632509,
+        "falso alarme dev_shift": 0.19680296536545813,
+        "AUC pior fonte": 0.9099636741048261,
+        "fonte pior": "codecfake_plus",
+        "AUC média (G)": 0.9659017495141521,
+        "acc bal média (G)": 0.909177535970998,
+        "EER média (G)": 0.07001519283491833,
+        "val EER média por fonte (3)": 0.07298010293530201,
+        "val EER global": 0.02307972486604739,
+        "dev AUC": 0.9718860508082896,
+        "dev EER": 0.061120462533767295,
+        "limiar B (logit)": 9.326278686523438,
+        "dev acurácia": 0.8346523459581685,
+        "dev acc bal": 0.8874642416988964,
+        "dev acurácia trivial": 0.81335971358583
+      }
+    }
+  },
+  "modelos_usados": [
+    "xlsr"
+  ],
+  "precisa_extrair_teste_wavlm": false
+}

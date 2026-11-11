@@ -68,3 +68,11 @@ results/*
 !results/v5_teste_final_resumo.json
 !results/v5_teste_final.png
 !results/v5_teste_final_concluido.json
+# v6 (funil): só os resumos pequenos; notas por clipe (*.parquet), pedaços parciais, arquivos QUICK, caches e checkpoints ficam fora
+!results/v6_*.csv
+!results/v6_*.json
+!results/v6_*.png
+!results/v6_conclusao.md
+results/v6_*_quick*
+results/v6_parcial*/
+results/v6_notebook*.ipynb

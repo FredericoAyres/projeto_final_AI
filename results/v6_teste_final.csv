@@ -1,0 +1,505 @@
+sistema,descrição,conjunto,banco,tipo,limiar,limiar principal,limiar (logit),métrica,valor,"IC 2,5%","IC 97,5%",n real,n fake
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,acurácia,0.9895494774738737,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,acurácia balanceada,0.9895373490437125,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,acurácia trivial,0.6997849892494624,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,AUC,0.9983052146490883,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,EER,0.010462650956287567,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,recall fake,0.9895677027509825,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,A,True,-0.03953683376312256,falso alarme real,0.010493004663557627,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,acurácia,0.8591929596479824,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,acurácia balanceada,0.8989171325344851,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,acurácia trivial,0.6997849892494624,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,AUC,0.9983052146490883,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,EER,0.010462650956287567,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,recall fake,0.7994998213647732,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,B,False,8.21838092803955,falso alarme real,0.0016655562958027982,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,acurácia,0.9895494774738737,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.9895373490437125,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,acurácia trivial,0.6997849892494624,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,AUC,0.9983052146490883,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,EER,0.010462650956287567,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,recall fake,0.9895677027509825,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",validação,val,validação,E5 (A),False,-0.03953683376312256,falso alarme real,0.010493004663557627,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,acurácia,0.9778988949447472,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,acurácia balanceada,0.977884393612547,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,acurácia trivial,0.6997849892494624,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,AUC,0.9964427668680567,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,EER,0.02211560638745302,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,recall fake,0.9779206859592712,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,A,True,-0.39549756050109863,falso alarme real,0.022151898734177215,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,acurácia,0.8574428721436071,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,acurácia balanceada,0.8971911782522501,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,acurácia trivial,0.6997849892494624,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,AUC,0.9964427668680567,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,EER,0.02211560638745302,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,recall fake,0.7977134690961057,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,B,False,9.199010848999023,falso alarme real,0.0033311125916055963,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,acurácia,0.9778988949447472,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.977884393612547,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,acurácia trivial,0.6997849892494624,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,AUC,0.9964427668680567,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,EER,0.02211560638745302,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,recall fake,0.9779206859592712,,,6004,13995
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",validação,val,validação,E5 (A),False,-0.39549756050109863,falso alarme real,0.022151898734177215,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,acurácia,0.9769488474423721,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,acurácia balanceada,0.9769202751339526,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,acurácia trivial,0.6997849892494624,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,AUC,0.9963276239087006,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,EER,0.02307972486604739,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,recall fake,0.9769917827795641,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,A,True,-0.5355920791625977,falso alarme real,0.023151232511658893,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,acurácia,0.8678933946697335,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,acurácia balanceada,0.9047532322741134,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,acurácia trivial,0.6997849892494624,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,AUC,0.9963276239087006,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,EER,0.02307972486604739,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,recall fake,0.8125044658806717,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,B,False,9.326278686523438,falso alarme real,0.0029980013324450365,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,acurácia,0.9769488474423721,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.9769202751339526,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,acurácia trivial,0.6997849892494624,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,AUC,0.9963276239087006,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,EER,0.02307972486604739,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,recall fake,0.9769917827795641,,,6004,13995
+F2,"sistema final da E5 (RL, xlsr), limiar A",validação,val,validação,E5 (A),False,-0.5355920791625977,falso alarme real,0.023151232511658893,,,6004,13995
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,acurácia,0.8434143583945732,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,acurácia balanceada,0.8965456792616852,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,acurácia trivial,0.81335971358583,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,AUC,0.983269123392956,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,EER,0.058778773653776664,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,recall fake,0.9813225643614336,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,A,True,-0.03953683376312256,falso alarme real,0.18823120583806324,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,acurácia,0.9413981533823252,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,acurácia balanceada,0.9412212263462234,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,acurácia trivial,0.81335971358583,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,AUC,0.983269123392956,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,EER,0.058778773653776664,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,recall fake,0.9409389197375063,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,B,False,8.21838092803955,falso alarme real,0.058496467045059654,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,acurácia,0.8434143583945732,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.8965456792616852,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,acurácia trivial,0.81335971358583,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,AUC,0.983269123392956,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,EER,0.058778773653776664,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,recall fake,0.9813225643614336,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",dev_shift,dev_shift,decisão,E5 (A),False,-0.03953683376312256,falso alarme real,0.18823120583806324,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,acurácia,0.8345581307706802,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,acurácia balanceada,0.8877952853743833,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,acurácia trivial,0.81335971358583,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,AUC,0.9719474472331351,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,EER,0.061120462533767295,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,recall fake,0.9727410398788491,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,A,True,-0.39549756050109863,falso alarme real,0.19715046913008225,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,acurácia,0.9388543433201432,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,acurácia balanceada,0.9388795374662326,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,acurácia trivial,0.81335971358583,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,AUC,0.9719474472331351,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,EER,0.061120462533767295,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,recall fake,0.93891973750631,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,B,False,9.199010848999023,falso alarme real,0.06116066257384455,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,acurácia,0.8345581307706802,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.8877952853743833,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,acurácia trivial,0.81335971358583,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,AUC,0.9719474472331351,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,EER,0.061120462533767295,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,recall fake,0.9727410398788491,,,8633,1981
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",dev_shift,dev_shift,decisão,E5 (A),False,-0.39549756050109863,falso alarme real,0.19715046913008225,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,acurácia,0.8346523459581685,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,acurácia balanceada,0.8874642416988964,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,acurácia trivial,0.81335971358583,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,AUC,0.9718860508082896,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,EER,0.061120462533767295,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,recall fake,0.9717314487632509,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,A,True,-0.5355920791625977,falso alarme real,0.19680296536545813,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,acurácia,0.9388543433201432,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,acurácia balanceada,0.9388795374662326,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,acurácia trivial,0.81335971358583,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,AUC,0.9718860508082896,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,EER,0.061120462533767295,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,recall fake,0.93891973750631,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,B,False,9.326278686523438,falso alarme real,0.06116066257384455,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,acurácia,0.8346523459581685,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.8874642416988964,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,acurácia trivial,0.81335971358583,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,AUC,0.9718860508082896,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,EER,0.061120462533767295,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,recall fake,0.9717314487632509,,,8633,1981
+F2,"sistema final da E5 (RL, xlsr), limiar A",dev_shift,dev_shift,decisão,E5 (A),False,-0.5355920791625977,falso alarme real,0.19680296536545813,,,8633,1981
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,acurácia,0.8355,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,acurácia balanceada,0.8354999999999999,0.8287975,0.8422,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,AUC,0.97862836,0.976126635,0.980997212,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,EER,0.06840000000000002,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,recall fake,0.9894,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,A,True,-0.03953683376312256,falso alarme real,0.3184,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,acurácia,0.9306,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,acurácia balanceada,0.9306,0.9254975,0.9356,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,AUC,0.97862836,0.976126635,0.980997212,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,EER,0.06840000000000002,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,recall fake,0.9198,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,B,False,8.21838092803955,falso alarme real,0.0586,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,acurácia,0.8355,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.8354999999999999,0.8287975,0.8422,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,AUC,0.97862836,0.976126635,0.980997212,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,EER,0.06840000000000002,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,recall fake,0.9894,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,in_the_wild,principal,E5 (A),False,-0.03953683376312256,falso alarme real,0.3184,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,acurácia,0.8066,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,acurácia balanceada,0.8066,0.8002975,0.8135025,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,AUC,0.9720473600000001,0.9691515370000001,0.9750572889999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,EER,0.08199999999999999,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,recall fake,0.9906,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,A,True,-0.39549756050109863,falso alarme real,0.3774,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,acurácia,0.912,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,acurácia balanceada,0.912,0.9067000000000001,0.9178,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,AUC,0.9720473600000001,0.9691515370000001,0.9750572889999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,EER,0.08199999999999999,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,recall fake,0.9454,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,B,False,9.199010848999023,falso alarme real,0.1214,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,acurácia,0.8066,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.8066,0.8002975,0.8135025,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,AUC,0.9720473600000001,0.9691515370000001,0.9750572889999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,EER,0.08199999999999999,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,recall fake,0.9906,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,in_the_wild,principal,E5 (A),False,-0.39549756050109863,falso alarme real,0.3774,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,acurácia,0.8123,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,acurácia balanceada,0.8123,0.8059975,0.8193999999999999,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,AUC,0.9718261199999999,0.96897182,0.974755284,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,EER,0.08250000000000002,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,recall fake,0.9904,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,A,True,-0.5355920791625977,falso alarme real,0.3658,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,acurácia,0.9118,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,acurácia balanceada,0.9117999999999999,0.9063,0.9175,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,AUC,0.9718261199999999,0.96897182,0.974755284,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,EER,0.08250000000000002,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,recall fake,0.9444,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,B,False,9.326278686523438,falso alarme real,0.1208,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,acurácia,0.8123,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.8123,0.8059975,0.8193999999999999,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,AUC,0.9718261199999999,0.96897182,0.974755284,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,EER,0.08250000000000002,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,recall fake,0.9904,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,in_the_wild,principal,E5 (A),False,-0.5355920791625977,falso alarme real,0.3658,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,acurácia,0.855,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,acurácia balanceada,0.855,0.8485975,0.8621,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,AUC,0.9250172,0.9197339040000001,0.9301794680000001,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,EER,0.14690000000000003,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,recall fake,0.7504,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,A,True,-0.03953683376312256,falso alarme real,0.0404,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,acurácia,0.7385,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,acurácia balanceada,0.7384999999999999,0.7315975,0.745905,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,AUC,0.9250172,0.9197339040000001,0.9301794680000001,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,EER,0.14690000000000003,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,recall fake,0.4786,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,B,False,8.21838092803955,falso alarme real,0.0016,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,acurácia,0.855,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.855,0.8485975,0.8621,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,AUC,0.9250172,0.9197339040000001,0.9301794680000001,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,EER,0.14690000000000003,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,recall fake,0.7504,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,llamapartialspoof,principal,E5 (A),False,-0.03953683376312256,falso alarme real,0.0404,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,acurácia,0.8631,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,acurácia balanceada,0.8631,0.8567,0.8695999999999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,AUC,0.9396069600000001,0.9353683030000001,0.9440411320000001,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,EER,0.13239999999999996,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,recall fake,0.7658,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,A,True,-0.39549756050109863,falso alarme real,0.0396,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,acurácia,0.7706,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,acurácia balanceada,0.7706,0.7632,0.7775,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,AUC,0.9396069600000001,0.9353683030000001,0.9440411320000001,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,EER,0.13239999999999996,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,recall fake,0.5446,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,B,False,9.199010848999023,falso alarme real,0.0034,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,acurácia,0.8631,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.8631,0.8567,0.8695999999999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,AUC,0.9396069600000001,0.9353683030000001,0.9440411320000001,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,EER,0.13239999999999996,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,recall fake,0.7658,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,llamapartialspoof,principal,E5 (A),False,-0.39549756050109863,falso alarme real,0.0396,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,acurácia,0.8628,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,acurácia balanceada,0.8628,0.856495,0.868805,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,AUC,0.9374419,0.9328726555,0.942019194,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,EER,0.13570000000000004,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,recall fake,0.7682,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,A,True,-0.5355920791625977,falso alarme real,0.0426,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,acurácia,0.7767,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,acurácia balanceada,0.7767,0.7696975,0.7838025000000001,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,AUC,0.9374419,0.9328726555,0.942019194,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,EER,0.13570000000000004,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,recall fake,0.5576,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,B,False,9.326278686523438,falso alarme real,0.0042,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,acurácia,0.8628,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.8628,0.856495,0.868805,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,AUC,0.9374419,0.9328726555,0.942019194,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,EER,0.13570000000000004,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,recall fake,0.7682,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,llamapartialspoof,principal,E5 (A),False,-0.5355920791625977,falso alarme real,0.0426,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,acurácia,0.8629746835443038,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,acurácia balanceada,0.6794969696969697,0.6668703787878788,0.6931408333333333,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,acurácia trivial,0.7911392405063291,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,AUC,0.8415633333333334,0.8273359242424243,0.8543166931818181,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,EER,0.24854242424242426,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,recall fake,0.9946,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,A,True,-0.03953683376312256,falso alarme real,0.6356060606060606,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,acurácia,0.839240506329114,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,acurácia balanceada,0.7712727272727273,0.7572215909090909,0.7850525757575758,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,acurácia trivial,0.7911392405063291,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,AUC,0.8415633333333334,0.8273359242424243,0.8543166931818181,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,EER,0.24854242424242426,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,recall fake,0.888,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,B,False,8.21838092803955,falso alarme real,0.34545454545454546,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,acurácia,0.8629746835443038,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.6794969696969697,0.6668703787878788,0.6931408333333333,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,acurácia trivial,0.7911392405063291,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,AUC,0.8415633333333334,0.8273359242424243,0.8543166931818181,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,EER,0.24854242424242426,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,recall fake,0.9946,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,brspeech_df,principal,E5 (A),False,-0.03953683376312256,falso alarme real,0.6356060606060606,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,acurácia,0.8140822784810127,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,acurácia balanceada,0.5758333333333333,0.5656262121212121,0.5864084090909091,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,acurácia trivial,0.7911392405063291,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,AUC,0.7413186363636364,0.7246795189393941,0.7571639924242424,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,EER,0.33258787878787877,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,recall fake,0.985,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,A,True,-0.39549756050109863,falso alarme real,0.8333333333333334,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,acurácia,0.8183544303797469,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,acurácia balanceada,0.6833575757575758,0.6683780303030303,0.6965522727272727,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,acurácia trivial,0.7911392405063291,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,AUC,0.7413186363636364,0.7246795189393941,0.7571639924242424,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,EER,0.33258787878787877,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,recall fake,0.9152,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,B,False,9.199010848999023,falso alarme real,0.5484848484848485,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,acurácia,0.8140822784810127,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.5758333333333333,0.5656262121212121,0.5864084090909091,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,acurácia trivial,0.7911392405063291,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,AUC,0.7413186363636364,0.7246795189393941,0.7571639924242424,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,EER,0.33258787878787877,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,recall fake,0.985,,,1320,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,brspeech_df,principal,E5 (A),False,-0.39549756050109863,falso alarme real,0.8333333333333334,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,acurácia,0.8132911392405063,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,acurácia balanceada,0.5711515151515152,0.561545303030303,0.5812428030303031,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,acurácia trivial,0.7911392405063291,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,AUC,0.7442133333333334,0.7278614053030303,0.7596988333333333,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,EER,0.32733636363636365,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,recall fake,0.987,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,A,True,-0.5355920791625977,falso alarme real,0.8446969696969697,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,acurácia,0.8264240506329114,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,acurácia balanceada,0.6781424242424242,0.6647561363636364,0.6907953787878788,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,acurácia trivial,0.7911392405063291,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,AUC,0.7442133333333334,0.7278614053030303,0.7596988333333333,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,EER,0.32733636363636365,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,recall fake,0.9328,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,B,False,9.326278686523438,falso alarme real,0.5765151515151515,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,acurácia,0.8132911392405063,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.5711515151515152,0.561545303030303,0.5812428030303031,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,acurácia trivial,0.7911392405063291,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,AUC,0.7442133333333334,0.7278614053030303,0.7596988333333333,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,EER,0.32733636363636365,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,recall fake,0.987,,,1320,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,brspeech_df,principal,E5 (A),False,-0.5355920791625977,falso alarme real,0.8446969696969697,,,1320,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,acurácia,0.8328,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,acurácia balanceada,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,acurácia trivial,1.0,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,AUC,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,EER,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,recall fake,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,A,True,-0.03953683376312256,falso alarme real,0.1672,0.1568,0.178,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,acurácia,0.975,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,acurácia balanceada,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,acurácia trivial,1.0,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,AUC,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,EER,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,recall fake,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,B,False,8.21838092803955,falso alarme real,0.025,0.0208,0.0292,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,acurácia,0.8328,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,acurácia balanceada,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,acurácia trivial,1.0,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,AUC,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,EER,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,recall fake,,,,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,coraa,só real,E5 (A),False,-0.03953683376312256,falso alarme real,0.1672,0.1568,0.178,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,acurácia,0.5882,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,acurácia balanceada,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,acurácia trivial,1.0,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,AUC,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,EER,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,recall fake,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,A,True,-0.39549756050109863,falso alarme real,0.4118,0.397795,0.42560499999999996,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,acurácia,0.8256,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,acurácia balanceada,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,acurácia trivial,1.0,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,AUC,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,EER,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,recall fake,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,B,False,9.199010848999023,falso alarme real,0.1744,0.163795,0.1852,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,acurácia,0.5882,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,acurácia balanceada,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,acurácia trivial,1.0,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,AUC,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,EER,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,recall fake,,,,5000,0
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,coraa,só real,E5 (A),False,-0.39549756050109863,falso alarme real,0.4118,0.397795,0.42560499999999996,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,acurácia,0.5964,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,acurácia balanceada,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,acurácia trivial,1.0,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,AUC,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,EER,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,recall fake,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,A,True,-0.5355920791625977,falso alarme real,0.4036,0.39,0.4164,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,acurácia,0.8272,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,acurácia balanceada,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,acurácia trivial,1.0,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,AUC,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,EER,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,recall fake,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,B,False,9.326278686523438,falso alarme real,0.1728,0.162595,0.183,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,acurácia,0.5964,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,acurácia balanceada,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,acurácia trivial,1.0,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,AUC,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,EER,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,recall fake,,,,5000,0
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,coraa,só real,E5 (A),False,-0.5355920791625977,falso alarme real,0.4036,0.39,0.4164,5000,0
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,acurácia,0.9813,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,acurácia balanceada,0.9813000000000001,0.9788,0.9839025,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,AUC,0.99897608,0.99858803,0.999311896,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,EER,0.013899999999999973,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,recall fake,0.9638,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,A,True,-0.03953683376312256,falso alarme real,0.0012,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,acurácia,0.901,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,acurácia balanceada,0.901,0.896,0.9063025,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,AUC,0.99897608,0.99858803,0.999311896,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,EER,0.013899999999999973,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,recall fake,0.802,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,B,False,8.21838092803955,falso alarme real,0.0,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,acurácia,0.9813,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.9813000000000001,0.9788,0.9839025,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,AUC,0.99897608,0.99858803,0.999311896,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,EER,0.013899999999999973,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,recall fake,0.9638,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2019_la,secundário,E5 (A),False,-0.03953683376312256,falso alarme real,0.0012,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,acurácia,0.9752,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,acurácia balanceada,0.9752000000000001,0.9723999999999999,0.978,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,AUC,0.9968826799999999,0.996096334,0.9976050999999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,EER,0.02249999999999998,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,recall fake,0.9564,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,A,True,-0.39549756050109863,falso alarme real,0.006,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,acurácia,0.9233,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,acurácia balanceada,0.9233,0.9189,0.9282,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,AUC,0.9968826799999999,0.996096334,0.9976050999999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,EER,0.02249999999999998,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,recall fake,0.8466,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,B,False,9.199010848999023,falso alarme real,0.0,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,acurácia,0.9752,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.9752000000000001,0.9723999999999999,0.978,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,AUC,0.9968826799999999,0.996096334,0.9976050999999999,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,EER,0.02249999999999998,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,recall fake,0.9564,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2019_la,secundário,E5 (A),False,-0.39549756050109863,falso alarme real,0.006,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,acurácia,0.9753,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,acurácia balanceada,0.9753000000000001,0.9723999999999999,0.9780025,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,AUC,0.9965579599999999,0.9956927459999999,0.9973222250000001,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,EER,0.02339999999999999,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,recall fake,0.9572,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,A,True,-0.5355920791625977,falso alarme real,0.0066,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,acurácia,0.9273,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,acurácia balanceada,0.9273,0.9229,0.9320025,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,AUC,0.9965579599999999,0.9956927459999999,0.9973222250000001,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,EER,0.02339999999999999,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,recall fake,0.855,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,B,False,9.326278686523438,falso alarme real,0.0004,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,acurácia,0.9753,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.9753000000000001,0.9723999999999999,0.9780025,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,AUC,0.9965579599999999,0.9956927459999999,0.9973222250000001,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,EER,0.02339999999999999,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,recall fake,0.9572,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2019_la,secundário,E5 (A),False,-0.5355920791625977,falso alarme real,0.0066,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,acurácia,0.9421,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,acurácia balanceada,0.9420999999999999,0.9380999999999999,0.9468025000000001,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,AUC,0.99659012,0.9958730669999999,0.9973308169999999,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,EER,0.025599999999999977,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,recall fake,0.9926,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,A,True,-0.03953683376312256,falso alarme real,0.1084,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,acurácia,0.9644,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,acurácia balanceada,0.9643999999999999,0.9610974999999999,0.968,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,AUC,0.99659012,0.9958730669999999,0.9973308169999999,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,EER,0.025599999999999977,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,recall fake,0.9348,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,B,False,8.21838092803955,falso alarme real,0.006,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,acurácia,0.9421,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,acurácia balanceada,0.9420999999999999,0.9380999999999999,0.9468025000000001,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,acurácia trivial,0.5,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,AUC,0.99659012,0.9958730669999999,0.9973308169999999,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,EER,0.025599999999999977,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,recall fake,0.9926,,,5000,5000
+F0,"v4: XLS-R (Meta) concat_top3 (camadas 5, 6, 7) + RL, C = 0,1",teste,asvspoof2021_df,secundário,E5 (A),False,-0.03953683376312256,falso alarme real,0.1084,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,acurácia,0.9541,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,acurácia balanceada,0.9541,0.9501974999999999,0.958,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,AUC,0.99603,0.995115553,0.9969201439999998,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,EER,0.026299999999999976,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,recall fake,0.9858,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,A,True,-0.39549756050109863,falso alarme real,0.0776,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,acurácia,0.9754,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,acurácia balanceada,0.9754,0.9724,0.9783,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,AUC,0.99603,0.995115553,0.9969201439999998,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,EER,0.026299999999999976,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,recall fake,0.9568,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,B,False,9.199010848999023,falso alarme real,0.006,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,acurácia,0.9541,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,acurácia balanceada,0.9541,0.9501974999999999,0.958,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,acurácia trivial,0.5,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,AUC,0.99603,0.995115553,0.9969201439999998,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,EER,0.026299999999999976,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,recall fake,0.9858,,,5000,5000
+F1,"front-end vencedor (xlsr) + RL básica (camada {'xlsr': [11]}, C = 1)",teste,asvspoof2021_df,secundário,E5 (A),False,-0.39549756050109863,falso alarme real,0.0776,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,acurácia,0.9496,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,acurácia balanceada,0.9496,0.9457975,0.9537025,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,AUC,0.9956745599999999,0.994702306,0.99660024,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,EER,0.0252,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,recall fake,0.9868,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,A,True,-0.5355920791625977,falso alarme real,0.0876,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,acurácia,0.9757,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,acurácia balanceada,0.9757,0.9729,0.9788025,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,AUC,0.9956745599999999,0.994702306,0.99660024,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,EER,0.0252,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,recall fake,0.9596,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,B,False,9.326278686523438,falso alarme real,0.0082,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,acurácia,0.9496,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,acurácia balanceada,0.9496,0.9457975,0.9537025,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,acurácia trivial,0.5,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,AUC,0.9956745599999999,0.994702306,0.99660024,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,EER,0.0252,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,recall fake,0.9868,,,5000,5000
+F2,"sistema final da E5 (RL, xlsr), limiar A",teste,asvspoof2021_df,secundário,E5 (A),False,-0.5355920791625977,falso alarme real,0.0876,,,5000,5000
