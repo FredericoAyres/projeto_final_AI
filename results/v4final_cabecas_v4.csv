@@ -1,0 +1,12 @@
+rodada,cabeça,tipo,seed,camadas,camada,C,val EER média por fonte,dev AUC,dev EER,dev acurácia balanceada
+v4 (regra: menor EER média por fonte na validação),rl_camada_7,"regressão logística, melhor camada",-,,7.0,0.01,0.05993884750379036,0.9906756372495735,0.03531189062221066,0.9349820339442707
+v4 (regra: menor EER média por fonte na validação),concat_top3,"regressão logística, concatenação ([5, 6, 7])",-,"[5, 6, 7]",,0.1,0.05916545996785233,0.983269123392956,0.058778773653776664,0.8965456792616852
+v4 (regra: menor EER média por fonte na validação),concat_top4,"regressão logística, concatenação ([5, 6, 7, 8])",-,"[5, 6, 7, 8]",,0.01,0.05976388337885045,0.9896048836002723,0.04046287524837046,0.9170319412853709
+v4 (regra: menor EER média por fonte na validação),soma_linear,soma ponderada + linear,42,,,,0.06628727892897088,0.9828111060636104,0.0480134660486249,0.9109335513510635
+v4 (regra: menor EER média por fonte na validação),soma_linear,soma ponderada + linear,123,,,,0.06847361098736654,0.9821551583551208,0.049155351841568204,0.9072640332200267
+v4 (regra: menor EER média por fonte na validação),soma_linear,soma ponderada + linear,2026,,,,0.06712078521606511,0.9815953983788889,0.0494656669145718,0.9000451000595078
+v4 (regra: menor EER média por fonte na validação),soma_linear_ensemble,"soma ponderada + linear (ensemble, só reportado)",média das 3,,,,0.06999500559060605,0.982229769629504,0.04903951725336017,0.9056423489851142
+v4 (regra: menor EER média por fonte na validação),soma_mlp,soma ponderada + MLP,42,,,,0.06565207122595448,0.9821410079410136,0.06305673035502977,0.8721789585330301
+v4 (regra: menor EER média por fonte na validação),soma_mlp,soma ponderada + MLP,123,,,,0.06286425649534573,0.9862867576741,0.05211767086756601,0.8786699639860267
+v4 (regra: menor EER média por fonte na validação),soma_mlp,soma ponderada + MLP,2026,,,,0.0627598442876358,0.9830010841439171,0.054111855982932514,0.9110859606666436
+v4 (regra: menor EER média por fonte na validação),soma_mlp_ensemble,"soma ponderada + MLP (ensemble, só reportado)",média das 3,,,,0.0654789166060737,0.9846151084439203,0.0549062380112517,0.8937943008096201

@@ -597,6 +597,15 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
   | E6 (teste: 3 finalistas, 1.000 bootstraps por banco) | 1,1 min | 2,6 GB |
   | relatório (funil, gráficos, PCA e t-SNE) / notebook | 1,0 / 0,1 min | 1,4 GB / — |
 
+### Notebook final: volta ao sistema v4 (F0) (2026-11-11)
+
+- **O que mudou:** o `notebook.ipynb` da raiz deixou de ser a v6 (funil) e voltou a ser o **sistema v4 (F0)** completo, como documento final: pipeline, a regressão logística explicada, 14 gráficos (G1 a G14), o teste da v4, o caminho v1 a v6 e as limitações. Cópia em `notebooks/versions/v4_final.ipynb`. O notebook da v6 continua arquivado, sem mudança, em `notebooks/versions/v6_funil.ipynb` (era idêntico ao da raiz antes da troca).
+- **Motivo:** nada depois da v4 superou o F0 no teste (v5: WavLM; v6: fusão, MLP, CNN, ajuste fino), e o sistema declarado pela v6 (F2) ficou pior no teste. **Ressalva:** a decisão de voltar ao F0 foi tomada depois de ver o teste da v6; o F0 em si foi escolhido pela validação antes de qualquer teste (pré-registro da v4), e os números de teste do F0 são os da v4 original.
+- **Nenhuma decisão nova de modelo:** camadas 5, 6, 7; C = 0,1; limiares A = −0,0395 e B = 8,2184 (logit), todos lidos de `results/v4_*` e conferidos. O F0 foi **reajustado** sobre o `v4_cache` (mesmos dados e C; lbfgs, determinístico) e reproduziu as notas gravadas da v4 (diferença máxima ~1e-5 de logit; AUC igual com 3 casas em todos os bancos). Nada foi extraído nem baixado.
+- **Diagnósticos novos (só para os gráficos, não escolhem nada):** curva de aprendizado (2 mil a 40 mil clipes) e caminho do C (0,0001 a 10). Achado registrado como hipótese para o futuro: o dev_shift melhora com **mais** freio (C = 0,0001: AUC 0,994 × 0,983 do F0) e **não** melhora com mais clipes de treino (2 mil: 0,993; 40 mil: 0,983), enquanto a validação prefere C = 0,1. Foi visto olhando o dev_shift (16 locutores) e não muda o F0.
+- **Arquivos:** `scripts/v4final_figuras.py` (figuras e tabelas, ~2 min, pico 5,5 GB) → `results/v4final_*.png`, `results/v4final_*.csv`, `results/v4final_resumo.json`, `results/v4final_f0_coeficientes.npz`; `scripts/nb_final.py` (monta e executa o notebook, só lê do disco; 3,4 MB, 0 erros); `docs/ROTEIRO_APRESENTACAO.md`.
+- **Atenção (execução):** a célula `config` do notebook da raiz é agora a da v4 (os scripts da v4 voltam a lê-la). O `scripts/v6.py` e o `scripts/v6_notebook.py` exigem a célula da v6: para rodá-los de novo, use `--notebook notebooks/versions/v6_funil.ipynb` no `scripts/v6.py` e no `scripts/v6_teste.py`; o `scripts/v6_notebook.py` lê o `notebook.ipynb` fixo e pararia com erro (não foi alterado).
+
 ## f) Ideias ainda não testadas
 
 **Da v6 (para a v7):**
@@ -700,8 +709,10 @@ Sem `-Modelo`, o `rodar_v4.ps1` e o `scripts/v4.py` usam o prefixo `v4` (como a 
 Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -File scriptsigia_v6.ps1"   # noite inteira, sozinho
 Get-Content logs6_status.txt          # STATUS, tentativa, etapa, folga de memória
 Get-Content logs6_resumo.txt          # funil e teste, atualizados a cada etapa (também logs6_PROGRESSO.md)
-powershell -ExecutionPolicy Bypass -File scriptsodar_v6.ps1           # ou: uma rodada sem o vigia
-powershell -ExecutionPolicy Bypass -File scriptsodar_v6.ps1 -Quick    # teste rápido (arquivos _quick; V6_SUFIXO_EXTRA separa testes)
+powershell -ExecutionPolicy Bypass -File scripts
+odar_v6.ps1           # ou: uma rodada sem o vigia
+powershell -ExecutionPolicy Bypass -File scripts
+odar_v6.ps1 -Quick    # teste rápido (arquivos _quick; V6_SUFIXO_EXTRA separa testes)
 python scripts/v6.py e1                 # uma etapa só: medir | extrair | e1 | e2 | e3 | e4 | e5 | finalistas | relatorio | status | concluir
 python scripts/v6_teste.py avaliar      # E6 (só depois dos finalistas): extrair | avaliar
 python scripts/v6_notebook.py           # monta e executa o notebook (só lê do disco) e copia para notebooks/versions/v6_funil.ipynb

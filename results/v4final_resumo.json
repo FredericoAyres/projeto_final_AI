@@ -1,0 +1,113 @@
+{
+  "F0": {
+    "descrição": "XLS-R 300M congelado (Meta), média no tempo das saídas 5, 6 e 7, padronizadas com o treino, concatenadas (3.072 números) + regressão logística",
+    "camadas": [
+      5,
+      6,
+      7
+    ],
+    "C": 0.1,
+    "solver": "lbfgs (padrão do scikit-learn)",
+    "max_iter": 1000,
+    "tol": 0.0001,
+    "class_weight": "nenhum (o treino já é 50/50)",
+    "n_treino": 40000,
+    "n_pesos": 3072,
+    "intercepto": 1.2117369174957275,
+    "iterações": 56,
+    "limiar_A_logit": -0.03953683376312256,
+    "limiar_A_prob": 0.4901170789089333,
+    "limiar_B_logit": 8.21838092803955,
+    "limiar_B_prob": 0.9997304213957016
+  },
+  "reproducao": [
+    {
+      "conjunto": "val",
+      "n": 19999,
+      "dif. máx. de nota (logit)": 0.0,
+      "AUC reajuste": 0.998,
+      "AUC gravada (v4)": 0.998
+    },
+    {
+      "conjunto": "dev_shift",
+      "n": 10614,
+      "dif. máx. de nota (logit)": 7.62939453125e-06,
+      "AUC reajuste": 0.983,
+      "AUC gravada (v4)": 0.983
+    },
+    {
+      "conjunto": "in_the_wild",
+      "n": 10000,
+      "dif. máx. de nota (logit)": 9.5367431640625e-06,
+      "AUC reajuste": 0.979,
+      "AUC gravada (v4)": 0.979
+    },
+    {
+      "conjunto": "llamapartialspoof",
+      "n": 10000,
+      "dif. máx. de nota (logit)": 6.67572021484375e-06,
+      "AUC reajuste": 0.925,
+      "AUC gravada (v4)": 0.925
+    },
+    {
+      "conjunto": "brspeech_df",
+      "n": 6320,
+      "dif. máx. de nota (logit)": 7.62939453125e-06,
+      "AUC reajuste": 0.842,
+      "AUC gravada (v4)": 0.842
+    },
+    {
+      "conjunto": "coraa",
+      "n": 5000,
+      "dif. máx. de nota (logit)": 1.9073486328125e-06,
+      "AUC reajuste": NaN,
+      "AUC gravada (v4)": NaN
+    },
+    {
+      "conjunto": "asvspoof2019_la",
+      "n": 10000,
+      "dif. máx. de nota (logit)": 6.67572021484375e-06,
+      "AUC reajuste": 0.999,
+      "AUC gravada (v4)": 0.999
+    },
+    {
+      "conjunto": "asvspoof2021_df",
+      "n": 10000,
+      "dif. máx. de nota (logit)": 9.5367431640625e-06,
+      "AUC reajuste": 0.997,
+      "AUC gravada (v4)": 0.997
+    }
+  ],
+  "modelo_hf": {
+    "classe_AutoModel_para_wav2vec2": "Wav2Vec2Model",
+    "config_architectures": [
+      "Wav2Vec2ForPreTraining"
+    ],
+    "config_num_hidden_layers": 24,
+    "config_hidden_size": 1024
+  },
+  "g1": {
+    "cos(v1, w)": 3.8163916471489756e-17,
+    "variância do complemento explicada por v1": 0.11012176277447004,
+    "PCA ajustado em": "20.000 clipes do treino (seed 42), depois de remover a direção w"
+  },
+  "g3": {
+    "camada 7": {
+      "PCA variância PC1+PC2": 0.30794626474380493
+    },
+    "camada 24": {
+      "PCA variância PC1+PC2": 0.7942923903465271
+    }
+  },
+  "melhor_camada_v4": 7,
+  "controle_rotulos_embaralhados": {
+    "camada": 7,
+    "C": 0.01,
+    "val AUC": 0.4744623448604824,
+    "val EER média por fonte": 0.5067257593055369,
+    "dev AUC": 0.4857804710602689,
+    "dev EER": 0.5052274962660741
+  },
+  "minutos": 1.7,
+  "pico_memoria_gb": 5.46
+}

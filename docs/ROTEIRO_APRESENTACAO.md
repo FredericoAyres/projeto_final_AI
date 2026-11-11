@@ -1,0 +1,23 @@
+# Roteiro da apresentação (sistema v4 = F0)
+
+**Mensagem central:** o modelo pré-treinado fez a maior parte do trabalho; a nossa parte foi a regressão logística, a auditoria dos dados e a medição honesta.
+
+Todos os números vêm de `results/` (ver `notebook.ipynb`, seções 7 a 9). Figuras em `results/v4final_*.png`.
+
+| # | slide | mensagem (uma frase) | figura | o que dizer sobre os limites |
+|:--|:--|:--|:--|:--|
+| 1 | O problema | Detectar voz gerada por IA, treinando em inglês e testando também em vozes de internet e em português. | — | Treino só em inglês, quase todo de estúdio/audiolivro. |
+| 2 | Os dados e as regras | Dividimos por locutor, separamos bancos de teste inteiros e criamos o dev_shift (16 locutores do In-the-Wild) para decidir sem olhar o teste. | — (tabela da seção 3 do notebook) | O dev_shift é pequeno; os bancos de teste foram vistos três vezes (v4, v5, v6). |
+| 3 | O primeiro modelo falhou | A CNN em log-mel era ótima em casa e ordenava as vozes de internet ao contrário (In-the-Wild AUC 0,11 a 0,35). | `v4final_g10_acuracia_bancos.png` (barras roxas) | A v3 mostrou que o acaso entre seeds da CNN movia a AUC do dev_shift em até 0,23. |
+| 4 | O pipeline | Áudio → corte de silêncio, até 8 s → XLS-R da Meta congelado → média no tempo das camadas 5, 6, 7 → regressão logística. | — (seção 4 do notebook) | O porquê de o modelo pronto funcionar melhor é explicação provável, não provada. |
+| 5 | A nossa parte: a regressão | Uma soma ponderada de 3.072 números com um corte; C = 0,1 (o freio), escolhido pela validação; dois limiares declarados antes do teste. | `v4final_g1_plano_decisao.png` | A fronteira é uma reta: o que fica do lado errado é erro. O eixo vertical é só uma fatia (11% da variação fora de w). |
+| 6 | Onde estão as pistas | As camadas do meio do XLS-R são as melhores; a regressão usa as três por igual. | `v4final_g4_camadas.png` (e `v4final_g5_pesos_camadas.png`) | A última camada sozinha (S1) foi quase tão boa no teste: a diferença das nossas escolhas não foi demonstrada. |
+| 7 | Resultado no teste | Média da acurácia nos 3 bancos principais 0,851 (limiar A), contra 0,597 do chute; In-the-Wild AUC 0,979. | `v4final_g10_acuracia_bancos.png` e `v4final_g9_roc.png` | Teste avaliado uma vez na v4; o bootstrap mede só a amostra de teste, não o acaso do treino. ASVspoof é secundário (locutores possivelmente em comum). |
+| 8 | Os dois erros | O limiar A acusa reais de internet e de português; o limiar B deixa passar falsos parciais e de codec. | `v4final_g11_erros.png` e `v4final_g2_histogramas.png` | Nenhum limiar é bom em todos os bancos; limiar por domínio não foi testado. |
+| 9 | O ponto fraco: português | BRSpeech-DF AUC 0,842 (acurácia balanceada 0,68 no limiar A); áudios de menos de 2 s quase no acaso (0,53); CORAA 16,7% de reais acusados. | `v4final_g12_duracao.png` | Não investigamos por que parte dos reais do BRSpeech-DF tem nota alta (o banco mistura pt-BR e pt-PT: hipótese). |
+| 10 | Por que regressão logística | Em duas rodadas e duas regras, MLP e CNN não ganharam, com 100 vezes mais parâmetros; o controle com rótulos embaralhados deu acaso (0,47 / 0,49). | — (tabelas da seção 6) e `v4final_g7_caminho_c.png` | "Não perdeu de forma demonstrável" não é "é melhor". O dado da literatura (Pascu et al., 2024) não foi verificado por nós. |
+| 11 | Overfitting na prática | A regressão acerta 100% do próprio treino; mais clipes ou menos freio ajudam a validação, mas não as vozes de internet. | `v4final_g6_curva_aprendizado.png` e `v4final_g7_caminho_c.png` | Diagnóstico feito depois de olhar o dev_shift (16 locutores); não mudou o F0. |
+| 12 | O que tentamos depois | WavLM da Microsoft (v5, David Chung), fusão, MLP, CNN e ajuste fino (v6): nada superou o F0 no teste (a volta ao F0 foi uma escolha informada pelo teste da v6). | `v4final_g14_meta_microsoft.png` | O sistema do funil (F2) ficou pior no teste (0,829 × 0,851) e a validação não viu; as causas (uma camada × três, C = 1 × 0,1, pior fonte pequena) são hipóteses. |
+| 13 | Limitações e próximos passos | Um teste nunca visto antes de chamar qualquer número de definitivo; dados em português e fala espontânea; o contexto de golpes; o modelo unificado. | — | Voltar ao F0 foi decidido depois de ver o teste da v6, embora o F0 em si tenha sido escolhido pela validação antes de qualquer teste. |
+
+**Figuras de reserva (perguntas):** `v4final_g1_plano_decisao_teste.png` (só visualização, não decide nada), `v4final_g3_projecao.png` (vetores crus: o que mais aparece é o tipo de gravação), `v4final_g8_calibracao.png` (a probabilidade não vale fora do estúdio), `v4final_g9_confusao.png`, `v4final_g13_geradores.png` (CodecFake+ com poucos clipes por gerador).

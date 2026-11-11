@@ -1,0 +1,11 @@
+rodada,sistema,cabeça,seed,parâmetros,segundos,AUC pior fonte,fonte pior,AUC codecfake_plus,AUC dev_shift,val EER média por fonte (3)
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),RL básica,RL,-,1025.0,2.2,0.9037363777893098,codecfake_plus,0.9037363777893098,0.9719474472331351,0.076296830843495
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),MLP básico s42,MLP,42,262657.0,2.3,0.9116177996886352,codecfake_plus,0.9116177996886352,0.9853202902378573,0.07207883185995424
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),MLP básico s123,MLP,123,262657.0,1.5,0.9055526725480021,codecfake_plus,0.9055526725480021,0.9886483857739689,0.0755054824194561
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),MLP básico s2026,MLP,2026,262657.0,1.7,0.902244421380384,codecfake_plus,0.902244421380384,0.9807984727843975,0.07284668150813328
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),"MLP básico (média das 3 seeds, só reportado)",MLP,média,262657.0,1.8333333333333333,0.9064716312056738,,0.9064716312056738,0.9849223829320746,0.07347699859584787
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),CNN básico s42,CNN,42,405825.0,15.9,0.9062337830825118,codecfake_plus,0.9062337830825118,0.9785551643661231,0.0624923590135787
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),CNN básico s123,CNN,123,405825.0,10.1,0.908050077841204,codecfake_plus,0.908050077841204,0.9827921608810865,0.06406693090689138
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),CNN básico s2026,CNN,2026,405825.0,13.9,0.9103853139595226,codecfake_plus,0.9103853139595226,0.9792495871675156,0.060920618520559605
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),"CNN básico (média das 3 seeds, só reportado)",CNN,média,405825.0,13.299999999999999,0.9082230582944127,,0.9082230582944127,0.9801989708049085,0.062493302813676564
+v6 E4 (regra: desafiante; o mais simples fica se não houver diferença relevante),"v4 (referência: XLS-R concat 5,6,7 + RL, C=0,1)",RL,-,,,0.9031201349247535,codecfake_plus,0.9031201349247535,0.983269123392956,0.05916545996785233
