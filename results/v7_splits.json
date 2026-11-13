@@ -1,0 +1,115 @@
+{
+ "quando": "2026-11-13T19:33:50",
+ "arquivo": "data\\processed\\splits_v7.parquet",
+ "sha256": "24d3aea93654711a80ea1482799c5de3ec180ec5e336c719935e98b7f7a54c63",
+ "n": 249187,
+ "por_split": {
+  "controle": 41320,
+  "excluido": 13,
+  "teste_mestre": 52048,
+  "treino": 96809,
+  "validacao": 58997
+ },
+ "salvaguardas": {
+  "caminhos_em_comum": 0,
+  "locutores_em_comum": 0,
+  "coincidentes": {
+   "mlitw:ScarlettJohansson": [
+    "teste_mestre"
+   ],
+   "mlitw:Trump": [
+    "validacao"
+   ],
+   "mlitw:obama": [
+    "validacao"
+   ]
+  },
+  "duplicatas_exatas_excluidas_da_avaliacao": [
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_18.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_10.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/SIMPLESPEECH1_15.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_12.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/SIMPLESPEECH1_32.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/SIMPLESPEECH1_31.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/SIMPLESPEECH1_33.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_16.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_24.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_14.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_22.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/NS2_20.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   },
+   {
+    "caminho": "data/raw/train_val_en/codecfake_plus/CoSG/SIMPLESPEECH1_34.wav",
+    "split": "validacao",
+    "fonte": "codecfake_plus",
+    "label": 0
+   }
+  ],
+  "duplicatas_exatas_entre_lados": 0,
+  "duplicatas_exatas_controle_x_outros_lados (informativo)": 0,
+  "quase_duplicatas_criterio": "cosseno >= 0.9995 entre vetores padronizados pela média e desvio do treino da v4 (os do F0); 26018 clipes de treino/validação x 19125 do teste mestre (ML-ITW e In-the-Wild)",
+  "cosseno_maximo_entre_lados": 0.9649313688278198,
+  "quase_duplicatas_pares": [],
+  "dev_do_radar": "nenhum clipe (todos com original_split = eval e caminho RADAR2026-eval)",
+  "avisos": []
+ }
+}

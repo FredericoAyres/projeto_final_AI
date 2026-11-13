@@ -1,0 +1,15 @@
+regra,split,locutores,clipes,falsos
+(1) tem áudio em português,teste_mestre,8,1178,135
+(2) uma classe só,teste_mestre,55,4052,1557
+(3) mesma pessoa que itw:Barack Obama no In-the-Wild,validacao,1,242,4
+(3) mesma pessoa que itw:Donald Trump no In-the-Wild,validacao,1,366,289
+(3) mesma pessoa que itw:Scarlett Johansson no In-the-Wild,teste_mestre,1,5,5
+"(4) sorteio estratificado por locutor (grupo de idioma 'chinese', seed 42, 60/15/25)",teste_mestre,11,1713,341
+"(4) sorteio estratificado por locutor (grupo de idioma 'chinese', seed 42, 60/15/25)",treino,28,3426,1217
+"(4) sorteio estratificado por locutor (grupo de idioma 'chinese', seed 42, 60/15/25)",validacao,7,1816,271
+"(4) sorteio estratificado por locutor (grupo de idioma 'english', seed 42, 60/15/25)",teste_mestre,8,960,155
+"(4) sorteio estratificado por locutor (grupo de idioma 'english', seed 42, 60/15/25)",treino,17,4581,967
+"(4) sorteio estratificado por locutor (grupo de idioma 'english', seed 42, 60/15/25)",validacao,4,819,31
+"(4) sorteio estratificado por locutor (grupo de idioma 'outro', seed 42, 60/15/25)",teste_mestre,10,1217,320
+"(4) sorteio estratificado por locutor (grupo de idioma 'outro', seed 42, 60/15/25)",treino,23,2649,670
+"(4) sorteio estratificado por locutor (grupo de idioma 'outro', seed 42, 60/15/25)",validacao,6,1505,399

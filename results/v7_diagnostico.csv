@@ -1,0 +1,66 @@
+receita,tipo,valor,lado,n_real,n_falso,AUC,obs,locutores_real,locutores_falso
+T0,RADAR idioma,en,teste_mestre,15000,17923,0.7239453569900872,,,
+T0,RADAR idioma,en-sg,validacao,3500,6711,0.7472890350597101,,,
+T0,RADAR idioma,ja,treino,9500,8741,0.691719856213007,,,
+T0,RADAR idioma,vi,validacao,7000,6438,0.7956412040118936,,,
+T0,RADAR idioma,zh,treino,11500,11234,0.6947307591086067,,,
+T0,RADAR idioma,zh-tw,treino,3500,1678,0.6652654520687893,,,
+T0,ML-ITW plataforma (teste mestre),bilibili,teste_mestre,1046,66,0.7919636131873226,indício (< 30 locutores por classe),4.0,4.0
+T0,ML-ITW plataforma (teste mestre),douyin,teste_mestre,54,585,0.7162076606521052,indício (< 30 locutores por classe),3.0,7.0
+T0,ML-ITW plataforma (teste mestre),facebook,teste_mestre,1509,400,0.6776101722995361,indício (< 30 locutores por classe),14.0,20.0
+T0,ML-ITW plataforma (teste mestre),rednote,teste_mestre,557,951,0.47371660181949643,indício (< 30 locutores por classe),11.0,24.0
+T0,ML-ITW plataforma (teste mestre),tiktok,teste_mestre,106,86,0.5943396226415094,indício (< 30 locutores por classe),4.0,7.0
+T0,ML-ITW plataforma (teste mestre),x,teste_mestre,805,312,0.32981764612199393,indício (< 30 locutores por classe),10.0,9.0
+T0,ML-ITW plataforma (teste mestre),youtube,teste_mestre,2535,113,0.4486149657014191,indício (< 30 locutores por classe),12.0,5.0
+T1,RADAR idioma,en,teste_mestre,15000,17923,0.8095386784206513,,,
+T1,RADAR idioma,en-sg,validacao,3500,6711,0.8032784554143517,,,
+T1,RADAR idioma,ja,treino,9500,8741,0.7664762492548727,,,
+T1,RADAR idioma,vi,validacao,7000,6438,0.8550937735765323,,,
+T1,RADAR idioma,zh,treino,11500,11234,0.7742200849904406,,,
+T1,RADAR idioma,zh-tw,treino,3500,1678,0.7388668482887791,,,
+T1,ML-ITW plataforma (teste mestre),bilibili,teste_mestre,1046,66,0.9524595863027986,indício (< 30 locutores por classe),4.0,4.0
+T1,ML-ITW plataforma (teste mestre),douyin,teste_mestre,54,585,0.9863880974992086,indício (< 30 locutores por classe),3.0,7.0
+T1,ML-ITW plataforma (teste mestre),facebook,teste_mestre,1509,400,0.8756071901921803,indício (< 30 locutores por classe),14.0,20.0
+T1,ML-ITW plataforma (teste mestre),rednote,teste_mestre,557,951,0.910501465904736,indício (< 30 locutores por classe),11.0,24.0
+T1,ML-ITW plataforma (teste mestre),tiktok,teste_mestre,106,86,0.9582053532250987,indício (< 30 locutores por classe),4.0,7.0
+T1,ML-ITW plataforma (teste mestre),x,teste_mestre,805,312,0.7884097786271699,indício (< 30 locutores por classe),10.0,9.0
+T1,ML-ITW plataforma (teste mestre),youtube,teste_mestre,2535,113,0.8292785952418356,indício (< 30 locutores por classe),12.0,5.0
+T2,RADAR idioma,en,teste_mestre,15000,17923,0.95528957949748,,,
+T2,RADAR idioma,en-sg,validacao,3500,6711,0.958865487366158,,,
+T2,RADAR idioma,ja,treino,9500,8741,0.9937379439905106,dentro da amostra de treino (T2 a T4),,
+T2,RADAR idioma,vi,validacao,7000,6438,0.9794841565703635,,,
+T2,RADAR idioma,zh,treino,11500,11234,0.9960715297505244,dentro da amostra de treino (T2 a T4),,
+T2,RADAR idioma,zh-tw,treino,3500,1678,0.9820977353992848,dentro da amostra de treino (T2 a T4),,
+T2,ML-ITW plataforma (teste mestre),bilibili,teste_mestre,1046,66,0.9756503853062171,indício (< 30 locutores por classe),4.0,4.0
+T2,ML-ITW plataforma (teste mestre),douyin,teste_mestre,54,585,0.9642924976258309,indício (< 30 locutores por classe),3.0,7.0
+T2,ML-ITW plataforma (teste mestre),facebook,teste_mestre,1509,400,0.8383888336646785,indício (< 30 locutores por classe),14.0,20.0
+T2,ML-ITW plataforma (teste mestre),rednote,teste_mestre,557,951,0.8928558618254999,indício (< 30 locutores por classe),11.0,24.0
+T2,ML-ITW plataforma (teste mestre),tiktok,teste_mestre,106,86,0.9221149627029399,indício (< 30 locutores por classe),4.0,7.0
+T2,ML-ITW plataforma (teste mestre),x,teste_mestre,805,312,0.7747412008281573,indício (< 30 locutores por classe),10.0,9.0
+T2,ML-ITW plataforma (teste mestre),youtube,teste_mestre,2535,113,0.712789094273097,indício (< 30 locutores por classe),12.0,5.0
+T3,RADAR idioma,en,teste_mestre,15000,17923,0.9636626383231973,,,
+T3,RADAR idioma,en-sg,validacao,3500,6711,0.9612477169678779,,,
+T3,RADAR idioma,ja,treino,9500,8741,0.9919120539020587,dentro da amostra de treino (T2 a T4),,
+T3,RADAR idioma,vi,validacao,7000,6438,0.9787607065193272,,,
+T3,RADAR idioma,zh,treino,11500,11234,0.9948857350744247,dentro da amostra de treino (T2 a T4),,
+T3,RADAR idioma,zh-tw,treino,3500,1678,0.981652817980589,dentro da amostra de treino (T2 a T4),,
+T3,ML-ITW plataforma (teste mestre),bilibili,teste_mestre,1046,66,0.9775334608030593,indício (< 30 locutores por classe),4.0,4.0
+T3,ML-ITW plataforma (teste mestre),douyin,teste_mestre,54,585,0.9885090218423551,indício (< 30 locutores por classe),3.0,7.0
+T3,ML-ITW plataforma (teste mestre),facebook,teste_mestre,1509,400,0.9154249502982106,indício (< 30 locutores por classe),14.0,20.0
+T3,ML-ITW plataforma (teste mestre),rednote,teste_mestre,557,951,0.9534308589465497,indício (< 30 locutores por classe),11.0,24.0
+T3,ML-ITW plataforma (teste mestre),tiktok,teste_mestre,106,86,0.9778411584028083,indício (< 30 locutores por classe),4.0,7.0
+T3,ML-ITW plataforma (teste mestre),x,teste_mestre,805,312,0.8233277591973245,indício (< 30 locutores por classe),10.0,9.0
+T3,ML-ITW plataforma (teste mestre),youtube,teste_mestre,2535,113,0.8423068195702641,indício (< 30 locutores por classe),12.0,5.0
+T4,RADAR idioma,en,teste_mestre,15000,17923,0.9578957001246071,,,
+T4,RADAR idioma,en-sg,validacao,3500,6711,0.9548321519041234,,,
+T4,RADAR idioma,ja,treino,9500,8741,0.9892393981177631,dentro da amostra de treino (T2 a T4),,
+T4,RADAR idioma,vi,validacao,7000,6438,0.9758834376248169,,,
+T4,RADAR idioma,zh,treino,11500,11234,0.9930988381543605,dentro da amostra de treino (T2 a T4),,
+T4,RADAR idioma,zh-tw,treino,3500,1678,0.9776792099438106,dentro da amostra de treino (T2 a T4),,
+T4,ML-ITW plataforma (teste mestre),bilibili,teste_mestre,1046,66,0.9747523031461846,indício (< 30 locutores por classe),4.0,4.0
+T4,ML-ITW plataforma (teste mestre),douyin,teste_mestre,54,585,0.989363722697056,indício (< 30 locutores por classe),3.0,7.0
+T4,ML-ITW plataforma (teste mestre),facebook,teste_mestre,1509,400,0.9236804174950298,indício (< 30 locutores por classe),14.0,20.0
+T4,ML-ITW plataforma (teste mestre),rednote,teste_mestre,557,951,0.9586658284674358,indício (< 30 locutores por classe),11.0,24.0
+T4,ML-ITW plataforma (teste mestre),tiktok,teste_mestre,106,86,0.978609039052216,indício (< 30 locutores por classe),4.0,7.0
+T4,ML-ITW plataforma (teste mestre),x,teste_mestre,805,312,0.8408146201624462,indício (< 30 locutores por classe),10.0,9.0
+T4,ML-ITW plataforma (teste mestre),youtube,teste_mestre,2535,113,0.891752631303346,indício (< 30 locutores por classe),12.0,5.0

@@ -1,0 +1,147 @@
+{
+ "quando": "2026-11-13T19:41:00",
+ "fontes_validacao_com_duas_classes": [
+  "codecfake_plus",
+  "dfadd",
+  "in_the_wild",
+  "ml_itw",
+  "radar_eval",
+  "shiftyspeech"
+ ],
+ "receita_vencedora_pela_validacao": "T3",
+ "criterio": "maior média da AUC por fonte na validação (cada fonte pesa igual; >= 20 clipes por classe)",
+ "por_receita": {
+  "T0": {
+   "regra": "A'",
+   "cortes": {
+    "A'": 0.20259344577789307,
+    "M": -0.884806752204895,
+    "F5": 0.7589113235473611
+   },
+   "loso": {
+    "A'": 0.8403975288369087,
+    "M": 0.839243400258009,
+    "F5": 0.8306402311276853
+   }
+  },
+  "T1": {
+   "regra": "A'",
+   "cortes": {
+    "A'": 0.3723407983779907,
+    "M": 0.15830688178539276,
+    "F5": -0.1853321909904478
+   },
+   "loso": {
+    "A'": 0.8937759799250306,
+    "M": 0.8928920875323078,
+    "F5": 0.8925471952690834
+   }
+  },
+  "T2": {
+   "regra": "M",
+   "cortes": {
+    "A'": 0.40042540431022644,
+    "M": 0.14793020486831665,
+    "F5": 0.7360531568527219
+   },
+   "loso": {
+    "A'": 0.9190379621926904,
+    "M": 0.9194163280282188,
+    "F5": 0.9193443027001239
+   }
+  },
+  "T3": {
+   "regra": "M",
+   "cortes": {
+    "A'": 0.0267828106880188,
+    "M": 0.23255929350852966,
+    "F5": 0.21068783998489204
+   },
+   "loso": {
+    "A'": 0.9324502510540705,
+    "M": 0.9331346469394323,
+    "F5": 0.931805313844949
+   }
+  },
+  "T4": {
+   "regra": "M",
+   "cortes": {
+    "A'": 0.014807134866714478,
+    "M": 0.20957836508750916,
+    "F5": 0.6038815736770607
+   },
+   "loso": {
+    "A'": 0.9294772195124833,
+    "M": 0.929719058161956,
+    "F5": 0.9290522100767594
+   }
+  }
+ },
+ "tabela_validacao": [
+  {
+   "receita": "T0",
+   "descrição": "F0 sem retreinar",
+   "AUC codecfake_plus": 0.895871495,
+   "AUC dfadd": 0.9999996241,
+   "AUC in_the_wild": 0.9832691234,
+   "AUC ml_itw": 0.7693578895,
+   "AUC radar_eval": 0.77903322,
+   "AUC shiftyspeech": 0.99691729,
+   "AUC média por fonte": 0.9040747737,
+   "AUC pior fonte": 0.7693578895,
+   "pior fonte": "ml_itw"
+  },
+  {
+   "receita": "T1",
+   "descrição": "estúdio + ML-ITW",
+   "AUC codecfake_plus": 0.9051359729,
+   "AUC dfadd": 0.9999995899,
+   "AUC in_the_wild": 0.9944223979,
+   "AUC ml_itw": 0.9451644604,
+   "AUC radar_eval": 0.8316082918,
+   "AUC shiftyspeech": 0.9959210119,
+   "AUC média por fonte": 0.9453752875,
+   "AUC pior fonte": 0.8316082918,
+   "pior fonte": "radar_eval"
+  },
+  {
+   "receita": "T2",
+   "descrição": "estúdio + RADAR",
+   "AUC codecfake_plus": 0.9340918698,
+   "AUC dfadd": 0.9999949421,
+   "AUC in_the_wild": 0.9904135622,
+   "AUC ml_itw": 0.8926825471,
+   "AUC radar_eval": 0.9718983736,
+   "AUC shiftyspeech": 0.9859517568,
+   "AUC média por fonte": 0.9625055086,
+   "AUC pior fonte": 0.8926825471,
+   "pior fonte": "ml_itw"
+  },
+  {
+   "receita": "T3",
+   "descrição": "estúdio + ML-ITW + RADAR",
+   "AUC codecfake_plus": 0.9391644357,
+   "AUC dfadd": 0.9999974027,
+   "AUC in_the_wild": 0.9911994365,
+   "AUC ml_itw": 0.9603699716,
+   "AUC radar_eval": 0.9726484868,
+   "AUC shiftyspeech": 0.9864310958,
+   "AUC média por fonte": 0.9749684715,
+   "AUC pior fonte": 0.9391644357,
+   "pior fonte": "codecfake_plus"
+  },
+  {
+   "receita": "T4",
+   "descrição": "T3, peso igual por fonte",
+   "AUC codecfake_plus": 0.9374383542,
+   "AUC dfadd": 0.9999842112,
+   "AUC in_the_wild": 0.9887001927,
+   "AUC ml_itw": 0.9612918588,
+   "AUC radar_eval": 0.9683485762,
+   "AUC shiftyspeech": 0.9813227117,
+   "AUC média por fonte": 0.9728476508,
+   "AUC pior fonte": 0.9374383542,
+   "pior fonte": "codecfake_plus"
+  }
+ ]
+}

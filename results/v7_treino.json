@@ -1,0 +1,22 @@
+{
+ "quando": "2026-11-13T19:40:51",
+ "C_escolhido": {
+  "T0": 0.1,
+  "T1": 0.001,
+  "T2": 0.01,
+  "T3": 0.01,
+  "T4": 0.01
+ },
+ "conferencia_T0_dif_max_logit": {
+  "radar_eval": 1.610190319212279e-05,
+  "ml_itw": 1.6017352763242343e-05,
+  "val": 1.9073486328125e-06,
+  "dev_shift": 3.814697265625e-06,
+  "teste_in_the_wild": 0.0,
+  "teste_llamapartialspoof": 0.0,
+  "teste_brspeech_df": 0.0,
+  "teste_coraa": 0.0,
+  "teste_asvspoof2019_la": 0.0,
+  "teste_asvspoof2021_df": 0.0
+ }
+}
