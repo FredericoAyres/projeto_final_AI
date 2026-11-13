@@ -1,0 +1,81 @@
+{
+ "quando": "2026-11-13T15:16:01",
+ "fonte_dos_pesos": "results/v4final_f0_coeficientes.npz (coef, intercepto, camadas, C, limiares) + results/v4_parcial/padronizacao.npz (mu, sd do treino da v4)",
+ "chaves_npz": [
+  "C",
+  "camadas",
+  "coef",
+  "intercepto",
+  "limiar_A",
+  "limiar_B"
+ ],
+ "faltava_padronizacao_no_npz": true,
+ "conjuntos": [
+  {
+   "conjunto": "val",
+   "n": 19999,
+   "dif_max_logit": 1.0833213682559517e-05,
+   "AUC_disco": 0.998,
+   "AUC_gravada_v4": 0.998
+  },
+  {
+   "conjunto": "dev_shift",
+   "n": 10614,
+   "dif_max_logit": 1.7659437343553464e-05,
+   "AUC_disco": 0.983,
+   "AUC_gravada_v4": 0.983
+  },
+  {
+   "conjunto": "in_the_wild",
+   "n": 10000,
+   "dif_max_logit": 1.3769674745311988e-05,
+   "AUC_disco": 0.979,
+   "AUC_gravada_v4": 0.979
+  },
+  {
+   "conjunto": "llamapartialspoof",
+   "n": 10000,
+   "dif_max_logit": 1.3240479496801072e-05,
+   "AUC_disco": 0.925,
+   "AUC_gravada_v4": 0.925
+  },
+  {
+   "conjunto": "brspeech_df",
+   "n": 6320,
+   "dif_max_logit": 1.1635140836574465e-05,
+   "AUC_disco": 0.842,
+   "AUC_gravada_v4": 0.842
+  },
+  {
+   "conjunto": "coraa",
+   "n": 5000,
+   "dif_max_logit": 1.3771029468756524e-05,
+   "AUC_disco": null,
+   "AUC_gravada_v4": null
+  },
+  {
+   "conjunto": "asvspoof2019_la",
+   "n": 10000,
+   "dif_max_logit": 1.1852858186500725e-05,
+   "AUC_disco": 0.999,
+   "AUC_gravada_v4": 0.999
+  },
+  {
+   "conjunto": "asvspoof2021_df",
+   "n": 10000,
+   "dif_max_logit": 1.4047611571754715e-05,
+   "AUC_disco": 0.997,
+   "AUC_gravada_v4": 0.997
+  }
+ ],
+ "limiares_recalculados": {
+  "A": -0.039536967213509966,
+  "B": 8.218384378077847
+ },
+ "cortes_do_protocolo": {
+  "A": -0.0395,
+  "B": 8.2184
+ },
+ "criterio": "AUC com 3 casas igual e diferença máxima de nota <= 1e-4 em todos os conjuntos",
+ "aprovado": true
+}

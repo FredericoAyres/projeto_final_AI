@@ -1,0 +1,26 @@
+{
+ "quando": "2026-11-13T15:24:03",
+ "n": 500,
+ "shards_feitos": 2,
+ "clipes": 500,
+ "segundos": 16.7,
+ "clipes_por_s": 30.01,
+ "refeitos_bf16": 0,
+ "lotes_gpu": 15,
+ "linhas_vazias": 212,
+ "parou_por": "plano completo",
+ "segundos_carregar_modelo": 14.5,
+ "segundos_extracao_neste_processo": 16.7,
+ "pico_memoria_gb": 9.1,
+ "pico_detalhe": {
+  "principal_gb": 7.17,
+  "workers_gb": [
+   0.97,
+   0.97
+  ]
+ },
+ "pico_sistema_gb": 32.5,
+ "gpu_pico_gb": 3.76,
+ "num_workers": 2,
+ "clipes_por_s_com_carga": 16.06
+}

@@ -1,0 +1,17 @@
+fonte,tipo,atributos,modelo,validação cruzada,colunas constantes (sem informação),AUC metadados (fora da dobra),AUC F0,marca,n,correlação Pearson,correlação Spearman
+radar_eval,classificador só com metadados,"pedido: duração, taxa, canais, fração de silêncio, RMS, pico",regressão logística,5 partes por clipe (StratifiedKFold),"taxa_original, canais_n",0.6471530101469891,0.7214593111427217,sem sinal forte de atalho,102725,,
+radar_eval,classificador só com metadados,"pedido: duração, taxa, canais, fração de silêncio, RMS, pico",árvore rasa (profundidade 3),5 partes por clipe (StratifiedKFold),"taxa_original, canais_n",0.6514344220009484,0.7214593111427217,(secundário),102725,,
+radar_eval,classificador só com metadados,protocolo: + tamanho do arquivo,regressão logística,5 partes por clipe (StratifiedKFold),"taxa_original, canais_n",0.6645613147463252,0.7214593111427217,sem sinal forte de atalho,102725,,
+radar_eval,classificador só com metadados,protocolo: + tamanho do arquivo,árvore rasa (profundidade 3),5 partes por clipe (StratifiedKFold),"taxa_original, canais_n",0.6516307188240873,0.7214593111427217,(secundário),102725,,
+radar_eval,classificador só com metadados,só duração,regressão logística,5 partes por clipe (StratifiedKFold),,0.5876708654338549,0.7214593111427217,sem sinal forte de atalho,102725,,
+radar_eval,classificador só com metadados,só duração,árvore rasa (profundidade 3),5 partes por clipe (StratifiedKFold),,0.6106717604551921,0.7214593111427217,(secundário),102725,,
+radar_eval,"correlação nota F0 × duração, só real",dur_original_s,Pearson / Spearman,,,,0.7214593111427217,,50000,-0.018416630084007235,-0.009567499134272375
+radar_eval,"correlação nota F0 × duração, só falso",dur_original_s,Pearson / Spearman,,,,0.7214593111427217,,52725,0.024553161393242703,0.02055372095531484
+ml_itw,classificador só com metadados,"pedido: duração, taxa, canais, fração de silêncio, RMS, pico",regressão logística,5 partes agrupadas por locutor (StratifiedGroupKFold),"taxa_original, canais_n",0.6333704859208168,0.6887225456257934,sem sinal forte de atalho,24529,,
+ml_itw,classificador só com metadados,"pedido: duração, taxa, canais, fração de silêncio, RMS, pico",árvore rasa (profundidade 3),5 partes agrupadas por locutor (StratifiedGroupKFold),"taxa_original, canais_n",0.6131815340010554,0.6887225456257934,(secundário),24529,,
+ml_itw,classificador só com metadados,protocolo: + tamanho do arquivo,regressão logística,5 partes agrupadas por locutor (StratifiedGroupKFold),"taxa_original, canais_n",0.633370079229087,0.6887225456257934,sem sinal forte de atalho,24529,,
+ml_itw,classificador só com metadados,protocolo: + tamanho do arquivo,árvore rasa (profundidade 3),5 partes agrupadas por locutor (StratifiedGroupKFold),"taxa_original, canais_n",0.6131815340010554,0.6887225456257934,(secundário),24529,,
+ml_itw,classificador só com metadados,só duração,regressão logística,5 partes agrupadas por locutor (StratifiedGroupKFold),,0.5185094448702883,0.6887225456257934,sem sinal forte de atalho,24529,,
+ml_itw,classificador só com metadados,só duração,árvore rasa (profundidade 3),5 partes agrupadas por locutor (StratifiedGroupKFold),,0.5131745363073957,0.6887225456257934,(secundário),24529,,
+ml_itw,"correlação nota F0 × duração, só real",dur_original_s,Pearson / Spearman,,,,0.6887225456257934,,18168,-0.07365394170617544,-0.10453290241578135
+ml_itw,"correlação nota F0 × duração, só falso",dur_original_s,Pearson / Spearman,,,,0.6887225456257934,,6361,-0.05264690743253464,-0.07592774445349024
