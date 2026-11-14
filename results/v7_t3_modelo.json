@@ -1,0 +1,166 @@
+{
+ "quando": "2026-11-13T21:09:17",
+ "sistema": "v7 (T3): estúdio + ML-ITW (treino) + RADAR (treino, pareado por duração)",
+ "origem_dos_pesos": "results/v7_parcial/T3.npz (gravado pela etapa 'treinar' de scripts/v7.py às 2026-11-13T19:40:51); não foi reajustado",
+ "como_usar": "nota = ((x - mu) / sd) @ coef + intercepto; x = média no tempo das saídas 5, 6 e 7 do XLS-R 300M (facebook/wav2vec2-xls-r-300m, congelado), concatenadas nessa ordem (3.072 números), com o pipeline de áudio da v4; nota em logit, maior = mais falso",
+ "modelo_ssl": "facebook/wav2vec2-xls-r-300m (congelado)",
+ "camadas": [
+  5,
+  6,
+  7
+ ],
+ "n_numeros": 3072,
+ "regressao": {
+  "tipo": "LogisticRegression (scikit-learn)",
+  "solver": "lbfgs",
+  "max_iter": 1000,
+  "tol": 0.0001,
+  "C": 0.01,
+  "class_weight": "balanced",
+  "sample_weight": null,
+  "penalidade": "L2"
+ },
+ "padronizacao": "média e desvio (sem pesos) do treino da T3; desvio 0 trocado por 1",
+ "grade_C": [
+  0.0001,
+  0.001,
+  0.01,
+  0.1,
+  1.0,
+  10.0
+ ],
+ "C_escolhido_por": "maior média da AUC por fonte na validação (6 fontes), docs/PROTOCOLO_V7.md seção 3",
+ "iteracoes_do_C_escolhido": 142,
+ "treino": {
+  "n": 81288,
+  "composicao": [
+   {
+    "bloco": "estudio",
+    "label": 0,
+    "n": 20000
+   },
+   {
+    "bloco": "estudio",
+    "label": 1,
+    "n": 20000
+   },
+   {
+    "bloco": "ml_itw",
+    "label": 0,
+    "n": 7802
+   },
+   {
+    "bloco": "ml_itw",
+    "label": 1,
+    "n": 2854
+   },
+   {
+    "bloco": "radar_eval",
+    "label": 0,
+    "n": 15316
+   },
+   {
+    "bloco": "radar_eval",
+    "label": 1,
+    "n": 15316
+   }
+  ]
+ },
+ "splits_v7": {
+  "arquivo": "data/processed/splits_v7.parquet",
+  "sha256": "24d3aea93654711a80ea1482799c5de3ec180ec5e336c719935e98b7f7a54c63",
+  "sha256_do_protocolo": "24d3aea93654711a80ea1482799c5de3ec180ec5e336c719935e98b7f7a54c63"
+ },
+ "cortes_da_validacao_logit": {
+  "A'": 0.0267828106880188,
+  "M": 0.23255929350852966,
+  "F5": 0.21068783998489204
+ },
+ "regra_de_corte_escolhida_no_protocolo": "M",
+ "aviso_sobre_cortes": "a regra de corte do sistema final ainda está em aberto (decidir só pela validação); as três regras empatam na validação e a calibração muda entre ambientes",
+ "conferencia": {
+  "dif_max_nota_logit": 1.1444091796875e-05,
+  "tolerancia": 0.0001,
+  "n_clipes": 249187,
+  "auc_3_casas": [
+   {
+    "recorte": "ml_itw",
+    "AUC recalculada": 0.9394,
+    "AUC gravada": 0.9394,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "in_the_wild",
+    "AUC recalculada": 0.9863,
+    "AUC gravada": 0.9863,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "radar_en",
+    "AUC recalculada": 0.9637,
+    "AUC gravada": 0.9637,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "llamapartialspoof",
+    "AUC recalculada": 0.9416,
+    "AUC gravada": 0.9416,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "brspeech_df",
+    "AUC recalculada": 0.9559,
+    "AUC gravada": 0.9559,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "asvspoof2019_la",
+    "AUC recalculada": 0.9969,
+    "AUC gravada": 0.9969,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "asvspoof2021_df",
+    "AUC recalculada": 0.9937,
+    "AUC gravada": 0.9937,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "validação codecfake_plus",
+    "AUC recalculada": 0.9392,
+    "AUC gravada": 0.9392,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "validação dfadd",
+    "AUC recalculada": 1.0,
+    "AUC gravada": 1.0,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "validação in_the_wild",
+    "AUC recalculada": 0.9912,
+    "AUC gravada": 0.9912,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "validação ml_itw",
+    "AUC recalculada": 0.9604,
+    "AUC gravada": 0.9604,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "validação radar_eval",
+    "AUC recalculada": 0.9726,
+    "AUC gravada": 0.9726,
+    "igual com 3 casas": true
+   },
+   {
+    "recorte": "validação shiftyspeech",
+    "AUC recalculada": 0.9864,
+    "AUC gravada": 0.9864,
+    "igual com 3 casas": true
+   }
+  ]
+ }
+}
