@@ -42,6 +42,8 @@ Do problema até o sistema principal (v7 = T3), na ordem da apresentação.
 | 32 | `v7_04_regras_corte.png` | TPR e FPR das três regras por receita nas 3 fontes principais. | As regras quase não diferem. | Reserva |
 | 33 | `v7_05_deslocamento_nota.png` | Faixa de notas de reais e IA por fonte, T0 × T3. | A T3 sobe os falsos da internet acima do corte e comprime a escala. | Reserva (calibração) |
 | 34 | `v7_06_bloco_ingles.png` | AUC por receita no bloco inglês (barras). | Mesmo conteúdo da f_06. | Reserva |
+| ml_01 | `ml_01_tamanho_e_tempo.png` | Parâmetros, tamanho em disco e tempo por áudio (3, 5 e 8 s) das variantes do modelo leve, na placa de vídeo e no processador do notebook. Gerada por `scripts/modelo_leve_resumo.py`. | Cortado depois da 7ª camada: 3,1 vezes menor e 2,4 vezes mais rápido no processador (5 s, 4 threads). | **Modelo leve: o sistema principal cabe num modelo menor** |
+| ml_02 | `ml_02_equivalencia.png` | Maior diferença de nota e queda da AUC de cada variante contra o modelo completo (2.000 clipes da validação), com os limites da regra. | V1 e V2: nota idêntica; variante leve V3 (int8): AUC dentro da regra, mas a nota muda (o corte da T3 não vale nela). | Modelo leve: a nota muda? |
 
 ## Anexo (v8, experimento)
 

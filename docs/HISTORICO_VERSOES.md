@@ -692,6 +692,13 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
 - **Arquivos:** o `notebook.ipynb` da raiz passou a ser o do sistema principal, gerado por `scripts/nb_principal.py` (reaproveita `scripts/nb_v7.py` e `scripts/nb_v8.py` sem alterá-los): seções 1 a 16 da v7, a v8 como anexo (17 a 22) e próximos passos; só lê de `results/`, 0 erros, 5,85 MB; cópia em `notebooks/versions/principal_v7.ipynb`. `notebooks/versions/v7_final.ipynb` e `v8_finetuning.ipynb` ficam como estavam.
 - **Edições mínimas neste histórico (registradas):** na tabela-resumo (d), "(sistema atual)" virou "(sistema principal)" na linha da v7 e "(experimento)" na linha da v8; foi acrescentada a linha "decisão · sistema principal = v7 (T3)". Nada mais foi alterado.
 
+### Modelo leve (fase 1) e guia para o site (2026-11-15)
+
+- **O que é:** compressão do sistema principal, sem treinar nada e sem mexer na regressão da T3. Protocolo congelado antes de medir (`docs/MODELO_LEVE_PROTOCOLO.md`); resultado em `docs/MODELO_LEVE.md` e `results/modelo_leve_*`. Variantes: V0 completo, V1 cortado depois da 7ª camada (fp32), V2 = V1 em fp16, variante leve V3 (int8; não confundir com a v3 do projeto).
+- **Resultado em uma frase:** cortar o XLS-R depois da 7ª camada deixa o modelo 3,1 vezes menor (1.211 → 386 MB) com a nota idêntica à do modelo completo, e a resposta para um áudio de 5 s fica em ~10 ms (V2, placa de vídeo do notebook) ou ~0,35 a 0,53 s (V3 e V1, processador do notebook, 4 threads); as três variantes passaram na regra de aceitação, medida em 2.000 clipes da validação.
+- **Guia para o site:** `docs/GUIA_PARA_O_SITE.md` (caminho do áudio, arquivos, cortes, contrato sugerido, limites, checklist, erros comuns) e o gabarito `scripts/inferencia_referencia.py` (`--verificar`: a V1 no processador bateu com o modelo completo em fp32 a 2,6e-5 logit em 20 clipes). O notebook da raiz ganhou as partes A (o que é a T3), B (modelo leve) e C (guia), entre a seção 16 e o anexo da v8.
+- **Em aberto:** a regra de corte final do produto; um corte próprio para a variante leve V3 (int8), cuja nota muda de valor (até 4,53 logit) e também com o tamanho do lote, a escolher só pela validação; nenhuma variante foi medida no teste mestre nem em celular; se o site roda o modelo no servidor ou no navegador.
+
 ## f) Ideias ainda não testadas
 
 **Da v8 (para a v9):**
