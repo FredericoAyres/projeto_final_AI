@@ -1,0 +1,31 @@
+{
+ "quando": "2026-11-14T17:08:31",
+ "receita": "R1",
+ "seed": 123,
+ "historico": [
+  {
+   "passos": 1249,
+   "clipes": 19984,
+   "perda_media": 0.09981863365174563,
+   "segundos": 704.7,
+   "clipes_por_s": 28.36,
+   "ilegiveis": 0,
+   "epoca": 1,
+   "gpu_pico_gb": 2.29,
+   "lr_camadas_fim": 5.556049822064057e-06,
+   "lr_cabeca_fim": 5.556049822064057e-05
+  },
+  {
+   "passos": 1249,
+   "clipes": 19984,
+   "perda_media": 0.07243734101201982,
+   "segundos": 705.4,
+   "clipes_por_s": 28.33,
+   "ilegiveis": 0,
+   "epoca": 2,
+   "gpu_pico_gb": 2.29,
+   "lr_camadas_fim": 0.0,
+   "lr_cabeca_fim": 0.0
+  }
+ ]
+}

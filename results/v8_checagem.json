@@ -1,0 +1,25 @@
+{
+ "quando": "2026-11-14T11:48:10",
+ "n": 512,
+ "ilegiveis": 0,
+ "dif_logit_max": 0.9574921131134033,
+ "dif_logit_mediana": 0.0707557201385498,
+ "correlacao": 0.9997310790047408,
+ "AUC passo zero": 0.977294921875,
+ "AUC T3 (cache)": 0.9774322509765625,
+ "aval_clipes_por_s (inclui carregar e aquecer)": 20.6,
+ "treino_60_passos": {
+  "passos": 60,
+  "clipes": 960,
+  "perda_media": 0.08954830001263568,
+  "segundos": 49.4,
+  "clipes_por_s": 19.43,
+  "ilegiveis": 0
+ },
+ "gpu_pico_gb_treino": 3.58,
+ "estimativa_h": {
+  "por_rodada_treino_e_validacao": 2.16,
+  "teste_por_rodada": 1.26,
+  "total_4_rodadas": 13.7
+ }
+}

@@ -76,3 +76,9 @@ results/*
 results/v6_*_quick*
 results/v6_parcial*/
 results/v6_notebook*.ipynb
+# v8 (fine-tuning): só os resumos pequenos e as figuras; notas por clipe (data/processed/v8_notas), áudios
+# preparados (data/processed/v8_audio), checkpoints (models/v8_*.pt) e arquivos QUICK ficam fora
+!results/v8_*.csv
+!results/v8_*.json
+!results/v8_*.png
+results/v8_*_quick*

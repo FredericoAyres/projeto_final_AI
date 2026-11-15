@@ -112,6 +112,12 @@ class Vigia(threading.Thread):
                             self.ao_estourar(msg)
                         except Exception:   # noqa: BLE001
                             pass
+                    try:   # sem isto, os workers do DataLoader ficam órfãos segurando memória (visto na v8)
+                        import psutil
+                        for f in psutil.Process().children(recursive=True):
+                            f.kill()
+                    except Exception:   # noqa: BLE001
+                        pass
                     os._exit(3)
             except Exception:   # noqa: BLE001
                 pass

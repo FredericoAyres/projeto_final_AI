@@ -53,6 +53,7 @@ AUC e EER são as métricas principais (não dependem de limiar). "val (média/f
 | v6 · F1 = só Meta + RL básica | 2026-11-10 | (referência: o front-end vencedor com a cabeça mais simples) | XLS-R, camada 11 sozinha, C = 1 | 2,2% / 7,6% (pior fonte 0,904) | 0,972 / 6,1% | 0,972 / 8,2% | 0,940 / 13,2% | 0,741 / 33,3% | 41,2% · 17,4% | igual ao F2 no teste (o ajuste fino da E5 não fez diferença fora da validação) | `notebooks/versions/v6_funil.ipynb` |
 | v6 · F0 = v4 refeita | 2026-11-10 | (referência: a v4 recalculada nesta rodada) | XLS-R `concat_top3` (5, 6, 7), C = 0,1 | 1,0% / 5,9% (pior fonte 0,903) | 0,983 / 5,9% | 0,979 / 6,8% | 0,925 / 14,7% | 0,842 / 24,9% | 16,7% · 2,5% | reproduziu a v4 exatamente (validação, dev_shift e teste); continua o modelo do projeto | `notebooks/versions/v6_funil.ipynb` |
 | v7 · T3 = estúdio + ML-ITW + RADAR (sistema atual) | 2026-11-13 | treinar a regressão com parte dos dois bancos externos em que o F0 caiu (RADAR ~0,72, ML-ITW ~0,69) melhora outros áudios do mesmo tipo, sem esquecer o estúdio | mesmo XLS-R e camadas (5, 6, 7); treino = estúdio da v4 + ML-ITW (por locutor) + RADAR zh/zh-tw/ja (pareado por duração); C = 0,01; classes balanceadas; teste mestre fixo; receita escolhida pela validação entre T0 e T4 | AUC média por fonte 0,975 (6 fontes; EER não calculada na v7) | 0,991 / — (In-the-Wild dev, na validação) | 0,986 / 4,7% (teste mestre: amostra de 10.000 da v4) | 0,942 / 12,8% | 0,956 / 10,8% | 11,1% (regra M) | no teste mestre, média de 0,764 (F0) para 0,963 (T3); o ganho está onde o tipo de áudio foi visto; não é gerador novo; o corte não se transfere entre ambientes | `notebooks/versions/v7_final.ipynb` |
+| v8 · R1 = fine-tuning das camadas 5–7, cabeça começando na T3 (sistema atual) | 2026-11-14 | ajustar as camadas do XLS-R que a T3 usa (5, 6, 7), começando da T3, melhora a validação sem esquecer os bancos antigos | XLS-R cortado na camada 7; camadas 5, 6, 7 + cabeça linear treináveis (37,8 M parâmetros); cabeça começa nos pesos da T3; AdamW (1e-5 camadas, 1e-4 cabeça), 2 épocas × 20.000 clipes balanceados do treino da T3; seeds 42 e 123; época escolhida pela validação; receita escolhida entre R0 (T3), R1, R2 (só camada 7) e R3 (cabeça aleatória) | AUC média por fonte 0,9758 (média das 2 seeds; T3 0,9750) | 0,991 / 0,989 (In-the-Wild dev, na validação; seed 42 / 123) | 0,990 / 3,7% · 0,990 / 3,5% (seed 42 · 123; teste mestre) | 0,953 / 11,3% · 0,954 / 11,7% | 0,954 / 11,6% · 0,964 / 10,5% | 9,4% · 9,6% (regra A') | no teste mestre, média de 0,963 (T3) para 0,968 (+0,004 e +0,005, IC pareado acima de zero nas 2 seeds); ganho pequeno, sobretudo no RADAR en; sem esquecimento; com a cabeça aleatória (R3) piora (−0,007) | `notebooks/versions/v8_finetuning.ipynb` |
 
 Na v5, os clipes de validação, dev_shift e teste são exatamente os da v4 (mesma seed), e os dois modelos rodaram na mesma máquina (RTX 4050 6 GB); a escolha entre eles foi feita na validação + dev_shift, antes do teste. Nas linhas da v4, "EER val" é na validação da v4 (19.999 clipes, subamostra estratificada); o teste usa até 5.000 clipes por classe e banco, avaliado uma vez; o falso alarme do CORAA vem com os dois limiares pré-registrados (A = EER da validação; B = EER do dev_shift). As outras cinco execuções da v3 não foram avaliadas no teste.
 
@@ -625,9 +626,61 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
 - **O que fica em aberto:** a regra de corte do sistema final (ou um corte por ambiente), a decidir só pela validação; por que um banco novo ajuda o outro (hipótese não testada); português no treino; um teste intocado (clones próprios).
 - **Arquivos (fechamento, 2026-11-13):** notebook da raiz atualizado para a v7 por `scripts/nb_v7.py` (só lê de `results/`; 0 erros; < 10 MB) e arquivado em `notebooks/versions/v7_final.ipynb` (o `notebooks/versions/v4_final.ipynb` fica como estava). Pesos da T3 conferidos (diferença máxima de nota 1,1e-5; AUC igual com 3 casas) e exportados por `scripts/v7_t3_exportar.py` para `results/v7_t3_coeficientes.npz` e `results/v7_t3_modelo.json`. Figuras dos slides `results/slides/f_00` a `f_09` por `scripts/v7_slides.py`, com `results/slides/INDEX.md` e `results/slides/resumo_v7_para_slides.csv`.
 
+### v8 · fine-tuning parcial do XLS-R a partir da T3 (2026-11-14)
+
+- **Por que existe:** o retorno da apresentação pediu para **aplicar fine-tuning**. A v8 seria reportada mesmo que a T3 continuasse melhor; superar a T3 era bônus.
+- **Protocolo e execução:** `docs/PROTOCOLO_V8.md`, carimbado às 14:42 de 2026-11-14, antes do primeiro treino (commit base `0e21522` e SHA256 do código; um adendo datado sobre a interrupção do teste, abaixo). Código: `src/finetune.py` (a rede e o treino) e `scripts/v8.py` (etapas `preparar`, `treinar`, `escolher`, `testar`, `avaliar`, `fila`); figuras `scripts/v8_figuras.py`; notebook `scripts/nb_v8.py`; tabelas `results/v8_*`.
+- **Reprodução da T3 antes da v8 (nesta máquina, não na do autor da v7):**
+  - a divisão `splits_v7.parquet` foi refeita com as mesmas contagens e regras (o SHA256 difere só porque o arquivo guarda o hash dos vetores, que diferem no ruído do float16);
+  - a grade de C dá o mesmo C em todas as receitas, as AUCs de validação batem na 3ª ou 4ª casa e os pesos da T3 refeitos têm correlação de 0,99995 com os gravados;
+  - a R0 usa os pesos gravados (`results/v7_t3_coeficientes.npz`). No teste mestre, a R0 deu 0,963, igual à T3 da v7.
+- **Modelo:** o caminho da T3 escrito como uma rede só: XLS-R cortado depois da camada 7 → média no tempo das saídas 5, 6 e 7 → padronização da T3 (fixa) → camada linear 3.072 → 1 (a regressão logística como camada).
+  - Sempre em `eval()`: sem dropout, LayerDrop ou mascaramento.
+  - Parte congelada em float16; camadas treináveis com pesos em float32 e contas em float16 (GradScaler).
+  - No passo zero, a nota é a da T3 (diferença máxima de 0,012 de logit em 48 clipes). O bfloat16 do plano dava até 0,68 e foi trocado por float16 antes de qualquer treino.
+- **Receitas:**
+  - R0 = T3 sem ajuste;
+  - **R1** = camadas 5, 6, 7 + cabeça, cabeça começando na T3, seeds 42 e 123;
+  - R2 = só a camada 7 + cabeça, começando na T3;
+  - R3 = camadas 5, 6, 7 + cabeça aleatória.
+- **Treino (igual em R1, R2 e R3):**
+  - 2 épocas; cada uma sorteia 20.000 clipes do treino da T3 (10.000 reais e 10.000 falsos), em lotes de 16 por balde de duração;
+  - BCE; AdamW (weight decay 0,01) com lr 1e-5 nas camadas e 1e-4 na cabeça; aquecimento de 10% e queda linear até zero; corte da norma do gradiente em 1,0;
+  - candidatos: o fim de cada época, escolhido pela validação.
+- **Escolha pela validação** (gravada às 19:30:16, antes de qualquer teste): épocas R1 s42 = 2, R1 s123 = 2, R2 = 1, R3 = 2. Média da AUC por fonte: R0 0,9750, **R1 0,9758** (média das seeds), R2 0,9756, R3 0,9723. **Vencedora: R1.**
+- **Resultado em uma frase:** no teste mestre (ML-ITW, In-the-Wild 38, RADAR en), a média da AUC foi de **0,963 (T3) para 0,967 (R1 s42) e 0,968 (R1 s123)**. As diferenças pareadas foram +0,0040 [+0,0025, +0,0056] e +0,0049 [+0,0030, +0,0071].
+  - O ganho maior foi no RADAR en (0,964 → 0,969/0,970).
+  - No ML-ITW, a pior fonte, foi de 0,939 para 0,943/0,944, com IC pareado que encosta no zero.
+  - R2: +0,0023 [+0,0004, +0,0044]. **R3: −0,0072 [−0,0140, −0,0015]**: com a cabeça aleatória, o fine-tuning piora a T3.
+  - A ordem na validação (R3 < T3 < R2 < R1) se repetiu no teste.
+- **Esquecimento (controles de estúdio):**
+  - a R1 manteve ou melhorou a T3 (ASVspoof 2019 0,997 → 0,999/0,998; 2021 0,994 → 0,996; LlamaPartialSpoof 0,942 → 0,953/0,954; BRSpeech-DF 0,956 → 0,954/0,964);
+  - a R3 caiu no BRSpeech-DF (0,943).
+- **Limitações:**
+  - o teste mestre não é virgem (a T3 já foi avaliada nele);
+  - só 2 seeds na R1 e 1 nas outras;
+  - o ganho é pequeno e não está garantido na pior fonte;
+  - a escala da nota mudou (os cortes da validação mudaram bastante entre as rodadas), e o problema de um corte só para todos os ambientes continua;
+  - houve um único treino curto, sem busca de hiperparâmetros.
+- **Decisão em aberto:** qual modelo empacotar como sistema final (seed 42, seed 123 ou a média das notas das duas). Deve ser decidido só pela validação.
+- **Arquivos (fechamento, 2026-11-15):**
+  - o `notebook.ipynb` (idêntico ao `v7_final.ipynb`, que fica como estava) foi refeito por `scripts/nb_v8.py`: as seções 1 a 16 são as da v7, a introdução é nova e as seções 17 a 22 são da v8;
+  - o notebook só lê de `results/`, executou com 0 erros, tem 5,8 MB e está arquivado em `notebooks/versions/v8_finetuning.ipynb`;
+  - a célula da v4 que lê `results/v4_camadas_concluido.json` (fora do git) mostra "pendente" quando ele não existe;
+  - figuras em `results/v8_fig_1` a `_5`;
+  - checkpoints `models/v8_*.pt`, notas por clipe `data/processed/v8_notas/` e áudios preparados `data/processed/v8_audio/` (28,5 GB) ficam fora do git.
+
 ## f) Ideias ainda não testadas
 
+**Da v8 (para a v9):**
+- **Decidir o modelo final da R1** (seed 42, seed 123 ou a média das notas das duas), só pela validação.
+- **Corte por ambiente sobre a nota da R1** (a escala mudou com o fine-tuning).
+- **Mais seeds** na R1 e na R2, para medir o acaso do treino.
+- **Fine-tuning com português no treino**, junto com um conjunto de decisão em português.
+- **Mais épocas ou mais camadas** só se a validação pedir. Na v8, a 2ª época ajudou pouco (R2 piorou na 2ª), o que sugere ganhos pequenos.
+
 **Da v7 (para a v8):**
+- *(Feito na v8: fine-tuning das camadas 5 a 7, a pedido do retorno da apresentação. As ideias abaixo continuam abertas.)*
 - **Corte por ambiente** (ou calibrar a nota por ambiente): na T3, o mesmo corte acusa de 1% a 75% dos reais, conforme o banco; escolher só pela validação.
 - **Português no treino** e um conjunto de decisão em português (reais e falsos de bancos fora dos testes).
 - **Clones próprios** como teste intocado, gravados e avaliados uma vez depois de fechar o sistema.
@@ -746,6 +799,19 @@ python scripts/v6_notebook.py           # monta e executa o notebook (só lê do
 
 O XLS-R é lido do `data/processed/v4_cache/` (não é reextraído); o WavLM fica em `data/processed/v6_wavlm_cache/` (6,8 GB, fora do git), extraído nos mesmos clipes. Cada etapa grava `results/v6_<etapa>_concluido.json`; com o marcador, rodar de novo pula a etapa (o relatório e o notebook são refeitos quando há marcador mais novo). A conclusão escrita do notebook fica em `results/v6_conclusao.md` (sem ele, a seção 8 diz "pendente").
 
+**v8 (fine-tuning; retomável, um processo por etapa):** na raiz, no PowerShell, com o env ativo:
+
+```powershell
+python scripts/v8.py fila --quick       # teste rápido de ponta a ponta (~15 min; arquivos _quick, números não valem)
+python scripts/v8.py fila               # tudo: preparar → treinar (4 rodadas) → escolher → testar (4) → avaliar (~10 h)
+python scripts/v8.py treinar --receita R1 --seed 42     # ou uma etapa só
+Get-Content logs\v8_status.txt          # andamento
+python scripts/v8_figuras.py            # figuras (só lê results/v8_*)
+python scripts/nb_v8.py                 # monta e executa o notebook e copia para notebooks/versions/v8_finetuning.ipynb
+```
+
+Pré-requisitos: `data/processed/splits_v7.parquet` e os vetores da v7 (`python scripts/v7.py splits`). A etapa `preparar` grava os áudios já recortados em `data/processed/v8_audio/` (~28,5 GB, ~85 min, 4 workers). Rode a fila numa janela que não vá ser fechada (por exemplo, `Start-Process powershell -WindowStyle Hidden ...`) e sem deixar o notebook suspender. A etapa `avaliar` grava `results/v8_avaliar_concluido.json` e não roda de novo.
+
 **Rodada completa de uma versão (v2 em diante), pelo terminal:** um experimento por processo, e depois o notebook, que só lê o que foi treinado. Feche antes o Claude Code e, se der, o VS Code e o OneDrive (juntos eles reservam ~6 GB de memória; ver h).
 
 ```powershell
@@ -835,3 +901,23 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
 - **QUICK (2026-11-10 22:23 a 23:07; ~300 clipes; os números não valem e não foram interpretados):** `rodar_v6.ps1 -Quick` de ponta a ponta (sufixo `_quick_t1`; um erro de código achado e corrigido, a segunda chamada retomou sem refazer a extração); o vigia QUICK do zero (`_quick_t2`, código 0 em 2,5 min); e um teste de interrupção (`_quick_t3`): a extração foi morta à força depois do 1º shard da validação, o `rodar_v6` registrou a falha e pulou as etapas dependentes, o vigia esperou 2 min e a 2ª tentativa pulou os 3 shards prontos e terminou tudo; os shards da execução interrompida são **idênticos bit a bit** aos da execução sem interrupção.
 - **nbclient** (já instalado na v5) executa o notebook; ele só lê do disco (0 erros, 1,0 MB).
 
+
+### 2026-11-14 · v8 (execução)
+
+- **Máquina:** a v8 rodou numa RTX 4050 Laptop de 6 GB, não na RTX 4060 de 8 GB citada no `CLAUDE.md`. Os vetores, a divisão e a T3 foram refeitos aqui antes (ver o bloco da v8 em e).
+- **Memória (Windows):** a memória da placa conta no commit do processo.
+  - Com lotes de avaliação de 4,1 M amostras, a placa passou de 5,9 GB, o driver começou a usar a RAM e o processo chegou a 13 GB.
+  - Com lotes de no máximo 2,05 M amostras (32 clipes de 2 ou 4 s, 21 de 6 s, 16 de 8 s), o pico ficou em ~9,2 GB, abaixo do limite de 10 GB da vigia.
+- **Áudios preparados (`preparar`):** ler e decodificar os arquivos custava mais que a placa (~20 clipes/s).
+  - Cada clipe é preparado uma vez pelo `src/preproc.py` e guardado em float16 (233.653 clipes, 0 ilegíveis, 28,5 GB).
+  - Conferido em 120 clipes: a nota com o áudio preparado difere em no máximo 0,04 de logit da nota com o original.
+  - Com 6 workers, a vigia parou a preparação (10,03 GB); ela retomou por shard com 4 workers.
+- **Vigia (`scripts/teste_internet.py`, usada pela v8):** ao estourar o limite, agora encerra também os processos filhos antes de sair. Antes, os 6 workers do DataLoader ficaram órfãos segurando ~8 GB.
+- **Interrupção no `testar` (2026-11-14 23:22):**
+  - a fila inteira caiu sem erro registrado, provavelmente porque a janela do PowerShell que a comandava foi fechada;
+  - nenhuma nota do teste existia (só são gravadas no fim);
+  - a fila foi relançada numa janela oculta e retomou do teste da R1 s42;
+  - `escolher` passou a pular quando `results/v8_escolha.json` já existe, para não regravar a escolha;
+  - registrado como adendo no `docs/PROTOCOLO_V8.md`.
+- **Suspensão:** com a tampa fechada, o processo congela e retoma ao acordar (houve ~2 h paradas no teste, sem efeito no resultado).
+- **Tempos:** cada época de treino levou ~12 min (~28 clipes/s; R2 ~9,5 min) e cada validação inteira ~25 min, ou seja, ~1 h 13 min por rodada. Cada teste levou ~30 min, e a fila toda ~11 h, com as pausas.
