@@ -1,0 +1,19 @@
+{
+  "congelado_em": "2026-11-15 17:45:57 (UTC-0300)",
+  "commit_base": "bdb5fc3",
+  "revisao": "r1",
+  "sha256_prompt_sistema": "3f848dbf65e294475e86ee963ab09103f7b83853bec979f14fbad872bf6de503",
+  "sha256_textos_teste": "5227d558c68acf86bd4f3f362dc2cf94c398abacf358f6a732d2460d3f741dc1",
+  "sha256_src_contexto_golpe": "d0327e1b3c177aba0b25d307199ea6c4900c7ce3d17e09254382780e15d81dfb",
+  "parametros": {
+    "modelo_llm": "openai/gpt-oss-120b",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 1200,
+    "response_format": "json_object",
+    "reasoning_effort": "low",
+    "max_chars": 6000,
+    "timeout_s": 30,
+    "max_retentativas": 3
+  }
+}

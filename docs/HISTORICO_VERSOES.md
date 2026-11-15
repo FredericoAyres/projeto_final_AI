@@ -699,7 +699,21 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
 - **Guia para o site:** `docs/GUIA_PARA_O_SITE.md` (caminho do áudio, arquivos, cortes, contrato sugerido, limites, checklist, erros comuns) e o gabarito `scripts/inferencia_referencia.py` (`--verificar`: a V1 no processador bateu com o modelo completo em fp32 a 2,6e-5 logit em 20 clipes). O notebook da raiz ganhou as partes A (o que é a T3), B (modelo leve) e C (guia), entre a seção 16 e o anexo da v8.
 - **Em aberto:** a regra de corte final do produto; um corte próprio para a variante leve V3 (int8), cuja nota muda de valor (até 4,53 logit) e também com o tamanho do lote, a escolher só pela validação; nenhuma variante foi medida no teste mestre nem em celular; se o site roda o modelo no servidor ou no navegador.
 
+### Módulo de contexto de golpe: protótipo e avaliação com textos inventados (2026-11-15)
+
+- **O que é:** um módulo **separado do detector de voz**, que transcreve o áudio (Whisper, pela API do Groq) e julga se **o conteúdo** parece golpe (`openai/gpt-oss-120b`, por instruções, sem treino). Código `src/contexto_golpe.py` e `scripts/contexto_golpe_cli.py`; documentação `docs/CONTEXTO_GOLPE.md`. ⚠️ Fora da trilha: transcrição de fala e classificação por instruções a um LLM. **Protótipo:** os dados vão para um serviço externo. Nenhum áudio de banco do projeto foi enviado.
+- **Avaliação:** só a etapa de texto, com **170 textos inventados** (dev 40, teste 130), protocolo escrito antes e congelado antes do teste (`docs/PROTOCOLO_CONTEXTO.md`; SHA256 do prompt `3f848dbf…`, do teste `5227d558…`). No dev: o 20b e o 120b empataram pela regra, e uma revisão do prompt (`r1`) levou os golpes escondidos de 1/9 para 8/9. **Teste (uma vez):** acurácia 92,2% (106/115); recall dos golpes 87,7% (IC95 77% a 94%; explícitos 95%, escondidos 80%, com injeção 7/7); falso alarme 3,4% (IC95 1% a 12%; comuns 0/25, difíceis 2/30); consistência 20/20 em 3 repetições. Metas declaradas antes (recall ≥ 85%, falso alarme ≤ 15%): atingidas na média, mas os golpes escondidos ficaram abaixo de 85%. Resultado: `docs/AVALIACAO_CONTEXTO.md`, `results/contexto_golpe_*`, figuras `results/slides/ctx_0*.png`.
+- **Erros que se repetem:** "salva meu número novo" sem pedido (3 casos em `baixo`), pedido indireto em romance (2), falso sequestro sem pedido de dinheiro (1, em `nenhum`), uma resposta fora do formato (1 golpe em `indeterminado`); falsos alarmes num relato de golpe e num parente que trocou de aparelho. Nas injeções, o alerta ficou, mas a manipulação só foi marcada em 2 de 7.
+- **Limites:** textos escritos por um modelo de linguagem (não são golpes reais), amostra pequena, só pt-BR, só texto (o Whisper não foi avaliado), áudio de ponta a ponta não testado, serviço externo que pode mudar.
+- **Em aberto:** a regra que combina a nota da voz com o risco do conteúdo (proposta em `docs/CONTEXTO_GOLPE.md`, seção 6); testar com áudios gravados pelo grupo; um conjunto de teste novo antes de qualquer ajuste do prompt.
+
 ## f) Ideias ainda não testadas
+
+**Do módulo de contexto de golpe (2026-11-15):**
+- Tratar "número novo / outro número" com pedido de contato como no mínimo `medio`, e o isolamento ("não desligue, não ligue para ninguém, saia de casa") como alerta mesmo sem pedido de dinheiro. Exige um **conjunto de teste novo** (o atual já foi visto).
+- Detectar frases de injeção também por regra simples no código (o modelo só marcou 2 de 7).
+- Aceitar a resposta e descartar só o sinal malformado, em vez de virar `indeterminado` (1 golpe óbvio se perdeu assim).
+- Avaliar o caminho de áudio inteiro com gravações do próprio grupo (e o Whisper local como plano B).
 
 **Da v8 (para a v9):**
 - **Decidir o modelo final da R1** (seed 42, seed 123 ou a média das notas das duas), só pela validação.

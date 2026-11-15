@@ -1,0 +1,603 @@
+{
+  "congelado": {
+    "congelado_em": "2026-11-15 17:45:57 (UTC-0300)",
+    "commit_base": "bdb5fc3",
+    "revisao": "r1",
+    "sha256_prompt_sistema": "3f848dbf65e294475e86ee963ab09103f7b83853bec979f14fbad872bf6de503",
+    "sha256_textos_teste": "5227d558c68acf86bd4f3f362dc2cf94c398abacf358f6a732d2460d3f741dc1",
+    "sha256_src_contexto_golpe": "d0327e1b3c177aba0b25d307199ea6c4900c7ce3d17e09254382780e15d81dfb",
+    "parametros": {
+      "modelo_llm": "openai/gpt-oss-120b",
+      "temperature": 0,
+      "seed": 42,
+      "max_tokens": 1200,
+      "response_format": "json_object",
+      "reasoning_effort": "low",
+      "max_chars": 6000,
+      "timeout_s": 30,
+      "max_retentativas": 3
+    }
+  },
+  "n_textos": 130,
+  "positivo_medio_ou_alto": {
+    "acuracia_nao_ambiguos": {
+      "k": 106,
+      "n": 115,
+      "taxa": 0.9217391304347826,
+      "ic95": [
+        0.8579297392118479,
+        0.9582827655003068
+      ]
+    },
+    "recall_golpes_todos": {
+      "k": 50,
+      "n": 57,
+      "taxa": 0.8771929824561403,
+      "ic95": [
+        0.7675331041107074,
+        0.939220169964925
+      ]
+    },
+    "falso_alarme_legitimos_todos": {
+      "k": 2,
+      "n": 58,
+      "taxa": 0.034482758620689655,
+      "ic95": [
+        0.009507728866485675,
+        0.11729364755327057
+      ]
+    },
+    "precisao": {
+      "k": 50,
+      "n": 52,
+      "taxa": 0.9615384615384616,
+      "ic95": [
+        0.8701857125563401,
+        0.9893885116779224
+      ]
+    },
+    "indeterminados": 1,
+    "acuracia_balanceada": 0.9213551119177253,
+    "por_grupo": {
+      "golpe_explicito": {
+        "recall": {
+          "k": 19,
+          "n": 20,
+          "taxa": 0.95,
+          "ic95": [
+            0.7638641064874331,
+            0.9911187805671268
+          ]
+        },
+        "niveis": {
+          "nenhum": 0,
+          "baixo": 0,
+          "medio": 3,
+          "alto": 16,
+          "indeterminado": 1
+        }
+      },
+      "golpe_escondido": {
+        "recall": {
+          "k": 24,
+          "n": 30,
+          "taxa": 0.8,
+          "ic95": [
+            0.6269395261897256,
+            0.9049502189759876
+          ]
+        },
+        "niveis": {
+          "nenhum": 2,
+          "baixo": 4,
+          "medio": 18,
+          "alto": 6,
+          "indeterminado": 0
+        }
+      },
+      "injecao_golpe": {
+        "recall": {
+          "k": 7,
+          "n": 7,
+          "taxa": 1.0,
+          "ic95": [
+            0.6456611570247934,
+            1.0
+          ]
+        },
+        "niveis": {
+          "nenhum": 0,
+          "baixo": 0,
+          "medio": 0,
+          "alto": 7,
+          "indeterminado": 0
+        }
+      },
+      "legitimo_comum": {
+        "falso_alarme": {
+          "k": 0,
+          "n": 25,
+          "taxa": 0.0,
+          "ic95": [
+            0.0,
+            0.13319649395317873
+          ]
+        },
+        "niveis": {
+          "nenhum": 25,
+          "baixo": 0,
+          "medio": 0,
+          "alto": 0,
+          "indeterminado": 0
+        }
+      },
+      "legitimo_dificil": {
+        "falso_alarme": {
+          "k": 2,
+          "n": 30,
+          "taxa": 0.06666666666666667,
+          "ic95": [
+            0.01847663532769335,
+            0.21323817721072091
+          ]
+        },
+        "niveis": {
+          "nenhum": 27,
+          "baixo": 1,
+          "medio": 2,
+          "alto": 0,
+          "indeterminado": 0
+        }
+      },
+      "injecao_legitimo": {
+        "falso_alarme": {
+          "k": 0,
+          "n": 3,
+          "taxa": 0.0,
+          "ic95": [
+            0.0,
+            0.5615060804490177
+          ]
+        },
+        "niveis": {
+          "nenhum": 3,
+          "baixo": 0,
+          "medio": 0,
+          "alto": 0,
+          "indeterminado": 0
+        }
+      },
+      "ambiguo": {
+        "marcados_positivo": {
+          "k": 7,
+          "n": 15,
+          "taxa": 0.4666666666666667,
+          "ic95": [
+            0.24809225259746442,
+            0.6988336984894921
+          ]
+        },
+        "niveis": {
+          "nenhum": 4,
+          "baixo": 4,
+          "medio": 6,
+          "alto": 1,
+          "indeterminado": 0
+        }
+      }
+    }
+  },
+  "positivo_so_alto": {
+    "acuracia_nao_ambiguos": {
+      "k": 87,
+      "n": 115,
+      "taxa": 0.7565217391304347,
+      "ic95": [
+        0.6706216825244925,
+        0.8258374698261993
+      ]
+    },
+    "recall_golpes_todos": {
+      "k": 29,
+      "n": 57,
+      "taxa": 0.5087719298245614,
+      "ic95": [
+        0.38259680329032353,
+        0.6338393193625982
+      ]
+    },
+    "falso_alarme_legitimos_todos": {
+      "k": 0,
+      "n": 58,
+      "taxa": 0.0,
+      "ic95": [
+        0.0,
+        0.062119996895293766
+      ]
+    },
+    "precisao": {
+      "k": 29,
+      "n": 29,
+      "taxa": 1.0,
+      "ic95": [
+        0.8830264055344442,
+        1.0
+      ]
+    },
+    "indeterminados": 1,
+    "acuracia_balanceada": 0.7543859649122807,
+    "por_grupo": {
+      "golpe_explicito": {
+        "recall": {
+          "k": 16,
+          "n": 20,
+          "taxa": 0.8,
+          "ic95": [
+            0.5839782779742401,
+            0.9193436467288
+          ]
+        },
+        "niveis": {
+          "nenhum": 0,
+          "baixo": 0,
+          "medio": 3,
+          "alto": 16,
+          "indeterminado": 1
+        }
+      },
+      "golpe_escondido": {
+        "recall": {
+          "k": 6,
+          "n": 30,
+          "taxa": 0.2,
+          "ic95": [
+            0.09504978102401235,
+            0.37306047381027446
+          ]
+        },
+        "niveis": {
+          "nenhum": 2,
+          "baixo": 4,
+          "medio": 18,
+          "alto": 6,
+          "indeterminado": 0
+        }
+      },
+      "injecao_golpe": {
+        "recall": {
+          "k": 7,
+          "n": 7,
+          "taxa": 1.0,
+          "ic95": [
+            0.6456611570247934,
+            1.0
+          ]
+        },
+        "niveis": {
+          "nenhum": 0,
+          "baixo": 0,
+          "medio": 0,
+          "alto": 7,
+          "indeterminado": 0
+        }
+      },
+      "legitimo_comum": {
+        "falso_alarme": {
+          "k": 0,
+          "n": 25,
+          "taxa": 0.0,
+          "ic95": [
+            0.0,
+            0.13319649395317873
+          ]
+        },
+        "niveis": {
+          "nenhum": 25,
+          "baixo": 0,
+          "medio": 0,
+          "alto": 0,
+          "indeterminado": 0
+        }
+      },
+      "legitimo_dificil": {
+        "falso_alarme": {
+          "k": 0,
+          "n": 30,
+          "taxa": 0.0,
+          "ic95": [
+            0.0,
+            0.113517091390478
+          ]
+        },
+        "niveis": {
+          "nenhum": 27,
+          "baixo": 1,
+          "medio": 2,
+          "alto": 0,
+          "indeterminado": 0
+        }
+      },
+      "injecao_legitimo": {
+        "falso_alarme": {
+          "k": 0,
+          "n": 3,
+          "taxa": 0.0,
+          "ic95": [
+            0.0,
+            0.5615060804490177
+          ]
+        },
+        "niveis": {
+          "nenhum": 3,
+          "baixo": 0,
+          "medio": 0,
+          "alto": 0,
+          "indeterminado": 0
+        }
+      },
+      "ambiguo": {
+        "marcados_positivo": {
+          "k": 1,
+          "n": 15,
+          "taxa": 0.06666666666666667,
+          "ic95": [
+            0.011866588606194856,
+            0.2981707755242399
+          ]
+        },
+        "niveis": {
+          "nenhum": 4,
+          "baixo": 4,
+          "medio": 6,
+          "alto": 1,
+          "indeterminado": 0
+        }
+      }
+    }
+  },
+  "injecao": {
+    "golpes_ainda_pos_e_manipulacao": {
+      "k": 2,
+      "n": 7,
+      "taxa": 0.2857142857142857,
+      "ic95": [
+        0.0822171657090155,
+        0.6410709098517873
+      ]
+    },
+    "golpes_ainda_pos": {
+      "k": 7,
+      "n": 7,
+      "taxa": 1.0,
+      "ic95": [
+        0.6456611570247934,
+        1.0
+      ]
+    },
+    "golpes_manipulacao_detectada": {
+      "k": 2,
+      "n": 7,
+      "taxa": 0.2857142857142857,
+      "ic95": [
+        0.0822171657090155,
+        0.6410709098517873
+      ]
+    },
+    "legitimos_com_injecao_marcados_pos": {
+      "k": 0,
+      "n": 3,
+      "taxa": 0.0,
+      "ic95": [
+        0.0,
+        0.5615060804490177
+      ]
+    },
+    "legitimos_com_injecao_manipulacao": {
+      "k": 0,
+      "n": 3,
+      "taxa": 0.0,
+      "ic95": [
+        0.0,
+        0.5615060804490177
+      ]
+    }
+  },
+  "evidencias": {
+    "descartadas_total": 3,
+    "textos_com_descarte": 3,
+    "sinais_validos_total": 131
+  },
+  "latencia_ms": {
+    "mediana": 844.0,
+    "p90": 1110.5,
+    "max": 2543.0
+  },
+  "chamadas": {
+    "teste_http": 132,
+    "teste_429": 0,
+    "erros": 1
+  },
+  "metas_declaradas": {
+    "recall_golpes_min": 0.85,
+    "falso_alarme_legitimos_max": 0.15
+  },
+  "consistencia": {
+    "n_textos": 20,
+    "ids": [
+      "T-AM-10",
+      "T-AM-11",
+      "T-AM-12",
+      "T-GE-02",
+      "T-GE-09",
+      "T-GO-15",
+      "T-GO-16",
+      "T-GO-24",
+      "T-GO-29",
+      "T-IG-01",
+      "T-IL-02",
+      "T-LC-08",
+      "T-LC-12",
+      "T-LC-15",
+      "T-LC-16",
+      "T-LC-20",
+      "T-LC-25",
+      "T-LD-09",
+      "T-LD-20",
+      "T-LD-26"
+    ],
+    "risco_igual_nas_3": {
+      "k": 20,
+      "n": 20,
+      "taxa": 1.0,
+      "ic95": [
+        0.8388698745050667,
+        1.0
+      ]
+    },
+    "risco_igual_nas_3_e_no_teste": {
+      "k": 19,
+      "n": 20,
+      "taxa": 0.95,
+      "ic95": [
+        0.7638641064874331,
+        0.9911187805671268
+      ]
+    },
+    "decisao_pos_igual_nas_3": {
+      "k": 20,
+      "n": 20,
+      "taxa": 1.0,
+      "ic95": [
+        0.8388698745050667,
+        1.0
+      ]
+    },
+    "riscos": {
+      "T-AM-10": [
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "T-AM-11": [
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "T-AM-12": [
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "T-GE-02": [
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "T-GE-09": [
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "T-GO-15": [
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "T-GO-16": [
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "T-GO-24": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-GO-29": [
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "T-IG-01": [
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "T-IL-02": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LC-08": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LC-12": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LC-15": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LC-16": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LC-20": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LC-25": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LD-09": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LD-20": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ],
+      "T-LD-26": [
+        "nenhum",
+        "nenhum",
+        "nenhum"
+      ]
+    },
+    "chamadas_http": 60,
+    "r429": 0
+  },
+  "dev": {
+    "openai/gpt-oss-120b r0": {
+      "acuracia_balanceada": 0.7647,
+      "recall": 0.5294117647058824,
+      "falso_alarme": 0.0,
+      "chamadas_http": 40,
+      "r429": 0
+    },
+    "openai/gpt-oss-20b r0": {
+      "acuracia_balanceada": 0.7958,
+      "recall": 0.6470588235294118,
+      "falso_alarme": 0.05555555555555555,
+      "chamadas_http": 40,
+      "r429": 0
+    },
+    "openai/gpt-oss-120b r1": {
+      "acuracia_balanceada": 0.9706,
+      "recall": 0.9411764705882353,
+      "falso_alarme": 0.0,
+      "chamadas_http": 40,
+      "r429": 0
+    }
+  }
+}

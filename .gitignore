@@ -82,3 +82,6 @@ results/v6_notebook*.ipynb
 !results/v8_*.json
 !results/v8_*.png
 results/v8_*_quick*
+
+# Módulo de contexto de golpe: nenhuma chave em arquivo (data/exemplos_contexto/ já está coberta por data/**; .env já está acima)
+*.key
