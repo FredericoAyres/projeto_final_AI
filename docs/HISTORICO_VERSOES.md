@@ -663,6 +663,12 @@ A acurácia trivial da validação é 0,693 (69% fake). No dev_shift, **a acurá
   - a escala da nota mudou (os cortes da validação mudaram bastante entre as rodadas), e o problema de um corte só para todos os ambientes continua;
   - houve um único treino curto, sem busca de hiperparâmetros.
 - **Decisão em aberto:** qual modelo empacotar como sistema final (seed 42, seed 123 ou a média das notas das duas). Deve ser decidido só pela validação.
+- **Pesos da R1 para compartilhar (2026-11-15):** `scripts/v8_exportar.py` grava só os pesos treináveis (camadas 5, 6, 7 + cabeça) da época escolhida, em float16 e no formato safetensors.
+  - Arquivos: `models/v8_R1_s42_pesos.safetensors` e `models/v8_R1_s123_pesos.safetensors`, com 72 MB cada, fora do git; o SHA256 está em `results/v8_r1_pesos.json`.
+  - **Onde baixar:** release [`v8-pesos-r1`](https://github.com/FredericoAyres/projeto_final_AI/releases/tag/v8-pesos-r1), que aponta para o commit `527fad7`. Os SHA256 baixados batem com os registrados. Baixe os arquivos para `models/`.
+  - Conferido em 256 clipes da validação: a diferença para as notas gravadas é de no máximo 0,011 de logit, com correlação de 0,99999997.
+  - Para usar: `from scripts.v8_exportar import carregar; modelo = carregar(42)`. Também é preciso o XLS-R 300M original e `results/v7_t3_coeficientes.npz`.
+- **Figuras para os slides (2026-11-15):** `python scripts/v8_figuras.py --slides` gera `results/slides/v8_0` a `v8_5` (13,33 × 7,5 pol., dpi 180), com a lista no `results/slides/INDEX.md`. A `v8_0_esquema` mostra o que fica congelado e o que aprende.
 - **Arquivos (fechamento, 2026-11-15):**
   - o `notebook.ipynb` (idêntico ao `v7_final.ipynb`, que fica como estava) foi refeito por `scripts/nb_v8.py`: as seções 1 a 16 são as da v7, a introdução é nova e as seções 17 a 22 são da v8;
   - o notebook só lê de `results/`, executou com 0 erros, tem 5,8 MB e está arquivado em `notebooks/versions/v8_finetuning.ipynb`;
@@ -806,7 +812,8 @@ python scripts/v8.py fila --quick       # teste rápido de ponta a ponta (~15 mi
 python scripts/v8.py fila               # tudo: preparar → treinar (4 rodadas) → escolher → testar (4) → avaliar (~10 h)
 python scripts/v8.py treinar --receita R1 --seed 42     # ou uma etapa só
 Get-Content logs\v8_status.txt          # andamento
-python scripts/v8_figuras.py            # figuras (só lê results/v8_*)
+python scripts/v8_figuras.py            # figuras do notebook (só lê results/v8_*); --slides: results/slides/v8_*
+python scripts/v8_exportar.py           # pesos da R1 (safetensors) + conferência na validação
 python scripts/nb_v8.py                 # monta e executa o notebook e copia para notebooks/versions/v8_finetuning.ipynb
 ```
 

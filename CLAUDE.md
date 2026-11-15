@@ -4,7 +4,7 @@ Projeto final da liga Insper AI: detector de voz gerada por IA (treino em inglê
 
 ## Antes de qualquer coisa
 - **Leia `docs/HISTORICO_VERSOES.md` inteiro antes de propor ou rodar qualquer versão.** Ao fechar uma versão, registre-a lá.
-- Ambiente: Windows, Python 3.13, RTX 4060 8 GB. Ative o env antes de qualquer comando: `env\Scripts\activate`.
+- Ambiente: Windows, Python 3.13; GPU RTX 4060 8 GB numa máquina e RTX 4050 Laptop 6 GB na outra (a v8 rodou na de 6 GB). Ative o env antes de qualquer comando: `env\Scripts\activate`.
 - Memória: o limite é o commit do Windows (~34 GB, ~26 GB já usados pelo sistema). Cada worker do DataLoader reserva ~1 GB. Treino completo: um experimento por processo (`scripts/treinar_experimento.py`), fora desta sessão (ver `docs/HISTORICO_VERSOES.md`, seções g e h).
 
 ## Regras do jogo (anti-vazamento)
@@ -28,6 +28,7 @@ Projeto final da liga Insper AI: detector de voz gerada por IA (treino em inglê
 - `notebook.ipynb`: SÓ a versão atual. Ao fechar uma versão, copie para `notebooks/versions/vN_nome.ipynb` (com as saídas) antes de começar a próxima.
 - `results/`: `baseline_results.csv` (v1) e `experiments.csv` (v2 e v3); da v4 em diante, `results/v4_*.csv`/`.json` (`v4_camadas.csv`, `v4_cabecas.csv`, `v4_resumo.json`...) e `v3_acuracias.csv`; históricos e notas por áudio ficam fora do git.
 - `data/processed/v4_cache/`: características da v4 em shards (fora do git); gerado por `scripts/v4.py extrair`. Execução da v4: `scripts/vigia_v4.ps1` → `scripts/rodar_v4.ps1` → `scripts/v4.py <etapa>`. Teste final da v4 (já avaliado, uma vez): `scripts/vigia_v4_teste.ps1` → `scripts/rodar_v4_teste.ps1` → `scripts/v4_teste.py <etapa>`; resultados em `results/v4_teste_*`, cache em `data/processed/v4_cache_teste/` (fora do git).
+- v8 (fine-tuning parcial do XLS-R a partir da T3): protocolo `docs/PROTOCOLO_V8.md`; código `src/finetune.py` e `scripts/v8.py <etapa>` (`fila` roda tudo); figuras `scripts/v8_figuras.py` (`--slides` para `results/slides/v8_*`); notebook `scripts/nb_v8.py`; pesos da R1 por `scripts/v8_exportar.py` em `models/v8_R1_s*_pesos.safetensors` (fora do git; baixar da release `v8-pesos-r1` do GitHub; SHA256 em `results/v8_r1_pesos.json`). Áudios preparados em `data/processed/v8_audio/` (~28,5 GB) e notas por clipe em `data/processed/v8_notas/` (fora do git).
 - `models/vN_*.pt`: checkpoints (fora do git).
 - `docs/`: `HISTORICO_VERSOES.md`, `audit_report.md`, `dataset_overview.md`, `datasets.yaml`.
 

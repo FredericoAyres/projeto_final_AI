@@ -129,7 +129,11 @@ def secao17():
 | **Sempre em modo `eval()`** | sem dropout e sem o mascaramento do pré-treino: no começo a rede é exatamente a T3. |
 
 **O que fica igual à v7 (comparação justa):** o treino da T3 ({mil} clipes: estúdio + ML-ITW + RADAR zh/zh-tw/ja), a validação (6 fontes), o teste mestre (ML-ITW, In-the-Wild 38 locutores, RADAR en), os controles de estúdio, o pipeline de áudio da v4 e os critérios de escolha e de corte. Protocolo completo, carimbado antes do primeiro treino: `docs/PROTOCOLO_V8.md`. Código: `src/finetune.py` (a rede e o treino) e `scripts/v8.py` (as etapas).
-'''.replace("{mil}", "81.288"))]
+'''.replace("{mil}", "81.288")),
+            *bloco_fig("0_esquema", "Figura v8-0 · O que congela e o que aprende",
+                       "o caminho do áudio até a nota, com cada etapa colorida: cinza = congelado (como na T3); rosa = aprende no fine-tuning.",
+                       "só as camadas 5, 6 e 7 e a cabeça são rosas; todo o resto do XLS-R e a padronização ficam como na T3.",
+                       "a v8 não troca o modelo: ela deixa a parte que a T3 já usa se ajustar, começando exatamente do ponto em que a T3 estava.")]
 
 
 def secao18(n):
@@ -275,6 +279,8 @@ O fine-tuning mexe no XLS-R, então ele poderia "esquecer" o que já sabia. Os t
 def secao22(n):
     esc = n.esc["por_candidato"]
     cortes = " · ".join(f"{c}: {esc[c]['regra']} = {br(esc[c]['cortes'][esc[c]['regra']], 2)}" for c in esc)
+    pj = json.loads((R / "v8_r1_pesos.json").read_text(encoding="utf-8"))["arquivos"]
+    conf = " e ".join(f"{br(a['conferencia_validacao']['dif_max_logit'], 3)} de logit (seed {a['seed']})" for a in pj.values())
     return [md(rf'''
 ## 22. v8: o que não dá para afirmar e próximos passos
 
@@ -284,6 +290,11 @@ def secao22(n):
 - **Ganho pequeno.** +0,004 a +0,005 de AUC média. Real (IC pareado acima de zero), mas pequeno perto do salto da v7 (+0,20). Na pior fonte (ML-ITW), não está garantido.
 - **A escala da nota mudou.** O corte de cada rodada, calculado na validação, mudou bastante ({cortes}). O problema da v7 (um corte único não serve para todos os ambientes) continua.
 - **Um único treino curto.** 2 épocas de 20.000 clipes, com taxas fixadas antes; não houve busca de hiperparâmetros (de propósito: cada rodada custa ~1 h e a escolha seria só pela validação).
+
+**Os pesos da R1, para usar o modelo** (`scripts/v8_exportar.py`; detalhes em `results/v8_r1_pesos.json`):
+- Só o que o fine-tuning mudou (camadas 5, 6, 7 + cabeça; 37,8 M números), em float16, no formato safetensors (⚠️ Fora da trilha: o formato padrão do Hugging Face para pesos; abrir o arquivo não executa código). São ~72 MB por seed, grandes demais para o git: baixe da release [`v8-pesos-r1`](https://github.com/FredericoAyres/projeto_final_AI/releases/tag/v8-pesos-r1) do GitHub para `models/` (`v8_R1_s42_pesos.safetensors` e `v8_R1_s123_pesos.safetensors`).
+- O resto vem de fora: o XLS-R 300M original (Hugging Face) e a padronização da T3 (`results/v7_t3_coeficientes.npz`).
+- **Conferido:** com os pesos exportados, as notas de 256 clipes da validação diferem das gravadas em no máximo {conf}. Uso: `from scripts.v8_exportar import carregar; modelo = carregar(42)`.
 
 **Decisão em aberto (não tomada aqui):** qual modelo empacotar como sistema final. A **receita** escolhida é a R1, mas ela tem dois modelos (seed 42 e seed 123). As opções são usar uma seed (escolhida pela validação) ou a média das notas das duas. Isso deve ser decidido **só pela validação** e registrado antes de qualquer novo teste.
 

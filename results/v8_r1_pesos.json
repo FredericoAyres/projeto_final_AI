@@ -1,0 +1,40 @@
+{
+ "o_que_e": "pesos da R1 da v8 (camadas 5, 6, 7 do XLS-R + cabeça), float16, safetensors; a época de cada seed é a escolhida pela validação (results/v8_escolha.json)",
+ "como_usar": "from scripts.v8_exportar import carregar; modelo = carregar(42)",
+ "precisa_tambem": [
+  "facebook/wav2vec2-xls-r-300m (Hugging Face)",
+  "results/v7_t3_coeficientes.npz"
+ ],
+ "arquivos": {
+  "v8_R1_s42_pesos.safetensors": {
+   "seed": 42,
+   "epoca": 2,
+   "n_parametros": 37791745,
+   "MB": 72.1,
+   "sha256": "784a8418757bbd883ea6009d21223e6d7e52e733d8de6bc25ce9b8e10bb5a6f7",
+   "conferencia_validacao": {
+    "n_clipes": 256,
+    "dif_max_logit": 0.01116800308227539,
+    "dif_mediana_logit": 0.0020134449005126953,
+    "correlacao": 0.9999999646890222,
+    "mesma_decisao_com_corte_0": 1.0
+   }
+  },
+  "v8_R1_s123_pesos.safetensors": {
+   "seed": 123,
+   "epoca": 2,
+   "n_parametros": 37791745,
+   "MB": 72.1,
+   "sha256": "e9f488117161905c373ab46c4f8fab6133792fb245dfae1933609915a353ba23",
+   "conferencia_validacao": {
+    "n_clipes": 256,
+    "dif_max_logit": 0.00984048843383789,
+    "dif_mediana_logit": 0.001886129379272461,
+    "correlacao": 0.9999999681345585,
+    "mesma_decisao_com_corte_0": 1.0
+   }
+  }
+ },
+ "onde_baixar": "https://github.com/FredericoAyres/projeto_final_AI/releases/tag/v8-pesos-r1",
+ "conferencia_download": "2026-11-15: os dois arquivos baixados da release têm o mesmo SHA256 registrado aqui"
+}

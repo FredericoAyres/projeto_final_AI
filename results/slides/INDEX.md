@@ -39,4 +39,15 @@ Todas em 13,33 × 7,5 pol., dpi 180. Em ordem de história. Geradas por: `script
 | 33 | `v7_05_deslocamento_nota.png` | Faixa de notas de reais e IA por fonte, T0 × T3. | A T3 sobe os falsos da internet acima do corte e comprime a escala. | Reserva (calibração) |
 | 34 | `v7_06_bloco_ingles.png` | AUC por receita no bloco inglês (barras). | Mesmo conteúdo da f_06. | Reserva |
 
+### v8 (fine-tuning; sistema atual = v8 R1). Geradas por `python scripts/v8_figuras.py --slides` (mesmo formato; rosa = R1, a receita escolhida pela validação; cinza = as outras; linha tracejada = T3)
+
+| # | figura | o que mostra | o que olhar | parte da história |
+|:--|:--|:--|:--|:--|
+| 35 | `v8_0_esquema.png` | O caminho do áudio até a nota: cinza = congelado, rosa = aprende no fine-tuning. | Só as camadas 5, 6, 7 e a cabeça aprendem, começando da T3. | **v8: o que é o fine-tuning** |
+| 36 | `v8_5_perda_treino.png` | Perda de treino por época em cada rodada. | A cabeça aleatória (R3) começa com mais que o dobro da perda. | v8: o treino |
+| 37 | `v8_3_validacao_x_teste.png` | Cada rodada: nota na validação × média no teste mestre. | A ordem da validação (R3 < T3 < R2 < R1) se repete no teste. | v8: a escolha pela validação funcionou |
+| 38 | `v8_1_diferenca_vs_t3.png` | Diferença para a T3 na média do teste mestre, com IC95 pareado. | R1 inteira acima de zero (+0,004 / +0,005); R3 inteira abaixo (−0,007). | **Resultados da v8** |
+| 39 | `v8_2_teste_por_fonte.png` | AUC por fonte do teste mestre, com IC95. | O ganho maior é no RADAR en; na internet real os intervalos se sobrepõem. | Resultados da v8: por fonte |
+| 40 | `v8_4_controles.png` | Controles de estúdio por rodada. | A R1 mantém ou melhora a T3; a R3 cai no português. | Resultados da v8: sem esquecimento |
+
 Tabelas: `grupos_bancos.csv` (banco, grupo, o que é, real/IA, idioma, ano, papel, nº de áudios), `hiperparametros_versoes.csv` (hiperparâmetros de v1 a v6) e `resumo_v7_para_slides.csv` (uma linha por tipo de fonte: o que representa, nome técnico, AUC do F0 e da T3 no teste mestre, visto no treino, clipes, locutores, observação).
