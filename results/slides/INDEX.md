@@ -1,6 +1,10 @@
-# Figuras para os slides (sistema atual: v7 = T3; sistema anterior: v4 = F0)
+# Figuras para os slides (sistema principal: v7 = T3; sistema anterior: v4 = F0; anexo: v8, experimento não adotado)
 
 Todas em 13,33 × 7,5 pol., dpi 180. Em ordem de história. Geradas por: `scripts/v4final_figuras.py` (01 a 14), `scripts/teste_internet_figuras.py` (ti_*), `scripts/v7_figuras.py` (v7_*) e `scripts/v7_slides.py` (f_*; mesmo estilo: real = azul, IA = laranja, neutro = cinza; "visto no treino" em tom claro ou hachurado). Corte A = calibrado no estúdio; corte B = calibrado nas entrevistas da internet (v4); A', M e F5 = as três regras de corte da v7, calculadas só na validação.
+
+## História principal (v7)
+
+Do problema até o sistema principal (v7 = T3), na ordem da apresentação.
 
 | # | figura | o que mostra | o que olhar | parte da história |
 |:--|:--|:--|:--|:--|
@@ -39,7 +43,11 @@ Todas em 13,33 × 7,5 pol., dpi 180. Em ordem de história. Geradas por: `script
 | 33 | `v7_05_deslocamento_nota.png` | Faixa de notas de reais e IA por fonte, T0 × T3. | A T3 sobe os falsos da internet acima do corte e comprime a escala. | Reserva (calibração) |
 | 34 | `v7_06_bloco_ingles.png` | AUC por receita no bloco inglês (barras). | Mesmo conteúdo da f_06. | Reserva |
 
-### v8 (fine-tuning; sistema atual = v8 R1). Geradas por `python scripts/v8_figuras.py --slides` (mesmo formato; rosa = R1, a receita escolhida pela validação; cinza = as outras; linha tracejada = T3)
+## Anexo (v8, experimento)
+
+O ajuste fino da v8 foi um experimento **não adotado**: mantivemos a v7 (T3) como sistema principal (motivos em `docs/DECISAO_SISTEMA_PRINCIPAL.md`).
+
+### v8 (fine-tuning; experimento não adotado; a regra da validação escolheu a R1). Geradas por `python scripts/v8_figuras.py --slides` (mesmo formato; rosa = R1, a receita escolhida pela validação; cinza = as outras; linha tracejada = T3)
 
 | # | figura | o que mostra | o que olhar | parte da história |
 |:--|:--|:--|:--|:--|
