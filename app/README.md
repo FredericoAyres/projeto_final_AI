@@ -31,7 +31,20 @@ python app/demo.py                    # contexto offline (sem internet, sem chav
 python app/demo.py --contexto groq    # contexto de verdade, o módulo dos colegas
 ```
 
-Depois, abra `app/mockup/index.html` no navegador. Embaixo de cada celular, a tela diz qual modo de contexto foi usado.
+O `demo.py` calcula os exemplos fixos de `app/exemplos.csv`. Para **ver as telas e analisar áudios novos**, ligue o servidor local:
+
+```bash
+python app/servidor.py                    # contexto offline: Whisper local + palavras-chave (sem internet)
+python app/servidor.py --contexto groq    # contexto dos colegas (envia o áudio ao Groq)
+```
+
+Depois, abra `http://127.0.0.1:8765`. No final da página, o campo **"Analise um áudio"** recebe um arquivo WAV, MP3, OGG ou FLAC, de até 25 MB.
+- O servidor roda o mesmo caminho dos exemplos: voz (T3), transcrição, contexto e alerta. O resultado vira um celular novo, igual aos outros.
+- No modo offline, a transcrição é feita pelo Whisper large-v3-turbo, a partir do cache local do Hugging Face.
+- O áudio fica em `app/mockup/enviados/` (fora do git), só para a página poder tocá-lo. O celular novo some ao recarregar a página.
+- O servidor só aceita conexões deste computador (127.0.0.1).
+
+Abrindo `app/mockup/index.html` direto, os exemplos aparecem, mas o campo de envio não funciona.
 
 **Modo `groq`:** é o módulo de verdade.
 - Precisa da `GROQ_API_KEY` no ambiente. Para configurar, veja `docs/CONTEXTO_GOLPE.md`, seção 2. A chave nunca vai para arquivo.
@@ -79,6 +92,7 @@ Os exemplos foram escolhidos pelo tipo de áudio, antes de ver a nota da T3 do a
 |:--|:--|:--|
 | `voz.py`, `contexto.py`, `alerta.py` | as três peças do app | sim |
 | `demo.py`, `exemplos.csv` | roda os exemplos e prepara o mockup | sim |
+| `servidor.py` | serve as telas e analisa áudios enviados pela página | sim |
 | `mockup/index.html`, `mockup/dados.js` | as telas e os resultados (com as transcrições) | sim |
 | `saida/resultados.json` | os resultados completos | sim |
-| `exemplos_audio/`, `mockup/audios/` | os áudios e as cópias para o mockup | não |
+| `exemplos_audio/`, `mockup/audios/`, `mockup/enviados/` | os áudios, as cópias para o mockup e os enviados pela página | não |

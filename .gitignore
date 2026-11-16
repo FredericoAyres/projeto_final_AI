@@ -89,3 +89,4 @@ results/v8_*_quick*
 # app (esboço): as cópias dos áudios de exemplo ficam fora
 app/mockup/audios/
 app/exemplos_audio/
+app/mockup/enviados/

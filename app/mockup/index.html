@@ -72,12 +72,35 @@
   mark { background: #f1ecf7; color: #5a3780; border-radius: 4px; padding: 0 2px; font-weight: 600; }
 
 
+  .envio { max-width: 720px; margin: 8px auto 48px; padding: 20px 22px; background: var(--tela); border: 1px solid var(--linha);
+           border-radius: 18px; }
+  .envio h2 { margin: 0 0 4px; font-size: 18px; }
+  .envio p { margin: 0 0 14px; font-size: 13.5px; color: var(--tinta2); }
+  .envio form { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .envio input[type=file] { flex: 1 1 260px; font-size: 13.5px; }
+  .envio button { font: inherit; font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 12px; border: 0;
+                  background: var(--marca); color: #fff; cursor: pointer; }
+  .envio button:disabled { opacity: .55; cursor: wait; }
+  .envio .estado { margin-top: 10px; font-size: 13px; color: var(--tinta2); min-height: 1em; }
+  .envio .estado.erro { color: var(--alto); }
+  #novos:empty { display: none; }
   .aviso { max-width: 1100px; margin: 0 auto 40px; padding: 0 16px; font-size: 12.5px; color: var(--apagado); }
   .vazio { max-width: 640px; margin: 40px auto; padding: 20px; background: var(--tela); border-radius: 12px; border: 1px solid var(--linha); }
 </style>
 </head>
 <body>
 <main class="palco" id="palco"></main>
+<section class="palco" id="novos" aria-live="polite"></section>
+
+<section class="envio" aria-labelledby="envio-titulo">
+  <h2 id="envio-titulo">Analise um áudio</h2>
+  <p>Escolha um arquivo (WAV, MP3, OGG ou FLAC). O app julga a voz e o conteúdo e cria um celular novo acima, como os exemplos.</p>
+  <form id="form-envio">
+    <input type="file" id="arquivo" accept=".wav,.mp3,.ogg,.flac,audio/wav,audio/mpeg,audio/ogg,audio/flac" required>
+    <button type="submit" id="botao-envio">Analisar</button>
+  </form>
+  <div class="estado" id="estado"></div>
+</section>
 
 <script src="dados.js"></script>
 <script>
@@ -162,6 +185,32 @@ if (!D) {
 } else {
   document.getElementById("palco").innerHTML = D.exemplos.map(tela).join("");
 }
+
+// envio de áudio: precisa do servidor local (python app/servidor.py)
+const form = document.getElementById("form-envio"), estado = document.getElementById("estado"),
+      botao = document.getElementById("botao-envio"), campo = document.getElementById("arquivo");
+function aviso(msg, erro) { estado.textContent = msg; estado.classList.toggle("erro", !!erro); }
+if (location.protocol === "file:") aviso("Para analisar áudios, ligue o servidor: python app/servidor.py (e abra http://127.0.0.1:8765).", true);
+form.addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const f = campo.files[0];
+  if (!f) return;
+  botao.disabled = true;
+  aviso(`Analisando "${f.name}"… (voz, transcrição e conteúdo; pode levar alguns segundos)`);
+  try {
+    const r = await fetch("analisar", { method: "POST", headers: { "X-Nome": encodeURIComponent(f.name) }, body: f });
+    const j = await r.json().catch(() => ({ erro: `o servidor respondeu ${r.status}` }));
+    if (!r.ok) throw new Error(j.erro || `erro ${r.status}`);
+    const novos = document.getElementById("novos");
+    novos.insertAdjacentHTML("beforeend", tela(j));
+    novos.lastElementChild.scrollIntoView({ behavior: "smooth", block: "start" });
+    aviso(`Pronto: "${f.name}" analisado.`);
+    form.reset();
+  } catch (e) {
+    aviso(location.protocol === "file:" || e instanceof TypeError
+      ? "Não consegui falar com o servidor. Ligue com: python app/servidor.py" : e.message, true);
+  } finally { botao.disabled = false; }
+});
 </script>
 </body>
 </html>
