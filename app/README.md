@@ -1,0 +1,84 @@
+# Escuta Segura: esboço do app
+
+Esboço para a apresentação. **Não é um app pronto.** A pessoa manda um áudio recebido (de WhatsApp ou de uma ligação gravada) e o app junta duas perguntas:
+
+1. **A voz parece gerada por IA?** Quem responde é a **T3 (v7)**, o sistema principal, chamada pelo gabarito `scripts/inferencia_referencia.py` (ver `docs/GUIA_PARA_O_SITE.md`).
+2. **O que foi dito parece golpe?** Quem responde é o **módulo de contexto dos colegas**, `src/contexto_golpe.py` (ver `docs/CONTEXTO_GOLPE.md`): o Whisper transcreve e um LLM classifica, os dois pela API do Groq.
+
+```
+áudio ──► app/voz.py (T3) ────────────────────────────► voz com sinais de IA?  ┐
+      └─► app/contexto.py ─► src/contexto_golpe.py ───► risco do conteúdo      ┘──► app/alerta.py ──► baixo / atenção / ALTO
+```
+
+## A regra do alerta
+
+É a regra congelada pelos colegas (`docs/RESULTADO_COMBINADO_CORRIGIDO.md`):
+- a voz conta como **IA** se a nota da T3 for maior ou igual ao corte M da validação;
+- o conteúdo conta como **suspeito** se o risco for `medio` ou `alto`.
+
+| voz \ conteúdo | não suspeito (`nenhum`, `baixo`) | suspeito (`medio`, `alto`) | `indeterminado` (falha, sem fala) |
+|:--|:--|:--|:--|
+| **sem sinais de IA** | baixo | atenção | não avaliado |
+| **com sinais de IA** | atenção | **ALTO: alerta de golpe** | atenção |
+
+"Indeterminado" **nunca** conta como "não suspeito", e o LLM nunca rebaixa o alerta da voz (`docs/CONTEXTO_GOLPE.md`, seção 6).
+
+## Como rodar
+
+```bash
+env\Scripts\activate
+python app/demo.py                    # contexto offline (sem internet, sem chave)
+python app/demo.py --contexto groq    # contexto de verdade, o módulo dos colegas
+```
+
+Depois, abra `app/mockup/index.html` no navegador. Embaixo de cada celular, a tela diz qual modo de contexto foi usado.
+
+**Modo `groq`:** é o módulo de verdade.
+- Precisa da `GROQ_API_KEY` no ambiente. Para configurar, veja `docs/CONTEXTO_GOLPE.md`, seção 2. A chave nunca vai para arquivo.
+- **Envia o áudio a um serviço externo.** Só use com o consentimento de quem gravou e nunca com áudios dos bancos do projeto.
+- O idioma é `auto`, como foi congelado em `results/diagnostico_whisper_congelado.json`.
+
+**Modo `offline`:** é só uma reserva para quando não houver internet ou chave.
+- Usa a transcrição digitada em `app/exemplos.csv` e uma lista de palavras-chave, com regras escolhidas à mão e não medidas: nenhum tipo de sinal dá risco `nenhum`; 1 dá `baixo`; 2 dão `medio`; 3 ou mais dão `alto`.
+- **Ele erra fácil:** palavras como "códigos" ou "fraude" num assunto inocente já disparam um sinal.
+
+## Os exemplos
+
+Ficam em `app/exemplos_audio/`, **fora do git**, porque são vozes de pessoas reais e clones delas, que não devem ser publicados. As colunas de `app/exemplos.csv` são `id`, `arquivo`, `transcricao` (usada só no modo offline), `titulo`, `contato` e `hora`.
+
+São quatro, todos do zip da coleta do grupo, um para cada célula da regra:
+
+| arquivo no app | origem no zip | voz | conteúdo | alerta esperado |
+|:--|:--|:--|:--|:--|
+| `real_normal.wav` | `coleta/wav`, pessoa p009, 1º áudio | real | recado do dia a dia | baixo |
+| `real_golpe.wav` | `coleta/wav`, pessoa p003, 2º áudio | real | roteiro "filho com número novo pedindo dinheiro" | atenção |
+| `clone_neutro.wav` | `coleta/clonados_neutros_nano/p001_neutro01.wav` | clone (chatterbox-nano) | assunto comum (cozinhar macarrão) | atenção |
+| `clone_golpe.wav` | `coleta/clonados_nano/p010_clone02.wav` | clone (chatterbox-nano) | pedido de dinheiro urgente ("in the next few minutes… send me the money as soon as you see this") | **alto** |
+
+As transcrições dos reais vieram do Whisper local; as dos clones, do `manifesto.csv` da coleta.
+
+Os exemplos foram escolhidos pelo tipo de áudio, antes de ver a nota da T3 do app. Na primeira versão, o celular 4 usava o `p003_clone02`. Ele foi trocado pelo `p010_clone02` por escolha do grupo, depois de ouvir os áudios. Isto é uma demonstração, não uma avaliação. A avaliação na coleta está em `docs/RESULTADO_TESTE_WHATSAPP.md`.
+
+## Para trocar uma peça
+
+| peça | arquivo | o que manter |
+|:--|:--|:--|
+| detector de voz | `app/voz.py` | a saída de `DetectorVoz.analisar`: `nota`, `corte`, `parece_ia`, `chance_ia` |
+| contexto | `app/contexto.py` → `src/contexto_golpe.py` | o contrato de `docs/CONTEXTO_GOLPE.md`, seção 4 (`status`, `transcricao`, `risco_conteudo`, `sinais` [{`tipo`, `evidencia`}], `resumo`...) |
+| regra do alerta | `app/alerta.py` | a tabela acima; mudar só se o grupo mudar a regra congelada |
+
+## Cuidados
+
+- **A decisão da voz** compara a nota da T3 com o corte M. A barra azul usa a sigmoide da nota só para desenhar, e a calibração dessa porcentagem não foi conferida.
+- **É um alerta, não um veredito.** O detector erra, e o golpe pode vir com voz humana.
+- **⚠️ Fora da trilha:** o mockup (HTML/CSS/JavaScript), as expressões regulares do modo offline e o Whisper/LLM do módulo de contexto.
+
+## Arquivos
+
+| arquivo | o que é | no git? |
+|:--|:--|:--|
+| `voz.py`, `contexto.py`, `alerta.py` | as três peças do app | sim |
+| `demo.py`, `exemplos.csv` | roda os exemplos e prepara o mockup | sim |
+| `mockup/index.html`, `mockup/dados.js` | as telas e os resultados (com as transcrições) | sim |
+| `saida/resultados.json` | os resultados completos | sim |
+| `exemplos_audio/`, `mockup/audios/` | os áudios e as cópias para o mockup | não |

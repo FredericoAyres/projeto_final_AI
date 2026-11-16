@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escuta Segura · esboço</title>
+<style>
+  :root {
+    --fundo: #eef1f5; --tela: #ffffff; --tinta: #16202c; --tinta2: #4a5868; --apagado: #8593a3; --linha: #e1e6ec;
+    --marca: #1d3557; --marca2: #2f5d8a;
+    --baixo: #1f7a4a; --baixo-bg: #e5f4ec; --atencao: #9a5b00; --atencao-bg: #fdf1dc; --alto: #b3261e; --alto-bg: #fce8e6;
+    --barra-voz: #2f5d8a; --barra-ctx: #7a4fa0;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--tinta);
+         font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+  header.topo { max-width: 1100px; margin: 0 auto; padding: 28px 16px 8px; }
+  header.topo h1 { margin: 0; font-size: 28px; letter-spacing: -0.3px; }
+  header.topo p { margin: 6px 0 0; color: var(--tinta2); }
+
+  /* fluxo */
+  .fluxo { max-width: 1100px; margin: 16px auto 4px; padding: 0 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .passo { background: var(--tela); border: 1px solid var(--linha); border-radius: 10px; padding: 8px 12px; font-size: 14px; }
+  .passo small { display: block; font-size: 11px; margin-top: 2px; }
+  .ok small { color: var(--baixo); } .prov small { color: var(--atencao); }
+  .seta { color: var(--apagado); }
+
+  /* celulares */
+  .palco { max-width: 820px; margin: 0 auto; padding: 20px 16px 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+  .coluna { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .legenda { font-size: 14px; color: var(--tinta2); max-width: 340px; text-align: center; }
+  .celular { width: 340px; max-width: calc(100vw - 32px); background: #0f1720; border-radius: 44px; padding: 12px;
+             box-shadow: 0 20px 40px rgba(16, 32, 52, .18); }
+  .tela { background: var(--tela); border-radius: 34px; overflow: hidden; min-height: 660px; display: flex; flex-direction: column; }
+  .status { display: flex; justify-content: space-between; padding: 12px 22px 4px; font-size: 12px; font-weight: 600; }
+  .barra-app { display: flex; align-items: center; gap: 10px; padding: 8px 18px 12px; border-bottom: 1px solid var(--linha); }
+  .logo { width: 30px; height: 30px; border-radius: 9px; background: var(--marca); display: grid; place-items: center; }
+  .barra-app b { font-size: 16px; }
+  .conteudo { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+
+  .cartao { border: 1px solid var(--linha); border-radius: 16px; padding: 12px 14px; }
+  .rotulo { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--apagado); margin-bottom: 6px; font-weight: 600; }
+  audio { width: 100%; height: 34px; }
+  .arquivo { font-size: 13px; color: var(--tinta2); margin-bottom: 6px; display: flex; justify-content: space-between; }
+
+  .veredito { border-radius: 18px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .veredito.nao_avaliado { background: #eef0f3; } .nao_avaliado .icone { background: #6b7684; } .nao_avaliado h2 { color: #4a5563; }
+  .medidor { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+  .medidor i { height: 8px; border-radius: 4px; background: var(--linha); }
+  .medidor i.on { background: var(--barra-ctx); }
+  .medidor-rot { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); font-size: 10.5px; color: var(--apagado); }
+  .resumo { grid-column: 1 / -1; font-size: 12.5px; color: var(--tinta2); font-style: italic; }
+  .modo { font-size: 11px; color: var(--apagado); text-align: right; margin-top: -4px; }
+  .veredito.baixo { background: var(--baixo-bg); } .veredito.atencao { background: var(--atencao-bg); } .veredito.alto { background: var(--alto-bg); }
+  .icone { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 20px; }
+  .baixo .icone { background: var(--baixo); } .atencao .icone { background: var(--atencao); } .alto .icone { background: var(--alto); }
+  .veredito h2 { margin: 0 0 4px; font-size: 18px; }
+  .baixo h2 { color: var(--baixo); } .atencao h2 { color: var(--atencao); } .alto h2 { color: var(--alto); }
+  .veredito p { margin: 0; font-size: 13.5px; line-height: 1.4; color: var(--tinta); }
+
+  .linha-ramo { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; align-items: baseline; }
+  .linha-ramo + .linha-ramo { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--linha); }
+  .ramo-nome { font-size: 14px; font-weight: 600; }
+  .ramo-valor { font-size: 14px; font-weight: 600; }
+  .trilho { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: var(--linha); position: relative; overflow: hidden; }
+  .trilho > i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
+  .detalhe { grid-column: 1 / -1; font-size: 12px; color: var(--apagado); }
+  .chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .chip { font-size: 11.5px; padding: 3px 8px; border-radius: 999px; background: #f1ecf7; color: #5a3780; border: 1px solid #e0d4ee; }
+
+  .transcricao { font-size: 13.5px; line-height: 1.5; color: var(--tinta); }
+  mark { background: #f1ecf7; color: #5a3780; border-radius: 4px; padding: 0 2px; font-weight: 600; }
+
+  .botoes { display: flex; gap: 8px; margin-top: auto; }
+  .botoes span { flex: 1; text-align: center; font-size: 13px; font-weight: 600; padding: 10px 6px; border-radius: 12px;
+                 border: 1px solid var(--linha); color: var(--marca); }
+  .botoes span.forte { background: var(--marca); color: #fff; border-color: var(--marca); }
+
+  .aviso { max-width: 1100px; margin: 0 auto 40px; padding: 0 16px; font-size: 12.5px; color: var(--apagado); }
+  .vazio { max-width: 640px; margin: 40px auto; padding: 20px; background: var(--tela); border-radius: 12px; border: 1px solid var(--linha); }
+</style>
+</head>
+<body>
+<main class="palco" id="palco"></main>
+
+<script src="dados.js"></script>
+<script>
+const ICONE = { baixo: "✓", atencao: "!", alto: "!", nao_avaliado: "?" };
+const NOME_SINAL = { urgencia: "urgência", pedido_dinheiro_ou_pix: "pedido de dinheiro / Pix", senha_ou_codigo: "senha ou código",
+  link_suspeito: "link suspeito", falsa_identidade: "falsa identidade", pedido_de_segredo: "pedido de segredo",
+  ameaca_ou_medo: "ameaça ou problema", pagamento_incomum: "pagamento incomum", troca_de_numero_ou_contato: "troca de número",
+  tentativa_de_manipulacao: "tentativa de manipulação" };
+const RISCOS = ["nenhum", "baixo", "medio", "alto"];
+const NOME_RISCO = { nenhum: "nenhum", baixo: "baixo", medio: "médio", alto: "alto", indeterminado: "não avaliado" };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = x => Math.round(100 * x) + "%";
+const fmt = x => x.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: "always" });
+
+function destacar(texto, sinais) {
+  let html = esc(texto);
+  const trechos = [...new Set(sinais.map(s => s.evidencia))].sort((a, b) => b.length - a.length);
+  for (const t of trechos) {
+    const re = new RegExp("(" + esc(t).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+    html = html.replace(re, "<mark>$1</mark>");
+  }
+  return html;
+}
+
+function tela(ex) {
+  const v = ex.voz, c = ex.contexto, a = ex.alerta;
+  const cats = [...new Set(c.sinais.map(s => NOME_SINAL[s.tipo] || s.tipo))];
+  const ir = RISCOS.indexOf(c.risco_conteudo);
+  const hora = ex.hora || "12:00";
+  return `
+  <div class="coluna">
+    <div class="celular"><div class="tela">
+      <div class="status"><span>${hora}</span><span>●●● 5G</span></div>
+      <div class="barra-app">
+        <div class="logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <b>Escuta Segura</b>
+      </div>
+      <div class="conteudo">
+        <div class="cartao">
+          <div class="rotulo">Áudio analisado</div>
+          <div class="arquivo"><span>${esc(ex.contato || "Áudio recebido")}</span><span>${v.duracao_s.toFixed(1).replace(".", ",")} s</span></div>
+          <audio controls preload="none" src="${esc(ex.audio_mockup)}"></audio>
+        </div>
+
+        <div class="veredito ${a.nivel}" role="status">
+          <div class="icone" aria-hidden="true">${ICONE[a.nivel]}</div>
+          <div><h2>${esc(a.titulo)}</h2><p>${esc(a.mensagem)}</p></div>
+        </div>
+
+        <div class="cartao">
+          <div class="rotulo">Por quê</div>
+          <div class="linha-ramo">
+            <span class="ramo-nome">Voz</span>
+            <span class="ramo-valor">${v.parece_ia ? "parece gerada por IA" : "parece real"}</span>
+            <div class="trilho"><i style="width:${pct(v.chance_ia)};background:var(--barra-voz)"></i></div>
+            <span class="detalhe">nota da T3 ${fmt(v.nota)} · corte ${fmt(v.corte)} (acima do corte = IA)</span>
+          </div>
+          <div class="linha-ramo">
+            <span class="ramo-nome">Conteúdo</span>
+            <span class="ramo-valor">risco ${NOME_RISCO[c.risco_conteudo] || c.risco_conteudo}</span>
+            <div class="medidor">${RISCOS.map((_, k) => `<i class="${k <= ir && ir > 0 ? "on" : ""}"></i>`).join("")}</div>
+            <div class="medidor-rot"><span>nenhum</span><span>baixo</span><span>médio</span><span>alto</span></div>
+            ${cats.length ? `<div class="chips">${cats.map(k => `<span class="chip">${esc(k)}</span>`).join("")}</div>` : `<span class="detalhe">${ir < 0 ? esc(c.erro || "o conteúdo não pôde ser avaliado") : "nenhum pedido de dinheiro, código ou urgência"}</span>`}
+            ${c.resumo ? `<span class="resumo">${esc(c.resumo)}</span>` : ""}
+          </div>
+        </div>
+
+        <div class="cartao">
+          <div class="rotulo">O que foi dito</div>
+          <div class="transcricao">${c.transcricao ? `“${destacar(c.transcricao, c.sinais)}”` : "(sem transcrição)"}</div>
+        </div>
+
+        <div class="botoes">
+          ${a.nivel === "baixo" || a.nivel === "nao_avaliado" ? `<span>Analisar outro</span><span class="forte">OK</span>`
+                                : `<span>Bloquear número</span><span class="forte">Ligar no oficial</span>`}
+        </div>
+      </div>
+    </div></div>
+    <div class="legenda">${esc(ex.titulo)}</div>  </div>`;
+}
+
+const D = window.RESULTADOS;
+if (!D) {
+  document.getElementById("palco").outerHTML =
+    '<div class="vazio">Ainda não há resultados. Rode <code>python app/demo.py</code> na raiz do repositório e recarregue esta página.</div>';
+} else {
+  document.getElementById("palco").innerHTML = D.exemplos.map(tela).join("");
+}
+</script>
+</body>
+</html>

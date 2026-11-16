@@ -1,0 +1,177 @@
+{
+  "gerado_em": "2026-11-16 13:31",
+  "exemplos": [
+    {
+      "id": "normal",
+      "titulo": "Voz real: recado de um amigo (coleta do grupo)",
+      "contato": "Amigo",
+      "hora": "19:42",
+      "arquivo": "app/exemplos_audio/real_normal.wav",
+      "audio_mockup": "audios/normal.wav",
+      "voz": {
+        "modelo": "T3 (v7, sistema principal)",
+        "nota": -2.9315555095672607,
+        "corte": 0.23255929350852966,
+        "parece_ia": false,
+        "chance_ia": 0.05061552483503074,
+        "duracao_s": 13.1135
+      },
+      "contexto": {
+        "status": "ok",
+        "transcricao": "So, how has your week been going? Have you done anything fun lately or have you mostly been busy with work or school? I realized we haven't had had a chance to talk properly yet.",
+        "idioma": null,
+        "risco_conteudo": "nenhum",
+        "sinais": [],
+        "resumo": "",
+        "aviso": "Isto é um alerta, não um veredito.",
+        "erro": null,
+        "observacoes": [
+          "modo offline: transcrição digitada e palavras-chave; não é o módulo dos colegas"
+        ],
+        "modo": "offline"
+      },
+      "alerta": {
+        "nivel": "baixo",
+        "titulo": "Chance de golpe baixa",
+        "mensagem": "A voz não tem sinais de IA e o conteúdo não tem sinais típicos de golpe.",
+        "conteudo": "normal"
+      }
+    },
+    {
+      "id": "real_golpe",
+      "titulo": "Voz real lendo um roteiro de golpe (coleta do grupo)",
+      "contato": "Número desconhecido",
+      "hora": "10:15",
+      "arquivo": "app/exemplos_audio/real_golpe.wav",
+      "audio_mockup": "audios/real_golpe.wav",
+      "voz": {
+        "modelo": "T3 (v7, sistema principal)",
+        "nota": -3.4766480922698975,
+        "corte": 0.23255929350852966,
+        "parece_ia": false,
+        "chance_ia": 0.029984016516795827,
+        "duracao_s": 16.8935
+      },
+      "contexto": {
+        "status": "ok",
+        "transcricao": "Hey Dad, my old phone stopped working, so I'm using a different number now. I have a bill due today and I'm having trouble making the payment. Can you help me to cover it? I can pay you back later this week.",
+        "idioma": null,
+        "risco_conteudo": "alto",
+        "sinais": [
+          {
+            "tipo": "pedido_dinheiro_ou_pix",
+            "evidencia": "payment"
+          },
+          {
+            "tipo": "urgencia",
+            "evidencia": "due today"
+          },
+          {
+            "tipo": "ameaca_ou_medo",
+            "evidencia": "stopped working"
+          },
+          {
+            "tipo": "troca_de_numero_ou_contato",
+            "evidencia": "different number"
+          }
+        ],
+        "resumo": "",
+        "aviso": "Isto é um alerta, não um veredito.",
+        "erro": null,
+        "observacoes": [
+          "modo offline: transcrição digitada e palavras-chave; não é o módulo dos colegas"
+        ],
+        "modo": "offline"
+      },
+      "alerta": {
+        "nivel": "atencao",
+        "titulo": "Conteúdo suspeito",
+        "mensagem": "A voz não tem sinais de IA, mas o pedido é típico de golpe (golpistas também usam a própria voz). Confirme por outro canal antes de fazer qualquer coisa.",
+        "conteudo": "suspeito"
+      }
+    },
+    {
+      "id": "ia_neutro",
+      "titulo": "Voz clonada por IA com assunto comum (coleta do grupo)",
+      "contato": "Amiga",
+      "hora": "21:03",
+      "arquivo": "app/exemplos_audio/clone_neutro.wav",
+      "audio_mockup": "audios/ia_neutro.wav",
+      "voz": {
+        "modelo": "T3 (v7, sistema principal)",
+        "nota": 6.9721903800964355,
+        "corte": 0.23255929350852966,
+        "parece_ia": true,
+        "chance_ia": 0.9990632813033179,
+        "duracao_s": 10.6
+      },
+      "contexto": {
+        "status": "ok",
+        "transcricao": "I tried making pasta from scratch yesterday, and the kitchen ended up covered in flour. The result was actually pretty good, though. Next time, I'll invite a few friends over for dinner.",
+        "idioma": null,
+        "risco_conteudo": "nenhum",
+        "sinais": [],
+        "resumo": "",
+        "aviso": "Isto é um alerta, não um veredito.",
+        "erro": null,
+        "observacoes": [
+          "modo offline: transcrição digitada e palavras-chave; não é o módulo dos colegas"
+        ],
+        "modo": "offline"
+      },
+      "alerta": {
+        "nivel": "atencao",
+        "titulo": "Voz possivelmente gerada por IA",
+        "mensagem": "O conteúdo não tem sinais de golpe, mas a voz tem sinais de ser sintética. Desconfie se vier um pedido de dinheiro ou de dados depois.",
+        "conteudo": "normal"
+      }
+    },
+    {
+      "id": "golpe",
+      "titulo": "Voz clonada por IA pedindo dinheiro (coleta do grupo)",
+      "contato": "Número desconhecido",
+      "hora": "14:07",
+      "arquivo": "app/exemplos_audio/clone_golpe.wav",
+      "audio_mockup": "audios/golpe.wav",
+      "voz": {
+        "modelo": "T3 (v7, sistema principal)",
+        "nota": 7.3180928230285645,
+        "corte": 0.23255929350852966,
+        "parece_ia": true,
+        "chance_ia": 0.9993370135658736,
+        "duracao_s": 10.48
+      },
+      "contexto": {
+        "status": "ok",
+        "transcricao": "I need help making a payment in the next few minutes. I can't take a call right now, but I'll explain everything later. Could you send me the money as soon as you see this message?",
+        "idioma": null,
+        "risco_conteudo": "medio",
+        "sinais": [
+          {
+            "tipo": "pedido_dinheiro_ou_pix",
+            "evidencia": "send me the money"
+          },
+          {
+            "tipo": "urgencia",
+            "evidencia": "right now"
+          }
+        ],
+        "resumo": "",
+        "aviso": "Isto é um alerta, não um veredito.",
+        "erro": null,
+        "observacoes": [
+          "modo offline: transcrição digitada e palavras-chave; não é o módulo dos colegas"
+        ],
+        "modo": "offline"
+      },
+      "alerta": {
+        "nivel": "alto",
+        "titulo": "Alerta de golpe",
+        "mensagem": "A voz tem sinais de ser gerada por IA e o pedido é típico de golpe. Não faça pagamentos nem passe códigos. Desligue e ligue você mesmo para o número oficial.",
+        "conteudo": "suspeito"
+      }
+    }
+  ],
+  "modo_contexto": "offline",
+  "aviso": "Esboço. Voz: T3 (sistema principal). Contexto: modo offline (transcrição digitada + palavras-chave), não o módulo dos colegas."
+}
