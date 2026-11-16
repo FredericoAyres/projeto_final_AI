@@ -19,7 +19,7 @@ O detector de voz (a T3) responde *"a voz parece de IA?"*. Este módulo responde
   │   m4a / aac / opus / webm (não há ffmpeg aqui): enviados como estão, sem corte de silêncio e sem corte
   │   de duração; acima de 25 MB, recusados.
   ▼
-TRANSCRIÇÃO (Groq, whisper-large-v3-turbo, verbose_json, idioma "auto" (não envia `language`; o Whisper detecta), temperature 0)
+TRANSCRIÇÃO (Groq, whisper-large-v3-turbo, verbose_json, idioma "auto" (recomendado; não envia `language`; o Whisper detecta; o padrão no código ainda é `pt`, passe `auto`), temperature 0)
   │   descarta trechos com no_speech_prob > 0,6 E avg_logprob < -1,0 (cara de silêncio ou ruído);
   │   marca "transcricao_suspeita" se sobrar menos de 10 caracteres ou uma frase típica de alucinação
   │   ("obrigado por assistir", "legendas pela comunidade Amara.org"...);
@@ -90,7 +90,7 @@ As mudanças (c), (e) e (f) foram testadas sem rede, com dados simulados.
 
 ### Teste com áudio (pendente)
 
-Em 15/11/2026, `data/exemplos_contexto/` não existia, então **o caminho de áudio completo não foi testado com fala de verdade**. Só o preparo foi testado sem rede, com sinais sintéticos, e o envio foi testado com um tom de 1 s gerado no código. Para testar:
+Em 15/11/2026, `data/exemplos_contexto/` não existia, então, naquele dia, o caminho de áudio completo ainda não tinha sido testado com fala. **Depois, ele foi rodado com fala de verdade no teste WhatsApp** (100 clipes em inglês; 15 e 16/11/2026; `docs/RESULTADO_TESTE_WHATSAPP.md`, `docs/RESULTADO_CONTEXTO_WHISPER.md`, `docs/ERRATA_TESTE_WHATSAPP.md`). Para testar com os seus próprios recados:
 1. Grave **você mesmo**, no celular, dois recados curtos (10 a 30 s): um imitando um golpe (por exemplo, "parente pedindo Pix urgente") e um normal.
 2. Salve como `data/exemplos_contexto/golpe_1.<formato>` e `data/exemplos_contexto/normal_1.<formato>` (m4a, wav, mp3, ogg...). A pasta já fica fora do git por causa da regra `data/**`.
 3. Rode `python scripts/contexto_golpe_cli.py --smoke`.
@@ -141,7 +141,7 @@ Todas as 6 respostas passaram na validação já na 1ª tentativa, sem correçã
   "observacoes": []
 }
 ```
-(Exemplo **montado à mão** a partir do texto 1 do teste de fumaça, para mostrar o formato; **não é uma saída gravada**. As evidências, o resumo, o "idioma" e as latências são ilustrativos, porque o caminho de áudio com fala ainda não foi rodado.)
+(Exemplo **montado à mão** a partir do texto 1 do teste de fumaça, para mostrar o formato; **não é uma saída gravada**. As evidências, o resumo, o "idioma" e as latências são ilustrativos, porque este exemplo não é uma saída gravada; o caminho de áudio com fala já foi rodado no teste WhatsApp, em inglês.)
 
 | campo | valores | observação |
 |:--|:--|:--|
