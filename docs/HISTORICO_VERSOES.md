@@ -988,3 +988,9 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
 - **Resultado:** T3 (corte M 0,233) acusa 1 de 3 (`ia_3`, nota 2,72); `ia_1` (-0,60) e `ia_2` (-3,38) passam como reais. Em Opus 16 kbps as notas caem de 0,6 a 2,4 logit e o `ia_3` continua acusado (1,81). F0: `ia_1` em nenhum corte, `ia_2` só no A, `ia_3` nos dois.
 - **Leitura:** gerador de família nova, fora do treino; mostra o limite já declarado (não generaliza para geradores novos). A "porcentagem" é probabilidade crua, sem calibração.
 - **Próximo passo sugerido:** 15 a 30 áudios de vários geradores comerciais, sem treinar, com protocolo escrito antes.
+
+
+### 2026-11-16 · Errata do idioma do Whisper no teste WhatsApp e reavaliação do contexto
+
+- **Erro:** `scripts/teste_whatsapp.py` chamou o Whisper com `idioma="pt"` (forçado), não `"auto"` como o relatório de 15/11 dizia; o áudio é inglês. "O Whisper detectou português nos 100 clipes", o desvio "idioma=auto", a ressalva "o T3 nunca viu português" (para este banco) e o resultado de contexto de 53% **são inválidos**. Trechos exatos: `docs/ERRATA_TESTE_WHATSAPP.md` (os arquivos antigos não foram editados). O detector não é afetado.
+- **Reavaliação** (protocolo `docs/PROTOCOLO_CONTEXTO_WHISPER.md`, escrito antes das chamadas; resultado `docs/RESULTADO_CONTEXTO_WHISPER.md`): DEV (8 pessoas) escolheu o modo `auto` pela regra fixa (95% "english", WER 0,012 igual ao do modo `en`); congelado antes do RESERVADO (15 pessoas, rodado uma vez). RESERVADO: acurácia 45% (trivial 82%), recall 37%, falso alarme 18%; a versão de 15/11 nos mesmos clipes: 52%, 43%, 9%. O idioma corrigido **não mudou o resultado de forma demonstrável**; o recall baixo vem do julgamento do conteúdo, não da transcrição. Português do modo `auto` **não validado** (o banco só tem inglês). Para o site: `idioma="auto"`.

@@ -1,0 +1,17 @@
+conjunto,versao,grupo,n,com_alerta,taxa,wilson_lo,wilson_hi,risco_nenhum,risco_baixo,risco_medio,risco_alto,risco_indeterminado
+RESERVADO (principal),15/11 (pt forcado),real_sem_golpe,9,1,0.1111,0.0199,0.435,1,7,1,0,0
+RESERVADO (principal),15/11 (pt forcado),real_com_golpe,19,2,0.1053,0.0294,0.3139,17,0,2,0,0
+RESERVADO (principal),15/11 (pt forcado),ia_pedido_dinheiro,30,19,0.6333,0.4551,0.7813,0,11,13,6,0
+RESERVADO (principal),15/11 (pt forcado),ia_neutro,2,0,0.0,0.0,0.6576,2,0,0,0,0
+RESERVADO (principal),corrigido,real_sem_golpe,9,2,0.2222,0.0632,0.5474,1,6,2,0,0
+RESERVADO (principal),corrigido,real_com_golpe,19,1,0.0526,0.0094,0.2464,17,1,1,0,0
+RESERVADO (principal),corrigido,ia_pedido_dinheiro,30,17,0.5667,0.392,0.7262,0,13,11,6,0
+RESERVADO (principal),corrigido,ia_neutro,2,0,0.0,0.0,0.6576,2,0,0,0,0
+DEV (usado no diagnostico),15/11 (pt forcado),real_sem_golpe,8,2,0.25,0.0715,0.5907,1,5,2,0,0
+DEV (usado no diagnostico),15/11 (pt forcado),real_com_golpe,8,0,0.0,0.0,0.3244,7,1,0,0,0
+DEV (usado no diagnostico),15/11 (pt forcado),ia_pedido_dinheiro,16,8,0.5,0.28,0.72,0,8,7,1,0
+DEV (usado no diagnostico),15/11 (pt forcado),ia_neutro,8,0,0.0,0.0,0.3244,8,0,0,0,0
+DEV (usado no diagnostico),corrigido,real_sem_golpe,8,2,0.25,0.0715,0.5907,1,5,1,1,0
+DEV (usado no diagnostico),corrigido,real_com_golpe,8,0,0.0,0.0,0.3244,7,1,0,0,0
+DEV (usado no diagnostico),corrigido,ia_pedido_dinheiro,16,9,0.5625,0.3318,0.769,0,7,5,4,0
+DEV (usado no diagnostico),corrigido,ia_neutro,8,0,0.0,0.0,0.3244,8,0,0,0,0

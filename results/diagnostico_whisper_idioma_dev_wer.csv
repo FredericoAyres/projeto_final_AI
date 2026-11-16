@@ -1,0 +1,4 @@
+modelo,modo,n_clones,wer_medio,wer_mediano,wer_min,wer_max,english_dev,n_dev,frac_english,english_clones,english_reais
+whisper-large-v3-turbo,auto,24,0.012,0.0,0.0,0.1,38,40,0.95,24,14
+whisper-large-v3-turbo,en,24,0.012,0.0,0.0,0.1,40,40,1.0,24,16
+whisper-large-v3-turbo,pt,24,0.4636,0.0536,0.0,1.1212,0,40,0.0,0,0

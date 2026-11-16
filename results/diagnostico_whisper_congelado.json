@@ -1,0 +1,23 @@
+{
+ "congelado_em": "2026-11-16 10:08:10 (UTC-0300)",
+ "modo": "auto",
+ "modelo_asr": "whisper-large-v3-turbo",
+ "idioma_enviado": null,
+ "regra": {
+  "a_english_>=_90pct": true,
+  "b_wer_auto_<=_wer_en_+0.05": true,
+  "wer_mediano_do_modo": 0.0,
+  "variante_v3": null
+ },
+ "somente_ingles": false,
+ "concordancia_auto_en": {
+  "textos_identicos_auto_en": 38,
+  "n": 40,
+  "wer_medio_auto_vs_en": 0.0475
+ },
+ "sha256_divisao": "77d1b1b8cb54113a8eb4936c75fd366b3c01d4d15dd9a6775c5c2e189ea18a9e",
+ "sha256_prompt_r1_lf": "3f848dbf65e294475e86ee963ab09103f7b83853bec979f14fbad872bf6de503",
+ "sha256_src_contexto_golpe_lf": "d0327e1b3c177aba0b25d307199ea6c4900c7ce3d17e09254382780e15d81dfb",
+ "sha256_manifesto": "0fcac35d27fc0cadcbfeb8c99395b8a478dfc758a0d1e5cea9bf7c360f655b29",
+ "intervalo_s": 12
+}

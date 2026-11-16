@@ -19,7 +19,7 @@ O detector de voz (a T3) responde *"a voz parece de IA?"*. Este módulo responde
   │   m4a / aac / opus / webm (não há ffmpeg aqui): enviados como estão, sem corte de silêncio e sem corte
   │   de duração; acima de 25 MB, recusados.
   ▼
-TRANSCRIÇÃO (Groq, whisper-large-v3-turbo, verbose_json, idioma "pt", temperature 0)
+TRANSCRIÇÃO (Groq, whisper-large-v3-turbo, verbose_json, idioma "auto" (não envia `language`; o Whisper detecta), temperature 0)
   │   descarta trechos com no_speech_prob > 0,6 E avg_logprob < -1,0 (cara de silêncio ou ruído);
   │   marca "transcricao_suspeita" se sobrar menos de 10 caracteres ou uma frase típica de alucinação
   │   ("obrigado por assistir", "legendas pela comunidade Amara.org"...);
@@ -78,7 +78,7 @@ As mudanças (c), (e) e (f) foram testadas sem rede, com dados simulados.
    python scripts/contexto_golpe_cli.py --audio data/exemplos_contexto/golpe_1.m4a
    python scripts/contexto_golpe_cli.py --smoke                  # 6 textos inventados + os seus áudios, se existirem
    ```
-   Opções: `--max-seg N` (nos formatos lidos aqui, envia sempre só os primeiros N s depois do corte de silêncio; padrão 120), `--idioma pt` (`auto` deixa o Whisper detectar), `--max-chars 6000` (o texto enviado ao LLM é truncado nesse tamanho, com aviso em `observacoes`), `--salvar DESTINO` (grava o JSON de saída, **com a transcrição**, no arquivo pedido; sem essa opção, nada de conteúdo é gravado).
+   Opções: `--max-seg N` (nos formatos lidos aqui, envia sempre só os primeiros N s depois do corte de silêncio; padrão 120), `--idioma auto` (recomendado: não envia `language`, o Whisper detecta; `pt` ou `en` forçam o idioma e **não** devem ser usados com áudio de outro idioma; o padrão da função e da CLI no código ainda é `pt`, então passe `auto` explicitamente), `--max-chars 6000` (o texto enviado ao LLM é truncado nesse tamanho, com aviso em `observacoes`), `--salvar DESTINO` (grava o JSON de saída, **com a transcrição**, no arquivo pedido; sem essa opção, nada de conteúdo é gravado).
 3. **No site** (Python):
    ```python
    from src.contexto_golpe import analisar_audio, analisar_texto
@@ -217,6 +217,6 @@ Rodar o **Whisper localmente** (por exemplo, um tamanho pequeno ou médio, no pr
 
 - **Zero-shot:** o LLM não foi treinado nem ajustado para golpes; as respostas dependem só das instruções.
 - **Avaliado só com textos inventados** (`docs/AVALIACAO_CONTEXTO.md`, 15/11/2026; 130 textos no teste, protocolo congelado antes): recall dos golpes 87,7% (IC95 77% a 94%; escondidos 80%), falso alarme 3,4% (IC95 1% a 12%). Os golpes que mais passam: "salva meu número novo" sem pedido, pedidos indiretos em histórias de romance e o falso sequestro sem pedido de dinheiro. Textos escritos por um modelo de linguagem não são golpes reais.
-- **Só português do Brasil** nos testes; o caminho de áudio com fala real ainda não foi rodado.
+- **Idioma:** o caminho de áudio só foi validado em **inglês** (teste WhatsApp reavaliado com `auto`; `docs/RESULTADO_CONTEXTO_WHISPER.md`). O português do modo `auto` **não foi validado por nós** (o Whisper suporta, mas não medimos). A avaliação com textos inventados foi só em pt-BR, sem áudio.
 - **Plano gratuito sem garantia de disponibilidade**, com limites que mudam e cerca de 7 classificações por minuto.
 - **Determinismo:** temperature 0 e seed fixo ajudam, mas o serviço não garante a mesma resposta sempre.

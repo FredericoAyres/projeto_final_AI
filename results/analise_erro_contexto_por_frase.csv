@@ -1,0 +1,17 @@
+frase_id,texto_70,n_clipes,alerta_medio_mais,alerta_so_alto,recall,tema
+F01,"Hey, I'm having trouble with my bank card while traveling. The hotel n",4,4,4,1.0,golpe
+F02,"Hi, Dad, my old phone stopped working, so I'm using a different number",5,5,4,1.0,golpe
+F03,I need help making a payment in the next few minutes. I can't take a c,4,4,2,1.0,golpe
+F04,"Hi, it's me. I changed my phone number recently. I still need your sha",5,5,0,1.0,golpe
+F05,I can't make the transfer from my bank account right now. Could you pa,4,4,0,1.0,golpe
+F06,"My car broke down, and I had to take it to a repair shop. They've fini",4,4,0,1.0,golpe
+F07,I started watching a new series last weekend and ended up finishing th,2,0,0,0.0,cotidiano
+F08,"I tried making pasta from scratch yesterday, and the kitchen ended up ",2,0,0,0.0,cotidiano
+F09,I'm thinking about taking a short trip to the mountains during the hol,1,0,0,0.0,cotidiano
+F10,My headphones stopped working halfway through my favorite song on the ,1,0,0,0.0,cotidiano
+F11,"Our team scored right at the end of the match, and everyone started ce",2,0,0,0.0,cotidiano
+F12,"The weather was beautiful this morning, so I walked to the park before",2,0,0,0.0,cotidiano
+F13,"Hey, Mom. Could you send me some money for groceries? I spent more tha",5,0,0,0.0,golpe
+F14,"Hey, could you send me the twenty dollars you owe me for dinner? I'm p",5,0,0,0.0,golpe
+F15,I paid the electricity bill for the apartment this month. Could you tr,5,0,0,0.0,golpe
+F16,Would you be able to lend me fifty dollars until Friday? I had a few u,5,0,0,0.0,golpe
