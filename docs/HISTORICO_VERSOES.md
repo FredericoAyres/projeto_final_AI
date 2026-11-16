@@ -980,3 +980,11 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
   - o T3 nunca viu português no treino;
   - os textos dos reais e dos clones são diferentes;
   - nada foi testado em ligação ao vivo.
+
+
+### 2026-11-16 · Teste de estresse informal: 3 áudios de IA (Dessa), sem treinar
+
+- **O que foi:** 3 áudios de uma demonstração do Dessa (Block; fala-para-fala), rodados na T3 pelo caminho de referência. **Teste informal, não oficial**, sem protocolo prévio; 3 áudios não permitem estimar taxa. Nada foi treinado ou ajustado; os áudios ficam reservados (fora de treino, validação e escolha de corte). Detalhes: `docs/TESTE_ESTRESSE_3_IA.md`; tabela `results/teste_3_ia_notas.csv`.
+- **Resultado:** T3 (corte M 0,233) acusa 1 de 3 (`ia_3`, nota 2,72); `ia_1` (-0,60) e `ia_2` (-3,38) passam como reais. Em Opus 16 kbps as notas caem de 0,6 a 2,4 logit e o `ia_3` continua acusado (1,81). F0: `ia_1` em nenhum corte, `ia_2` só no A, `ia_3` nos dois.
+- **Leitura:** gerador de família nova, fora do treino; mostra o limite já declarado (não generaliza para geradores novos). A "porcentagem" é probabilidade crua, sem calibração.
+- **Próximo passo sugerido:** 15 a 30 áudios de vários geradores comerciais, sem treinar, com protocolo escrito antes.

@@ -1,0 +1,7 @@
+id,condicao,nota_T3,prob_pct,passa_A',passa_M,passa_F5,pct_reais_abaixo,pct_ias_abaixo,n_reais,n_ias,nota_F0,F0_passa_A,F0_passa_B,dur_usada_s
+ia_1,original,-0.6032,35.36,False,False,False,95.5,0.0,44,56,-0.0884,False,False,8.0
+ia_1,opus16k,-1.1758,23.58,False,False,False,86.4,1.8,44,56,1.0043,True,False,8.0
+ia_2,original,-3.3843,3.28,False,False,False,63.6,0.0,44,56,6.8369,True,False,8.0
+ia_2,opus16k,-5.7925,0.3,False,False,False,40.9,0.0,44,56,1.3855,True,False,8.0
+ia_3,original,2.72,93.82,True,True,True,100.0,0.0,44,56,14.3506,True,True,8.0
+ia_3,opus16k,1.8084,85.92,True,True,True,97.7,1.8,44,56,13.8559,True,True,8.0
