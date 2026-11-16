@@ -13,6 +13,7 @@ Para cada áudio: voz (T3) -> contexto (transcrição + classificação) -> aler
 """
 import argparse
 import csv
+import hashlib
 import json
 import shutil
 import sys
@@ -58,7 +59,8 @@ def main():
         r_voz = voz.analisar(arq)
         r_ctx = contexto.analisar(arq, a.contexto, ex.get("transcricao"))
         r_alerta = alerta.combinar(r_voz, r_ctx)
-        copia = pasta_audios / f"{ex['id']}{arq.suffix.lower()}"
+        # o nome leva um pedaço do hash do conteúdo: trocar o áudio muda o nome, e o navegador não toca o antigo do cache
+        copia = pasta_audios / f"{ex['id']}_{hashlib.sha256(arq.read_bytes()).hexdigest()[:8]}{arq.suffix.lower()}"
         shutil.copyfile(arq, copia)
         resultados.append({"id": ex["id"], "titulo": ex.get("titulo", ""), "contato": ex.get("contato", ""),
                            "hora": ex.get("hora", ""), "arquivo": ex["arquivo"],

@@ -1,19 +1,19 @@
 {
-  "gerado_em": "2026-11-16 13:31",
+  "gerado_em": "2026-11-16 17:44",
   "exemplos": [
     {
       "id": "normal",
-      "titulo": "Voz real: recado de um amigo (coleta do grupo)",
+      "titulo": "Voz real: recado de um amigo, com filtro de telefone (coleta do grupo)",
       "contato": "Amigo",
       "hora": "19:42",
-      "arquivo": "app/exemplos_audio/real_normal.wav",
-      "audio_mockup": "audios/normal.wav",
+      "arquivo": "app/exemplos_audio/real_normal_telefone.wav",
+      "audio_mockup": "audios/normal_acc7094c.wav",
       "voz": {
         "modelo": "T3 (v7, sistema principal)",
-        "nota": -2.9315555095672607,
+        "nota": -1.226243257522583,
         "corte": 0.23255929350852966,
         "parece_ia": false,
-        "chance_ia": 0.05061552483503074,
+        "chance_ia": 0.2268396198159274,
         "duracao_s": 13.1135
       },
       "contexto": {
@@ -39,17 +39,17 @@
     },
     {
       "id": "real_golpe",
-      "titulo": "Voz real lendo um roteiro de golpe (coleta do grupo)",
+      "titulo": "Voz real lendo um roteiro de golpe, com filtro de telefone (coleta do grupo)",
       "contato": "Número desconhecido",
       "hora": "10:15",
-      "arquivo": "app/exemplos_audio/real_golpe.wav",
-      "audio_mockup": "audios/real_golpe.wav",
+      "arquivo": "app/exemplos_audio/real_golpe_telefone.wav",
+      "audio_mockup": "audios/real_golpe_8482544a.wav",
       "voz": {
         "modelo": "T3 (v7, sistema principal)",
-        "nota": -3.4766480922698975,
+        "nota": -0.8001113533973694,
         "corte": 0.23255929350852966,
         "parece_ia": false,
-        "chance_ia": 0.029984016516795827,
+        "chance_ia": 0.3100016998048502,
         "duracao_s": 16.8935
       },
       "contexto": {
@@ -92,17 +92,17 @@
     },
     {
       "id": "ia_neutro",
-      "titulo": "Voz clonada por IA com assunto comum (coleta do grupo)",
+      "titulo": "Voz clonada por IA com assunto comum, com filtro de telefone (coleta do grupo)",
       "contato": "Amiga",
       "hora": "21:03",
-      "arquivo": "app/exemplos_audio/clone_neutro.wav",
-      "audio_mockup": "audios/ia_neutro.wav",
+      "arquivo": "app/exemplos_audio/clone_neutro_telefone.wav",
+      "audio_mockup": "audios/ia_neutro_ccfc5f96.wav",
       "voz": {
         "modelo": "T3 (v7, sistema principal)",
-        "nota": 6.9721903800964355,
+        "nota": 9.959539413452148,
         "corte": 0.23255929350852966,
         "parece_ia": true,
-        "chance_ia": 0.9990632813033179,
+        "chance_ia": 0.9999527277297414,
         "duracao_s": 10.6
       },
       "contexto": {
@@ -132,28 +132,28 @@
       "contato": "Número desconhecido",
       "hora": "14:07",
       "arquivo": "app/exemplos_audio/clone_golpe.wav",
-      "audio_mockup": "audios/golpe.wav",
+      "audio_mockup": "audios/golpe_105240ca.wav",
       "voz": {
         "modelo": "T3 (v7, sistema principal)",
-        "nota": 7.3180928230285645,
+        "nota": 7.3179497718811035,
         "corte": 0.23255929350852966,
         "parece_ia": true,
-        "chance_ia": 0.9993370135658736,
-        "duracao_s": 10.48
+        "chance_ia": 0.9993369187810112,
+        "duracao_s": 10.56
       },
       "contexto": {
         "status": "ok",
-        "transcricao": "I need help making a payment in the next few minutes. I can't take a call right now, but I'll explain everything later. Could you send me the money as soon as you see this message?",
+        "transcricao": "Hey, I'm having trouble with my bank card while traveling. The hotel needs the payment today, but my card keeps getting declined. Could you send me enough to cover the room while I contact the bank?",
         "idioma": null,
         "risco_conteudo": "medio",
         "sinais": [
           {
             "tipo": "pedido_dinheiro_ou_pix",
-            "evidencia": "send me the money"
+            "evidencia": "payment"
           },
           {
-            "tipo": "urgencia",
-            "evidencia": "right now"
+            "tipo": "ameaca_ou_medo",
+            "evidencia": "declined"
           }
         ],
         "resumo": "",

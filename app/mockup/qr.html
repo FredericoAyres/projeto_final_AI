@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escuta Segura · QR code</title>
+<style>
+  :root { --fundo: #eef1f5; --tela: #ffffff; --tinta: #16202c; --tinta2: #4a5868; --marca: #1d3557; --erro: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--fundo); color: var(--tinta);
+         font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; padding: 16px; }
+  .cartao { background: var(--tela); border-radius: 24px; padding: 32px 36px; text-align: center; max-width: 520px;
+            box-shadow: 0 20px 40px rgba(16, 32, 52, .12); }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  p { margin: 0; color: var(--tinta2); }
+  #qr { margin: 24px auto 18px; width: max-content; padding: 14px; background: #fff; border-radius: 12px; }
+  #qr img, #qr canvas { display: block; }
+  .url { font-family: Consolas, monospace; font-size: 17px; font-weight: 600; color: var(--marca); word-break: break-all; }
+  .nota { margin-top: 16px; font-size: 13px; }
+  .erro { color: var(--erro); }
+  select { font: inherit; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="cartao">
+  <h1>Escuta Segura</h1>
+  <p>Aponte a câmera do celular para abrir o app</p>
+  <div id="qr"></div>
+  <div class="url" id="url"></div>
+  <div id="escolha"></div>
+  <p class="nota" id="nota">O celular precisa estar na mesma rede Wi-Fi que este computador.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const nota = document.getElementById("nota");
+function desenhar(url) {
+  document.getElementById("qr").innerHTML = "";
+  document.getElementById("url").textContent = url;
+  if (!window.QRCode) {
+    nota.textContent = "Não consegui carregar o gerador de QR code (precisa de internet neste computador). Use o endereço acima.";
+    nota.className = "nota erro";
+    return;
+  }
+  new QRCode(document.getElementById("qr"), { text: url, width: 300, height: 300, correctLevel: QRCode.CorrectLevel.M });
+}
+fetch("endereco").then(r => r.json()).then(({ enderecos }) => {
+  if (!enderecos.length) {
+    document.getElementById("url").textContent = "";
+    nota.textContent = "O servidor não está aceitando a rede. Ligue com: python app/servidor.py --rede";
+    nota.className = "nota erro";
+    return;
+  }
+  desenhar(enderecos[0]);
+  if (enderecos.length > 1) {                           // vários adaptadores de rede: deixa escolher
+    const s = document.createElement("select");
+    s.innerHTML = enderecos.map(e => `<option>${e}</option>`).join("");
+    s.onchange = () => desenhar(s.value);
+    document.getElementById("escolha").append(s);
+  }
+}).catch(() => {
+  nota.textContent = "Abra esta página pelo servidor: python app/servidor.py --rede e depois http://127.0.0.1:8765/qr.html";
+  nota.className = "nota erro";
+});
+</script>
+</body>
+</html>

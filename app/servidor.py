@@ -4,6 +4,7 @@
     python app/servidor.py                    # contexto offline (Whisper local + palavras-chave)
     python app/servidor.py --contexto groq    # contexto dos colegas (src/contexto_golpe.py): ENVIA o áudio ao Groq;
                                               # precisa de GROQ_API_KEY e do consentimento de quem gravou
+    python app/servidor.py --rede             # também abre pelo celular no mesmo Wi-Fi (o endereço aparece na tela)
     depois, abra http://127.0.0.1:8765
 
 Cada áudio enviado passa pelo mesmo caminho do app/demo.py: voz (T3) -> transcrição -> contexto -> alerta.
@@ -11,7 +12,9 @@ Cada áudio enviado passa pelo mesmo caminho do app/demo.py: voz (T3) -> transcr
   quem transcreve é o próprio módulo dos colegas.
 - O áudio enviado é gravado em app/mockup/enviados/ (fora do git) só para a página poder tocá-lo. Nada mais é
   gravado: o resultado vive só na página e some ao recarregar.
-- Só escuta em 127.0.0.1 (este computador). ⚠️ Fora da trilha: servidor HTTP e transcrição com o Whisper.
+- Por padrão, só escuta em 127.0.0.1 (este computador). Com --rede, aceita conexões da rede local, para abrir pelo
+  celular no mesmo Wi-Fi (qualquer aparelho dessa rede consegue abrir e enviar áudios enquanto o servidor estiver ligado).
+  ⚠️ Fora da trilha: servidor HTTP e transcrição com o Whisper.
 """
 import argparse
 import json
@@ -76,9 +79,19 @@ class Motor:
 
 class Pagina(SimpleHTTPRequestHandler):
     motor = None
+    enderecos = []                                        # endereços para o celular (só com --rede)
+
+    def do_GET(self):
+        if self.path == "/endereco":                      # usado por qr.html para desenhar o QR code
+            return self._json(200, {"enderecos": self.enderecos})
+        return super().do_GET()
 
     def __init__(self, *a, **k):
         super().__init__(*a, directory=str(MOCKUP), **k)
+
+    def end_headers(self):                                # sem cache: ao trocar um exemplo, a página mostra o novo
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
 
     def _json(self, codigo, obj):
         corpo = json.dumps(obj, ensure_ascii=False).encode("utf-8")
@@ -114,6 +127,16 @@ class Pagina(SimpleHTTPRequestHandler):
             super().log_message(fmt, *args)
 
 
+def ips_da_rede():
+    """Endereços IPv4 deste computador na rede local (sem contatar nada fora)."""
+    import socket
+    try:
+        ips = socket.gethostbyname_ex(socket.gethostname())[2]
+    except OSError:
+        ips = []
+    return [ip for ip in ips if not ip.startswith("127.")] or ["<IP deste computador>"]
+
+
 def main():
     for f in (sys.stdout, sys.stderr):
         try:
@@ -123,10 +146,18 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--contexto", choices=contexto.MODOS, default="offline")
     ap.add_argument("--porta", type=int, default=8765)
+    ap.add_argument("--rede", action="store_true",
+                    help="aceita conexões da rede local (para abrir pelo celular no mesmo Wi-Fi); sem isto, só deste computador")
     a = ap.parse_args()
     Pagina.motor = Motor(a.contexto)
-    srv = HTTPServer(("127.0.0.1", a.porta), Pagina)      # um pedido por vez (os modelos não são divididos)
-    print(f"[servidor] abra http://127.0.0.1:{a.porta}  (Ctrl+C para parar)", flush=True)
+    srv = HTTPServer(("0.0.0.0" if a.rede else "127.0.0.1", a.porta), Pagina)   # um pedido por vez
+    print(f"[servidor] neste computador: http://127.0.0.1:{a.porta}  (Ctrl+C para parar)", flush=True)
+    if a.rede:
+        Pagina.enderecos = [f"http://{ip}:{a.porta}" for ip in ips_da_rede()]
+        for e in Pagina.enderecos:
+            print(f"[servidor] no celular (mesmo Wi-Fi): {e}", flush=True)
+        print(f"[servidor] QR code para o celular: http://127.0.0.1:{a.porta}/qr.html", flush=True)
+        print("[servidor] se o Windows perguntar, libere o Python no firewall para 'Redes privadas'.", flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
