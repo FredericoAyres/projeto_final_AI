@@ -965,3 +965,18 @@ Registro de mudanças em **como** o código roda (memória, processos, leitura),
   - registrado como adendo no `docs/PROTOCOLO_V8.md`.
 - **Suspensão:** com a tampa fechada, o processo congela e retoma ao acordar (houve ~2 h paradas no teste, sem efeito no resultado).
 - **Tempos:** cada época de treino levou ~12 min (~28 clipes/s; R2 ~9,5 min) e cada validação inteira ~25 min, ou seja, ~1 h 13 min por rodada. Cada teste levou ~30 min, e a fila toda ~11 h, com as pausas.
+
+
+### 2026-11-15 · Teste externo WhatsApp (sem treinar)
+
+- **O que foi:** 100 áudios (44 reais gravados no WhatsApp e 56 de IA do Chatterbox nano), 23 pessoas (`pessoa_id`), todas com real e IA. Protocolo escrito antes das notas (`docs/PROTOCOLO_TESTE_WHATSAPP.md`), rodado **uma vez** (marcador `results/teste_whatsapp_concluido.json`). Nada foi treinado, reajustado ou trocado. Resultado completo: `docs/RESULTADO_TESTE_WHATSAPP.md`; código `scripts/teste_whatsapp.py`; tabelas `results/teste_whatsapp_*`; figuras `results/slides/tw_01..tw_05`.
+- **Detector (T3, corte M):** acurácia 98% (IC95 93,6 a 100), acurácia balanceada 97,7%, TPR 100%, FPR 4,5%; os cortes A' e F5 deram o mesmo resultado. F0 (comparação): 87% no corte A e 58% no corte B. Condição B (clones recodificados em Opus ~16 kbps): T3 com 97% e AUC 0,998.
+- **Contexto de golpe (alerta médio ou mais):** acurácia 53%, **abaixo da trivial (73%)**; recall 39,7%, falso alarme 11,1%, precisão 90,6%.
+- **Combinado voz × conteúdo:** nenhuma IA ficou em "baixo".
+- **Ressalvas:**
+  - um só gerador e 23 pessoas (ICs largos);
+  - um classificador só com metadados chega a AUC 1,00 (com a taxa original) e 0,987 (sem ela), então **não dá para afirmar que o detector ouve só a voz**;
+  - o Whisper detectou **português nos 100 clipes**, apesar de a coleta dizer inglês; **pendência:** conferir as transcrições, o que pode afetar o recall do contexto;
+  - o T3 nunca viu português no treino;
+  - os textos dos reais e dos clones são diferentes;
+  - nada foi testado em ligação ao vivo.

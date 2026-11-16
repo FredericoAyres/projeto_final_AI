@@ -61,3 +61,16 @@ O ajuste fino da v8 foi um experimento **não adotado**: mantivemos a v7 (T3) co
 | 40 | `v8_4_controles.png` | Controles de estúdio por rodada. | A R1 mantém ou melhora a T3; a R3 cai no português. | Resultados da v8: sem esquecimento |
 
 Tabelas: `grupos_bancos.csv` (banco, grupo, o que é, real/IA, idioma, ano, papel, nº de áudios), `hiperparametros_versoes.csv` (hiperparâmetros de v1 a v6) e `resumo_v7_para_slides.csv` (uma linha por tipo de fonte: o que representa, nome técnico, AUC do F0 e da T3 no teste mestre, visto no treino, clipes, locutores, observação).
+
+### Contexto de golpe (textos inventados) e teste WhatsApp. Geradas por `scripts/contexto_golpe_figuras.py` (ctx) e `scripts/teste_whatsapp_figuras.py` (tw)
+
+| # | figura | o que mostra | o que olhar |
+|:--|:--|:--|:--|
+| ctx_01 | `ctx_01_recall_e_falso_alarme.png` | Contexto de golpe nos textos inventados: recall dos golpes e falso alarme nos legítimos. | O recall dos escondidos é menor que o dos explícitos. |
+| ctx_02 | `ctx_02_matriz_de_confusao.png` | Matriz de confusão do contexto por grupo (4 níveis de risco). | Onde os golpes escondidos caem. |
+| ctx_03 | `ctx_03_injecao_e_consistencia.png` | Resistência a texto que tenta enganar o avaliador e consistência entre execuções. | Quantos golpes com injeção continuam em risco alto. |
+| tw_01 | `tw_01_acuracia_dois_modelos.png` | Teste WhatsApp: acurácia e acurácia balanceada do detector (T3) e do contexto, com IC95. | A do contexto fica abaixo da acurácia trivial. |
+| tw_02 | `tw_02_taxas_por_grupo.png` | Teste WhatsApp: taxa de "IA" do detector e taxa de alerta do contexto nos 4 grupos. | O contexto quase não alerta nos reais com golpe. |
+| tw_03 | `tw_03_histograma_notas.png` | Teste WhatsApp: histograma das notas T3 e F0, real × IA. | A separação do T3 é bem maior que a do F0. |
+| tw_04 | `tw_04_matriz_contexto.png` | Teste WhatsApp: matriz de confusão do contexto (golpe × alerta). | Muitos golpes sem alerta. |
+| tw_05 | `tw_05_grupo_por_nivel.png` | Teste WhatsApp: grupo × nível combinado (baixo, atenção, alto). | Nenhuma IA em "baixo". |

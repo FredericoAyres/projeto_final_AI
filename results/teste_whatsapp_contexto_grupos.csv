@@ -1,0 +1,9 @@
+grupo,alerta,n,com_alerta,taxa,wilson_lo,wilson_hi,risco_nenhum,risco_baixo,risco_medio,risco_alto,risco_indeterminado
+real_sem_golpe,medio+,17,3,0.1765,0.0619,0.4103,2.0,12.0,3.0,0.0,0.0
+real_sem_golpe,alto,17,0,0.0,0.0,0.1843,,,,,
+real_com_golpe,medio+,27,2,0.0741,0.0206,0.2337,24.0,1.0,2.0,0.0,0.0
+real_com_golpe,alto,27,0,0.0,0.0,0.1246,,,,,
+ia_pedido_dinheiro,medio+,46,27,0.587,0.4434,0.7171,0.0,19.0,20.0,7.0,0.0
+ia_pedido_dinheiro,alto,46,7,0.1522,0.0757,0.2822,,,,,
+ia_neutro,medio+,10,0,0.0,-0.0,0.2775,10.0,0.0,0.0,0.0,0.0
+ia_neutro,alto,10,0,0.0,-0.0,0.2775,,,,,

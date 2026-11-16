@@ -1,0 +1,7 @@
+metadados,AUC_loo,auc_lo,auc_hi,acc,bacc
+todos os metadados,1.0,1.0,1.0,1.0,1.0
+sem a taxa original,0.9866,0.9599,1.0,0.98,0.9797
+so duracao,0.6425,0.4851,0.7818,0.7,0.6664
+so banda95,0.5367,0.4866,0.6112,0.6,0.5674
+DETECTOR T3 (condicao A),1.0,1.0,1.0,,
+DETECTOR F0 (condicao A),0.9229,0.8502,0.9828,,

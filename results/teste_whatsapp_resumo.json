@@ -1,0 +1,42 @@
+{
+ "quando": "2026-11-15 21:33:33",
+ "cortes": {
+  "T3_M": 0.23255929350852966,
+  "T3_A'": 0.0267828106880188,
+  "T3_F5": 0.21068783998489204,
+  "F0_A": -0.03953683376312256,
+  "F0_B": 8.21838092803955
+ },
+ "idiomas_detectados": {
+  "portuguese": 100
+ },
+ "nao_ingles": 100,
+ "status": {
+  "ok": 100
+ },
+ "risco": {
+  "nenhum": 36,
+  "baixo": 32,
+  "medio": 25,
+  "alto": 7
+ },
+ "sobreposicao_texto": {
+  "quase_identicas": 0,
+  "max_razao_difflib": 0.448,
+  "max_jaccard": 0.2,
+  "criterio": "razao >= 0,8 ou Jaccard >= 0,6"
+ },
+ "latencia_total_ms": {
+  "mediana": 1622.0,
+  "p90": 2006.9,
+  "max": 3050.0
+ },
+ "palavras": {
+  "mediana": 34.0,
+  "min": 12,
+  "max": 72
+ },
+ "manipulacao_detectada": 0,
+ "transcricao_suspeita": 0,
+ "sha256_manifesto": "0fcac35d27fc0cadcbfeb8c99395b8a478dfc758a0d1e5cea9bf7c360f655b29"
+}
