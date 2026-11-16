@@ -71,10 +71,6 @@
   .transcricao { font-size: 13.5px; line-height: 1.5; color: var(--tinta); }
   mark { background: #f1ecf7; color: #5a3780; border-radius: 4px; padding: 0 2px; font-weight: 600; }
 
-  .botoes { display: flex; gap: 8px; margin-top: auto; }
-  .botoes span { flex: 1; text-align: center; font-size: 13px; font-weight: 600; padding: 10px 6px; border-radius: 12px;
-                 border: 1px solid var(--linha); color: var(--marca); }
-  .botoes span.forte { background: var(--marca); color: #fff; border-color: var(--marca); }
 
   .aviso { max-width: 1100px; margin: 0 auto 40px; padding: 0 16px; font-size: 12.5px; color: var(--apagado); }
   .vazio { max-width: 640px; margin: 40px auto; padding: 20px; background: var(--tela); border-radius: 12px; border: 1px solid var(--linha); }
@@ -154,10 +150,6 @@ function tela(ex) {
           <div class="transcricao">${c.transcricao ? `“${destacar(c.transcricao, c.sinais)}”` : "(sem transcrição)"}</div>
         </div>
 
-        <div class="botoes">
-          ${a.nivel === "baixo" || a.nivel === "nao_avaliado" ? `<span>Analisar outro</span><span class="forte">OK</span>`
-                                : `<span>Bloquear número</span><span class="forte">Ligar no oficial</span>`}
-        </div>
       </div>
     </div></div>
     <div class="legenda">${esc(ex.titulo)}</div>  </div>`;
