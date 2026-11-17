@@ -48,7 +48,8 @@ TX = {
     "recortes": {"ml_itw": "internet real\n(ML-ITW)", "in_the_wild": "entrevistas\n(In-the-Wild)", "radar_en": "IA moderna,\ncanal degradado\n(RADAR en)"},
     "fonte_dados": "Fonte: ",
     "fe_01": {"titulo": "O sistema final junta duas perguntas, a voz e o conteúdo, num alerta de três níveis",
-              "nota": "Congelado = pesos, cortes, prompt e modelo fixados antes dos testes. O alerta é um aviso, não um veredito.",
+              "nota": "Congelado = pesos, cortes, prompt e modelo congelados antes do teste; exceto o idioma auto, fixado em 16/11 (antes só do conjunto reservado do WhatsApp). O alerta é um aviso, não um veredito.",
+              "corte_aberto": "corte final do produto:\ndecisão em aberto", "idioma_aviso": "padrão do código ainda 'pt':\npassar auto explicitamente",
               "audio": "Áudio", "det": "Detector de voz", "det2": "XLS-R congelado\n(camadas 5, 6, 7)\n+ regressão T3\n→ nota",
               "corte": "Nota ≥\ncorte M?", "voz": "voz de IA?", "tr": "Transcrição", "tr2": "Whisper\n(idioma auto)",
               "jg": "Julgamento do conteúdo", "jg2": "modelo de linguagem\n→ risco: nenhum,\nbaixo, médio, alto",
@@ -69,19 +70,19 @@ TX = {
               "nota": "Painéis NÃO comparáveis entre si: bancos, métricas e cortes diferentes. v1 a v3 só têm medida em dados que já conhecíamos.",
               "p1": "Teste da v4\n(acurácia média, 3 bancos)", "p2": "Teste mestre da v7\n(AUC média, 3 fontes)", "p3": "Teste WhatsApp\n(AUC, 100 áudios)",
               "chute": "chute", "cnn": "CNN\nantiga (v3)", "v4a": "v4\ncorte A", "v4b": "v4\ncorte B", "f0": "F0", "t3": "T3", "r1": "R1\n(v8, não adotada)"},
-    "fe_04": {"titulo": "Treinar com áudio de internet subiu a AUC média de {m0} para {m3} no teste mestre",
-              "nota": "IC95 por locutor. O teste mestre não é virgem (o F0 já tinha sido medido nele). RADAR en mede idioma novo, não gerador novo.",
+    "fe_04": {"titulo": "Treinar com áudio de internet e de IA comercial com canal degradado (RADAR) subiu a AUC média de {m0} para {m3} no teste mestre",
+              "nota": "IC95 por locutor (ML-ITW e In-the-Wild) e por clipe (RADAR en, intervalo otimista). O teste mestre não é virgem (o F0 já tinha sido medido nele). RADAR en mede idioma novo, não gerador novo.",
               "f0": "F0 (sem retreinar)", "t3": "T3"},
     "fe_05": {"titulo": "A validação escolheu a T3; no teste mestre, T3 e T4 empatam em média ({m3} e {m4})",
               "nota": "IC95 por locutor. A T3 foi escolhida pela validação, antes de abrir o teste. A T4 tem a pior fonte um pouco melhor.",
               "media": "AUC média (3 fontes)", "pior": "AUC da pior fonte", "esc": "escolhida"},
     "fe_06": {"titulo": "O ajuste fino da v8 subiu a AUC em {dv8}, mas o corte escolhido variou de {cmin} a {cmax}; não foi adotado",
-              "nota": "2 sementes só; IC95 por locutor. Cinza = não adotado. O corte é o da regra escolhida pela validação de cada rodada.",
+              "nota": "2 sementes só; IC95 por locutor (ML-ITW, In-the-Wild) e por clipe (RADAR en, otimista). Cinza = não adotado. O corte é o da regra escolhida pela validação de cada rodada.",
               "auc": "AUC média (3 fontes)", "corte": "corte escolhido (logit)", "r0": "T3", "r1a": "R1\nsemente 42", "r1b": "R1\nsemente 123"},
     "fe_07": {"titulo": "Cortar as camadas sobrantes deixa o modelo {mb_ratio}× menor com a mesma nota; a AUC média praticamente não muda",
-              "nota": "Tempos: mediana de 30 medidas, áudio de 5 s, lote de 1, notebook. int8 muda o valor da nota (não usa o corte da T3). Validação, 2.000 clipes.",
+              "nota": "Tempos: mediana de 30 medidas, áudio de 5 s, lote de 1, notebook. Placa de vídeo (rótulo acima da barra): completo em fp16 e cortado em fp32 (precisões diferentes); V2 fp16 cortado: 10 ms. int8 muda o valor da nota (não usa o corte da T3). Validação, 2.000 clipes.",
               "mb": "tamanho em disco (MB)", "tempo": "tempo por áudio de 5 s (ms)", "auc": "AUC média na validação",
-              "v": ["completo", "cortado\nfp32", "cortado\nfp16", "cortado\nint8"], "cpu": "processador, 4 threads", "gpu": "placa de vídeo"},
+              "v": ["completo", "cortado\nfp32", "cortado\nfp16", "cortado\nint8"], "cpu": "processador, 4 threads", "gpu": "placa de vídeo", "prec": {"V0": "fp16", "V1": "fp32", "V2": "fp16"}},
     "fe_08": {"titulo": "No WhatsApp, a T3 acertou {acc} dos áudios, contra {accF0} do F0 no melhor corte",
               "nota": "Um só gerador, 23 pessoas, só inglês; IC95 por pessoa. Acurácia trivial = {triv}. O atalho de formato não foi descontado (fe_11).",
               "t3": "T3 (corte M)", "f0a": "F0 (corte A)", "f0b": "F0 (corte B)", "p1": "acertos", "p2": "erros por tipo de áudio"},
@@ -94,7 +95,8 @@ TX = {
     "fe_11": {"titulo": "Um classificador que nem ouve a voz chega a AUC {sem}; o 98% do detector não descarta o atalho de formato",
               "nota": "Metadados: duração, volume, silêncio, taxa original e largura de banda; validação deixando uma pessoa de fora. IC95 por pessoa.",
               "det": "detector T3", "detf0": "detector F0", "todos": "metadados\n(todos)", "sem": "metadados\n(sem taxa original)", "dur": "só duração", "ban": "só largura\nde banda"},
-    "fe_12": {"titulo": "No teste de estresse, a T3 detectou {n} de 3 áudios de um gerador de família nova",
+    "fe_12": {"titulo": "Teste de estresse (teste informal, 3 áudios): a T3 detectou {n} de 3 áudios de um gerador de família nova",
+              "cortes_txt": "A', M e F5 quase coincidem\n({a} / {m} / {f5})",
               "nota": "Teste informal e não oficial: 3 áudios, sem protocolo prévio; não estima taxa de acerto. Cortes da T3: A', M e F5.",
               "x": "nota da T3 (logit)", "reais": "reais ({nr})", "clones": "clones ({ni})", "est": "estresse\n(3 áudios)", "cortes": "cortes"},
     "fe_13": {"titulo": "Com o mesmo corte, {br} dos reais do audiolivro em português são acusados, contra {co} na fala espontânea",
@@ -332,6 +334,8 @@ def fe_01(fig, st, d):
     ax.text(0.99, 0.28, t["alerta"], ha="right", va="top", fontsize=k, fontweight="bold")
     ax.text(0.99, 0.08, "“" + t["frase"] + "”", ha="right", va="top", fontsize=k, style="italic", color="#444444")
     ax.text(0.0, 0.0, "- - -  " + t["cong"], fontsize=k, color="#444444", va="bottom")
+    ax.text(0.48, 0.60, t["corte_aberto"], ha="center", va="top", fontsize=F(st, 0.85), style="italic", color=C_DET)
+    ax.text(0.215, 0.42, t["idioma_aviso"], ha="center", va="bottom", fontsize=F(st, 0.85), style="italic", color="#8a5a00")
 
 
 def fe_02(fig, st, d):
@@ -476,10 +480,12 @@ def fe_07(fig, st, d):
             xs.append(i - 0.2), vals.append(float(c4.iloc[0])), cs.append("cpu")
         gp = g(k, "placa")
         if len(gp):
-            xs.append(i + 0.2), vals.append(float(gp.iloc[0])), cs.append("gpu")
+            xs.append(i + 0.2), vals.append(float(gp.iloc[0])), cs.append("gpu:" + k)
     for x, vv, c_ in zip(xs, vals, cs):
         ax[1].bar(x, vv, width=0.38, color=C_DET if c_ == "cpu" else C_CTX, hatch=None if c_ == "cpu" else "//", edgecolor="#222222")
         ax[1].text(x, vv * 1.02, f(vv, 0), ha="center", va="bottom", fontsize=F(st, 0.8), fontweight="bold")
+        if c_ != "cpu":  # precisão de cada barra da placa de vídeo (não são comparáveis entre si)
+            ax[1].text(x, vv * 1.02 + max(vals) * 0.045, t["prec"][c_[4:]], ha="center", va="bottom", fontsize=F(st, 0.7), color="#8a5a00", fontweight="bold")
     legpatch(ax[1], color=C_DET, label=t["cpu"], edgecolor="#222222")
     legpatch(ax[1], color=C_CTX, hatch="//", label=t["gpu"], edgecolor="#222222")
     ax[1].legend(fontsize=F(st, 0.8), frameon=False, loc="upper right")
@@ -592,7 +598,8 @@ def fe_12(fig, st, d):
         ax.annotate(idn, (r.nota_T3, 0), xytext=(0, 14 if st is MODOS["paper"] else 24), textcoords="offset points", ha="center", fontsize=F(st, 0.85), fontweight="bold")
     for k, ls in (("A'", ":"), ("M", "--"), ("F5", "-.")):
         ax.axvline(d.cortes[k], color="#111111", lw=st["lw"] * 0.6, ls=ls)
-    ax.text(d.cortes["M"], 2.62, " M", fontsize=st["fs"], va="center")
+    ax.text(d.cortes["M"] + 0.3, 2.62, fmt(t["cortes_txt"], a=f(d.cortes["A'"], 3), m=f(d.cortes["M"], 3), f5=f(d.cortes["F5"], 3)),
+            fontsize=F(st, 0.85), va="center", ha="left")
     ax.set_yticks([2, 1, 0], [fmt(t["reais"], nr=nr), fmt(t["clones"], ni=ni), t["est"]], fontsize=st["fs"])
     ax.set_ylim(-0.6, 2.8)
     ax.set_xlabel(t["x"], fontsize=st["fs"])
@@ -803,8 +810,8 @@ FIGS = [("fe_01_fluxo_sistema", fe_01, 4.4), ("fe_02_linha_do_tempo", fe_02, 4.6
         ("fe_19_limitacoes", fe_19, 4.2), ("fe_20_resumo_final", fe_20, 4.4)]
 
 
-def renderizar(nome, fn, hp, d):
-    for modo in ("slides", "paper"):
+def renderizar(nome, fn, hp, d, modos=("slides", "paper")):
+    for modo in modos:
         st = dict(MODOS[modo])
         w, h = st["w"], (st["h"] if modo == "slides" else hp)
         fig = plt.figure(figsize=(w, h), dpi=st["dpi"])
@@ -845,17 +852,26 @@ def indice(feitas, puladas):
 
 
 def main():
+    """Sem argumentos: todas as figuras, slides e paper, mais folha e INDEX. Com --so fe_01,fe_04 (e --modos slides): só essas, sem folha nem INDEX."""
+    args = sys.argv[1:]
+    so = args[args.index("--so") + 1].split(",") if "--so" in args else None
+    modos = tuple(args[args.index("--modos") + 1].split(",")) if "--modos" in args else ("slides", "paper")
     d = D()
     feitas, puladas = [], []
     for nome, fn, hp in FIGS:
+        if so is not None and nome[:5] not in so:
+            continue
         try:
-            renderizar(nome, fn, hp, d)
+            renderizar(nome, fn, hp, d, modos)
             feitas.append(nome)
             print("ok", nome)
         except Exception as e:  # noqa: BLE001
             import traceback
             traceback.print_exc()
             puladas.append((nome, f"erro ao gerar: {type(e).__name__}: {e}"))
+    if so is not None:
+        print(len(feitas), "figuras (seleção; folha e INDEX não refeitos)")
+        return 0 if not puladas else 1
     folha(feitas)
     indice(feitas, puladas)
     print(len(feitas), "figuras;", len(puladas), "puladas")
