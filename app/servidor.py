@@ -79,11 +79,14 @@ class Motor:
 
 class Pagina(SimpleHTTPRequestHandler):
     motor = None
-    enderecos = []                                        # endereços para o celular (só com --rede)
+    rede = False                                          # True com --rede (aceita conexões da rede local)
+    porta = 8765
 
     def do_GET(self):
         if self.path == "/endereco":                      # usado por qr.html para desenhar o QR code
-            return self._json(200, {"enderecos": self.enderecos})
+            # lido de novo a cada pedido: se o computador trocar de rede, o QR acompanha sem religar o servidor
+            enderecos = [f"http://{ip}:{self.porta}" for ip in ips_da_rede()] if self.rede else []
+            return self._json(200, {"enderecos": enderecos})
         return super().do_GET()
 
     def __init__(self, *a, **k):
@@ -152,9 +155,9 @@ def main():
     Pagina.motor = Motor(a.contexto)
     srv = HTTPServer(("0.0.0.0" if a.rede else "127.0.0.1", a.porta), Pagina)   # um pedido por vez
     print(f"[servidor] neste computador: http://127.0.0.1:{a.porta}  (Ctrl+C para parar)", flush=True)
+    Pagina.rede, Pagina.porta = a.rede, a.porta
     if a.rede:
-        Pagina.enderecos = [f"http://{ip}:{a.porta}" for ip in ips_da_rede()]
-        for e in Pagina.enderecos:
+        for e in [f"http://{ip}:{a.porta}" for ip in ips_da_rede()]:
             print(f"[servidor] no celular (mesmo Wi-Fi): {e}", flush=True)
         print(f"[servidor] QR code para o celular: http://127.0.0.1:{a.porta}/qr.html", flush=True)
         print("[servidor] se o Windows perguntar, libere o Python no firewall para 'Redes privadas'.", flush=True)
